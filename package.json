@@ -1,0 +1,40 @@
+{
+  "name": "@acid-info/logos-design-system",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "commit": "git-cz",
+    "test": "lerna run test",
+    "format:check": "prettier --config .prettierrc --check --ignore-unknown .",
+    "format:fix": "prettier --config .prettierrc --write --ignore-unknown -l .",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@types/node": "^18.11.18",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.3",
+    "lerna": "^6.4.1",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.3"
+  },
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*": "yarn run format:fix"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  }
+}
