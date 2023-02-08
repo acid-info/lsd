@@ -1,11 +1,10 @@
 import { Global } from '@emotion/react'
 import React, { useMemo } from 'react'
 import { ButtonStyles } from '../Button/Button.styles'
-import { Theme } from '../Theme'
-import { defaultTheme } from '../Theme/defaultTheme'
+import { defaultThemes, Theme } from '../Theme'
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
-  theme = defaultTheme,
+  theme = defaultThemes.light,
 }) => {
   const styles = useMemo(
     () =>
