@@ -1,3 +1,4 @@
 .next
 coverage
 dist
+storybook-static
