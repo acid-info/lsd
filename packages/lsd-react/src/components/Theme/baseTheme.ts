@@ -2,7 +2,7 @@ import { css } from '@emotion/react'
 import { createThemeGlobalStyles } from './globalStyles'
 import { Theme } from './types'
 
-export const defaultTheme: Theme = {
+export const baseTheme: Theme = {
   breakpoints: {
     xs: {
       width: 0,
@@ -179,4 +179,4 @@ export const defaultTheme: Theme = {
   globalStyles: css``,
 }
 
-defaultTheme.globalStyles = createThemeGlobalStyles(defaultTheme)
+baseTheme.globalStyles = createThemeGlobalStyles(baseTheme)
