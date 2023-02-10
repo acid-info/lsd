@@ -12,7 +12,6 @@
     "watch": "tsc && vite build --watch --emptyOutDir false",
     "storybook": "start-storybook -p 6006 -s .storybook/public",
     "build-storybook": "build-storybook -s .storybook/public",
-    "chromatic": "npx chromatic --project-token=00a17b037bed",
     "preview": "vite preview"
   },
   "dependencies": {
