@@ -1,9 +1,14 @@
 import { Meta, Story } from '@storybook/react'
-import { Button } from './Button'
+import { Button, ButtonProps } from './Button'
 
 export default {
   title: 'Button',
   component: Button,
 } as Meta
 
-export const Root: Story = (args) => <Button {...args}>Button</Button>
+export const Root: Story<ButtonProps> = (args) => (
+  <Button {...args}>Button</Button>
+)
+Root.args = {
+  disabled: false,
+}
