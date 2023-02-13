@@ -1,109 +1,104 @@
 import { css } from '@emotion/react'
 import {
-  LSD_NAMESPACE,
   THEME_BREAKPOINTS,
   THEME_TYPOGRAPHY_PROPERTIES,
   THEME_TYPOGRAPHY_VARIANTS,
 } from './constants'
-import { Breakpoints, Theme, TypographyVariants } from './types'
+import { Theme, TypographyProperties, TypographyVariants } from './types'
+import { withTheme } from './withTheme'
 
-export const gs = {
-  breakpoint: (
-    theme: Theme,
-    breakpoint: Breakpoints,
-    content: string,
-  ) => `@media (min-width: ${theme.breakpoints[breakpoint].width}px) {
-    ${content}
-  }`,
-
+const cssUtils = {
   vars: {
-    name: (...parts: string[]) => `--${[LSD_NAMESPACE, ...parts].join('-')}`,
-    wrap: (v: string, wrap = true) => (!wrap ? v : `var(${v})`),
-    define: (name: string, value: any) => `${name}: ${value};`,
+    lsd: (...seq: string[]) => `--${['lsd', ...seq].join('-')}`,
     typography: (
-      variant: TypographyVariants,
-      property: string,
-      breakpoint?: Breakpoints | 'default',
-    ) => gs.vars.name(variant, property, ...(breakpoint ? [breakpoint] : [])),
-    palette: (category: string, variant: string) =>
-      gs.vars.name(category, variant),
+      variant: TypographyVariants | string,
+      property: TypographyProperties | string,
+    ) => cssUtils.vars.lsd(variant, property),
+    color: (category: string, variant: string) =>
+      cssUtils.vars.lsd(category, variant),
+    wrap: (name: string) => `var(${name})`,
   },
 
-  all: (theme: Theme) =>
-    [gs.typography.all(theme), gs.palette.all(theme)].join('\n'),
+  define: (name: string, value: string) => `${name}: ${value};`,
+}
 
-  typography: {
-    all: (theme: Theme) => [gs.typography.variants(theme)].join('\n'),
+const generateThemeGlobalStyles = withTheme((theme) => {
+  const vars: Array<string | string[]> = []
+  const styles: Array<string | string[]> = []
+  const breakpointStyles: string[][] = THEME_BREAKPOINTS.map(() => [])
+  const breakpointVars: string[][] = THEME_BREAKPOINTS.map(() => [])
 
-    variants: (theme: Theme) =>
-      [
-        ...THEME_TYPOGRAPHY_VARIANTS.flatMap((variant) =>
-          THEME_TYPOGRAPHY_PROPERTIES.map((prop) =>
-            gs.vars.define(
-              gs.vars.typography(variant, prop),
-              theme.typography[variant][prop],
-            ),
-          ),
-        ),
-        gs.typography.breakpoints(theme),
-      ].join('\n'),
+  {
+    THEME_TYPOGRAPHY_VARIANTS.forEach((variant) => {
+      THEME_TYPOGRAPHY_PROPERTIES.forEach((property) => {
+        const value = theme.typography[variant][property]?.toString() ?? 'unset'
+        vars.push(
+          cssUtils.define(cssUtils.vars.typography(variant, property), value),
+        )
+      })
+    })
 
-    breakpoints: (theme: Theme) =>
-      THEME_BREAKPOINTS.map((breakpoint, index) =>
-        gs.breakpoint(
-          theme,
-          breakpoint,
-          gs.typography.breakpoint(theme, breakpoint, index),
-        ),
-      ).join('\n'),
+    THEME_BREAKPOINTS.forEach((breakpoint, breakpointIndex) => {
+      THEME_TYPOGRAPHY_VARIANTS.forEach((variant) => {
+        THEME_TYPOGRAPHY_PROPERTIES.forEach((property) => {
+          const value =
+            theme.breakpoints[breakpoint].typography[variant][property]
 
-    breakpoint: (
-      theme: Theme,
-      breakpoint: Breakpoints,
-      breakpointIndex: number,
-    ) =>
-      THEME_TYPOGRAPHY_VARIANTS.flatMap((variant) =>
-        THEME_TYPOGRAPHY_PROPERTIES.map((prop) => {
-          const value = theme.breakpoints[breakpoint].typography[variant][prop]
           const current =
             breakpointIndex > 0
               ? theme.breakpoints?.[THEME_BREAKPOINTS[breakpointIndex - 1]]
-                  ?.typography?.[variant]?.[prop]
-              : theme.typography[variant][prop]
+                  ?.typography?.[variant]?.[property]
+              : theme.typography[variant][property]
 
-          return value !== current
-            ? gs.vars.define(gs.vars.typography(variant, prop), value)
-            : undefined
-        }),
-      )
-        .filter((value) => !!value)
-        .join('\n'),
-  },
+          if (value && value !== current) {
+            breakpointVars[breakpointIndex].push(
+              cssUtils.define(
+                cssUtils.vars.typography(variant, property),
+                value.toString(),
+              ),
+            )
+          }
+        })
+      })
+    })
+  }
 
-  palette: {
-    all: (theme: Theme) => {
-      const palette = theme.palette as Record<string, Record<string, string>>
+  {
+    const { primary, secondary, ...rest } = theme.palette
+    const palette = rest as Record<string, Record<string, string>>
 
-      return [
-        ...Object.keys(palette).flatMap((name) =>
-          Object.keys(palette[name]).map((variant) =>
-            gs.palette.color(name, variant, palette[name][variant]),
+    vars.push(
+      cssUtils.define(cssUtils.vars.color('theme', 'primary'), primary),
+      cssUtils.define(cssUtils.vars.color('theme', 'secondary'), secondary),
+      ...Object.keys(palette).flatMap((name) =>
+        Object.keys(palette[name]).map((variant) =>
+          cssUtils.define(
+            cssUtils.vars.color(name, variant),
+            palette[name][variant],
           ),
         ),
+      ),
+    )
+  }
 
-        `:root {
-        html, body {
-          background-color: ${theme.palette.background.primary};
-        }
+  THEME_BREAKPOINTS.map((breakpoint, index) => {
+    styles.push(`@media (min-width: ${theme.breakpoints[breakpoint].width}px) {
+      :root {
+        ${breakpointVars[index]}
       }
-      `,
-      ].join('\n')
-    },
 
-    color: (name: string, variant: string, value: string) =>
-      gs.vars.define(gs.vars.palette(name, variant), value),
-  },
-}
+      ${breakpointStyles[index]}
+    }`)
+  })
+
+  return css`
+    :root {
+      ${vars}
+    }
+
+    ${styles}
+  `
+})
 
 export const createThemeGlobalStyles = (() => {
   return (theme: Theme) => {
@@ -117,15 +112,8 @@ export const createThemeGlobalStyles = (() => {
     )
       return cache[key]
 
-    const styles = globalStyles.all(theme)
-    cache[key] = css`
-      :root {
-        ${styles}
-      }
-    `
+    cache[key] = generateThemeGlobalStyles(theme)
 
     return cache[key]
   }
 })()
-
-export const globalStyles = gs
