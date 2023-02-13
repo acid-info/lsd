@@ -1,8 +1,8 @@
 import { css } from '@emotion/react'
 import defaultsDeep from 'lodash/defaultsDeep'
 import { pairs } from '../../utils/object.utils'
+import { baseTheme } from './baseTheme'
 import { THEME_BREAKPOINTS, THEME_TYPOGRAPHY_VARIANTS } from './constants'
-import { defaultTheme } from './defaultTheme'
 import { createThemeGlobalStyles } from './globalStyles'
 import type {
   BreakpointStyles,
@@ -73,7 +73,7 @@ const createPaletteStyles = (theme: CreateThemeProps, defaultTheme: Theme) =>
 
 export const createTheme = (
   props: CreateThemeProps,
-  from = defaultTheme,
+  from = baseTheme,
 ): Theme => {
   const theme: Theme = {
     typography: createTypographyStyles(props, from),
