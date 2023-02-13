@@ -2,11 +2,13 @@ import { Global, SerializedStyles } from '@emotion/react'
 import React, { useMemo } from 'react'
 import { ButtonStyles } from '../Button/Button.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
+import { TabItemStyles } from '../TabItem/TabItem.styles'
+import { TabsStyles } from '../Tabs/Tabs.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
-  [ButtonStyles, TypographyStyles, LsdIconStyles]
+  [ButtonStyles, TypographyStyles, LsdIconStyles, TabItemStyles, TabsStyles]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
   theme = defaultThemes.light,
