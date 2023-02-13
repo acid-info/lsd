@@ -15,15 +15,8 @@ const darkTheme = createTheme(
     breakpoints: {},
     typography: {},
     palette: {
-      background: {
-        primary: '#000',
-      },
-      surface: {
-        primary: '#fff',
-      },
-      text: {
-        primary: 'rgb(255, 255, 255)',
-      },
+      primary: '255, 255, 255',
+      secondary: '0, 0, 0',
     },
   },
   lightTheme,

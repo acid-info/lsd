@@ -14,7 +14,7 @@ export const parameters: Parameters = {
     default: 'light',
     values: Object.entries(defaultThemes).map(([name, theme]) => ({
       name,
-      value: theme.palette.background.primary,
+      value: `rgb(${theme.palette.secondary})`,
     })),
   },
   viewport: {

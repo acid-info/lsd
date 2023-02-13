@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import defaultsDeep from 'lodash/defaultsDeep'
 import { pairs } from '../../utils/object.utils'
 import { baseTheme } from './baseTheme'
 import { THEME_BREAKPOINTS, THEME_TYPOGRAPHY_VARIANTS } from './constants'
@@ -9,6 +8,7 @@ import type {
   CreateThemeProps,
   Theme,
   ThemeBreakpoints,
+  ThemePalette,
   TypographyVariants,
   VariantThemeProperties,
 } from './types'
@@ -32,6 +32,9 @@ const createBreakpointStyle = (
         ...defaultTheme[key][variant],
         ...theme[key][variant],
         ...(all?.[index - 1]?.[key]?.[variant] ?? {}),
+        ...(defaultTheme.breakpoints?.[THEME_BREAKPOINTS[index]]?.[key]?.[
+          variant
+        ] ?? {}),
         ...(theme.breakpoints?.[THEME_BREAKPOINTS[index]]?.[key]?.[variant] ??
           {}),
       }))
@@ -68,8 +71,34 @@ const createBreakpointStyles = (
     ).map((styles, index) => [THEME_BREAKPOINTS[index], styles]),
   ) as ThemeBreakpoints
 
-const createPaletteStyles = (theme: CreateThemeProps, defaultTheme: Theme) =>
-  defaultsDeep(theme.palette, defaultTheme.palette)
+const createPaletteStyles = (theme: CreateThemeProps, defaultTheme: Theme) => {
+  const primary = theme.palette.primary ?? defaultTheme.palette.primary
+  const secondary = theme.palette.secondary ?? defaultTheme.palette.secondary
+
+  const palette: ThemePalette = {
+    primary,
+    secondary,
+    surface: {
+      primary: theme.palette.surface?.primary ?? secondary,
+      secondary: theme.palette.surface?.secondary ?? primary,
+    },
+    border: {
+      primary: theme.palette.border?.primary ?? primary,
+      secondary: theme.palette.border?.secondary ?? secondary,
+    },
+    icon: {
+      primary: theme.palette.icon?.primary ?? primary,
+      secondary: theme.palette.icon?.secondary ?? secondary,
+    },
+    text: {
+      primary: theme.palette.text?.primary ?? primary,
+      secondary: theme.palette.text?.secondary ?? secondary,
+      tertiary: theme.palette.text?.tertiary ?? `${primary}, 0.34`,
+    },
+  }
+
+  return palette
+}
 
 export const createTheme = (
   props: CreateThemeProps,
