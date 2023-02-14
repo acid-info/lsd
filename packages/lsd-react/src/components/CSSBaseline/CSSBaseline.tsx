@@ -5,6 +5,8 @@ import { DropdownStyles } from '../Dropdown/Dropdown.styles'
 import { DropdownItemStyles } from '../DropdownItem/DropdownItem.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
+import { TabItemStyles } from '../TabItem/TabItem.styles'
+import { TabsStyles } from '../Tabs/Tabs.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 
@@ -13,6 +15,8 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     ButtonStyles,
     TypographyStyles,
     LsdIconStyles,
+    TabItemStyles,
+    TabsStyles,
     ListBoxStyles,
     DropdownStyles,
     DropdownItemStyles,

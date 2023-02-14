@@ -2,6 +2,7 @@ import { Global, ThemeProvider as EmotionThemeProvider } from '@emotion/react'
 import React from 'react'
 import { CSSBaseline } from '../CSSBaseline'
 import { PortalProvider } from '../PortalProvider'
+import { ResizeObserverProvider } from '../ResizeObserver'
 import { Theme } from './types'
 
 export type ThemeProviderProps = React.PropsWithChildren<{
@@ -13,13 +14,15 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
 }) => {
   return (
-    <ThemeContext.Provider value={{ theme }}>
+    <ResizeObserverProvider>
       <PortalProvider>
-        <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
-        <CSSBaseline theme={theme} />
-        <Global styles={theme.globalStyles} />
+        <ThemeContext.Provider value={{ theme }}>
+          <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
+          <CSSBaseline theme={theme} />
+          <Global styles={theme.globalStyles} />
+        </ThemeContext.Provider>
       </PortalProvider>
-    </ThemeContext.Provider>
+    </ResizeObserverProvider>
   )
 }
 
