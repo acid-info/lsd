@@ -8,6 +8,8 @@ import { IconTagStyles } from '../IconTag/IconTag.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
 import { TabItemStyles } from '../TabItem/TabItem.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
+import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
+import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 
@@ -22,6 +24,8 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     DropdownStyles,
     DropdownItemStyles,
     IconTagStyles,
+    BreadcrumbStyles,
+    BreadcrumbItemStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
