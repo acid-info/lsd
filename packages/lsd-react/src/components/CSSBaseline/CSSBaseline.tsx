@@ -4,6 +4,7 @@ import { ButtonStyles } from '../Button/Button.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
 import { DropdownItemStyles } from '../DropdownItem/DropdownItem.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
+import { IconTagStyles } from '../IconTag/IconTag.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
 import { TabItemStyles } from '../TabItem/TabItem.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
@@ -20,6 +21,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     ListBoxStyles,
     DropdownStyles,
     DropdownItemStyles,
+    IconTagStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
