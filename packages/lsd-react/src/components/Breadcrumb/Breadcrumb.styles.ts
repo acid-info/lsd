@@ -26,21 +26,12 @@ export const BreadcrumbStyles = css`
     display: flex;
     flex-direction: column;
     max-height: 400px;
-    max-width: 148px;
     overflow: auto;
     border: 1px solid rgb(var(--lsd-border-primary));
     margin-top: 10px;
+    margin-left: 20px;
     position: absolute;
-  }
-
-  // Portal cannot be ralatively positioned
-  .${breadcrumbClasses.listBoxLarge} {
-    margin-left: 92px;
-  }
-
-  // Portal cannot be ralatively positioned
-  .${breadcrumbClasses.listBoxMedium} {
-    margin-left: 82px;
+    width: auto !important;
   }
 
   .${breadcrumbClasses.listBox} > a {

@@ -11,13 +11,6 @@ export default {
         value: ['small', 'medium', 'large'],
       },
     },
-    maxItems: {
-      control: {
-        type: 'number',
-        min: 2,
-        max: 6,
-      },
-    },
   },
 } as Meta
 

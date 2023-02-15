@@ -39,8 +39,29 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
   options = [],
   ...props
 }) => {
-  const ref = useRef<HTMLUListElement>(null)
-  const [open, setOpen] = useState(false)
+  const ellipsisRef = useRef<HTMLLIElement>(null)
+  const [open, setOpen] = useState<boolean>(false)
+
+  maxItems = Math.max(1, Math.min(maxItems || 1, options.length))
+
+  const [root, ...rest] = options
+  const [collapsed, visible] = !ellipsis
+    ? [[], rest]
+    : [
+        rest.slice(0, rest.length - maxItems + 1),
+        rest.slice(rest.length - maxItems + 1),
+      ]
+
+  const renderItems = (items: BreadcrumbOption[]) =>
+    items.map((item, idx) => (
+      <BreadcrumbItem
+        key={idx}
+        current={idx === visible.length - 1}
+        label={item.value}
+        size={size}
+        link={item.link}
+      />
+    ))
 
   const onTrigger = () => {
     !disabled && setOpen((value) => !value)
@@ -61,64 +82,33 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
         open && breadcrumbClasses.open,
       )}
     >
-      <ul ref={ref} className={breadcrumbClasses.list}>
-        {!ellipsis || maxItems === options.length
-          ? options.map((opt, idx) => (
-              <BreadcrumbItem
-                current={idx === options.length - 1}
-                label={opt.value}
-                size={size}
-                link={opt.link}
-              />
-            ))
-          : options.map((opt, idx) => {
-              if (idx === 1)
-                return (
-                  <BreadcrumbItem
-                    size={size}
-                    label={'...'}
-                    onClick={onTrigger}
-                  />
-                )
-              else if (
-                maxItems &&
-                maxItems > 1 &&
-                maxItems < options.length &&
-                idx > 1 &&
-                idx < options.length - maxItems + 1
-              )
-                return null
-              else
-                return (
-                  <BreadcrumbItem
-                    current={idx === options.length - 1}
-                    label={opt.value}
-                    size={size}
-                    link={opt.link}
-                  />
-                )
-            })}
+      <ul className={breadcrumbClasses.list}>
+        {root && renderItems([root])}
+        {collapsed.length > 0 && (
+          <BreadcrumbItem
+            ellipsisRef={ellipsisRef}
+            size={size}
+            label={'...'}
+            onClick={onTrigger}
+          />
+        )}
+        {renderItems(visible)}
       </ul>
-      {ellipsis && maxItems && (
+      {ellipsisRef?.current != null && ellipsis && maxItems && (
         <Portal id="breadcrumb">
           <ListBox
-            handleRef={ref}
+            handleRef={ellipsisRef}
             open={open}
             onClose={() => setOpen(false)}
-            className={clsx(
-              breadcrumbClasses.listBox,
-              size === 'large'
-                ? breadcrumbClasses.listBoxLarge
-                : breadcrumbClasses.listBoxMedium,
-            )}
+            className={clsx(breadcrumbClasses.listBox)}
           >
-            {options.slice(1, options.length - maxItems + 1).map((opt) => (
+            {collapsed.map((opt) => (
               <Typography
                 color="primary"
                 component="a"
                 href={opt.link}
                 variant={size === 'large' ? 'label1' : 'label2'}
-                className={breadcrumbItemClasses.listElementLink}
+                className={breadcrumbItemClasses.elementLink}
               >
                 {opt.value}
               </Typography>

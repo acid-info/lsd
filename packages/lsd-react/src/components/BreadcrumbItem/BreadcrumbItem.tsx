@@ -10,31 +10,37 @@ export type BreadcrumbItemProps = React.HTMLAttributes<HTMLDivElement> & {
   current?: boolean
   disabled?: boolean
   selected?: boolean
+  ellipsisRef?: React.RefObject<HTMLLIElement>
   onClick?: () => void
 }
 
 export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   classes: typeof breadcrumbItemClasses
-} = ({ label, link, size = 'large', current, onClick, selected }) => {
+} = ({
+  label,
+  link,
+  size = 'large',
+  current,
+  selected,
+  ellipsisRef,
+  onClick,
+}) => {
   return (
     <li
-      className={clsx(breadcrumbItemClasses.listElement)}
+      className={clsx(breadcrumbItemClasses.element)}
       aria-selected={selected ? 'true' : 'false'}
       onClick={onClick}
+      ref={ellipsisRef}
     >
       <Typography
         color="primary"
         component="a"
         href={link}
         variant={size === 'large' ? 'label1' : 'label2'}
-        className={
-          current
-            ? clsx(
-                breadcrumbItemClasses.listElementLink,
-                breadcrumbItemClasses.listElementCurrentPage,
-              )
-            : breadcrumbItemClasses.listElementLink
-        }
+        className={clsx(
+          breadcrumbItemClasses.elementLink,
+          current && breadcrumbItemClasses.elementCurrentPage,
+        )}
       >
         {label}
       </Typography>

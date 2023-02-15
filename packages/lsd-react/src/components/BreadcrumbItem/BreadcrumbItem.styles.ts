@@ -12,34 +12,27 @@ export const BreadcrumbItemStyles = css`
     content: '/';
   }
 
-  .${breadcrumbItemClasses.listElement} {
+  .${breadcrumbItemClasses.element} {
     list-style-type: none;
   }
 
-  .${breadcrumbItemClasses.listElementLink} {
+  .${breadcrumbItemClasses.elementLink} {
     text-decoration: none;
     cursor: pointer;
   }
 
-  .${breadcrumbItemClasses.listElementCurrentPage} {
-    border: 1px solid #000000;
+  .${breadcrumbItemClasses.elementCurrentPage} {
+    border: 1px solid rgb(var(--lsd-border-primary));
     padding: 4px 12px;
   }
 
   .${breadcrumbClasses.root}:not(.${breadcrumbClasses.disabled}) {
-    .${breadcrumbItemClasses.listElementLink} {
+    .${breadcrumbItemClasses.elementLink} {
       &:hover,
       &:focus {
         text-decoration: underline;
       }
     }
-  }
-
-  .${breadcrumbItemClasses.label} {
-  }
-
-  .${breadcrumbItemClasses.disabled} {
-    opacity: 0.34;
   }
 
   .${breadcrumbItemClasses.small} {
