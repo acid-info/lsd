@@ -34,11 +34,11 @@ export const BreadcrumbStyles = css`
     width: auto !important;
   }
 
-  .${breadcrumbClasses.listBox} > a {
+  .${breadcrumbClasses.listBox} > li {
     &:not(:last-child) {
       border-bottom: 1px solid rgb(var(--lsd-border-primary));
     }
-    padding: 8px 12px;
+    padding: 6px 10px 6px 12px;
     cursor: pointer;
     &:hover,
     &:focus {

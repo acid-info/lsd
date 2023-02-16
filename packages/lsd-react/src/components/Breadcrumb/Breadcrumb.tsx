@@ -4,13 +4,15 @@ import { BreadcrumbItem } from '../BreadcrumbItem'
 import { breadcrumbItemClasses } from '../BreadcrumbItem/BreadcrumbItem.classes'
 import { ListBox } from '../ListBox'
 import { Portal } from '../PortalProvider/Portal'
-import { Typography } from '../Typography'
 import { breadcrumbClasses } from './Breadcrumb.classes'
 
 export type BreadcrumbOption = {
   name: string
   value: string
   link: string
+  linkComponent?: React.ComponentType<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>
+  >
 }
 
 export type BreadcrumbProps = Omit<
@@ -60,6 +62,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
         label={item.value}
         size={size}
         link={item.link}
+        linkComponent={item?.linkComponent}
       />
     ))
 
@@ -102,16 +105,16 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
             onClose={() => setOpen(false)}
             className={clsx(breadcrumbClasses.listBox)}
           >
-            {collapsed.map((opt) => (
-              <Typography
-                color="primary"
-                component="a"
-                href={opt.link}
-                variant={size === 'large' ? 'label1' : 'label2'}
-                className={breadcrumbItemClasses.elementLink}
-              >
-                {opt.value}
-              </Typography>
+            {collapsed.map((opt, idx) => (
+              <BreadcrumbItem
+                key={idx}
+                current={idx === visible.length - 1}
+                label={opt.value}
+                size={size}
+                link={opt.link}
+                className={breadcrumbItemClasses.itemLink}
+                linkComponent={opt?.linkComponent}
+              />
             ))}
           </ListBox>
         </Portal>
