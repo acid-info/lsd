@@ -3,5 +3,5 @@ export const tagClasses = {
 
   outlined: `lsd-tag--outlined`,
   filled: `lsd-tag--filled`,
-  disabled: 'lsd-breadcrumb--disabled',
+  disabled: 'lsd-tag--disabled',
 }

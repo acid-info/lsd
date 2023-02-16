@@ -1,12 +1,13 @@
 import clsx from 'clsx'
 import React from 'react'
+import { Typography } from '../Typography'
 import { tagClasses } from './Tag.classes'
 
 export type TagProps = React.HTMLAttributes<HTMLDivElement> & {
   variant?: 'outlined' | 'filled'
   label: string
   icon?: React.ReactNode
-  iconDirection?: 'left' | 'right' | 'none'
+  iconDirection?: 'left' | 'right'
   disabled?: boolean
 }
 
@@ -17,35 +18,22 @@ export const Tag: React.FC<TagProps> & {
   variant = 'outlined',
   disabled = 'false',
   icon,
-  iconDirection,
+  iconDirection = 'left',
   children,
   ...props
 }) => {
-  const renderItems = () => {
-    switch (iconDirection) {
-      case 'left':
-        return (
-          <>
-            {icon}
-            {label}
-          </>
-        )
-      case 'right':
-        return (
-          <>
-            {label}
-            {icon}
-          </>
-        )
-      default:
-        return <>{label}</>
-    }
-  }
+  const renderItems = () => (
+    <>
+      {iconDirection === 'left' && icon}
+      <Typography className={tagClasses[variant]}>{label}</Typography>
+      {iconDirection === 'right' && icon}
+    </>
+  )
 
   return (
     <div
-      {...props}
       aria-label={label}
+      {...props}
       className={clsx(
         props.className,
         tagClasses.root,
