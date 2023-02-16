@@ -108,7 +108,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
             {collapsed.map((opt, idx) => (
               <BreadcrumbItem
                 key={idx}
-                current={idx === visible.length - 1}
                 label={opt.value}
                 size={size}
                 link={opt.link}
