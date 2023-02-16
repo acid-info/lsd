@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React from 'react'
 import { Typography } from '../Typography'
 import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
-export type BreadcrumbItemProps = React.HTMLAttributes<HTMLDivElement> & {
+export type BreadcrumbItemProps = React.LiHTMLAttributes<HTMLLIElement> & {
   size: 'small' | 'medium' | 'large'
   label: string
   link?: string
@@ -27,9 +27,11 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   selected,
   ellipsisRef,
   onClick,
+  ...props
 }) => {
   return (
     <li
+      {...props}
       className={clsx(breadcrumbItemClasses.root)}
       aria-selected={selected ? 'true' : 'false'}
       onClick={onClick}
