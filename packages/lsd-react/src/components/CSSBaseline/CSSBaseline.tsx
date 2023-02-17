@@ -12,6 +12,7 @@ import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
 import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
+import { TextFieldStyles } from '../TextField/TextField.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
@@ -26,6 +27,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     IconTagStyles,
     BreadcrumbStyles,
     BreadcrumbItemStyles,
+    TextFieldStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
