@@ -5,6 +5,8 @@ import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
 export const BreadcrumbItemStyles = css`
   .${breadcrumbItemClasses.root} {
     list-style-type: none;
+    display: flex;
+    align-items: center;
   }
 
   .${breadcrumbClasses.list} li + li::before {
@@ -31,17 +33,5 @@ export const BreadcrumbItemStyles = css`
         text-decoration-color: rgb(var(--lsd-border-primary));
       }
     }
-  }
-
-  .${breadcrumbItemClasses.small} {
-    padding: 6px 10px;
-  }
-
-  .${breadcrumbItemClasses.medium} {
-    padding: 6px 12px;
-  }
-
-  .${breadcrumbItemClasses.large} {
-    padding: 10px 14px;
   }
 `

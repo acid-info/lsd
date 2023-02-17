@@ -22,7 +22,6 @@ export type BreadcrumbProps = Omit<
   disabled?: boolean
   ellipsis?: boolean
   maxItems?: number
-  size?: 'small' | 'medium' | 'large'
   options?: BreadcrumbOption[]
   value?: string | string[]
   onChange?: (value: string | string[]) => void
@@ -31,7 +30,6 @@ export type BreadcrumbProps = Omit<
 export const Breadcrumb: React.FC<BreadcrumbProps> & {
   classes: typeof breadcrumbClasses
 } = ({
-  size = 'large',
   disabled = false,
   ellipsis = false,
   maxItems,
@@ -44,7 +42,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
   const ellipsisRef = useRef<HTMLLIElement>(null)
   const [open, setOpen] = useState<boolean>(false)
 
-  maxItems = Math.max(1, Math.min(maxItems || 1, options.length))
+  maxItems = Math.max(2, Math.min(maxItems || 2, options.length))
 
   const [root, ...rest] = options
   const [collapsed, visible] = !ellipsis
@@ -58,9 +56,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
     items.map((item, idx) => (
       <BreadcrumbItem
         key={idx}
-        current={idx === visible.length - 1}
+        current={idx === visible.length - 1 && item !== root}
         label={item.value}
-        size={size}
         link={item.link}
         linkComponent={item?.linkComponent}
       />
@@ -80,7 +77,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
       className={clsx(
         props.className,
         breadcrumbClasses.root,
-        breadcrumbClasses[size],
         disabled && breadcrumbClasses.disabled,
         open && breadcrumbClasses.open,
       )}
@@ -90,7 +86,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
         {collapsed.length > 0 && (
           <BreadcrumbItem
             ellipsisRef={ellipsisRef}
-            size={size}
             label={'...'}
             onClick={onTrigger}
           />
@@ -109,7 +104,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
               <BreadcrumbItem
                 key={idx}
                 label={opt.value}
-                size={size}
                 link={opt.link}
                 className={breadcrumbItemClasses.itemLink}
                 linkComponent={opt?.linkComponent}

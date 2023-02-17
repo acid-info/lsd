@@ -3,7 +3,6 @@ import React from 'react'
 import { Typography } from '../Typography'
 import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
 export type BreadcrumbItemProps = React.LiHTMLAttributes<HTMLLIElement> & {
-  size: 'small' | 'medium' | 'large'
   label: string
   link?: string
   linkComponent?: React.ComponentType<
@@ -22,20 +21,20 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   label,
   link,
   linkComponent: LinkComponent = (props) => <a {...props}>{props.children}</a>,
-  size = 'large',
   current,
   selected,
   ellipsisRef,
   onClick,
+  className,
   ...props
 }) => {
   return (
     <li
-      {...props}
-      className={clsx(breadcrumbItemClasses.root)}
+      className={clsx(breadcrumbItemClasses.root, className)}
       aria-selected={selected ? 'true' : 'false'}
       onClick={onClick}
       ref={ellipsisRef}
+      {...props}
     >
       <LinkComponent
         href={link}
@@ -44,11 +43,7 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
           current && breadcrumbItemClasses.itemCurrentPage,
         )}
       >
-        <Typography
-          color="primary"
-          component="span"
-          variant={size === 'large' ? 'label1' : 'label2'}
-        >
+        <Typography color="primary" component="span" variant={'label1'}>
           {label}
         </Typography>
       </LinkComponent>

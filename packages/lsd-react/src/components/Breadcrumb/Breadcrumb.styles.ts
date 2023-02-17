@@ -8,7 +8,7 @@ export const BreadcrumbStyles = css`
   .${breadcrumbClasses.list} {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -43,6 +43,7 @@ export const BreadcrumbStyles = css`
     &:hover,
     &:focus {
       text-decoration: underline;
+      text-decoration-color: rgb(var(--lsd-border-primary));
     }
   }
 `
