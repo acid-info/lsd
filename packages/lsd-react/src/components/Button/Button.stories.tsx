@@ -11,4 +11,5 @@ export const Root: Story<ButtonProps> = (args) => (
 )
 Root.args = {
   disabled: false,
+  withIcon: false,
 }
