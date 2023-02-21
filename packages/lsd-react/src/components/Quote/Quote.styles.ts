@@ -4,9 +4,7 @@ import { quoteClasses } from './Quote.classes'
 export const QuoteStyles = css`
   .${quoteClasses.root} {
     color: rgb(var(--lsd-text-primary));
-    background: none;
-    white-space: break-spaces;
-    width: 600px;
+    white-space: pre-wrap;
   }
 
   .${quoteClasses.indentedInline} {
@@ -19,8 +17,11 @@ export const QuoteStyles = css`
     text-align: center;
   }
 
-  .${quoteClasses.text} {
-    font-size: 16px;
-    line-height: 24px;
+  .${quoteClasses.parentheses}::before {
+    content: '***';
+  }
+
+  .${quoteClasses.parentheses}::after {
+    content: '***';
   }
 `

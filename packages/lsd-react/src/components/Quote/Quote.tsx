@@ -4,13 +4,12 @@ import { Typography } from '../Typography'
 import { quoteClasses } from './Quote.classes'
 
 export type QuoteProps = React.HTMLAttributes<HTMLDivElement> & {
-  text?: string
   mode?: 'indented-line' | 'parentheses'
 }
 
 export const Quote: React.FC<QuoteProps> & {
   classes: typeof quoteClasses
-} = ({ text = '', mode = 'indented-line', ...props }) => {
+} = ({ mode = 'indented-line', children, ...props }) => {
   return (
     <>
       <div
@@ -23,13 +22,8 @@ export const Quote: React.FC<QuoteProps> & {
             : quoteClasses.indentedInline,
         )}
       >
-        <Typography
-          color="primary"
-          component="label"
-          variant={'label1'}
-          className={quoteClasses.text}
-        >
-          {mode === 'parentheses' ? `***\n${text}\n***` : text}
+        <Typography color="primary" component="label" variant={'label1'}>
+          {children}
         </Typography>
       </div>
     </>
