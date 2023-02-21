@@ -1,4 +1,5 @@
 import { Meta, Story } from '@storybook/react'
+import { Typography } from '../Typography'
 import { Collapse, CollapseProps } from './Collapse'
 
 export default {
@@ -16,14 +17,18 @@ export default {
 
 export const Root: Story<CollapseProps> = (args) => (
   <div style={{ width: 'fit-content' }}>
-    <Collapse {...args}></Collapse>
+    <Collapse {...args}>
+      <div style={{ padding: '10px 18px' }}>
+        <Typography color="primary" component="label">
+          Slot component
+        </Typography>
+      </div>
+    </Collapse>
   </div>
 )
 
 Root.args = {
   size: 'large',
-  label: 'title',
+  label: 'Title',
   disabled: false,
-  text: 'Slot component.\nReplace me.\n↵',
-  textInline: false,
 }

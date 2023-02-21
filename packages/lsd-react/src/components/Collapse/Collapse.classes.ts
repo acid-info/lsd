@@ -1,6 +1,8 @@
 export const collapseClasses = {
   root: `lsd-collapse`,
 
-  open: 'lsd-collapse--open',
+  content: `lsd-collapse-content`,
+
+  open: 'lsd-collapse--open-item',
   disabled: 'lsd-collapse--disabled',
 }

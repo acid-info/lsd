@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import { slotClasses } from '../Slot/Slot.classes'
 import { collapseClasses } from './Collapse.classes'
 
 export const CollapseStyles = css`
@@ -10,8 +9,12 @@ export const CollapseStyles = css`
   }
 
   .${collapseClasses.open} {
-    .${slotClasses.root} {
+    .${collapseClasses.content} {
       border-top: 1px solid transparent;
     }
+  }
+
+  .${collapseClasses.content} {
+    border: 1px solid rgb(var(--lsd-border-primary));
   }
 `

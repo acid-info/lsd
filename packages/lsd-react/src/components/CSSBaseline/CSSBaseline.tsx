@@ -12,8 +12,7 @@ import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
 import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
-import { CollapseItemStyles } from '../CollapseItem/CollapseItem.styles'
-import { SlotStyles } from '../Slot/Slot.styles'
+import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
 import { CollapseStyles } from '../Collapse/Collapse.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
@@ -30,8 +29,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     BreadcrumbStyles,
     BreadcrumbItemStyles,
     CollapseStyles,
-    CollapseItemStyles,
-    SlotStyles,
+    CollapseHeaderStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
