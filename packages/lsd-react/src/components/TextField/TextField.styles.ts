@@ -6,8 +6,16 @@ export const TextFieldStyles = css`
     width: auto;
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
     box-sizing: border-box;
-    display: flex;
     align-items: center;
+  }
+
+  .${textFieldClasses.root} > div {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .${textFieldClasses.disabled} {
+    opacity: 0.34;
   }
 
   .${textFieldClasses.input} {
@@ -16,7 +24,7 @@ export const TextFieldStyles = css`
     font-size: 14px;
     color: rgb(var(--lsd-text-primary));
     background: none;
-    width: inherit;
+    width: 100%;
   }
 
   .${textFieldClasses.input}:hover {
@@ -28,19 +36,13 @@ export const TextFieldStyles = css`
     opacity: 0.3;
   }
 
-  .${textFieldClasses.disabled} {
-    cursor: default;
-    opacity: 0.34;
-  }
-
   .${textFieldClasses.error} {
     text-decoration: line-through;
   }
 
   .${textFieldClasses.supportingText} {
     width: fit-content;
-    font-size: 12px;
-    line-height: 16px;
+    margin-top: 20px;
   }
 
   .${textFieldClasses.large} {
@@ -55,22 +57,12 @@ export const TextFieldStyles = css`
     padding: 6px 12px;
   }
 
-  .${textFieldClasses.supportingTextLarge} {
-    margin: 8px 14px;
-  }
-
-  .${textFieldClasses.supportingTextMedium} {
-    margin: 8px 12px;
-  }
-
   .${textFieldClasses.withIcon} {
   }
 
-  .${textFieldClasses.filled} {
+  .${textFieldClasses.icon} {
     cursor: pointer;
     display: flex;
-    svg path {
-      --lsd-icon-primary: var(--lsd-icon-primary);
-    }
+    align-items: center;
   }
 `
