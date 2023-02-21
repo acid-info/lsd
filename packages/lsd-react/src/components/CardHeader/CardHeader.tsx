@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import React from 'react'
 import { Typography } from '../Typography'
-import { cardItemClasses } from './Cardtem.classes'
+import { cardHeaderClasses } from './CardHeader.classes'
 
-export type CardItemProps = Omit<
+export type CardHeaderProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'label'
 > & {
@@ -11,16 +11,16 @@ export type CardItemProps = Omit<
   size?: 'small' | 'medium' | 'large'
 }
 
-export const CardItem: React.FC<CardItemProps> & {
-  classes: typeof cardItemClasses
+export const CardHeader: React.FC<CardHeaderProps> & {
+  classes: typeof cardHeaderClasses
 } = ({ label, size = 'large', ...props }) => {
   return (
     <div
       {...props}
       className={clsx(
         props.className,
-        cardItemClasses.root,
-        cardItemClasses[size],
+        cardHeaderClasses.root,
+        cardHeaderClasses[size],
       )}
     >
       <Typography
@@ -34,4 +34,4 @@ export const CardItem: React.FC<CardItemProps> & {
   )
 }
 
-CardItem.classes = cardItemClasses
+CardHeader.classes = cardHeaderClasses

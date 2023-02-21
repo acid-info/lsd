@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react'
-import { CardItem, CardItemProps } from './Cardtem'
+import { CardHeader, CardHeaderProps } from './CardHeader'
 
 export default {
-  title: 'CardItem',
-  component: CardItem,
+  title: 'CardHeader',
+  component: CardHeader,
   argTypes: {
     size: {
       type: {
@@ -14,9 +14,9 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CardItemProps> = (args) => (
+export const Root: Story<CardHeaderProps> = (args) => (
   <div style={{ width: 'fit-content' }}>
-    <CardItem {...args}></CardItem>
+    <CardHeader {...args}></CardHeader>
   </div>
 )
 
