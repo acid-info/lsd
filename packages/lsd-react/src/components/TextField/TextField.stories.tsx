@@ -25,4 +25,6 @@ Root.args = {
   withIcon: false,
   error: false,
   placeholder: 'Placeholder',
+  defaultValue: 'default value',
+  onChange: undefined,
 }

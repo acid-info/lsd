@@ -1,5 +1,6 @@
 import clsx from 'clsx'
-import React, { useRef, useState } from 'react'
+import React, { useRef } from 'react'
+import { useInput } from '../../utils/useInput'
 import { CheckIcon, CloseIcon, ErrorIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { textFieldClasses } from './TextField.classes'
@@ -7,15 +8,17 @@ import { textFieldClasses } from './TextField.classes'
 export type TextFieldProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'onChange' | 'value'
-> & {
-  size?: 'large' | 'medium'
-  withIcon?: boolean
-  error?: boolean
-  disabled?: boolean
-  supportingText?: string
-  value?: string
-  onChange?: (value: any) => void
-}
+> &
+  Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
+    size?: 'large' | 'medium'
+    withIcon?: boolean
+    error?: boolean
+    disabled?: boolean
+    supportingText?: string
+    value?: string
+    defaultValue?: string
+    inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+  }
 
 export const TextField: React.FC<TextFieldProps> & {
   classes: typeof textFieldClasses
@@ -26,26 +29,18 @@ export const TextField: React.FC<TextFieldProps> & {
   error = false,
   children,
   value,
+  defaultValue,
   onChange,
+  inputProps = {},
   ...props
 }) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [inputValue, setInputValue] = useState<string>('')
+  const ref = useRef<HTMLInputElement>(null)
+  const input = useInput({ defaultValue, value, onChange, ref })
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const newValue = e.currentTarget.value
-    if (onChange) onChange(newValue)
-    setInputValue(newValue)
-  }
-
-  const onCancel = () => {
-    setInputValue('')
-    if (typeof onChange !== 'undefined') onChange('')
-  }
+  const onCancel = () => input.setValue('')
 
   return (
     <div
-      ref={ref}
       className={clsx(
         props.className,
         textFieldClasses.root,
@@ -53,26 +48,29 @@ export const TextField: React.FC<TextFieldProps> & {
         props.disabled && textFieldClasses.disabled,
         withIcon && textFieldClasses.withIcon,
       )}
+      {...props}
     >
       <div>
         <input
-          onChange={handleChange}
+          {...inputProps}
+          ref={ref}
+          value={input.value}
+          onChange={input.onChange}
           className={clsx(
+            inputProps.className,
             textFieldClasses.input,
             error && textFieldClasses.error,
           )}
-          value={inputValue}
-          {...props}
         />
         {withIcon && error ? (
           <span className={textFieldClasses.icon} onClick={onCancel}>
             <ErrorIcon color="primary" className={textFieldClasses.icon} />
           </span>
-        ) : withIcon && !inputValue.length ? (
+        ) : withIcon && !input.filled ? (
           <span className={textFieldClasses.icon}>
             <CheckIcon color="primary" />
           </span>
-        ) : withIcon && inputValue.length ? (
+        ) : withIcon && input.filled ? (
           <span className={textFieldClasses.icon} onClick={onCancel}>
             <CloseIcon color="primary" />
           </span>
