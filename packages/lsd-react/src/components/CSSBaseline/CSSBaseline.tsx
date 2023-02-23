@@ -14,6 +14,7 @@ import { ListBoxStyles } from '../ListBox/ListBox.styles'
 import { QuoteStyles } from '../Quote/Quote.styles'
 import { TabItemStyles } from '../TabItem/TabItem.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
+import { TagStyles } from '../Tag/Tag.styles'
 import { TextFieldStyles } from '../TextField/TextField.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
@@ -31,6 +32,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     IconTagStyles,
     BreadcrumbStyles,
     BreadcrumbItemStyles,
+    TagStyles,
     TextFieldStyles,
     AutocompleteStyles,
     QuoteStyles,
