@@ -17,6 +17,7 @@ export type TextFieldProps = Omit<
     supportingText?: string
     value?: string
     defaultValue?: string
+    placeholder?: string
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
@@ -29,6 +30,7 @@ export const TextField: React.FC<TextFieldProps> & {
   error = false,
   children,
   value,
+  placeholder,
   defaultValue,
   onChange,
   inputProps = {},
@@ -52,6 +54,7 @@ export const TextField: React.FC<TextFieldProps> & {
     >
       <div>
         <input
+          placeholder={placeholder}
           {...inputProps}
           ref={ref}
           value={input.value}
