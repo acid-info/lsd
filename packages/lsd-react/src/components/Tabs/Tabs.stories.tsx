@@ -60,4 +60,5 @@ export const Root: Story<
 Root.args = {
   fullWidth: false,
   scrollControls: true,
+  onChange: undefined,
 }
