@@ -1,11 +1,10 @@
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useInput } from '../../utils/useInput'
-import { DropdownOption } from '../Dropdown'
+import { DropdownItem } from '../DropdownItem'
 import { CloseIcon, SearchIcon } from '../Icons'
 import { ListBox } from '../ListBox'
 import { Portal } from '../PortalProvider/Portal'
-import { Typography } from '../Typography'
 import { autocompleteClasses } from './Autocomplete.classes'
 
 export type AutocompleteProps = Omit<
@@ -20,7 +19,7 @@ export type AutocompleteProps = Omit<
     placeholder?: string
     value?: string
     defaultValue?: string
-    options?: DropdownOption[]
+    options?: string[]
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
@@ -43,10 +42,10 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   const ref = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const input = useInput({ defaultValue, value, onChange, ref })
+  const inputValue = input.value as string
 
   const [open, setOpen] = useState(false)
-  const [selected, setSelected] = useState('')
-  const [dropdownOption, setDropdownOption] = useState(options || [])
+  const [selected, setSelected] = useState<string>()
 
   const onCancel = () => input.setValue('')
 
@@ -56,56 +55,27 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
     input.setValue(value)
   }
 
-  useEffect(() => {
-    const filteredOptions = options.filter(
-      (option) =>
-        typeof input.value === 'string' && option.name.startsWith(input.value),
-    )
-    if (input.value && filteredOptions.length && input.value !== selected) {
-      setDropdownOption(filteredOptions)
-      setOpen(true)
-    } else setOpen(false)
-  }, [input.value, setOpen, setDropdownOption])
+  const suggestions = useMemo(
+    () =>
+      input.filled
+        ? options
+            .filter((option) =>
+              new RegExp(`^${input.value}.+`, 'i').test(option),
+            )
+            .map((option) => [
+              option,
+              option.slice(0, inputValue.length),
+              option.slice(inputValue.length),
+            ])
+        : options,
+    [input.value, options],
+  )
 
   useEffect(() => {
-    if (disabled) {
-      setOpen(false)
-      input.setValue('')
-    }
-  }, [disabled])
+    !selected && input.filled && !open && setOpen(true)
+  }, [input.value, selected, open])
 
-  const renderDropdownItem = (option: DropdownOption) => {
-    if (typeof input.value === 'string') {
-      const suggestion = option.name.substring(
-        option.name.indexOf(input.value) + input.value.length,
-      )
-      return (
-        <>
-          <Typography
-            variant={size === 'large' ? 'label1' : 'label2'}
-            component="span"
-          >
-            {input.value}
-          </Typography>
-          <Typography
-            variant={size === 'large' ? 'label1' : 'label2'}
-            component="span"
-            className={autocompleteClasses.dropdownItemPlaceholder}
-          >
-            {suggestion}
-          </Typography>
-        </>
-      )
-    } else
-      return (
-        <Typography
-          variant={size === 'large' ? 'label1' : 'label2'}
-          component="span"
-        >
-          {option.name}
-        </Typography>
-      )
-  }
+  const isOpen = !disabled && open && suggestions.length > 0 && input.filled
 
   return (
     <div
@@ -127,6 +97,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
           placeholder={placeholder}
           onChange={input.onChange}
           disabled={disabled}
+          onFocus={() => setOpen(true)}
           className={clsx(
             inputProps.className,
             autocompleteClasses.input,
@@ -146,18 +117,29 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
       <Portal id="autocomplete">
         <ListBox
           handleRef={containerRef}
-          open={open}
+          open={isOpen}
           onClose={() => setOpen(false)}
           className={autocompleteClasses.listBox}
         >
-          {dropdownOption.map((opt: DropdownOption, idx: number) => (
-            <div
+          {suggestions.map((opt, idx: number) => (
+            <DropdownItem
               key={idx}
+              size={size}
+              tabIndex={0}
+              label={
+                <>
+                  {opt[1]}
+                  <span className={autocompleteClasses.dropdownItemPlaceholder}>
+                    {opt[2]}
+                  </span>
+                </>
+              }
               className={autocompleteClasses.dropdownItem}
-              onClick={() => handleDropdownClick(opt.name)}
-            >
-              {renderDropdownItem(opt)}
-            </div>
+              onClick={() => handleDropdownClick(opt[0])}
+              onKeyDown={(e) =>
+                e.key === 'Enter' && handleDropdownClick(opt[0])
+              }
+            />
           ))}
         </ListBox>
       </Portal>

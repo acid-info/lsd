@@ -66,31 +66,14 @@ export const AutocompleteStyles = css`
     overflow: auto;
     border: 1px solid rgb(var(--lsd-border-primary));
     border-top: 0;
-
-    & .${autocompleteClasses.root} {
-      border: 0;
-
-      &:not(:last-child) {
-        border-bottom: 1px solid rgb(var(--lsd-border-primary));
-      }
-    }
   }
 
   .${autocompleteClasses.dropdownItem} {
-    width: 100%;
-    box-sizing: border-box;
+    border: 0;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-    padding: 10px 14px;
-    border-bottom: 1px solid rgb(var(--lsd-border-primary));
-    cursor: pointer;
-  }
-
-  .${autocompleteClasses.dropdownItem}:last-child {
-    border: none;
+    &:not(:last-child) {
+      border-bottom: 1px solid rgb(var(--lsd-border-primary));
+    }
   }
 
   .${autocompleteClasses.dropdownItemPlaceholder} {
