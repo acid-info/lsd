@@ -4,8 +4,6 @@ import { iconButtonClasses } from './IconButton.classes'
 export const IconButtonStyles = css`
   .${iconButtonClasses.root} {
     display: flex;
-    width: 32px;
-    height: 28px;
     flex-direction: row;
     align-items: center;
     justify-content: center;

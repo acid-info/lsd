@@ -1,7 +1,8 @@
 import clsx from 'clsx'
 import React, { useRef } from 'react'
 import { useInput } from '../../utils/useInput'
-import { CheckIcon, CloseIcon, ErrorIcon } from '../Icons'
+import { IconButton } from '../IconButton'
+import { CloseIcon, ErrorIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { textFieldClasses } from './TextField.classes'
 
@@ -11,8 +12,10 @@ export type TextFieldProps = Omit<
 > &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
     size?: 'large' | 'medium'
-    withIcon?: boolean
+    icon?: React.ReactNode
     error?: boolean
+    errorIcon?: boolean
+    clearButton?: boolean
     disabled?: boolean
     supportingText?: string
     value?: string
@@ -25,13 +28,16 @@ export const TextField: React.FC<TextFieldProps> & {
   classes: typeof textFieldClasses
 } = ({
   size = 'large',
-  withIcon = false,
-  supportingText,
+  icon,
   error = false,
+  errorIcon = false,
+  clearButton,
+  supportingText,
   children,
   value,
   placeholder,
   defaultValue,
+  disabled,
   onChange,
   inputProps = {},
   ...props
@@ -43,41 +49,39 @@ export const TextField: React.FC<TextFieldProps> & {
 
   return (
     <div
+      aria-disabled={disabled ? 'true' : 'false'}
       className={clsx(
         props.className,
         textFieldClasses.root,
         textFieldClasses[size],
-        props.disabled && textFieldClasses.disabled,
-        withIcon && textFieldClasses.withIcon,
+        disabled && textFieldClasses.disabled,
+        error && textFieldClasses.error,
       )}
       {...props}
     >
-      <div>
+      <div className={textFieldClasses.inputContainer}>
         <input
           placeholder={placeholder}
           {...inputProps}
           ref={ref}
           value={input.value}
           onChange={input.onChange}
-          className={clsx(
-            inputProps.className,
-            textFieldClasses.input,
-            error && textFieldClasses.error,
-          )}
+          className={clsx(inputProps.className, textFieldClasses.input)}
         />
-        {withIcon && error ? (
-          <span className={textFieldClasses.icon} onClick={onCancel}>
-            <ErrorIcon color="primary" className={textFieldClasses.icon} />
-          </span>
-        ) : withIcon && !input.filled ? (
-          <span className={textFieldClasses.icon}>
-            <CheckIcon color="primary" />
-          </span>
-        ) : withIcon && input.filled ? (
-          <span className={textFieldClasses.icon} onClick={onCancel}>
-            <CloseIcon color="primary" />
-          </span>
-        ) : null}
+        {error && errorIcon ? (
+          <ErrorIcon color="primary" className={textFieldClasses.icon} />
+        ) : clearButton && input.filled ? (
+          <IconButton
+            disabled={disabled}
+            onClick={() => !disabled && onCancel()}
+            aria-label="clear"
+            className={textFieldClasses.clearButton}
+          >
+            <CloseIcon color="primary" className={textFieldClasses.icon} />
+          </IconButton>
+        ) : (
+          icon
+        )}
       </div>
       {supportingText && (
         <div className={clsx(textFieldClasses.supportingText)}>

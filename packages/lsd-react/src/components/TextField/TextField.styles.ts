@@ -6,11 +6,11 @@ export const TextFieldStyles = css`
     width: auto;
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
     box-sizing: border-box;
-    align-items: center;
   }
 
-  .${textFieldClasses.root} > div {
+  .${textFieldClasses.inputContainer} {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
 
@@ -36,7 +36,7 @@ export const TextFieldStyles = css`
     opacity: 0.3;
   }
 
-  .${textFieldClasses.error} {
+  .${textFieldClasses.error} .${textFieldClasses.input} {
     text-decoration: line-through;
   }
 
@@ -57,12 +57,19 @@ export const TextFieldStyles = css`
     padding: 6px 12px;
   }
 
-  .${textFieldClasses.withIcon} {
+  .${textFieldClasses.clearButton} {
+    padding: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border: 0;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
   }
 
   .${textFieldClasses.icon} {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
   }
 `

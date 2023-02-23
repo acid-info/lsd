@@ -1,15 +1,16 @@
 export const textFieldClasses = {
-  root: `lsd-textField`,
+  root: `lsd-text-field`,
 
-  input: `lsd-textField__input`,
-  icon: `lsd-textField__icon`,
+  inputContainer: `lsd-text-field-input-container`,
+  input: `lsd-text-field-input-container__input`,
+  icon: `lsd-text-field-input-container__icon`,
+  clearButton: `lsd-text-field-input-container__clear-button`,
 
-  supportingText: 'lsd-textField__supporting-text',
+  supportingText: 'lsd-text-field__supporting-text',
 
-  disabled: `lsd-textField--disabled`,
-  error: 'lsd-textField--error',
+  disabled: `lsd-text-field--disabled`,
+  error: 'lsd-text-field--error',
 
-  large: `lsd-textField--large`,
-  medium: `lsd-textField--medium`,
-  withIcon: `lsd-textField--with-icon`,
+  large: `lsd-text-field--large`,
+  medium: `lsd-text-field--medium`,
 }
