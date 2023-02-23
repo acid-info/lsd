@@ -1,5 +1,7 @@
 import clsx from 'clsx'
 import React from 'react'
+import { CardBody } from '../CardBody'
+import { CardHeader } from '../CardHeader'
 import { cardClasses } from './Card.classes'
 import { CardContext } from './Card.context'
 
@@ -9,16 +11,9 @@ export type CardProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
 
 export const Card: React.FC<CardProps> & {
   classes: typeof cardClasses
-} = ({ size = 'large', children, ...props }) => {
+} = ({ size = 'large', children }) => {
   return (
-    <CardContext.Provider value={{ size }}>
-      <div
-        {...props}
-        className={clsx(props.className, cardClasses.root, cardClasses[size])}
-      >
-        {children}
-      </div>
-    </CardContext.Provider>
+    <CardContext.Provider value={{ size }}>{children}</CardContext.Provider>
   )
 }
 

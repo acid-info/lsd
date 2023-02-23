@@ -13,6 +13,8 @@ import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 import { CardStyles } from '../Card/Card.styles'
+import { CardHeaderStyles } from '../CardHeader/CardHeader.styles'
+import { CardBodyStyles } from '../CardBody/CardBody.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
@@ -28,6 +30,8 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     BreadcrumbStyles,
     BreadcrumbItemStyles,
     CardStyles,
+    CardHeaderStyles,
+    CardBodyStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
