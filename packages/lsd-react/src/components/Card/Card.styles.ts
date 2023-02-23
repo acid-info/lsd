@@ -7,26 +7,18 @@ export const CardStyles = css`
     background: none;
     border: 1px solid rgb(var(--lsd-border-primary));
     word-break: keep-all;
-    padding: 8px 16px;
     box-sizing: border-box;
   }
 
+  .${cardClasses.body} {
+  }
+
   .${cardClasses.large} {
-    width: 600px;
-    padding: 10px 18px;
   }
 
   .${cardClasses.medium} {
-    width: 540px;
-    padding: 6px 14px;
   }
 
   .${cardClasses.small} {
-    width: 480px;
-    padding: 6px 12px;
-  }
-
-  .${cardClasses.withHeader} {
-    border-top: 1px solid transparent;
   }
 `
