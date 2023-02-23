@@ -13,6 +13,7 @@ import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 import { TextFieldStyles } from '../TextField/TextField.styles'
+import { AutocompleteStyles } from '../Autocomplete/Autocomplete.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
@@ -28,6 +29,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     BreadcrumbStyles,
     BreadcrumbItemStyles,
     TextFieldStyles,
+    AutocompleteStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
