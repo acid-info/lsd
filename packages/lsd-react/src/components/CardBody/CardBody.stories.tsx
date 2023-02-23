@@ -14,15 +14,15 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CardBodyProps> = (args) => (
-  <div style={{ width: 'fit-content' }}>
-    <CardBody {...args}>
-      A wise man can learn more from a foolish question than a fool can learn
-      from a wise answer.
-    </CardBody>
+export const Root: Story<CardBodyProps & { body: string }> = ({
+  body,
+  ...args
+}) => (
+  <div style={{ width: 400 }}>
+    <CardBody {...args}>{body}</CardBody>
   </div>
 )
 
 Root.args = {
-  size: 'large',
+  body: 'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
 }

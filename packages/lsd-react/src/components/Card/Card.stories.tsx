@@ -16,34 +16,22 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CardProps> = (args) => (
-  <div style={{ width: 'fit-content' }}>
+export const Root: Story<
+  CardProps & {
+    body: string
+    title: string
+  }
+> = ({ title, body, ...args }) => (
+  <div style={{ width: 400 }}>
     <Card {...args}>
-      <CardHeader
-        style={{
-          padding: '10px 18px',
-          border: '1px solid rgb(var(--lsd-border-primary))',
-          borderBottom: 'none',
-          textAlign: 'center',
-          fontSize: '14px',
-        }}
-      >
-        Title
-      </CardHeader>
-      <CardBody
-        style={{
-          padding: '14px 22px',
-          fontSize: '16px',
-          border: '1px solid rgb(var(--lsd-border-primary))',
-        }}
-      >
-        A wise man can learn more from a foolish question than a fool can learn
-        from a wise answer.
-      </CardBody>
+      <CardHeader>{title}</CardHeader>
+      <CardBody>{body}</CardBody>
     </Card>
   </div>
 )
 
 Root.args = {
   size: 'large',
+  title: 'Title',
+  body: 'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
 }

@@ -1,16 +1,16 @@
 import { css } from '@emotion/react'
+import { cardHeaderClasses } from '../CardHeader/CardHeader.classes'
 import { cardClasses } from './Card.classes'
 
 export const CardStyles = css`
   .${cardClasses.root} {
-    color: rgb(var(--lsd-text-primary));
-    background: none;
-    border: 1px solid rgb(var(--lsd-border-primary));
-    word-break: keep-all;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
-  .${cardClasses.body} {
+  .${cardClasses.root} > .${cardHeaderClasses.root} {
+    margin-bottom: -1px;
   }
 
   .${cardClasses.large} {

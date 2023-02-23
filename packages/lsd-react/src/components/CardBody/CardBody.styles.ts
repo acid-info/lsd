@@ -4,11 +4,7 @@ import { cardBodyClasses } from './CardBody.classes'
 export const CardBodyStyles = css`
   .${cardBodyClasses.root} {
     box-sizing: border-box;
-  }
-  .${cardBodyClasses.large} {
-  }
-  .${cardBodyClasses.medium} {
-  }
-  .${cardBodyClasses.small} {
+    padding: 14px 22px;
+    border: 1px solid rgb(var(--lsd-border-primary));
   }
 `

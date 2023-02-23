@@ -14,12 +14,16 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CardHeaderProps> = (args) => (
-  <div style={{ width: 'fit-content' }}>
-    <CardHeader {...args}>Title</CardHeader>
+export const Root: Story<CardHeaderProps & { title: string }> = ({
+  title,
+  ...args
+}) => (
+  <div style={{ width: 400 }}>
+    <CardHeader {...args}>{title}</CardHeader>
   </div>
 )
 
 Root.args = {
   size: 'large',
+  title: 'Title',
 }
