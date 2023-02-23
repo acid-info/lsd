@@ -4,8 +4,11 @@ import { CheckboxFilledIcon, CheckboxIcon, LsdIconProps } from '../Icons'
 import { Typography } from '../Typography'
 import { dropdownItemClasses } from './DropdownItem.classes'
 
-export type DropdownItemProps = React.HTMLAttributes<HTMLDivElement> & {
-  label: string
+export type DropdownItemProps = Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  'label'
+> & {
+  label: React.ReactNode
   selected?: boolean
   withIcon?: boolean
   disabled?: boolean
@@ -32,7 +35,6 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
     <div
       role="option"
       aria-selected={selected ? 'true' : 'false'}
-      aria-label={label}
       className={clsx(
         className,
         dropdownItemClasses.root,

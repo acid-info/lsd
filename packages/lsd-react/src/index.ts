@@ -1,3 +1,4 @@
+export * from './components/Autocomplete'
 export * from './components/Breadcrumb'
 export * from './components/BreadcrumbItem'
 export * from './components/Button'
