@@ -1,6 +1,6 @@
 import { LsdIcon } from '../LsdIcon'
 
-export const NewPageIcon = LsdIcon(
+export const PickIcon = LsdIcon(
   (props) => (
     <svg
       width="14"
@@ -11,14 +11,12 @@ export const NewPageIcon = LsdIcon(
       {...props}
     >
       <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M9.79293 3.5H3.00004V2.5H11.5V11H10.5V4.20711L3.35359 11.3536L2.64648 10.6464L9.79293 3.5Z"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M9.79287 3.5H2.99998V2.5H11.5V11H10.5V4.20711L3.35353 11.3536L2.64642 10.6464L9.79287 3.5Z"
         fill="black"
       />
     </svg>
   ),
-  {
-    filled: true,
-  },
+  { filled: true },
 )
