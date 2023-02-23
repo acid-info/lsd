@@ -6,7 +6,4 @@ export const breadcrumbClasses = {
 
   open: 'lsd-breadcrumb--open',
   disabled: 'lsd-breadcrumb--disabled',
-  small: `lsd-breadcrumb--small`,
-  medium: `lsd-breadcrumb--medium`,
-  large: `lsd-breadcrumb--large`,
 }

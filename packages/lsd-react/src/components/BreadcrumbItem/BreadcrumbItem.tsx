@@ -2,11 +2,12 @@ import clsx from 'clsx'
 import React from 'react'
 import { Typography } from '../Typography'
 import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
-
-export type BreadcrumbItemProps = React.HTMLAttributes<HTMLDivElement> & {
-  size: 'small' | 'medium' | 'large'
+export type BreadcrumbItemProps = React.LiHTMLAttributes<HTMLLIElement> & {
   label: string
   link?: string
+  linkComponent?: React.ComponentType<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>
+  >
   current?: boolean
   disabled?: boolean
   selected?: boolean
@@ -19,31 +20,33 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
 } = ({
   label,
   link,
-  size = 'large',
+  linkComponent: LinkComponent = (props) => <a {...props}>{props.children}</a>,
   current,
   selected,
   ellipsisRef,
   onClick,
+  className,
+  ...props
 }) => {
   return (
     <li
-      className={clsx(breadcrumbItemClasses.element)}
+      className={clsx(breadcrumbItemClasses.root, className)}
       aria-selected={selected ? 'true' : 'false'}
       onClick={onClick}
       ref={ellipsisRef}
+      {...props}
     >
-      <Typography
-        color="primary"
-        component="a"
+      <LinkComponent
         href={link}
-        variant={size === 'large' ? 'label1' : 'label2'}
         className={clsx(
-          breadcrumbItemClasses.elementLink,
-          current && breadcrumbItemClasses.elementCurrentPage,
+          breadcrumbItemClasses.itemLink,
+          current && breadcrumbItemClasses.itemCurrentPage,
         )}
       >
-        {label}
-      </Typography>
+        <Typography color="primary" component="span" variant={'label1'}>
+          {label}
+        </Typography>
+      </LinkComponent>
     </li>
   )
 }

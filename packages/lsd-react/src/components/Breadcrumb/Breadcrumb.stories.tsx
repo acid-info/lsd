@@ -4,14 +4,6 @@ import { Breadcrumb, BreadcrumbProps } from './Breadcrumb'
 export default {
   title: 'Breadcrumb',
   component: Breadcrumb,
-  argTypes: {
-    size: {
-      type: {
-        name: 'enum',
-        value: ['small', 'medium', 'large'],
-      },
-    },
-  },
 } as Meta
 
 export const Root: Story<BreadcrumbProps> = (args) => (
@@ -21,7 +13,6 @@ export const Root: Story<BreadcrumbProps> = (args) => (
 )
 
 Root.args = {
-  size: 'large',
   disabled: false,
   onChange: undefined,
   options: new Array(6).fill(null).map((value, index) => ({
