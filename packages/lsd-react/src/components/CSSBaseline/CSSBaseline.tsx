@@ -4,6 +4,9 @@ import { AutocompleteStyles } from '../Autocomplete/Autocomplete.styles'
 import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
 import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { ButtonStyles } from '../Button/Button.styles'
+import { CardStyles } from '../Card/Card.styles'
+import { CardBodyStyles } from '../CardBody/CardBody.styles'
+import { CardHeaderStyles } from '../CardHeader/CardHeader.styles'
 import { CollapseStyles } from '../Collapse/Collapse.styles'
 import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
@@ -32,6 +35,9 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     DropdownItemStyles,
     BreadcrumbStyles,
     BreadcrumbItemStyles,
+    CardStyles,
+    CardHeaderStyles,
+    CardBodyStyles,
     TagStyles,
     TextFieldStyles,
     AutocompleteStyles,
