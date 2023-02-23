@@ -4,11 +4,12 @@ import { buttonClasses } from './Button.classes'
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: 'large' | 'medium' | 'small'
+  icon: React.ReactNode
 }
 
 export const Button: React.FC<ButtonProps> & {
   classes: typeof buttonClasses
-} = ({ size = 'medium', children, ...props }) => {
+} = ({ size = 'medium', icon, children, ...props }) => {
   return (
     <>
       <button
@@ -18,9 +19,11 @@ export const Button: React.FC<ButtonProps> & {
           buttonClasses.root,
           buttonClasses[size],
           props.disabled && buttonClasses.disabled,
+          icon && buttonClasses.withIcon,
         )}
       >
         <span className={buttonClasses.text}>{children}</span>
+        {icon && <span className={buttonClasses.icon}>{icon}</span>}
       </button>
     </>
   )

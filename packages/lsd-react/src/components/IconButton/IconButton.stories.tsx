@@ -1,10 +1,10 @@
 import { Meta, Story } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
-import { Button, ButtonProps } from './Button'
+import { IconButton, IconButtonProps } from './IconButton'
 
 export default {
-  title: 'Button',
-  component: Button,
+  title: 'IconButton',
+  component: IconButton,
   argTypes: {
     size: {
       type: {
@@ -18,25 +18,23 @@ export default {
         name: 'enum',
         value: useStorybookIconComponent.options,
       },
+      defaultValue: 'FolderIcon',
     },
   },
 } as Meta
 
-export const Root: Story<ButtonProps & { icon: string }> = ({
+export const Root: Story<IconButtonProps & { icon: string }> = ({
   icon,
   ...args
 }) => {
-  const IconComponent = useStorybookIconComponent(icon)
-  return (
-    <Button
-      {...args}
-      icon={IconComponent && <IconComponent color="primary"></IconComponent>}
-    >
-      Button
-    </Button>
-  )
+  const Icon = useStorybookIconComponent(icon)
+
+  return <IconButton {...args}>{Icon && <Icon color="primary" />}</IconButton>
 }
 
 Root.args = {
+  variant: 'outlined',
+  icon: 'FolderIcon',
+  size: 'large',
   disabled: false,
 }
