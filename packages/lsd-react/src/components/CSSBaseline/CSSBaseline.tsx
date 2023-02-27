@@ -7,6 +7,7 @@ import { ButtonStyles } from '../Button/Button.styles'
 import { CardStyles } from '../Card/Card.styles'
 import { CardBodyStyles } from '../CardBody/CardBody.styles'
 import { CardHeaderStyles } from '../CardHeader/CardHeader.styles'
+import { CheckboxStyles } from '../Checkbox/Checkbox.styles'
 import { CollapseStyles } from '../Collapse/Collapse.styles'
 import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
@@ -40,6 +41,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     CardBodyStyles,
     TagStyles,
     TextFieldStyles,
+    CheckboxStyles,
     AutocompleteStyles,
     QuoteStyles,
     CollapseStyles,
