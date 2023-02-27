@@ -50,6 +50,7 @@ export const TextField: React.FC<TextFieldProps> & {
   return (
     <div
       aria-disabled={disabled ? 'true' : 'false'}
+      {...props}
       className={clsx(
         props.className,
         textFieldClasses.root,
@@ -57,7 +58,6 @@ export const TextField: React.FC<TextFieldProps> & {
         disabled && textFieldClasses.disabled,
         error && textFieldClasses.error,
       )}
-      {...props}
     >
       <div className={textFieldClasses.inputContainer}>
         <input
