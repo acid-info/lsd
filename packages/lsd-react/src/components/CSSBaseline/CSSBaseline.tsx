@@ -9,6 +9,7 @@ import { CardBodyStyles } from '../CardBody/CardBody.styles'
 import { CardHeaderStyles } from '../CardHeader/CardHeader.styles'
 import { CollapseStyles } from '../Collapse/Collapse.styles'
 import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
+import { DatePickerStyles } from '../DatePicker/DatePicker.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
 import { DropdownItemStyles } from '../DropdownItem/DropdownItem.styles'
 import { IconButtonStyles } from '../IconButton/IconButton.styles'
@@ -44,6 +45,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     QuoteStyles,
     CollapseStyles,
     CollapseHeaderStyles,
+    DatePickerStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
