@@ -4,6 +4,7 @@ import { AutocompleteStyles } from '../Autocomplete/Autocomplete.styles'
 import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
 import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { ButtonStyles } from '../Button/Button.styles'
+import { CalendarStyles } from '../Calendar/Calendar.styles'
 import { CardStyles } from '../Card/Card.styles'
 import { CardBodyStyles } from '../CardBody/CardBody.styles'
 import { CardHeaderStyles } from '../CardHeader/CardHeader.styles'
@@ -11,6 +12,8 @@ import { CheckboxStyles } from '../Checkbox/Checkbox.styles'
 import { CheckboxGroupStyles } from '../CheckboxGroup/CheckboxGroup.styles'
 import { CollapseStyles } from '../Collapse/Collapse.styles'
 import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
+import { DateFieldStyles } from '../DateField/DateField.styles'
+import { DatePickerStyles } from '../DatePicker/DatePicker.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
 import { DropdownItemStyles } from '../DropdownItem/DropdownItem.styles'
 import { IconButtonStyles } from '../IconButton/IconButton.styles'
@@ -48,6 +51,9 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     CollapseStyles,
     CollapseHeaderStyles,
     CheckboxGroupStyles,
+    DateFieldStyles,
+    DatePickerStyles,
+    CalendarStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({

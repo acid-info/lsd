@@ -15,6 +15,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@datepicker-react/hooks": "^2.8.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "clsx": "^1.2.1",
