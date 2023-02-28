@@ -14,6 +14,8 @@ import { DropdownItemStyles } from '../DropdownItem/DropdownItem.styles'
 import { IconButtonStyles } from '../IconButton/IconButton.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
+import { NavbarStyles } from '../Navbar/Navbar.styles'
+import { NavbarGroupStyles } from '../NavbarGroup/NavbarGroup.styles'
 import { QuoteStyles } from '../Quote/Quote.styles'
 import { TabItemStyles } from '../TabItem/TabItem.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
@@ -44,6 +46,8 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     QuoteStyles,
     CollapseStyles,
     CollapseHeaderStyles,
+    NavbarStyles,
+    NavbarGroupStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
