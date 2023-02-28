@@ -76,6 +76,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
       <input
         ref={ref}
         type="checkbox"
+        disabled={disabled}
         checked={input.value}
         onChange={input.onChange}
         defaultChecked={defaultChecked}
