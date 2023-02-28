@@ -4,7 +4,7 @@ import { buttonClasses } from './Button.classes'
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   size?: 'large' | 'medium' | 'small'
-  icon: React.ReactNode
+  icon?: React.ReactNode
 }
 
 export const Button: React.FC<ButtonProps> & {
