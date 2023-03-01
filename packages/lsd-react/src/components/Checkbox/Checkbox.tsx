@@ -12,7 +12,7 @@ export type CheckboxProps = Omit<
 > &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'onChange' | 'checked' | 'defaultChecked'
+    'name' | 'onChange' | 'checked' | 'defaultChecked'
   > & {
     disabled?: boolean
     indeterminate?: boolean
@@ -23,6 +23,7 @@ export type CheckboxProps = Omit<
 export const Checkbox: React.FC<CheckboxProps> & {
   classes: typeof checkboxClasses
 } = ({
+  name,
   size = 'large',
   onChange,
   checked,
@@ -75,6 +76,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
     >
       <input
         ref={ref}
+        name={name}
         type="checkbox"
         disabled={disabled}
         checked={input.value}
