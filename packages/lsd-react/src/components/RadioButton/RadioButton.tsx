@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React, { useRef } from 'react'
 import { useInput } from '../../utils/useInput'
 import { RadioButtonFilledIcon, RadioButtonIcon } from '../Icons'
+import { useRadioButtonGroupContext } from '../RadioButtonGroup/RadioButtonGroup.context'
 import { Typography } from '../Typography'
 import { radioButtonClasses } from './RadioButton.classes'
 
@@ -21,9 +22,9 @@ export type RadioButtonProps = Omit<
 export const RadioButton: React.FC<RadioButtonProps> & {
   classes: typeof radioButtonClasses
 } = ({
-  size = 'large',
+  size: _size = 'large',
   onChange,
-  checked,
+  checked: _checked,
   defaultChecked,
   disabled = false,
   inputProps = {},
@@ -31,12 +32,26 @@ export const RadioButton: React.FC<RadioButtonProps> & {
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null)
+
+  const radioButtonGroup = useRadioButtonGroupContext()
+  const size = radioButtonGroup?.size ?? _size
+  const selected = radioButtonGroup
+    ? radioButtonGroup.activeRadioButton != null &&
+      radioButtonGroup.activeRadioButton === inputProps?.value
+    : _checked
+
   const input = useInput({
-    value: checked,
+    value: selected,
     defaultValue: defaultChecked ?? false,
     onChange,
     ref,
   })
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange && onChange(event)
+    input.onChange(event)
+    inputProps.value && radioButtonGroup?.setActiveRadioButton(inputProps.value)
+  }
 
   return (
     <Typography
@@ -56,7 +71,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
         ref={ref}
         type="radio"
         checked={input.value}
-        onChange={input.onChange}
+        onChange={handleChange}
         defaultChecked={defaultChecked}
         className={clsx(inputProps.className, radioButtonClasses.input)}
         {...inputProps}
