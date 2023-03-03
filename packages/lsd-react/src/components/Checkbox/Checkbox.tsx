@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { useInput } from '../../utils/useInput'
+import { useCheckboxGroupContext } from '../CheckboxGroup/CheckboxGroup.context'
 import { CheckboxFilledIcon, CheckboxIcon } from '../Icons'
 import { CheckboxIndeterminateIcon } from '../Icons/CheckboxIndeterminate'
 import { Typography } from '../Typography'
@@ -24,7 +25,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
   classes: typeof checkboxClasses
 } = ({
   name,
-  size = 'large',
+  size: _size = 'large',
   onChange,
   checked,
   defaultChecked,
@@ -42,6 +43,9 @@ export const Checkbox: React.FC<CheckboxProps> & {
     onChange,
     ref,
   })
+
+  const checkboxGroup = useCheckboxGroupContext()
+  const size = checkboxGroup?.size ?? _size
 
   useEffect(() => {
     if (!ref.current) return

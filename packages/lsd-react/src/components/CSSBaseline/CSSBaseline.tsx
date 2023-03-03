@@ -8,6 +8,7 @@ import { CardStyles } from '../Card/Card.styles'
 import { CardBodyStyles } from '../CardBody/CardBody.styles'
 import { CardHeaderStyles } from '../CardHeader/CardHeader.styles'
 import { CheckboxStyles } from '../Checkbox/Checkbox.styles'
+import { CheckboxGroupStyles } from '../CheckboxGroup/CheckboxGroup.styles'
 import { CollapseStyles } from '../Collapse/Collapse.styles'
 import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
@@ -16,8 +17,6 @@ import { IconButtonStyles } from '../IconButton/IconButton.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
 import { QuoteStyles } from '../Quote/Quote.styles'
-import { RadioButtonStyles } from '../RadioButton/RadioButton.styles'
-import { RadioButtonGroupStyles } from '../RadioButtonGroup/RadioButtonGroup.styles'
 import { TabItemStyles } from '../TabItem/TabItem.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
 import { TagStyles } from '../Tag/Tag.styles'
@@ -48,8 +47,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     QuoteStyles,
     CollapseStyles,
     CollapseHeaderStyles,
-    RadioButtonStyles,
-    RadioButtonGroupStyles,
+    CheckboxGroupStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
