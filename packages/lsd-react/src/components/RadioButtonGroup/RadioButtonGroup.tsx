@@ -4,29 +4,32 @@ import { RadioButtonGroupContext } from './RadioButtonGroup.context'
 import { radioButtonGroupClasses } from './RadioButtonGroup.classes'
 import { Typography } from '../Typography'
 
-export type ActiveRadioButtonType = string | number | readonly string[]
+export type ActiveRadioButtonType = string | readonly string[]
 
 export type RadioButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
-  activeRadioButton?: ActiveRadioButtonType | null
+  value?: ActiveRadioButtonType | null
+  name?: ActiveRadioButtonType | null
+  onChange?: (value: ActiveRadioButtonType) => void
   size?: 'small' | 'medium' | 'large'
   label?: string
 }
 
 export const RadioButtonGroup: React.FC<RadioButtonGroupProps> & {
   classes: typeof radioButtonGroupClasses
-} = ({ size = 'large', label, activeRadioButton, children, ...props }) => {
+} = ({ size = 'large', label, value, name, onChange, children, ...props }) => {
   const ref = useRef<HTMLDivElement>(null)
-  const [value, setValue] = useState(activeRadioButton)
+  const [activeValue, setActiveValue] = useState(value)
 
-  const setActiveRadioButton = (radioButton: ActiveRadioButtonType) => {
-    setValue(radioButton)
+  const setActiveRadioButton = (value: ActiveRadioButtonType) => {
+    if (onChange) onChange(value)
+    else setActiveValue(value)
   }
 
-  useEffect(() => setValue(activeRadioButton), [activeRadioButton])
+  useEffect(() => setActiveValue(value), [value])
 
   return (
     <RadioButtonGroupContext.Provider
-      value={{ activeRadioButton: value, setActiveRadioButton, size }}
+      value={{ value: activeValue, setActiveValue, size }}
     >
       <div
         ref={ref}

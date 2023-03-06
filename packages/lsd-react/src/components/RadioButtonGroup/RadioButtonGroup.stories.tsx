@@ -18,28 +18,28 @@ export default {
 
 export const Root: Story<RadioButtonGroupProps> = (args) => (
   <RadioButtonGroup {...args}>
-    <RadioButton inputProps={{ name: 'name', value: 1 }}>
+    <RadioButton checked inputProps={{ name: 'name', value: '1' }}>
       RadioButton label
     </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: 2 }}>
+    <RadioButton inputProps={{ name: 'name', value: '2' }}>
       RadioButton label
     </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: 3 }}>
+    <RadioButton inputProps={{ name: 'name', value: '3' }}>
       RadioButton label
     </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: 4 }}>
+    <RadioButton inputProps={{ name: 'name', value: '4' }}>
       RadioButton label
     </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: 5 }}>
+    <RadioButton inputProps={{ name: 'name', value: '5' }}>
       RadioButton label
     </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: 6 }}>
+    <RadioButton inputProps={{ name: 'name', value: '6' }}>
       RadioButton label
     </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: 7 }}>
+    <RadioButton inputProps={{ name: 'name', value: '7' }}>
       RadioButton label
     </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: 8 }}>
+    <RadioButton inputProps={{ name: 'name', value: '8' }}>
       RadioButton label
     </RadioButton>
   </RadioButtonGroup>
