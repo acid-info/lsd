@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { CheckboxGroupContext } from './CheckboxGroup.context'
 import { checkboxGroupClasses } from './CheckboxGroup.classes'
 import { Typography } from '../Typography'
@@ -7,29 +7,16 @@ import { Typography } from '../Typography'
 export type ActiveCheckboxType = string | number | readonly string[]
 
 export type CheckboxGroupProps = React.HTMLAttributes<HTMLDivElement> & {
-  activeCheckbox?: ActiveCheckboxType | null
   size?: 'small' | 'medium' | 'large'
   label?: string
 }
 
 export const CheckboxGroup: React.FC<CheckboxGroupProps> & {
   classes: typeof checkboxGroupClasses
-} = ({ size = 'large', label, activeCheckbox, children, ...props }) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const [value, setValue] = useState(activeCheckbox)
-
-  const setActiveCheckbox = (radioButton: ActiveCheckboxType) => {
-    setValue(radioButton)
-  }
-
-  useEffect(() => setValue(activeCheckbox), [activeCheckbox])
-
+} = ({ size = 'large', label, children, ...props }) => {
   return (
-    <CheckboxGroupContext.Provider
-      value={{ activeCheckbox: value, setActiveCheckbox, size }}
-    >
+    <CheckboxGroupContext.Provider value={{ size }}>
       <div
-        ref={ref}
         {...props}
         className={clsx(props.className, checkboxGroupClasses.root)}
       >
@@ -38,7 +25,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> & {
           variant={size === 'small' ? 'label2' : 'label1'}
           className={checkboxGroupClasses.label}
         >
-          {label && label}
+          {label}
         </Typography>
         {children}
       </div>
