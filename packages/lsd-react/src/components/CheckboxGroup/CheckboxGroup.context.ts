@@ -1,10 +1,7 @@
 import React from 'react'
-import { ActiveCheckboxType, CheckboxGroupProps } from './CheckboxGroup'
+import { CheckboxGroupProps } from './CheckboxGroup'
 
 export type CheckboxGroupContextType = {
-  activeCheckbox?: ActiveCheckboxType | null
-  setActiveCheckbox: (value: ActiveCheckboxType) => void
-
   size?: CheckboxGroupProps['size']
 }
 
