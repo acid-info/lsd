@@ -18,7 +18,14 @@ import { IconButtonStyles } from '../IconButton/IconButton.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
 import { QuoteStyles } from '../Quote/Quote.styles'
+import { RadioButtonStyles } from '../RadioButton/RadioButton.styles'
+import { RadioButtonGroupStyles } from '../RadioButtonGroup/RadioButtonGroup.styles'
 import { TabItemStyles } from '../TabItem/TabItem.styles'
+import { TableStyles } from '../Table/Table.styles'
+import { TableBodyStyles } from '../TableBody/TableBody.styles'
+import { TableHeaderStyles } from '../TableHeader/TableHeader.styles'
+import { TableItemStyles } from '../TableItem/TableItem.styles'
+import { TableRowStyles } from '../TableRow/TableRow.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
 import { TagStyles } from '../Tag/Tag.styles'
 import { TextFieldStyles } from '../TextField/TextField.styles'
@@ -50,6 +57,13 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     CollapseHeaderStyles,
     CheckboxGroupStyles,
     BadgeStyles,
+    RadioButtonStyles,
+    RadioButtonGroupStyles,
+    TableStyles,
+    TableHeaderStyles,
+    TableBodyStyles,
+    TableItemStyles,
+    TableRowStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
