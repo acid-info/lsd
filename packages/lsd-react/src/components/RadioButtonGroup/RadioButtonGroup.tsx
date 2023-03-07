@@ -7,8 +7,8 @@ import { Typography } from '../Typography'
 export type ActiveRadioButtonType = string | readonly string[]
 
 export type RadioButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
-  value?: ActiveRadioButtonType | null
-  name?: ActiveRadioButtonType | null
+  value: ActiveRadioButtonType | null
+  name?: string | null
   onChange?: (value: ActiveRadioButtonType) => void
   size?: 'small' | 'medium' | 'large'
   label?: string
@@ -29,7 +29,7 @@ export const RadioButtonGroup: React.FC<RadioButtonGroupProps> & {
 
   return (
     <RadioButtonGroupContext.Provider
-      value={{ value: activeValue, setActiveValue, size }}
+      value={{ value: activeValue, setActiveRadioButton, name, size }}
     >
       <div
         ref={ref}

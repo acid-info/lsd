@@ -17,7 +17,7 @@ export type RadioButtonProps = Omit<
     disabled?: boolean
     size?: 'small' | 'medium' | 'large'
     name?: string
-    value?: string
+    value: string
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
@@ -29,15 +29,18 @@ export const RadioButton: React.FC<RadioButtonProps> & {
   checked: _checked,
   defaultChecked,
   disabled = false,
+  value,
   inputProps = {},
   children,
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null)
+
   const radioButtonGroup = useRadioButtonGroupContext()
   const size = radioButtonGroup?.size ?? _size
+  const name = radioButtonGroup?.name ?? ''
   const selected = radioButtonGroup
-    ? radioButtonGroup.value === inputProps?.value
+    ? radioButtonGroup.value === value
     : _checked
 
   const input = useInput({
@@ -49,7 +52,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     radioButtonGroup
-      ? radioButtonGroup.setActiveValue(event.target.value)
+      ? radioButtonGroup.setActiveRadioButton(event.target.value)
       : input.onChange(event)
   }
 
@@ -69,6 +72,8 @@ export const RadioButton: React.FC<RadioButtonProps> & {
     >
       <input
         ref={ref}
+        name={name}
+        value={value}
         type="radio"
         checked={input.value}
         onChange={handleChange}

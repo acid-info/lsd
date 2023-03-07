@@ -24,4 +24,5 @@ Root.args = {
   disabled: false,
   checked: undefined,
   onChange: undefined,
+  value: '1',
 }

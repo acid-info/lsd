@@ -17,31 +17,15 @@ export default {
 } as Meta
 
 export const Root: Story<RadioButtonGroupProps> = (args) => (
-  <RadioButtonGroup {...args}>
-    <RadioButton checked inputProps={{ name: 'name', value: '1' }}>
-      RadioButton label
-    </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: '2' }}>
-      RadioButton label
-    </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: '3' }}>
-      RadioButton label
-    </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: '4' }}>
-      RadioButton label
-    </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: '5' }}>
-      RadioButton label
-    </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: '6' }}>
-      RadioButton label
-    </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: '7' }}>
-      RadioButton label
-    </RadioButton>
-    <RadioButton inputProps={{ name: 'name', value: '8' }}>
-      RadioButton label
-    </RadioButton>
+  <RadioButtonGroup name="name" {...args}>
+    <RadioButton value="1">RadioButton label</RadioButton>
+    <RadioButton value="2">RadioButton label</RadioButton>
+    <RadioButton value="3">RadioButton label</RadioButton>
+    <RadioButton value="4">RadioButton label</RadioButton>
+    <RadioButton value="5">RadioButton label</RadioButton>
+    <RadioButton value="6">RadioButton label</RadioButton>
+    <RadioButton value="7">RadioButton label</RadioButton>
+    <RadioButton value="8">RadioButton label</RadioButton>
   </RadioButtonGroup>
 )
 

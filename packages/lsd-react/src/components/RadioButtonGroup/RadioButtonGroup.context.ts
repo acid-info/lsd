@@ -6,7 +6,8 @@ import {
 
 export type RadioButtonGroupContextType = {
   value?: ActiveRadioButtonType | null
-  setActiveValue: (value: ActiveRadioButtonType) => void
+  name?: string | null
+  setActiveRadioButton: (value: ActiveRadioButtonType) => void
 
   size?: RadioButtonGroupProps['size']
 }
