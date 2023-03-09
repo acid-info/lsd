@@ -29,7 +29,10 @@ export const useInput = <T extends InputValueType = InputValueType>(
 
   const onChange: InputOnChangeType = (event) => {
     const type = event.target.type
-    const value = event.target[type === 'checkbox' ? 'checked' : 'value']
+    const value =
+      event.target[
+        type === 'checkbox' || type === 'radio' ? 'checked' : 'value'
+      ]
     if (uncontrolled) return setValue(value as T)
     props.onChange && props.onChange(event)
   }
