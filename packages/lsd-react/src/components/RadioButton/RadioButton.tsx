@@ -30,6 +30,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
   defaultChecked,
   disabled = false,
   value,
+  name: _name,
   inputProps = {},
   children,
   ...props
@@ -38,7 +39,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
 
   const radioButtonGroup = useRadioButtonGroupContext()
   const size = radioButtonGroup?.size ?? _size
-  const name = radioButtonGroup?.name ?? ''
+  const name = radioButtonGroup?.name ?? _name ?? ''
   const selected = radioButtonGroup
     ? radioButtonGroup.value === value
     : _checked
