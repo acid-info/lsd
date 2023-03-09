@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react'
 
 export type InputValueType =
-  React.InputHTMLAttributes<HTMLInputElement>['value']
+  | React.InputHTMLAttributes<HTMLInputElement>['value']
+  | boolean
 
 export type InputOnChangeType =
   React.InputHTMLAttributes<HTMLInputElement>['onChange']
 
-export type InputProps = {
-  value?: InputValueType
-  defaultValue?: InputValueType
+export type InputProps<T extends InputValueType = InputValueType> = {
+  value?: T
+  defaultValue: T
   onChange?: InputOnChangeType
   ref?: React.RefObject<HTMLInputElement>
 }
 
-export const useInput = (props: InputProps) => {
-  const [value, setValue] = useState<InputValueType>(
-    props.value ?? props.defaultValue ?? '',
-  )
+export const useInput = <T extends InputValueType = InputValueType>(
+  props: InputProps<T>,
+) => {
+  const [value, setValue] = useState<T>(props.value ?? props.defaultValue)
 
   const uncontrolled = typeof props.value === 'undefined'
   const filled =
@@ -27,7 +28,12 @@ export const useInput = (props: InputProps) => {
       : value.toString().length > 0
 
   const onChange: InputOnChangeType = (event) => {
-    if (uncontrolled) return setValue(event.target.value)
+    const type = event.target.type
+    const value =
+      event.target[
+        type === 'checkbox' || type === 'radio' ? 'checked' : 'value'
+      ]
+    if (uncontrolled) return setValue(value as T)
     props.onChange && props.onChange(event)
   }
 
@@ -46,7 +52,7 @@ export const useInput = (props: InputProps) => {
   }
 
   useEffect(() => {
-    !uncontrolled && setValue(props.value)
+    !uncontrolled && setValue(props.value as T)
   }, [uncontrolled, props.value])
 
   return {
