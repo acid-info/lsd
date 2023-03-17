@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Calendar, CalendarProps } from './Calendar'
 
 export default {
-  title: 'Calendar',
+  title: 'ControlledCalendar',
   component: Calendar,
 } as Meta
 
@@ -25,6 +25,6 @@ export const Root: Story<CalendarProps> = (arg) => {
 }
 
 Root.args = {
-  value: undefined,
+  value: '2023-01-01',
   onChange: undefined,
 }
