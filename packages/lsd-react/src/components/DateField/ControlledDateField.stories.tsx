@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react'
 import { DateField, DateFieldProps } from './DateField'
 
 export default {
-  title: 'DateField',
+  title: 'ControlledDateField',
   component: DateField,
   argTypes: {
     size: {
@@ -23,7 +23,7 @@ Root.args = {
   size: 'large',
   supportingText: 'Supporting text',
   disabled: false,
-  value: undefined,
+  value: '2023-01-01',
   onChange: undefined,
   error: false,
   errorIcon: false,

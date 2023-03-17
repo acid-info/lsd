@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react'
-import { DateField, DateFieldProps } from './DateField'
+import { DatePicker, DatePickerProps } from './DatePicker'
 
 export default {
-  title: 'DateField',
-  component: DateField,
+  title: 'ControlledDatePicker',
+  component: DatePicker,
   argTypes: {
     size: {
       type: {
@@ -15,17 +15,18 @@ export default {
   },
 } as Meta
 
-export const Root: Story<DateFieldProps> = ({ ...args }) => {
-  return <DateField {...args} />
+export const Root: Story<DatePickerProps> = ({ ...args }) => {
+  return <DatePicker {...args}>DatePicker</DatePicker>
 }
 
 Root.args = {
   size: 'large',
   supportingText: 'Supporting text',
   disabled: false,
-  value: undefined,
-  onChange: undefined,
   error: false,
+  value: '2023-01-01',
+  onChange: undefined,
   errorIcon: false,
   clearButton: true,
+  withCalendar: true,
 }

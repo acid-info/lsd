@@ -24,7 +24,7 @@ Root.args = {
   supportingText: 'Supporting text',
   disabled: false,
   error: false,
-  value: '',
+  value: undefined,
   onChange: undefined,
   errorIcon: false,
   clearButton: true,
