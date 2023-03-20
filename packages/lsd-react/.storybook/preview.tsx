@@ -1,5 +1,9 @@
 import { DecoratorFunction, Parameters } from '@storybook/addons'
-import { defaultThemes } from '../src'
+import {
+  storybookDefaultTheme,
+  storybookDefaultThemeKey,
+  themes,
+} from './themes'
 import { withTheme } from './withTheme.decorator'
 
 export const parameters: Parameters = {
@@ -12,7 +16,7 @@ export const parameters: Parameters = {
   },
   backgrounds: {
     default: 'light',
-    values: Object.entries(defaultThemes).map(([name, theme]) => ({
+    values: Object.entries(themes).map(([name, theme]) => ({
       name,
       value: `rgb(${theme.palette.secondary})`,
     })),
@@ -20,7 +24,7 @@ export const parameters: Parameters = {
   viewport: {
     viewports: {
       ...Object.fromEntries(
-        Object.entries(defaultThemes.light.breakpoints).map(
+        Object.entries(storybookDefaultTheme.breakpoints).map(
           ([key, { width }]) => [
             key,
             {
@@ -44,13 +48,14 @@ export const globalTypes = {
   theme: {
     name: 'Theme',
     description: 'Theme',
-    defaultValue: 'light',
+    defaultValue: storybookDefaultThemeKey,
     toolbar: {
       icon: 'circlehollow',
-      items: [
-        { value: 'light', icon: 'circlehollow', title: 'light' },
-        { value: 'dark', icon: 'circle', title: 'dark' },
-      ],
+      items: Object.entries(themes).map(([name, theme]) => ({
+        value: name,
+        icon: name.startsWith('Light') ? 'circlehollow' : 'circle',
+        title: name,
+      })),
     },
   },
 }

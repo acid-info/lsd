@@ -23,7 +23,13 @@ export type TypographyVariants =
 
 export type VariantThemeProperties = keyof Pick<Theme, 'typography'>
 
-export type TypographyStyles = Pick<CSSProperties, 'fontSize' | 'lineHeight'>
+export type TypographyStyles = Pick<
+  CSSProperties,
+  'fontSize' | 'fontFamily' | 'lineHeight'
+> & { fontFamily?: string }
+export type GlobalTypographyStyles = {
+  fontFamily?: string
+}
 export type TypographyProperties = keyof TypographyStyles
 export type ThemeTypography<T extends string = TypographyVariants> = {
   [key in T]: TypographyStyles
@@ -61,8 +67,10 @@ export type ThemeBreakpoints = {
 }
 
 export type Theme = {
+  name: string
   breakpoints: ThemeBreakpoints
   typography: ThemeTypography
+  typographyGlobal: GlobalTypographyStyles
   palette: ThemePalette
   globalStyles: SerializedStyles
 }
@@ -83,8 +91,10 @@ export type ThemeOptionTypography = DeepPartial<ThemeTypography>
 export type ThemeOptionPalette = DeepPartial<ThemePalette>
 
 export type CreateThemeProps = {
+  name?: string
   breakpoints: ThemeOptionBreakpoints
   typography: ThemeOptionTypography
+  typographyGlobal: GlobalTypographyStyles
   palette: ThemeOptionPalette
 }
 

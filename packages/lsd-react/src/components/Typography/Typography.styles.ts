@@ -32,12 +32,27 @@ export const TypographyStyles = withTheme(
           color: rgb(var(--lsd-text-primary));
           font-weight: normal;
           font-size: var(--lsd-${variant}-fontSize);
+          font-family: var(--lsd-${variant}-fontFamily);
           line-height: var(--lsd-${variant}-lineHeight);
         }
       `,
     )}
 
-    h1, h2, h3, h4, h5, h6, p, span {
+    input {
+      color: rgb(var(--lsd-text-primary));
+      font-weight: normal;
+      font-size: var(--lsd-body1-fontSize);
+      font-family: var(--lsd-body1-fontFamily);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    span {
       margin: 0;
     }
   `,
