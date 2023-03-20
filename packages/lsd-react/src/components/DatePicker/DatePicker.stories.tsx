@@ -15,12 +15,15 @@ export default {
   },
 } as Meta
 
-export const Root: Story<DatePickerProps> = ({ ...args }) => {
+export const Uncontrolled: Story<DatePickerProps> = ({ ...args }) => {
   return <DatePicker {...args}>DatePicker</DatePicker>
 }
 
-Root.args = {
-  size: 'large',
+export const Contolled: Story<DatePickerProps> = ({ ...args }) => {
+  return <DatePicker {...args}>DatePicker</DatePicker>
+}
+
+Uncontrolled.args = {
   supportingText: 'Supporting text',
   disabled: false,
   error: false,
@@ -29,4 +32,17 @@ Root.args = {
   errorIcon: false,
   clearButton: true,
   withCalendar: true,
+  size: 'large',
+}
+
+Contolled.args = {
+  supportingText: 'Supporting text',
+  disabled: false,
+  error: false,
+  value: '2023-01-01',
+  onChange: undefined,
+  errorIcon: false,
+  clearButton: true,
+  withCalendar: true,
+  size: 'large',
 }

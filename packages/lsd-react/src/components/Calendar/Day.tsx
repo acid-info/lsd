@@ -8,9 +8,10 @@ import { Typography } from '../Typography'
 export type DayProps = {
   day?: string
   date: Date
+  disabled?: boolean
 }
 
-export const Day = ({ day, date }: DayProps) => {
+export const Day = ({ day, date, disabled = false }: DayProps) => {
   const dayRef = useRef(null)
   const {
     focusedDate,
@@ -52,10 +53,17 @@ export const Day = ({ day, date }: DayProps) => {
       ref={dayRef}
       className={clsx(
         calendarClasses.day,
-        isDateFocused(date) && calendarClasses.daySelected,
+        !disabled && isDateFocused(date) && calendarClasses.daySelected,
+        disabled && calendarClasses.dayDisabled,
       )}
     >
       <Typography variant="label2">{parseInt(day, 10)}</Typography>
+      {new Date(date).setHours(0, 0, 0, 0) ===
+        new Date().setHours(0, 0, 0, 0) && (
+        <Typography variant="label2" className={calendarClasses.today}>
+          ■
+        </Typography>
+      )}
     </button>
   )
 }
