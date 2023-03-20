@@ -11,7 +11,6 @@ export type DatePickerProps = Omit<
   'onChange' | 'value'
 > &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
-    size?: 'large' | 'medium'
     error?: boolean
     errorIcon?: boolean
     clearButton?: boolean
@@ -22,6 +21,7 @@ export type DatePickerProps = Omit<
     onChange?: (value: string) => void
     defaultValue?: string
     placeholder?: string
+    size?: 'large' | 'medium'
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
@@ -36,9 +36,12 @@ export const DatePicker: React.FC<DatePickerProps> & {
     const offset = new Date(date).getTimezoneOffset()
     const formattedDate = new Date(date.getTime() - offset * 60 * 1000)
     const value = formattedDate.toISOString().split('T')[0]
-    setDate(value)
-    setOpenCalendar(false)
-    onChange && onChange(value)
+
+    if (typeof onChange === 'function') {
+      onChange(value)
+    } else {
+      setDate(value)
+    }
   }
 
   return (
@@ -63,8 +66,10 @@ export const DatePicker: React.FC<DatePickerProps> & {
             <Calendar
               handleDateFieldChange={handleDateFieldChange}
               open={openCalendar}
+              onClose={() => setOpenCalendar(false)}
               handleRef={ref}
               value={date}
+              disabled={props.disabled}
             />
           )}
         </Portal>

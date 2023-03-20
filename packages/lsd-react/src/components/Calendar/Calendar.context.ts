@@ -2,6 +2,7 @@ import React from 'react'
 
 export type CalendarContextType = {
   focusedDate: Date | null
+  size?: 'large' | 'medium'
   isDateFocused: (date: Date) => boolean
   isDateSelected: (date: Date) => boolean
   isDateHovered: (date: Date) => boolean

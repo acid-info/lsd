@@ -39,6 +39,48 @@ export const CalendarStyles = css`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     justify-content: center;
+    cursor: pointer;
+  }
+
+  .${calendarClasses.weekDay} {
+    text-align: center;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .${calendarClasses.row} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .${calendarClasses.changeYear} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(var(--lsd-border-primary));
+    padding: 2px 6px;
+    gap: 6px;
+  }
+
+  .${calendarClasses.changeYearButton} {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .${calendarClasses.month} {
+    margin-right: 8px;
+  }
+
+  .${calendarClasses.year}:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--lsd-border-primary));
   }
 
   .${calendarClasses.day} {
@@ -46,6 +88,17 @@ export const CalendarStyles = css`
     border: none;
     background: transparent;
     aspect-ratio: 1 / 1;
+    position: relative;
+  }
+
+  .${calendarClasses.day}:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--lsd-border-primary));
+  }
+
+  .${calendarClasses.day} label:hover {
+    cursor: pointer;
   }
 
   .${calendarClasses.daySelected} {
@@ -55,6 +108,27 @@ export const CalendarStyles = css`
   .${calendarClasses.dayDisabled} {
     opacity: 0.3;
     cursor: default;
+  }
+
+  .${calendarClasses.today} {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+  }
+
+  .${calendarClasses.disabled} {
+    pointer-events: none;
+    border: 1px solid rgba(var(--lsd-border-primary), 0.3);
+    label {
+      opacity: 0.3;
+    }
+    .${calendarClasses.button} {
+      opacity: 0.3;
+    }
+    .${calendarClasses.daySelected} {
+      opacity: 0.3;
+    }
   }
 
   .${calendarClasses.button} {

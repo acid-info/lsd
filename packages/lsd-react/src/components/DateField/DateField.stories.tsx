@@ -15,15 +15,30 @@ export default {
   },
 } as Meta
 
-export const Root: Story<DateFieldProps> = ({ ...args }) => {
+export const Uncontrolled: Story<DateFieldProps> = ({ ...args }) => {
   return <DateField {...args} />
 }
 
-Root.args = {
+export const Controlled: Story<DateFieldProps> = ({ ...args }) => {
+  return <DateField {...args} />
+}
+
+Uncontrolled.args = {
   size: 'large',
   supportingText: 'Supporting text',
   disabled: false,
   value: undefined,
+  onChange: undefined,
+  error: false,
+  errorIcon: false,
+  clearButton: true,
+}
+
+Controlled.args = {
+  size: 'large',
+  supportingText: 'Supporting text',
+  disabled: false,
+  value: '2023-01-01',
   onChange: undefined,
   error: false,
   errorIcon: false,
