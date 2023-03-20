@@ -1,8 +1,16 @@
 import { FirstDayOfWeek, useMonth } from '@datepicker-react/hooks'
 import clsx from 'clsx'
-import { NavigateBeforeIcon, NavigateNextIcon } from '../Icons'
+import { useRef, useState } from 'react'
+import { useClickAway } from 'react-use'
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  NavigateBeforeIcon,
+  NavigateNextIcon,
+} from '../Icons'
 import { Typography } from '../Typography'
 import { calendarClasses } from './Calendar.classes'
+import { useCalendarContext } from './Calendar.context'
 import { Day } from './Day'
 
 export type MonthProps = {
@@ -11,26 +19,39 @@ export type MonthProps = {
   firstDayOfWeek: FirstDayOfWeek
   goToPreviousMonths: () => void
   goToNextMonths: () => void
+  size?: 'large' | 'medium' | 'small'
 }
 
 export const Month = ({
-  year,
+  size: _size = 'large',
+  year: _year,
   month,
   firstDayOfWeek,
   goToPreviousMonths,
   goToNextMonths,
 }: MonthProps) => {
+  const sizeContext = useCalendarContext()
+  const size = sizeContext?.size ?? _size
+  const [year, setYear] = useState(_year)
   const { days, weekdayLabels, monthLabel } = useMonth({
     year,
     month,
     firstDayOfWeek,
   })
+  const [changeYear, setChangeYear] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
 
-  const renderOtherDays = (idx: number, firstDate: Date) => {
-    const date = new Date(firstDate)
+  const renderOtherDays = (idx: number, referenceDate: Date) => {
+    const date = new Date(referenceDate)
     date.setDate(date.getDate() + idx)
     return date.getDate()
   }
+
+  useClickAway(ref, (event) => {
+    if (!changeYear) return
+
+    setChangeYear(false)
+  })
 
   return (
     <div>
@@ -42,7 +63,44 @@ export const Month = ({
         >
           <NavigateBeforeIcon color="primary" />
         </button>
-        <Typography variant="label1">{monthLabel}</Typography>
+        <div className={calendarClasses.row}>
+          <Typography
+            className={calendarClasses.month}
+            variant={size === 'large' ? 'label1' : 'label2'}
+          >
+            {monthLabel.split(' ')[0]}
+          </Typography>
+          {changeYear ? (
+            <div ref={ref} className={calendarClasses.changeYear}>
+              <Typography
+                variant={size === 'large' ? 'label1' : 'label2'}
+                className={calendarClasses.year}
+              >
+                {monthLabel.split(' ')[1]}
+              </Typography>
+              <div className={calendarClasses.row}>
+                <ArrowUpIcon
+                  onClick={() => setYear(year + 1)}
+                  className={calendarClasses.changeYearButton}
+                  color="primary"
+                />
+                <ArrowDownIcon
+                  onClick={() => setYear(year - 1)}
+                  className={calendarClasses.changeYearButton}
+                  color="primary"
+                />
+              </div>
+            </div>
+          ) : (
+            <Typography
+              onClick={() => setChangeYear(true)}
+              variant={size === 'large' ? 'label1' : 'label2'}
+              className={calendarClasses.year}
+            >
+              {monthLabel.split(' ')[1]}
+            </Typography>
+          )}
+        </div>
         <button
           className={clsx(calendarClasses.button)}
           type="button"
@@ -56,42 +114,55 @@ export const Month = ({
           <Typography
             key={idx}
             variant="label2"
-            style={{ textAlign: 'center' }}
+            className={calendarClasses.weekDay}
           >
             {dayLabel[0]}
           </Typography>
         ))}
       </div>
       <div className={clsx(calendarClasses.grid)}>
+        {days.length == 28 &&
+          new Array(7)
+            .fill(null)
+            .map((_, idx) => (
+              <Day
+                date={new Date()}
+                day={renderOtherDays(idx - 7, days[0].date).toString()}
+                key={`feb-pad-${idx}`}
+                disabled={true}
+              />
+            ))}
         {days.map((ele, idx) =>
           typeof ele !== 'number' ? (
             <Day date={ele.date} day={ele.dayLabel} key={ele.dayLabel} />
           ) : (
-            <button
-              disabled
+            <Day
+              date={days[idx + days.lastIndexOf(0) + 1].date}
+              day={renderOtherDays(
+                idx - days.filter((day) => day === 0).length,
+                days[days.lastIndexOf(0) + 1].date,
+              ).toString()}
               key={`prev-${idx}`}
-              className={clsx(calendarClasses.day, calendarClasses.dayDisabled)}
-            >
-              <Typography variant="label2">
-                {renderOtherDays(
-                  idx - days.filter((day) => day === 0).length,
-                  days[days.lastIndexOf(0) + 1].date,
-                )}
-              </Typography>
-            </button>
+              disabled={true}
+            />
           ),
         )}
-        {days.length % 7 !== 0 &&
-          new Array(7 - (days.length % 7)).fill(null).map((ele, idx) => (
-            <button
-              disabled
-              key={`after-${ele}`}
-              className={clsx(calendarClasses.day, calendarClasses.dayDisabled)}
-            >
-              <Typography variant="label2">
-                {renderOtherDays(idx, days[days.lastIndexOf(0) + 1].date)}
-              </Typography>
-            </button>
+        {new Array(
+          days.length % 7 !== 0 && days.length <= 35
+            ? 7 - (days.length % 7) + 7
+            : 7 - (days.length % 7),
+        )
+          .fill(null)
+          .map((ele, idx) => (
+            <Day
+              date={days[idx + days.lastIndexOf(0) + 1].date}
+              day={renderOtherDays(
+                idx,
+                days[days.lastIndexOf(0) + 1].date,
+              ).toString()}
+              key={`after-${idx}`}
+              disabled={true}
+            />
           ))}
       </div>
     </div>

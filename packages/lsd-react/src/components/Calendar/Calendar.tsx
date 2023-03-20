@@ -8,15 +8,19 @@ import React, { useEffect, useRef, useState } from 'react'
 import { calendarClasses } from './Calendar.classes'
 import { CalendarContext } from './Calendar.context'
 import { Month } from './Month'
+import { useClickAway } from 'react-use'
 
 export type CalendarProps = Omit<
   React.HTMLAttributes<HTMLUListElement>,
   'label'
 > & {
   open?: boolean
+  disabled?: boolean
   value?: string
   handleDateFieldChange: (data: Date) => void
   handleRef: React.RefObject<HTMLElement>
+  size?: 'large' | 'medium'
+  onClose?: () => void
 }
 
 export const Calendar: React.FC<CalendarProps> & {
@@ -25,11 +29,21 @@ export const Calendar: React.FC<CalendarProps> & {
   open,
   handleRef,
   value = null,
+  size = 'large',
+  disabled = false,
   handleDateFieldChange,
+  onClose,
   children,
   ...props
 }) => {
+  const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
+
+  useClickAway(ref, (event) => {
+    if (!open || event.composedPath().includes(handleRef.current!)) return
+
+    onClose && onClose()
+  })
 
   const handleDateChange = (data: OnDatesChangeProps) => {
     handleDateFieldChange(data.startDate ?? new Date())
@@ -75,6 +89,7 @@ export const Calendar: React.FC<CalendarProps> & {
   return (
     <CalendarContext.Provider
       value={{
+        size,
         focusedDate,
         isDateFocused,
         isDateSelected,
@@ -91,16 +106,19 @@ export const Calendar: React.FC<CalendarProps> & {
           props.className,
           calendarClasses.root,
           open && calendarClasses.open,
+          disabled && calendarClasses.disabled,
         )}
+        ref={ref}
         style={{ ...style, ...(props.style ?? {}) }}
       >
         <div className={clsx(calendarClasses.container)}>
-          {activeMonths.map((month) => (
+          {activeMonths.map((month, idx) => (
             <Month
-              key={`${month.year}-${month.month}`}
+              key={`${month.year}-${month.month}-${idx}`}
               year={month.year}
               month={month.month}
               firstDayOfWeek={0}
+              size={size}
               goToPreviousMonths={goToPreviousMonths}
               goToNextMonths={goToNextMonths}
             />
