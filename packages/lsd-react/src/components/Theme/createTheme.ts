@@ -15,6 +15,8 @@ import type {
 
 const createTypographyStyles = (theme: CreateThemeProps, defaultTheme: Theme) =>
   pairs<TypographyVariants>(THEME_TYPOGRAPHY_VARIANTS, (variant) => ({
+    ...defaultTheme.typographyGlobal,
+    ...theme.typographyGlobal,
     ...defaultTheme.typography[variant],
     ...(theme.typography[variant] ?? {}),
   }))
@@ -105,7 +107,9 @@ export const createTheme = (
   from = baseTheme,
 ): Theme => {
   const theme: Theme = {
+    name: props.name ?? from.name,
     typography: createTypographyStyles(props, from),
+    typographyGlobal: { ...from.typographyGlobal, ...props.typographyGlobal },
     breakpoints: createBreakpointStyles(props, from),
     palette: createPaletteStyles(props, from),
     globalStyles: css``,
