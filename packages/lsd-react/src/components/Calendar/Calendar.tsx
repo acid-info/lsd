@@ -11,13 +11,13 @@ import { Month } from './Month'
 import { useClickAway } from 'react-use'
 
 export type CalendarProps = Omit<
-  React.HTMLAttributes<HTMLUListElement>,
+  React.HTMLAttributes<HTMLDivElement>,
   'label'
 > & {
   open?: boolean
   disabled?: boolean
   value?: string
-  handleDateFieldChange: (data: Date) => void
+  onChange: (data: Date) => void
   handleRef: React.RefObject<HTMLElement>
   size?: 'large' | 'medium'
   onClose?: () => void
@@ -28,16 +28,19 @@ export const Calendar: React.FC<CalendarProps> & {
 } = ({
   open,
   handleRef,
-  value = null,
+  value: _value,
   size = 'large',
   disabled = false,
-  handleDateFieldChange,
+  onChange,
   onClose,
   children,
   ...props
 }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
+  const [value, setValue] = useState<Date | null>(
+    _value ? new Date(_value) : null,
+  )
 
   useClickAway(ref, (event) => {
     if (!open || event.composedPath().includes(handleRef.current!)) return
@@ -46,9 +49,22 @@ export const Calendar: React.FC<CalendarProps> & {
   })
 
   const handleDateChange = (data: OnDatesChangeProps) => {
-    handleDateFieldChange(data.startDate ?? new Date())
-    onDateFocus(data.startDate ?? new Date())
+    if (typeof _value !== 'undefined') {
+      if (typeof onChange !== 'undefined') {
+        onChange(data.startDate ?? new Date())
+      }
+    } else {
+      setValue(data.startDate)
+    }
   }
+
+  useEffect(() => {
+    onDateFocus(_value ? new Date(_value) : new Date())
+  }, [_value])
+
+  useEffect(() => {
+    onDateFocus(value ? new Date(value) : new Date())
+  }, [value])
 
   const {
     activeMonths,
