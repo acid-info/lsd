@@ -27,18 +27,20 @@ export type DatePickerProps = Omit<
 
 export const DatePicker: React.FC<DatePickerProps> & {
   classes: typeof datePickerClasses
-} = ({ value, onChange, withCalendar = true, ...props }) => {
+} = ({ value: _value, onChange, withCalendar = true, ...props }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [openCalendar, setOpenCalendar] = useState(false)
-  const [date, setDate] = useState<string>(value || '')
+  const [date, setDate] = useState<string>(_value || '')
 
   const handleDateFieldChange = (date: any) => {
     const offset = new Date(date).getTimezoneOffset()
     const formattedDate = new Date(date.getTime() - offset * 60 * 1000)
     const value = formattedDate.toISOString().split('T')[0]
 
-    if (typeof onChange === 'function') {
-      onChange(value)
+    if (typeof _value !== 'undefined') {
+      if (typeof onChange !== 'undefined') {
+        onChange(value)
+      }
     } else {
       setDate(value)
     }
@@ -64,7 +66,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
         <Portal id="calendar">
           {withCalendar && (
             <Calendar
-              handleDateFieldChange={handleDateFieldChange}
+              onChange={handleDateFieldChange}
               open={openCalendar}
               onClose={() => setOpenCalendar(false)}
               handleRef={ref}
