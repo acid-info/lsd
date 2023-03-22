@@ -12,6 +12,7 @@ export type InputProps<T extends InputValueType = InputValueType> = {
   defaultValue: T
   onChange?: InputOnChangeType
   ref?: React.RefObject<HTMLInputElement>
+  getInput?: () => HTMLInputElement
 }
 
 export const useInput = <T extends InputValueType = InputValueType>(
@@ -38,9 +39,12 @@ export const useInput = <T extends InputValueType = InputValueType>(
   }
 
   const setter = (value: InputValueType) => {
-    if (!props.ref?.current) return
+    const element =
+      props?.ref?.current ??
+      (typeof props.getInput === 'function' && props.getInput())
 
-    const element = props.ref.current
+    if (!element) return
+
     const event = new Event('input', { bubbles: true })
 
     Object.getOwnPropertyDescriptor(
