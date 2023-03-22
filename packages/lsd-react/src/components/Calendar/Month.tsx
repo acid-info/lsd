@@ -47,6 +47,12 @@ export const Month = ({
     return date.getDate()
   }
 
+  const getDay = (index: number) =>
+    days[index] as {
+      dayLabel: string
+      date: Date
+    }
+
   useClickAway(ref, (event) => {
     if (!changeYear) return
 
@@ -127,8 +133,8 @@ export const Month = ({
             .map((_, idx) => (
               <Day
                 date={new Date()}
-                day={renderOtherDays(idx - 7, days[0].date).toString()}
-                key={`feb-pad-${idx}`}
+                day={renderOtherDays(idx - 7, getDay(0).date).toString()}
+                key={`prev-${idx}`}
                 disabled={true}
               />
             ))}
@@ -137,12 +143,12 @@ export const Month = ({
             <Day date={ele.date} day={ele.dayLabel} key={ele.dayLabel} />
           ) : (
             <Day
-              date={days[idx + days.lastIndexOf(0) + 1].date}
+              date={getDay(idx + days.lastIndexOf(0) + 1).date}
               day={renderOtherDays(
                 idx - days.filter((day) => day === 0).length,
-                days[days.lastIndexOf(0) + 1].date,
+                getDay(days.lastIndexOf(0) + 1).date,
               ).toString()}
-              key={`prev-${idx}`}
+              key={`current-${idx}`}
               disabled={true}
             />
           ),
@@ -155,10 +161,10 @@ export const Month = ({
           .fill(null)
           .map((ele, idx) => (
             <Day
-              date={days[idx + days.lastIndexOf(0) + 1].date}
+              date={getDay(idx + days.lastIndexOf(0) + 1).date}
               day={renderOtherDays(
                 idx,
-                days[days.lastIndexOf(0) + 1].date,
+                getDay(days.lastIndexOf(0) + 1).date,
               ).toString()}
               key={`after-${idx}`}
               disabled={true}
