@@ -1,5 +1,10 @@
 import clsx from 'clsx'
 import React, { useRef, useState } from 'react'
+import {
+  dateToISODateString,
+  removeDateTimezoneOffset,
+} from '../../utils/date.utils'
+import { useInput } from '../../utils/useInput'
 import { Calendar } from '../Calendar'
 import { DateField } from '../DateField'
 import { CalendarIcon } from '../Icons'
@@ -18,7 +23,6 @@ export type DatePickerProps = Omit<
     withCalendar?: boolean
     supportingText?: string
     value?: string
-    onChange?: (value: string) => void
     defaultValue?: string
     placeholder?: string
     size?: 'large' | 'medium'
@@ -27,24 +31,22 @@ export type DatePickerProps = Omit<
 
 export const DatePicker: React.FC<DatePickerProps> & {
   classes: typeof datePickerClasses
-} = ({ value: _value, onChange, withCalendar = true, ...props }) => {
+} = ({ value: valueProp, onChange, withCalendar = true, ...props }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [openCalendar, setOpenCalendar] = useState(false)
-  const [date, setDate] = useState<string>(_value || '')
 
-  const handleDateFieldChange = (date: any) => {
-    const offset = new Date(date).getTimezoneOffset()
-    const formattedDate = new Date(date.getTime() - offset * 60 * 1000)
-    const value = formattedDate.toISOString().split('T')[0]
+  const input = useInput({
+    value: valueProp,
+    defaultValue: '',
+    onChange,
+    getInput: () =>
+      ref.current?.querySelector(
+        `input.${DateField.classes.input}`,
+      ) as HTMLInputElement,
+  })
 
-    if (typeof _value !== 'undefined') {
-      if (typeof onChange !== 'undefined') {
-        onChange(value)
-      }
-    } else {
-      setDate(value)
-    }
-  }
+  const handleDateChange = (date: Date) =>
+    input.setValue(dateToISODateString(removeDateTimezoneOffset(date)))
 
   return (
     <div
@@ -58,19 +60,19 @@ export const DatePicker: React.FC<DatePickerProps> & {
       <DateField
         icon={withCalendar && <CalendarIcon color="primary" />}
         onIconClick={() => setOpenCalendar((prev) => !prev)}
-        value={date}
-        onChange={(data) => setDate(data.target.value)}
+        value={input.value}
+        onChange={input.onChange}
         style={{ width: '310px' }}
         {...props}
       >
         <Portal id="calendar">
           {withCalendar && (
             <Calendar
-              onChange={handleDateFieldChange}
+              onChange={(date) => handleDateChange(date)}
               open={openCalendar}
               onClose={() => setOpenCalendar(false)}
               handleRef={ref}
-              value={date}
+              value={input.value}
               disabled={props.disabled}
             />
           )}

@@ -5,14 +5,15 @@ import {
 } from '@datepicker-react/hooks'
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
+import { useClickAway } from 'react-use'
+import { safeConvertDateToString } from '../../utils/date.utils'
 import { calendarClasses } from './Calendar.classes'
 import { CalendarContext } from './Calendar.context'
 import { Month } from './Month'
-import { useClickAway } from 'react-use'
 
 export type CalendarProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
-  'label'
+  'label' | 'onChange'
 > & {
   open?: boolean
   disabled?: boolean
@@ -28,7 +29,7 @@ export const Calendar: React.FC<CalendarProps> & {
 } = ({
   open,
   handleRef,
-  value: _value,
+  value: valueProp,
   size = 'large',
   disabled = false,
   onChange,
@@ -39,7 +40,7 @@ export const Calendar: React.FC<CalendarProps> & {
   const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
   const [value, setValue] = useState<Date | null>(
-    _value ? new Date(_value) : null,
+    valueProp ? safeConvertDateToString(valueProp).date : null,
   )
 
   useClickAway(ref, (event) => {
@@ -49,22 +50,11 @@ export const Calendar: React.FC<CalendarProps> & {
   })
 
   const handleDateChange = (data: OnDatesChangeProps) => {
-    if (typeof _value !== 'undefined') {
-      if (typeof onChange !== 'undefined') {
-        onChange(data.startDate ?? new Date())
-      }
-    } else {
-      setValue(data.startDate)
-    }
+    if (typeof valueProp !== 'undefined')
+      return onChange?.(data.startDate ?? new Date())
+
+    setValue(data.startDate)
   }
-
-  useEffect(() => {
-    onDateFocus(_value ? new Date(_value) : new Date())
-  }, [_value])
-
-  useEffect(() => {
-    onDateFocus(value ? new Date(value) : new Date())
-  }, [value])
 
   const {
     activeMonths,
@@ -86,6 +76,17 @@ export const Calendar: React.FC<CalendarProps> & {
     onDatesChange: handleDateChange,
     numberOfMonths: 1,
   })
+
+  useEffect(() => {
+    onDateFocus(value ? new Date(value) : new Date())
+  }, [value])
+
+  useEffect(() => {
+    if (typeof valueProp === 'undefined') return
+
+    const { date } = safeConvertDateToString(valueProp)
+    setValue(date)
+  }, [valueProp])
 
   const updateStyle = () => {
     const { width, height, top, left } =
