@@ -45,9 +45,9 @@ export const Day = ({ day, date, disabled = false }: DayProps) => {
 
   return (
     <button
-      onClick={onClick}
-      onKeyDown={onKeyDown}
-      onMouseEnter={onMouseEnter}
+      onClick={(e) => !disabled && onClick()}
+      onKeyDown={(e) => !disabled && onKeyDown(e)}
+      onMouseEnter={(e) => !disabled && onMouseEnter()}
       tabIndex={tabIndex}
       type="button"
       ref={dayRef}
