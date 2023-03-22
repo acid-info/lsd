@@ -19,7 +19,7 @@ export const Uncontrolled: Story<DatePickerProps> = ({ ...args }) => {
   return <DatePicker {...args}>DatePicker</DatePicker>
 }
 
-export const Contolled: Story<DatePickerProps> = ({ ...args }) => {
+export const Controlled: Story<DatePickerProps> = ({ ...args }) => {
   return <DatePicker {...args}>DatePicker</DatePicker>
 }
 
@@ -35,7 +35,7 @@ Uncontrolled.args = {
   size: 'large',
 }
 
-Contolled.args = {
+Controlled.args = {
   supportingText: 'Supporting text',
   disabled: false,
   error: false,
