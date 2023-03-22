@@ -21,12 +21,7 @@ export const Uncontrolled: Story<CalendarProps> = (arg) => {
 
   return (
     <div ref={ref} style={{ width: '300px' }}>
-      <Calendar
-        {...arg}
-        handleDateFieldChange={(date) => console.log(date?.toDateString())}
-        open={true}
-        handleRef={ref}
-      >
+      <Calendar {...arg} open={true} handleRef={ref}>
         Calendar
       </Calendar>
     </div>
@@ -38,12 +33,7 @@ export const Controlled: Story<CalendarProps> = (arg) => {
 
   return (
     <div ref={ref} style={{ width: '300px' }}>
-      <Calendar
-        {...arg}
-        handleDateFieldChange={(date) => console.log(date?.toDateString())}
-        open={true}
-        handleRef={ref}
-      >
+      <Calendar {...arg} open={true} handleRef={ref}>
         Calendar
       </Calendar>
     </div>
