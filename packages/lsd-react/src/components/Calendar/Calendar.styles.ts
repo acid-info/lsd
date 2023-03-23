@@ -39,6 +39,8 @@ export const CalendarStyles = css`
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     justify-content: center;
+    box-sizing: border-box;
+    grid-gap: 1px;
     cursor: pointer;
   }
 
@@ -140,5 +142,9 @@ export const CalendarStyles = css`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .${calendarClasses.dayRange} {
+    box-shadow: 0 0 0 1px rgb(var(--lsd-border-primary));
   }
 `

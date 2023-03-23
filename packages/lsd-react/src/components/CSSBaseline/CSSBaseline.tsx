@@ -20,6 +20,7 @@ import { IconButtonStyles } from '../IconButton/IconButton.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
 import { QuoteStyles } from '../Quote/Quote.styles'
+import { RangePickerStyles } from '../RangePicker/RangePicker.styles'
 import { TabItemStyles } from '../TabItem/TabItem.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
 import { TagStyles } from '../Tag/Tag.styles'
@@ -54,6 +55,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     DateFieldStyles,
     DatePickerStyles,
     CalendarStyles,
+    RangePickerStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({

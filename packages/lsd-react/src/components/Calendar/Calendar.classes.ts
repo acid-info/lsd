@@ -19,4 +19,5 @@ export const calendarClasses = {
   daySelected: 'lsd-calendar-day--selected',
   dayDisabled: 'lsd-calendar-day--disabled',
   today: 'lsd-calendar-today',
+  dayRange: 'lsd-calendar-day--range',
 }

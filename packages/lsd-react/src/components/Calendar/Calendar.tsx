@@ -21,6 +21,9 @@ export type CalendarProps = Omit<
   onChange: (data: Date) => void
   handleRef: React.RefObject<HTMLElement>
   size?: 'large' | 'medium'
+  mode?: 'date' | 'range'
+  start?: Date
+  end?: Date
   onClose?: () => void
 }
 
@@ -31,9 +34,12 @@ export const Calendar: React.FC<CalendarProps> & {
   handleRef,
   value: valueProp,
   size = 'large',
+  mode = 'date',
   disabled = false,
   onChange,
   onClose,
+  start,
+  end,
   children,
   ...props
 }) => {
@@ -78,8 +84,8 @@ export const Calendar: React.FC<CalendarProps> & {
   })
 
   useEffect(() => {
-    onDateFocus(value ? new Date(value) : new Date())
-  }, [value])
+    mode !== 'range' && onDateFocus(value ? new Date(value) : new Date())
+  }, [value, mode])
 
   useEffect(() => {
     if (typeof valueProp === 'undefined') return
@@ -107,6 +113,9 @@ export const Calendar: React.FC<CalendarProps> & {
     <CalendarContext.Provider
       value={{
         size,
+        mode,
+        start,
+        end,
         focusedDate,
         isDateFocused,
         isDateSelected,
