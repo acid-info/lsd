@@ -119,6 +119,7 @@ export const Calendar: React.FC<CalendarProps> & {
       }}
     >
       <div
+        {...props}
         className={clsx(
           props.className,
           calendarClasses.root,
