@@ -2,6 +2,7 @@ import { FirstDayOfWeek, useMonth } from '@datepicker-react/hooks'
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
+import { IconButton } from '../IconButton'
 import {
   ArrowDownIcon,
   ArrowUpIcon,
@@ -60,7 +61,7 @@ export const Month = ({
   })
 
   return (
-    <div>
+    <>
       <div className={calendarClasses.header}>
         <button
           className={clsx(calendarClasses.button)}
@@ -72,6 +73,7 @@ export const Month = ({
         <div className={calendarClasses.row}>
           <Typography
             className={calendarClasses.month}
+            component="span"
             variant={size === 'large' ? 'label1' : 'label2'}
           >
             {monthLabel.split(' ')[0]}
@@ -79,22 +81,25 @@ export const Month = ({
           {changeYear ? (
             <div ref={ref} className={calendarClasses.changeYear}>
               <Typography
-                variant={size === 'large' ? 'label1' : 'label2'}
+                component="span"
                 className={calendarClasses.year}
+                variant={size === 'large' ? 'label1' : 'label2'}
               >
                 {monthLabel.split(' ')[1]}
               </Typography>
               <div className={calendarClasses.row}>
-                <ArrowUpIcon
+                <IconButton
                   onClick={() => setYear(year + 1)}
                   className={calendarClasses.changeYearButton}
-                  color="primary"
-                />
-                <ArrowDownIcon
+                >
+                  <ArrowUpIcon color="primary" />
+                </IconButton>
+                <IconButton
                   onClick={() => setYear(year - 1)}
                   className={calendarClasses.changeYearButton}
-                  color="primary"
-                />
+                >
+                  <ArrowDownIcon color="primary" />
+                </IconButton>
               </div>
             </div>
           ) : (
@@ -171,6 +176,6 @@ export const Month = ({
             />
           ))}
       </div>
-    </div>
+    </>
   )
 }

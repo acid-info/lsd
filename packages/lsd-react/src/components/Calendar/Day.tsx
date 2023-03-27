@@ -60,7 +60,7 @@ export const Day = ({ day, date, disabled = false }: DayProps) => {
       <Typography variant="label2">{parseInt(day, 10)}</Typography>
       {new Date(date).setHours(0, 0, 0, 0) ===
         new Date().setHours(0, 0, 0, 0) && (
-        <Typography variant="label2" className={calendarClasses.today}>
+        <Typography variant="label2" className={calendarClasses.todayIndicator}>
           ■
         </Typography>
       )}

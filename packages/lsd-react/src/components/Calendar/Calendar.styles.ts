@@ -70,7 +70,10 @@ export const CalendarStyles = css`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    background: transparent;
+    border: none;
+    height: 14px;
+    width: 14px;
+    padding: 0;
   }
 
   .${calendarClasses.month} {
@@ -110,7 +113,7 @@ export const CalendarStyles = css`
     cursor: default;
   }
 
-  .${calendarClasses.today} {
+  .${calendarClasses.todayIndicator} {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

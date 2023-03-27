@@ -51,11 +51,8 @@ export const DatePicker: React.FC<DatePickerProps> & {
   return (
     <div
       ref={ref}
-      className={clsx(
-        props.className,
-        datePickerClasses.root,
-        withCalendar && datePickerClasses.withCalendar,
-      )}
+      {...props}
+      className={clsx(props.className, datePickerClasses.root)}
     >
       <DateField
         icon={withCalendar && <CalendarIcon color="primary" />}
@@ -74,6 +71,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
               handleRef={ref}
               value={input.value}
               disabled={props.disabled}
+              className={datePickerClasses.calendar}
             />
           )}
         </Portal>
