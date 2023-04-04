@@ -101,4 +101,12 @@ export const DropdownStyles = css`
       padding: 6px 12px;
     }
   }
+
+  .${dropdownClasses.bottomOutline} {
+    .${dropdownClasses.trigger} {
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+  }
 `

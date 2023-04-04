@@ -4,7 +4,7 @@ import { textFieldClasses } from './TextField.classes'
 export const TextFieldStyles = css`
   .${textFieldClasses.root} {
     width: auto;
-    border-bottom: 1px solid rgb(var(--lsd-border-primary));
+    border: 1px solid rgb(var(--lsd-border-primary));
     box-sizing: border-box;
   }
 
@@ -55,6 +55,12 @@ export const TextFieldStyles = css`
     width: 188px;
     height: 32px;
     padding: 6px 12px;
+  }
+
+  .${textFieldClasses.bottomOutline} {
+    border-top: none;
+    border-left: none;
+    border-right: none;
   }
 
   .${textFieldClasses.clearButton} {
