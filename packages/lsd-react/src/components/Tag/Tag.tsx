@@ -9,6 +9,7 @@ export type TagProps = React.HTMLAttributes<HTMLDivElement> & {
   icon?: React.ReactNode
   iconDirection?: 'left' | 'right'
   disabled?: boolean
+  size?: 'large' | 'small'
 }
 
 export const Tag: React.FC<TagProps> & {
@@ -20,12 +21,18 @@ export const Tag: React.FC<TagProps> & {
   icon,
   iconDirection = 'left',
   children,
+  size = 'large',
   ...props
 }) => {
   const renderItems = () => (
     <>
       {iconDirection === 'left' && icon}
-      <Typography className={tagClasses[variant]}>{label}</Typography>
+      <Typography
+        variant={size === 'small' ? 'label2' : 'label1'}
+        className={tagClasses[variant]}
+      >
+        {label}
+      </Typography>
       {iconDirection === 'right' && icon}
     </>
   )
@@ -39,6 +46,7 @@ export const Tag: React.FC<TagProps> & {
         tagClasses.root,
         tagClasses[variant],
         disabled && tagClasses.disabled,
+        tagClasses[size],
       )}
     >
       {renderItems()}
