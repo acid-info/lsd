@@ -4,14 +4,11 @@ import { tagClasses } from './Tag.classes'
 export const TagStyles = css`
   .${tagClasses.root} {
     width: fit-content;
-    height: 28px;
-    padding: 4px 12px;
 
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 12px;
 
     border: 1px solid rgb(var(--lsd-icon-primary));
 
@@ -20,6 +17,18 @@ export const TagStyles = css`
       text-decoration: underline;
       cursor: pointer;
     }
+  }
+
+  .${tagClasses.large} {
+    padding: 4px 12px;
+    gap: 12px;
+    height: 28px;
+  }
+
+  .${tagClasses.small} {
+    padding: 4px 8px;
+    gap: 8px;
+    height: 24px;
   }
 
   .${tagClasses.filled} {

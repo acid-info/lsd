@@ -18,6 +18,13 @@ export default {
         value: ['left', 'right', 'none'],
       },
     },
+    size: {
+      type: {
+        name: 'enum',
+        value: ['large', 'small'],
+      },
+      defaultValue: 'large',
+    },
     disabled: {
       type: {
         name: 'boolean',
@@ -36,4 +43,5 @@ Root.args = {
   label: 'Tag',
   iconDirection: 'left',
   disabled: false,
+  size: 'large',
 }
