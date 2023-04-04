@@ -1,6 +1,7 @@
 import { Global, SerializedStyles } from '@emotion/react'
 import React, { useMemo } from 'react'
 import { AutocompleteStyles } from '../Autocomplete/Autocomplete.styles'
+import { BadgeStyles } from '../Badge/Badge.styles'
 import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
 import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { ButtonStyles } from '../Button/Button.styles'
@@ -48,6 +49,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     CollapseStyles,
     CollapseHeaderStyles,
     CheckboxGroupStyles,
+    BadgeStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
