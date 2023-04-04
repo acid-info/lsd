@@ -27,6 +27,7 @@ Root.args = {
   disabled: false,
   withIcon: false,
   error: false,
+  bottomOutline: false,
   placeholder: 'Placeholder',
   onChange: undefined,
   options: list,

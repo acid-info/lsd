@@ -24,6 +24,7 @@ export type DropdownProps = Omit<
   options?: DropdownOption[]
   value?: string | string[]
   onChange?: (value: string | string[]) => void
+  bottomOutline?: boolean
 }
 
 export const Dropdown: React.FC<DropdownProps> & {
@@ -39,6 +40,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   onChange,
   options = [],
   multi = false,
+  bottomOutline = false,
   ...props
 }) => {
   const ref = useRef<HTMLButtonElement>(null)
@@ -70,6 +72,7 @@ export const Dropdown: React.FC<DropdownProps> & {
         error && dropdownClasses.error,
         disabled && dropdownClasses.disabled,
         open && dropdownClasses.open,
+        bottomOutline && dropdownClasses.bottomOutline,
       )}
     >
       <button

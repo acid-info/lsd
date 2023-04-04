@@ -19,6 +19,7 @@ Root.args = {
   disabled: false,
   error: false,
   multi: false,
+  bottomOutline: false,
   onChange: undefined,
   options: new Array(16).fill(null).map((value, index) => ({
     value: `${index}`,

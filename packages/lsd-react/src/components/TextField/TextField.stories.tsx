@@ -43,6 +43,7 @@ Root.args = {
   error: false,
   errorIcon: false,
   icon: 'None',
+  bottomOutline: true,
   clearButton: true,
   placeholder: 'Placeholder',
   defaultValue: 'default value',

@@ -80,4 +80,10 @@ export const AutocompleteStyles = css`
     opacity: 0.5;
     white-space: pre;
   }
+
+  .${autocompleteClasses.bottomOutline} {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+  }
 `

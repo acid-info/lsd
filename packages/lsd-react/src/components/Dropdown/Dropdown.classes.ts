@@ -14,7 +14,9 @@ export const dropdownClasses = {
   open: 'lsd-dropdown--open',
   error: 'lsd-dropdown--error',
   disabled: 'lsd-dropdown--disabled',
+
   small: `lsd-dropdown--small`,
   medium: `lsd-dropdown--medium`,
   large: `lsd-dropdown--large`,
+  bottomOutline: `lsd-dropdown--bottom-outline`,
 }
