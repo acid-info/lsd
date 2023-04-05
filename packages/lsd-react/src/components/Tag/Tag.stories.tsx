@@ -35,12 +35,13 @@ export default {
 } as Meta
 
 export const Root: Story<TagProps> = (args) => (
-  <Tag {...args} icon={<FolderIcon color="primary" />} />
+  <Tag {...args} icon={<FolderIcon color="primary" />}>
+    Tag
+  </Tag>
 )
 
 Root.args = {
   variant: 'outlined',
-  label: 'Tag',
   iconDirection: 'left',
   disabled: false,
   size: 'large',

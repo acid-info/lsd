@@ -33,7 +33,10 @@ export const TagStyles = css`
 
   .${tagClasses.filled} {
     background-color: rgb(var(--lsd-icon-primary));
-    color: rgb(var(--lsd-text-secondary));
+    .${tagClasses.label} {
+      color: rgb(var(--lsd-text-secondary));
+    }
+
     svg {
       --lsd-icon-primary: var(--lsd-icon-secondary);
     }
