@@ -34,7 +34,10 @@ export const BadgeStyles = css`
 
   .${badgeClasses.filled} {
     background-color: rgb(var(--lsd-icon-primary));
-    color: rgb(var(--lsd-text-secondary));
+    .${badgeClasses.label} {
+      color: rgb(var(--lsd-text-secondary));
+    }
+
     svg {
       --lsd-icon-primary: var(--lsd-icon-secondary);
     }

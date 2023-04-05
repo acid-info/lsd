@@ -5,7 +5,6 @@ import { badgeClasses } from './Badge.classes'
 
 export type BadgeProps = React.HTMLAttributes<HTMLDivElement> & {
   variant?: 'outlined' | 'filled'
-  label: string
   icon?: React.ReactNode
   iconDirection?: 'left' | 'right'
   size?: 'large' | 'small'
@@ -15,7 +14,6 @@ export type BadgeProps = React.HTMLAttributes<HTMLDivElement> & {
 export const Badge: React.FC<BadgeProps> & {
   classes: typeof badgeClasses
 } = ({
-  label,
   variant = 'outlined',
   disabled = 'false',
   size = 'large',
@@ -24,22 +22,9 @@ export const Badge: React.FC<BadgeProps> & {
   children,
   ...props
 }) => {
-  const renderItems = () => (
-    <>
-      {iconDirection === 'left' && icon}
-      <Typography
-        variant={size === 'small' ? 'label2' : 'label1'}
-        className={badgeClasses[variant]}
-      >
-        {label}
-      </Typography>
-      {iconDirection === 'right' && icon}
-    </>
-  )
-
   return (
     <div
-      aria-label={label}
+      aria-label={children as string}
       {...props}
       className={clsx(
         props.className,
@@ -49,7 +34,15 @@ export const Badge: React.FC<BadgeProps> & {
         badgeClasses[size],
       )}
     >
-      {renderItems()}
+      {iconDirection === 'left' && icon}
+      <Typography
+        component="span"
+        variant={size === 'small' ? 'label2' : 'label1'}
+        className={badgeClasses.label}
+      >
+        {children}
+      </Typography>
+      {iconDirection === 'right' && icon}
     </div>
   )
 }

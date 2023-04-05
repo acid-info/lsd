@@ -35,12 +35,13 @@ export default {
 } as Meta
 
 export const Root: Story<BadgeProps> = (args) => (
-  <Badge {...args} icon={<FolderIcon color="primary" />} />
+  <Badge {...args} icon={<FolderIcon color="primary" />}>
+    Badge
+  </Badge>
 )
 
 Root.args = {
   variant: 'outlined',
-  label: 'Badge',
   iconDirection: 'left',
   disabled: false,
   size: 'large',
