@@ -5,7 +5,6 @@ import { tagClasses } from './Tag.classes'
 
 export type TagProps = React.HTMLAttributes<HTMLDivElement> & {
   variant?: 'outlined' | 'filled'
-  label: string
   icon?: React.ReactNode
   iconDirection?: 'left' | 'right'
   disabled?: boolean
@@ -15,7 +14,6 @@ export type TagProps = React.HTMLAttributes<HTMLDivElement> & {
 export const Tag: React.FC<TagProps> & {
   classes: typeof tagClasses
 } = ({
-  label,
   variant = 'outlined',
   disabled = 'false',
   icon,
@@ -24,22 +22,9 @@ export const Tag: React.FC<TagProps> & {
   size = 'large',
   ...props
 }) => {
-  const renderItems = () => (
-    <>
-      {iconDirection === 'left' && icon}
-      <Typography
-        variant={size === 'small' ? 'label2' : 'label1'}
-        className={tagClasses[variant]}
-      >
-        {label}
-      </Typography>
-      {iconDirection === 'right' && icon}
-    </>
-  )
-
   return (
     <div
-      aria-label={label}
+      aria-label={children as string}
       {...props}
       className={clsx(
         props.className,
@@ -49,7 +34,15 @@ export const Tag: React.FC<TagProps> & {
         tagClasses[size],
       )}
     >
-      {renderItems()}
+      {iconDirection === 'left' && icon}
+      <Typography
+        variant={size === 'small' ? 'label2' : 'label1'}
+        className={tagClasses.label}
+        component="span"
+      >
+        {children}
+      </Typography>
+      {iconDirection === 'right' && icon}
     </div>
   )
 }
