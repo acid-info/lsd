@@ -4,6 +4,15 @@ import { Dropdown, DropdownProps } from './Dropdown'
 export default {
   title: 'Dropdown',
   component: Dropdown,
+  argTypes: {
+    variant: {
+      type: {
+        name: 'enum',
+        value: ['outlined', 'outlined-bottom'],
+      },
+      defaultValue: 'large',
+    },
+  },
 } as Meta
 
 export const Root: Story<DropdownProps> = (args) => (
@@ -19,7 +28,7 @@ Root.args = {
   disabled: false,
   error: false,
   multi: false,
-  bottomOutline: false,
+  variant: 'outlined',
   onChange: undefined,
   options: new Array(16).fill(null).map((value, index) => ({
     value: `${index}`,

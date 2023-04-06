@@ -24,7 +24,7 @@ export type DropdownProps = Omit<
   options?: DropdownOption[]
   value?: string | string[]
   onChange?: (value: string | string[]) => void
-  bottomOutline?: boolean
+  variant?: 'outlined' | 'outlined-bottom'
 }
 
 export const Dropdown: React.FC<DropdownProps> & {
@@ -40,7 +40,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   onChange,
   options = [],
   multi = false,
-  bottomOutline = false,
+  variant = 'outlined',
   ...props
 }) => {
   const ref = useRef<HTMLButtonElement>(null)
@@ -72,12 +72,16 @@ export const Dropdown: React.FC<DropdownProps> & {
         error && dropdownClasses.error,
         disabled && dropdownClasses.disabled,
         open && dropdownClasses.open,
-        bottomOutline && dropdownClasses.bottomOutline,
       )}
     >
       <button
         ref={ref}
-        className={clsx(dropdownClasses.trigger)}
+        className={clsx(
+          dropdownClasses.trigger,
+          variant === 'outlined'
+            ? dropdownClasses.outlined
+            : dropdownClasses.outlinedBottom,
+        )}
         onClick={onTrigger}
       >
         <Typography

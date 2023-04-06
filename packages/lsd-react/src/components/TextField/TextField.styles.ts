@@ -4,7 +4,6 @@ import { textFieldClasses } from './TextField.classes'
 export const TextFieldStyles = css`
   .${textFieldClasses.root} {
     width: auto;
-    border: 1px solid rgb(var(--lsd-border-primary));
     box-sizing: border-box;
   }
 
@@ -57,10 +56,12 @@ export const TextFieldStyles = css`
     padding: 6px 12px;
   }
 
-  .${textFieldClasses.bottomOutline} {
-    border-top: none;
-    border-left: none;
-    border-right: none;
+  .${textFieldClasses.outlined} {
+    border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  .${textFieldClasses.outlinedBottom} {
+    border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 
   .${textFieldClasses.clearButton} {

@@ -4,7 +4,6 @@ import { autocompleteClasses } from './Autocomplete.classes'
 export const AutocompleteStyles = css`
   .${autocompleteClasses.root} {
     width: auto;
-    border: 1px solid rgb(var(--lsd-border-primary));
     box-sizing: border-box;
     align-items: center;
   }
@@ -81,9 +80,11 @@ export const AutocompleteStyles = css`
     white-space: pre;
   }
 
-  .${autocompleteClasses.bottomOutline} {
-    border-top: none;
-    border-left: none;
-    border-right: none;
+  .${autocompleteClasses.outlined} {
+    border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  .${autocompleteClasses.outlinedBottom} {
+    border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 `

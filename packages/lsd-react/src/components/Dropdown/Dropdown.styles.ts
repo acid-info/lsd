@@ -26,10 +26,10 @@ export const DropdownStyles = css`
     align-items: center;
     justify-content: space-between;
     padding: 10px 14px 10px 18px;
+    border: none;
 
     cursor: pointer;
     background: none;
-    border: 1px solid rgb(var(--lsd-border-primary));
 
     &:focus {
       outline: none;
@@ -102,11 +102,11 @@ export const DropdownStyles = css`
     }
   }
 
-  .${dropdownClasses.bottomOutline} {
-    .${dropdownClasses.trigger} {
-      border-top: none;
-      border-left: none;
-      border-right: none;
-    }
+  .${dropdownClasses.outlined} {
+    border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  .${dropdownClasses.outlinedBottom} {
+    border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 `

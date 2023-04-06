@@ -16,6 +16,13 @@ export default {
       },
       defaultValue: 'large',
     },
+    variant: {
+      type: {
+        name: 'enum',
+        value: ['outlined', 'outlined-bottom'],
+      },
+      defaultValue: 'large',
+    },
   },
 } as Meta
 
@@ -27,7 +34,7 @@ Root.args = {
   disabled: false,
   withIcon: false,
   error: false,
-  bottomOutline: false,
+  variant: 'outlined',
   placeholder: 'Placeholder',
   onChange: undefined,
   options: list,
