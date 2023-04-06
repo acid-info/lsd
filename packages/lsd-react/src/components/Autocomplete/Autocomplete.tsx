@@ -21,7 +21,7 @@ export type AutocompleteProps = Omit<
     defaultValue?: string
     options?: string[]
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-    bottomOutline?: boolean
+    variant?: 'outlined' | 'outlined-bottom'
   }
 
 export const Autocomplete: React.FC<AutocompleteProps> & {
@@ -38,7 +38,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   onChange,
   options = [],
   inputProps = {},
-  bottomOutline = false,
+  variant = 'outlined',
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null)
@@ -88,7 +88,9 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
         autocompleteClasses[size],
         disabled && autocompleteClasses.disabled,
         withIcon && autocompleteClasses.withIcon,
-        bottomOutline && autocompleteClasses.bottomOutline,
+        variant === 'outlined'
+          ? autocompleteClasses.outlined
+          : autocompleteClasses.outlinedBottom,
       )}
       {...props}
     >

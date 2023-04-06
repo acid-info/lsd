@@ -18,5 +18,6 @@ export const dropdownClasses = {
   small: `lsd-dropdown--small`,
   medium: `lsd-dropdown--medium`,
   large: `lsd-dropdown--large`,
-  bottomOutline: `lsd-dropdown--bottom-outline`,
+  outlined: `lsd-dropdown--outlined`,
+  outlinedBottom: `lsd-dropdown--outlined-bottom`,
 }

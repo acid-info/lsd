@@ -22,7 +22,7 @@ export type TextFieldProps = Omit<
     defaultValue?: string
     placeholder?: string
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-    bottomOutline?: boolean
+    variant?: 'outlined' | 'outlined-bottom'
   }
 
 export const TextField: React.FC<TextFieldProps> & {
@@ -41,7 +41,7 @@ export const TextField: React.FC<TextFieldProps> & {
   disabled,
   onChange,
   inputProps = {},
-  bottomOutline = true,
+  variant = 'outlined-bottom',
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null)
@@ -59,7 +59,9 @@ export const TextField: React.FC<TextFieldProps> & {
         textFieldClasses[size],
         disabled && textFieldClasses.disabled,
         error && textFieldClasses.error,
-        bottomOutline && textFieldClasses.bottomOutline,
+        variant === 'outlined'
+          ? textFieldClasses.outlined
+          : textFieldClasses.outlinedBottom,
       )}
     >
       <div className={textFieldClasses.inputContainer}>

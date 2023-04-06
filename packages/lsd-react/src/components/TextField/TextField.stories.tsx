@@ -20,6 +20,13 @@ export default {
       },
       defaultValue: 'FolderIcon',
     },
+    variant: {
+      type: {
+        name: 'enum',
+        value: ['outlined', 'outlined-bottom'],
+      },
+      defaultValue: 'large',
+    },
   },
 } as Meta
 
@@ -43,7 +50,7 @@ Root.args = {
   error: false,
   errorIcon: false,
   icon: 'None',
-  bottomOutline: true,
+  variant: 'outlined-bottom',
   clearButton: true,
   placeholder: 'Placeholder',
   defaultValue: 'default value',
