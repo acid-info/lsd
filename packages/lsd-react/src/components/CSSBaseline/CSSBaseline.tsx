@@ -15,6 +15,7 @@ import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
 import { DropdownItemStyles } from '../DropdownItem/DropdownItem.styles'
 import { IconButtonStyles } from '../IconButton/IconButton.styles'
+import { IconButtonGroupStyles } from '../IconButtonGroup/IconButtonGroup.styles'
 import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
 import { ListBoxStyles } from '../ListBox/ListBox.styles'
 import { QuoteStyles } from '../Quote/Quote.styles'
@@ -36,6 +37,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
     ButtonStyles,
     IconButtonStyles,
+    IconButtonGroupStyles,
     TypographyStyles,
     LsdIconStyles,
     TabItemStyles,
