@@ -19,13 +19,21 @@ export const DropdownStyles = css`
     }
   }
 
+  .${dropdownClasses.label} {
+    display: block;
+  }
+
+  .${dropdownClasses.buttonContainer} {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .${dropdownClasses.trigger} {
     width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 14px 10px 18px;
     border: none;
 
     cursor: pointer;
@@ -48,11 +56,12 @@ export const DropdownStyles = css`
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    min-width: 60px;
+    gap: 8px;
   }
 
   .${dropdownClasses.triggerIcon} {
-    margin-right: 8px;
+    display: flex;
+    align-items: center;
   }
 
   .${dropdownClasses.triggerMenuIcon} {
@@ -69,10 +78,8 @@ export const DropdownStyles = css`
   }
 
   .${dropdownClasses.disabled} {
-    .${dropdownClasses.trigger} {
-      opacity: 0.34;
-      cursor: initial;
-    }
+    opacity: 0.34;
+    cursor: initial;
   }
 
   .${dropdownClasses.listBox} {
@@ -90,23 +97,63 @@ export const DropdownStyles = css`
     }
   }
 
-  .${dropdownClasses.small} {
+  .${dropdownClasses.large} {
+    width: 208px;
+
+    .${dropdownClasses.label} {
+      margin: 0 0 6px 18px;
+    }
+
+    .${dropdownClasses.buttonContainer} {
+      height: 40px;
+    }
+
     .${dropdownClasses.trigger} {
-      padding: 6px 10px;
+      padding: 9px 17px;
     }
   }
 
   .${dropdownClasses.medium} {
+    width: 188px;
+
+    .${dropdownClasses.label} {
+      margin: 0 0 6px 14px;
+    }
+
+    .${dropdownClasses.buttonContainer} {
+      height: 32px;
+    }
+
     .${dropdownClasses.trigger} {
-      padding: 6px 12px;
+      padding: 5px 13px;
+    }
+  }
+
+  .${dropdownClasses.small} {
+    width: 164px;
+
+    .${dropdownClasses.label} {
+      margin: 0 0 6px 12px;
+    }
+
+    .${dropdownClasses.buttonContainer} {
+      height: 28px;
+    }
+
+    .${dropdownClasses.trigger} {
+      padding: 5px 11px;
     }
   }
 
   .${dropdownClasses.outlined} {
-    border: 1px solid rgb(var(--lsd-border-primary));
+    .${dropdownClasses.buttonContainer} {
+      border: 1px solid rgb(var(--lsd-border-primary));
+    }
   }
 
   .${dropdownClasses.outlinedBottom} {
-    border-bottom: 1px solid rgb(var(--lsd-border-primary));
+    .${dropdownClasses.buttonContainer} {
+      border-bottom: 1px solid rgb(var(--lsd-border-primary));
+    }
   }
 `

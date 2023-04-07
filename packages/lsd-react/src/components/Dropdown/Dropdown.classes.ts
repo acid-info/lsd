@@ -1,15 +1,18 @@
 export const dropdownClasses = {
   root: `lsd-dropdown`,
 
-  trigger: `lsd-dropdown-trigger`,
-  triggerLabel: `lsd-dropdown-trigger__label`,
-  triggerIcons: `lsd-dropdown-trigger-icons`,
-  triggerIcon: `lsd-dropdown-trigger-icons__icon`,
-  triggerMenuIcon: `lsd-dropdown-trigger-icons__menu-icon`,
+  label: 'lsd-dropdown__label',
+  buttonContainer: `lsd-dropdown__button-container`,
+
+  trigger: `lsd-dropdown__trigger`,
+  triggerLabel: `lsd-dropdown__trigger-label`,
+  triggerIcons: `lsd-dropdown__trigger-icons`,
+  triggerIcon: `lsd-dropdown__trigger-icons__icon`,
+  triggerMenuIcon: `lsd-dropdown__trigger-icons__menu-icon`,
 
   supportingText: 'lsd-dropdown__supporting-text',
 
-  listBox: 'lsd-dropdown-list-box',
+  listBox: 'lsd-dropdown__list-box',
 
   open: 'lsd-dropdown--open',
   error: 'lsd-dropdown--error',

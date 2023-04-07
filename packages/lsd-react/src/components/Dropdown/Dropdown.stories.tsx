@@ -22,8 +22,9 @@ export const Root: Story<DropdownProps> = (args) => (
 )
 
 Root.args = {
+  id: 'cryptocurrency',
   size: 'large',
-  label: 'Choose an option',
+  triggerLabel: 'Choose an option',
   supportingText: '',
   disabled: false,
   error: false,
@@ -34,4 +35,5 @@ Root.args = {
     value: `${index}`,
     name: `Option ${index + 1}`,
   })),
+  label: 'Cryptocurrency',
 }
