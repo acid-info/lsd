@@ -22,7 +22,6 @@ export const CollapseHeaderStyles = css`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 14px 10px 18px;
 
     cursor: pointer;
     background: none;
@@ -66,7 +65,7 @@ export const CollapseHeaderStyles = css`
     .${collapseHeaderClasses.trigger} {
       width: 299px;
       height: 40px;
-      padding: 10px 18px;
+      padding: 9px 17px;
     }
   }
 
@@ -74,7 +73,7 @@ export const CollapseHeaderStyles = css`
     .${collapseHeaderClasses.trigger} {
       width: 270px;
       height: 32px;
-      padding: 6px 14px;
+      padding: 5px 13px;
     }
   }
 
@@ -82,7 +81,7 @@ export const CollapseHeaderStyles = css`
     .${collapseHeaderClasses.trigger} {
       width: 235px;
       height: 28px;
-      padding: 6px 12px;
+      padding: 5px 11px;
     }
   }
 `
