@@ -5,6 +5,7 @@ import { DropdownItem } from '../DropdownItem'
 import { CloseIcon, SearchIcon } from '../Icons'
 import { ListBox } from '../ListBox'
 import { Portal } from '../PortalProvider/Portal'
+import { Typography } from '../Typography'
 import { autocompleteClasses } from './Autocomplete.classes'
 
 export type AutocompleteProps = Omit<
@@ -12,7 +13,8 @@ export type AutocompleteProps = Omit<
   'onChange' | 'value'
 > &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
-    size?: 'large' | 'medium'
+    label?: React.ReactNode
+    size?: 'large' | 'medium' | 'small'
     withIcon?: boolean
     error?: boolean
     disabled?: boolean
@@ -27,6 +29,7 @@ export type AutocompleteProps = Omit<
 export const Autocomplete: React.FC<AutocompleteProps> & {
   classes: typeof autocompleteClasses
 } = ({
+  label,
   size = 'large',
   withIcon = false,
   error = false,
@@ -79,6 +82,8 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
 
   const isOpen = !disabled && open && suggestions.length > 0 && input.filled
 
+  const inputId = inputProps?.id ?? (props.id || 'autocomplete') + '-input'
+
   return (
     <div
       ref={containerRef}
@@ -94,15 +99,26 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
       )}
       {...props}
     >
-      <div>
+      {label && (
+        <Typography
+          htmlFor={inputId}
+          className={autocompleteClasses.label}
+          variant="label2"
+          component="label"
+        >
+          {label}
+        </Typography>
+      )}
+      <div className={autocompleteClasses.inputContainer}>
         <input
-          {...inputProps}
+          id={inputId}
           ref={ref}
           value={input.value}
           placeholder={placeholder}
           onChange={input.onChange}
           disabled={disabled}
           onFocus={() => setOpen(true)}
+          {...inputProps}
           className={clsx(
             inputProps.className,
             autocompleteClasses.input,
