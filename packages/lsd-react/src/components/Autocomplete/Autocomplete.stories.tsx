@@ -12,7 +12,7 @@ export default {
     size: {
       type: {
         name: 'enum',
-        value: ['medium', 'large'],
+        value: ['small', 'medium', 'large'],
       },
       defaultValue: 'large',
     },
@@ -30,6 +30,7 @@ export const Root: Story<AutocompleteProps> = (args) => (
   <Autocomplete {...args}>Autocomplete</Autocomplete>
 )
 Root.args = {
+  id: 'cryptocurrency',
   size: 'large',
   disabled: false,
   withIcon: false,
@@ -38,4 +39,5 @@ Root.args = {
   placeholder: 'Placeholder',
   onChange: undefined,
   options: list,
+  label: 'Cryptocurrency',
 }
