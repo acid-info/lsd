@@ -12,6 +12,12 @@ export default {
       },
       defaultValue: 'large',
     },
+    size: {
+      type: {
+        name: 'enum',
+        value: ['small', 'medium', 'large'],
+      },
+    },
   },
 } as Meta
 
