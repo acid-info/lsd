@@ -5,10 +5,10 @@ export const dropdownClasses = {
   buttonContainer: `lsd-dropdown__button-container`,
 
   trigger: `lsd-dropdown__trigger`,
-  triggerLabel: `lsd-dropdown__trigger-label`,
-  triggerIcons: `lsd-dropdown__trigger-icons`,
-  triggerIcon: `lsd-dropdown__trigger-icons__icon`,
-  triggerMenuIcon: `lsd-dropdown__trigger-icons__menu-icon`,
+  optionLabel: `lsd-dropdown__option-label`,
+  icons: `lsd-dropdown__icons`,
+  icon: `lsd-dropdown__icon`,
+  menuIcon: `lsd-dropdown__menu-icon`,
 
   supportingText: 'lsd-dropdown__supporting-text',
 

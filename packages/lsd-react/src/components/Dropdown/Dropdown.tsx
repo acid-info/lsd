@@ -102,29 +102,26 @@ export const Dropdown: React.FC<DropdownProps> & {
             color="primary"
             component="label"
             variant={size === 'large' ? 'label1' : 'label2'}
-            className={dropdownClasses.triggerLabel}
+            className={dropdownClasses.optionLabel}
           >
             {selected.length > 0
               ? selected.map((opt) => opt.name).join(', ')
               : triggerLabel}
           </Typography>
-          <div className={dropdownClasses.triggerIcons}>
+          <div className={dropdownClasses.icons}>
             {error && (
-              <ErrorIcon
-                color="primary"
-                className={dropdownClasses.triggerIcon}
-              />
+              <ErrorIcon color="primary" className={dropdownClasses.icon} />
             )}
 
             {open ? (
               <ArrowUpIcon
                 color="primary"
-                className={dropdownClasses.triggerMenuIcon}
+                className={dropdownClasses.menuIcon}
               />
             ) : (
               <ArrowDownIcon
                 color="primary"
-                className={dropdownClasses.triggerMenuIcon}
+                className={dropdownClasses.menuIcon}
               />
             )}
           </div>

@@ -12,7 +12,7 @@ export const DropdownStyles = css`
     .${dropdownClasses.trigger} {
       &:hover,
       &:focus {
-        .${dropdownClasses.triggerLabel} {
+        .${dropdownClasses.optionLabel} {
           text-decoration: underline;
         }
       }
@@ -44,14 +44,14 @@ export const DropdownStyles = css`
     }
   }
 
-  .${dropdownClasses.triggerLabel} {
+  .${dropdownClasses.optionLabel} {
     cursor: inherit;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .${dropdownClasses.triggerIcons} {
+  .${dropdownClasses.icons} {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -59,12 +59,12 @@ export const DropdownStyles = css`
     gap: 8px;
   }
 
-  .${dropdownClasses.triggerIcon} {
+  .${dropdownClasses.icon} {
     display: flex;
     align-items: center;
   }
 
-  .${dropdownClasses.triggerMenuIcon} {
+  .${dropdownClasses.menuIcon} {
   }
 
   .${dropdownClasses.supportingText} {
@@ -72,7 +72,7 @@ export const DropdownStyles = css`
   }
 
   .${dropdownClasses.error} {
-    .${dropdownClasses.triggerLabel} {
+    .${dropdownClasses.optionLabel} {
       text-decoration: line-through;
     }
   }
