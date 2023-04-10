@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { BreadcrumbItem } from '../BreadcrumbItem'
 import { breadcrumbItemClasses } from '../BreadcrumbItem/BreadcrumbItem.classes'
-import { ListBox } from '../ListBox'
+import { DropdownMenu } from '../DropdownMenu'
 import { Portal } from '../PortalProvider/Portal'
 import { breadcrumbClasses } from './Breadcrumb.classes'
 
@@ -94,7 +94,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
       </ul>
       {ellipsisRef?.current != null && ellipsis && maxItems && (
         <Portal id="breadcrumb">
-          <ListBox
+          <DropdownMenu
             handleRef={ellipsisRef}
             open={open}
             onClose={() => setOpen(false)}
@@ -109,7 +109,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
                 linkComponent={opt?.linkComponent}
               />
             ))}
-          </ListBox>
+          </DropdownMenu>
         </Portal>
       )}
     </div>
