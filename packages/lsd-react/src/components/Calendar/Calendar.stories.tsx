@@ -9,7 +9,7 @@ export default {
     size: {
       type: {
         name: 'enum',
-        value: ['medium', 'large'],
+        value: ['small', 'medium', 'large'],
       },
       defaultValue: 'large',
     },

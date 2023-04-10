@@ -16,6 +16,7 @@ export type DatePickerProps = Omit<
   'onChange' | 'value'
 > &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
+    label?: React.ReactNode
     error?: boolean
     errorIcon?: boolean
     clearButton?: boolean
@@ -25,13 +26,22 @@ export type DatePickerProps = Omit<
     value?: string
     defaultValue?: string
     placeholder?: string
-    size?: 'large' | 'medium'
+    size?: 'large' | 'medium' | 'small'
+    variant?: 'outlined' | 'outlined-bottom'
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
 export const DatePicker: React.FC<DatePickerProps> & {
   classes: typeof datePickerClasses
-} = ({ value: valueProp, onChange, withCalendar = true, ...props }) => {
+} = ({
+  label,
+  size = 'large',
+  value: valueProp,
+  onChange,
+  withCalendar = true,
+  variant = 'outlined-bottom',
+  ...props
+}) => {
   const ref = useRef<HTMLDivElement>(null)
   const [openCalendar, setOpenCalendar] = useState(false)
 
@@ -48,18 +58,27 @@ export const DatePicker: React.FC<DatePickerProps> & {
   const handleDateChange = (date: Date) =>
     input.setValue(dateToISODateString(removeDateTimezoneOffset(date)))
 
+  const inputId = (props.id || 'date-picker') + '-input'
+
   return (
     <div
+      id={inputId}
       ref={ref}
       {...props}
-      className={clsx(props.className, datePickerClasses.root)}
+      className={clsx(
+        props.className,
+        datePickerClasses.root,
+        datePickerClasses[size],
+      )}
     >
       <DateField
+        label={label}
+        size={size}
+        variant={variant}
         icon={withCalendar && <CalendarIcon color="primary" />}
         onIconClick={() => setOpenCalendar((prev) => !prev)}
         value={input.value}
         onChange={input.onChange}
-        style={{ width: '310px' }}
         {...props}
       >
         <Portal id="calendar">

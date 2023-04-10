@@ -20,7 +20,7 @@ export type CalendarProps = Omit<
   value?: string
   onChange: (data: Date) => void
   handleRef: React.RefObject<HTMLElement>
-  size?: 'large' | 'medium'
+  size?: 'large' | 'medium' | 'small'
   onClose?: () => void
 }
 

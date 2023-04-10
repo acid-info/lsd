@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import React, { useRef } from 'react'
 import { useInput } from '../../utils/useInput'
-import { IconButton } from '../IconButton'
 import { CloseIcon, ErrorIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { dateFieldClasses } from './DateField.classes'
@@ -11,7 +10,8 @@ export type DateFieldProps = Omit<
   'onChange' | 'value'
 > &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
-    size?: 'large' | 'medium'
+    label?: React.ReactNode
+    size?: 'large' | 'medium' | 'small'
     error?: boolean
     errorIcon?: boolean
     clearButton?: boolean
@@ -23,11 +23,13 @@ export type DateFieldProps = Omit<
     icon?: React.ReactNode
     onIconClick?: () => void
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
+    variant?: 'outlined' | 'outlined-bottom'
   }
 
 export const DateField: React.FC<DateFieldProps> & {
   classes: typeof dateFieldClasses
 } = ({
+  label,
   size = 'large',
   error = false,
   errorIcon = false,
@@ -42,12 +44,15 @@ export const DateField: React.FC<DateFieldProps> & {
   icon,
   onIconClick,
   inputProps = {},
+  variant = 'outlined-bottom',
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null)
   const input = useInput({ defaultValue, value, onChange, ref })
 
   const onCancel = () => input.setValue('')
+
+  const inputId = inputProps?.id ?? (props.id || 'date-field') + '-input'
 
   return (
     <div
@@ -61,8 +66,26 @@ export const DateField: React.FC<DateFieldProps> & {
         error && dateFieldClasses.error,
       )}
     >
-      <div className={dateFieldClasses.inputContainer}>
+      {label && (
+        <Typography
+          htmlFor={inputId}
+          className={dateFieldClasses.label}
+          variant="label2"
+          component="label"
+        >
+          {label}
+        </Typography>
+      )}
+      <div
+        className={clsx(
+          dateFieldClasses.inputContainer,
+          variant === 'outlined'
+            ? dateFieldClasses.outlined
+            : dateFieldClasses.outlinedBottom,
+        )}
+      >
         <input
+          id={inputId}
           type="date"
           placeholder={placeholder}
           {...inputProps}
@@ -72,32 +95,28 @@ export const DateField: React.FC<DateFieldProps> & {
           className={clsx(inputProps.className, dateFieldClasses.input)}
         />
         {icon ? (
-          <IconButton
-            disabled={disabled}
-            className={dateFieldClasses.iconButton}
+          <span
+            className={dateFieldClasses.icon}
             onClick={() => !disabled && onIconClick && onIconClick()}
           >
             {icon}
-          </IconButton>
+          </span>
         ) : error && errorIcon ? (
-          <ErrorIcon color="primary" className={dateFieldClasses.icon} />
+          <span className={dateFieldClasses.icon}>
+            <ErrorIcon color="primary" />
+          </span>
         ) : clearButton && input.filled ? (
-          <IconButton
-            disabled={disabled}
+          <span
             onClick={() => !disabled && onCancel()}
-            aria-label="clear"
-            className={dateFieldClasses.iconButton}
+            className={dateFieldClasses.icon}
           >
-            <CloseIcon color="primary" className={dateFieldClasses.icon} />
-          </IconButton>
+            <CloseIcon color="primary" />
+          </span>
         ) : null}
       </div>
       {supportingText && (
         <div className={clsx(dateFieldClasses.supportingText)}>
-          <Typography
-            variant={size === 'large' ? 'label1' : 'label2'}
-            component="p"
-          >
+          <Typography variant={'label2'} component="p">
             {supportingText}
           </Typography>
         </div>
