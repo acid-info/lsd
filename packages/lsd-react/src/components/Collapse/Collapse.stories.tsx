@@ -18,9 +18,35 @@ export default {
 export const Root: Story<CollapseProps> = (args) => (
   <div style={{ width: 'fit-content' }}>
     <Collapse {...args}>
-      <div style={{ padding: '10px 18px' }}>
-        <Typography color="primary" component="label">
-          Slot component
+      <div
+        style={{
+          display: 'flex',
+          height: '102px',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          color="primary"
+          variant={args.size === 'small' ? 'label2' : 'label1'}
+          component="div"
+        >
+          Slot component.
+        </Typography>
+        <Typography
+          color="primary"
+          variant={args.size === 'small' ? 'label2' : 'label1'}
+          component="div"
+        >
+          Replace me.
+        </Typography>
+        <Typography
+          color="primary"
+          variant={args.size === 'small' ? 'label2' : 'label1'}
+          component="div"
+        >
+          ↵
         </Typography>
       </div>
     </Collapse>

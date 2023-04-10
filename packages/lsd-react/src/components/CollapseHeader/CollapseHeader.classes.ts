@@ -1,11 +1,11 @@
 export const collapseHeaderClasses = {
   root: `lsd-collapse-header`,
 
-  trigger: `lsd-collapse-header-trigger`,
-  triggerLabel: `lsd-collapse-header-trigger__label`,
-  triggerIcons: `lsd-collapse-header-trigger-icons`,
-  triggerIcon: `lsd-collapse-header-trigger-icons__icon`,
-  triggerMenuIcon: `lsd-collapse-header-trigger-icons__menu-icon`,
+  trigger: `lsd-collapse-header__trigger`,
+  label: `lsd-collapse-header__label`,
+  icons: `lsd-collapse-header__icons`,
+  icon: `lsd-collapse-header__icon`,
+  menuIcon: `lsd-collapse-header__menu-icon`,
 
   open: 'lsd-collapse-header--open',
   disabled: 'lsd-collapse-header--disabled',

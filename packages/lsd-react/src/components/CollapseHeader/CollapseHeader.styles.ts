@@ -9,7 +9,7 @@ export const CollapseHeaderStyles = css`
   .${collapseHeaderClasses.root}:not(.${collapseHeaderClasses.disabled}) {
     .${collapseHeaderClasses.trigger} {
       &:hover {
-        .${collapseHeaderClasses.triggerLabel} {
+        .${collapseHeaderClasses.label} {
           text-decoration: underline;
         }
       }
@@ -22,7 +22,6 @@ export const CollapseHeaderStyles = css`
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 14px 10px 18px;
 
     cursor: pointer;
     background: none;
@@ -33,7 +32,7 @@ export const CollapseHeaderStyles = css`
     }
   }
 
-  .${collapseHeaderClasses.triggerLabel} {
+  .${collapseHeaderClasses.label} {
     cursor: inherit;
     white-space: nowrap;
     overflow: hidden;
@@ -41,18 +40,18 @@ export const CollapseHeaderStyles = css`
     margin: auto;
   }
 
-  .${collapseHeaderClasses.triggerIcons} {
+  .${collapseHeaderClasses.icons} {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
   }
 
-  .${collapseHeaderClasses.triggerIcon} {
+  .${collapseHeaderClasses.icon} {
     margin-right: 8px;
   }
 
-  .${collapseHeaderClasses.triggerMenuIcon} {
+  .${collapseHeaderClasses.menuIcon} {
   }
 
   .${collapseHeaderClasses.disabled} {
@@ -66,7 +65,7 @@ export const CollapseHeaderStyles = css`
     .${collapseHeaderClasses.trigger} {
       width: 299px;
       height: 40px;
-      padding: 10px 18px;
+      padding: 9px 17px;
     }
   }
 
@@ -74,7 +73,7 @@ export const CollapseHeaderStyles = css`
     .${collapseHeaderClasses.trigger} {
       width: 270px;
       height: 32px;
-      padding: 6px 14px;
+      padding: 5px 13px;
     }
   }
 
@@ -82,7 +81,7 @@ export const CollapseHeaderStyles = css`
     .${collapseHeaderClasses.trigger} {
       width: 235px;
       height: 28px;
-      padding: 6px 12px;
+      padding: 5px 11px;
     }
   }
 `

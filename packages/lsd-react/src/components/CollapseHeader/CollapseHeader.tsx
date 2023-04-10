@@ -46,20 +46,20 @@ export const CollapseHeader: React.FC<CollapseHeaderProps> & {
           color="primary"
           component="label"
           variant={size === 'small' ? 'label2' : 'label1'}
-          className={collapseHeaderClasses.triggerLabel}
+          className={collapseHeaderClasses.label}
         >
           {label}
         </Typography>
-        <div className={collapseHeaderClasses.triggerIcons}>
+        <div className={collapseHeaderClasses.icons}>
           {open ? (
             <ArrowUpIcon
               color="primary"
-              className={collapseHeaderClasses.triggerMenuIcon}
+              className={collapseHeaderClasses.menuIcon}
             />
           ) : (
             <ArrowDownIcon
               color="primary"
-              className={collapseHeaderClasses.triggerMenuIcon}
+              className={collapseHeaderClasses.menuIcon}
             />
           )}
         </div>
