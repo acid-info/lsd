@@ -9,7 +9,7 @@ export const CollapseHeaderStyles = css`
   .${collapseHeaderClasses.root}:not(.${collapseHeaderClasses.disabled}) {
     .${collapseHeaderClasses.trigger} {
       &:hover {
-        .${collapseHeaderClasses.triggerLabel} {
+        .${collapseHeaderClasses.label} {
           text-decoration: underline;
         }
       }
@@ -32,7 +32,7 @@ export const CollapseHeaderStyles = css`
     }
   }
 
-  .${collapseHeaderClasses.triggerLabel} {
+  .${collapseHeaderClasses.label} {
     cursor: inherit;
     white-space: nowrap;
     overflow: hidden;
@@ -40,18 +40,18 @@ export const CollapseHeaderStyles = css`
     margin: auto;
   }
 
-  .${collapseHeaderClasses.triggerIcons} {
+  .${collapseHeaderClasses.icons} {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
   }
 
-  .${collapseHeaderClasses.triggerIcon} {
+  .${collapseHeaderClasses.icon} {
     margin-right: 8px;
   }
 
-  .${collapseHeaderClasses.triggerMenuIcon} {
+  .${collapseHeaderClasses.menuIcon} {
   }
 
   .${collapseHeaderClasses.disabled} {
