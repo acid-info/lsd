@@ -14,11 +14,12 @@ export type DropdownProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   'label' | 'disabled' | 'value' | 'onChange'
 > & {
-  label: string
+  label?: React.ReactNode
   error?: boolean
   disabled?: boolean
   supportingText?: string
   size?: 'small' | 'medium' | 'large'
+  triggerLabel: string
 
   multi?: boolean
   options?: DropdownOption[]
@@ -35,6 +36,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   error = false,
   disabled = false,
   supportingText,
+  triggerLabel,
 
   value = [],
   onChange,
@@ -43,7 +45,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   variant = 'outlined',
   ...props
 }) => {
-  const ref = useRef<HTMLButtonElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
 
   const { select, isSelected, selected } = useSelect(options, value, {
@@ -62,8 +64,11 @@ export const Dropdown: React.FC<DropdownProps> & {
     if (disabled && open) setOpen(false)
   }, [open, disabled])
 
+  const buttonId = props?.id ?? (props.id || 'dropdown') + '-input'
+
   return (
     <div
+      ref={containerRef}
       {...props}
       className={clsx(
         props.className,
@@ -72,50 +77,56 @@ export const Dropdown: React.FC<DropdownProps> & {
         error && dropdownClasses.error,
         disabled && dropdownClasses.disabled,
         open && dropdownClasses.open,
+        variant === 'outlined'
+          ? dropdownClasses.outlined
+          : dropdownClasses.outlinedBottom,
       )}
     >
-      <button
-        ref={ref}
-        className={clsx(
-          dropdownClasses.trigger,
-          variant === 'outlined'
-            ? dropdownClasses.outlined
-            : dropdownClasses.outlinedBottom,
-        )}
-        onClick={onTrigger}
-      >
+      {label && (
         <Typography
-          color="primary"
+          htmlFor={buttonId}
+          className={dropdownClasses.label}
+          variant="label2"
           component="label"
-          variant={size === 'large' ? 'label1' : 'label2'}
-          className={dropdownClasses.triggerLabel}
         >
-          {selected.length > 0
-            ? selected.map((opt) => opt.name).join(', ')
-            : label}
+          {label}
         </Typography>
-        <div className={dropdownClasses.triggerIcons}>
-          {error && (
-            <ErrorIcon
-              color="primary"
-              className={dropdownClasses.triggerIcon}
-            />
-          )}
+      )}
+      <div className={dropdownClasses.buttonContainer}>
+        <button
+          id={buttonId}
+          className={clsx(dropdownClasses.trigger)}
+          onClick={onTrigger}
+        >
+          <Typography
+            color="primary"
+            component="label"
+            variant={size === 'large' ? 'label1' : 'label2'}
+            className={dropdownClasses.optionLabel}
+          >
+            {selected.length > 0
+              ? selected.map((opt) => opt.name).join(', ')
+              : triggerLabel}
+          </Typography>
+          <div className={dropdownClasses.icons}>
+            {error && (
+              <ErrorIcon color="primary" className={dropdownClasses.icon} />
+            )}
 
-          {open ? (
-            <ArrowUpIcon
-              color="primary"
-              className={dropdownClasses.triggerMenuIcon}
-            />
-          ) : (
-            <ArrowDownIcon
-              color="primary"
-              className={dropdownClasses.triggerMenuIcon}
-            />
-          )}
-        </div>
-      </button>
-
+            {open ? (
+              <ArrowUpIcon
+                color="primary"
+                className={dropdownClasses.menuIcon}
+              />
+            ) : (
+              <ArrowDownIcon
+                color="primary"
+                className={dropdownClasses.menuIcon}
+              />
+            )}
+          </div>
+        </button>
+      </div>
       {supportingText && (
         <Typography
           variant={size === 'large' ? 'label1' : 'label2'}
@@ -128,7 +139,7 @@ export const Dropdown: React.FC<DropdownProps> & {
 
       <Portal id="dropdown">
         <ListBox
-          handleRef={ref}
+          handleRef={containerRef}
           open={open}
           onClose={() => setOpen(false)}
           className={dropdownClasses.listBox}
