@@ -10,7 +10,6 @@ export const DropdownItemStyles = css`
     flex-direction: row;
     align-items: center;
 
-    padding: 10px 14px;
     border: 1px solid rgb(var(--lsd-border-primary));
 
     :not(.${dropdownItemClasses.disabled}) {
@@ -42,14 +41,17 @@ export const DropdownItemStyles = css`
   }
 
   .${dropdownItemClasses.small} {
-    padding: 6px 10px;
+    padding: 5px 9px;
+    height: 28px;
   }
 
   .${dropdownItemClasses.medium} {
-    padding: 6px 12px;
+    padding: 5px 11px;
+    height: 32px;
   }
 
   .${dropdownItemClasses.large} {
-    padding: 10px 14px;
+    padding: 5px 13px;
+    height: 40px;
   }
 `

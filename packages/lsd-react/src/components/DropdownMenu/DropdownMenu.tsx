@@ -1,21 +1,30 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
-import { listBoxClasses } from './ListBox.classes'
+import { dropdownMenuClasses } from './DropdownMenu.classes'
 
-export type ListBoxProps = Omit<
+export type DropdownMenuProps = Omit<
   React.HTMLAttributes<HTMLUListElement>,
   'label'
 > & {
   open?: boolean
   label?: string
+  size?: 'small' | 'medium' | 'large'
   onClose?: () => void
   handleRef: React.RefObject<HTMLElement>
 }
 
-export const ListBox: React.FC<ListBoxProps> & {
-  classes: typeof listBoxClasses
-} = ({ open, label, handleRef, onClose, children, ...props }) => {
+export const DropdownMenu: React.FC<DropdownMenuProps> & {
+  classes: typeof dropdownMenuClasses
+} = ({
+  size = 'large',
+  open,
+  label,
+  handleRef,
+  onClose,
+  children,
+  ...props
+}) => {
   const ref = useRef<HTMLUListElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
 
@@ -44,13 +53,14 @@ export const ListBox: React.FC<ListBoxProps> & {
     <ul
       {...props}
       ref={ref}
-      role="listbox"
+      role="dropdownMenu"
       aria-label={label}
       style={{ ...style, ...(props.style ?? {}) }}
       className={clsx(
         props.className,
-        listBoxClasses.root,
-        open && listBoxClasses.open,
+        dropdownMenuClasses.root,
+        dropdownMenuClasses[size],
+        open && dropdownMenuClasses.open,
       )}
     >
       {children}
@@ -58,4 +68,4 @@ export const ListBox: React.FC<ListBoxProps> & {
   )
 }
 
-ListBox.classes = listBoxClasses
+DropdownMenu.classes = dropdownMenuClasses

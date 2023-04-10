@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useInput } from '../../utils/useInput'
 import { DropdownItem } from '../DropdownItem'
 import { CloseIcon, SearchIcon } from '../Icons'
-import { ListBox } from '../ListBox'
+import { DropdownMenu } from '../DropdownMenu'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
 import { autocompleteClasses } from './Autocomplete.classes'
@@ -136,11 +136,11 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
         ) : null}
       </div>
       <Portal id="autocomplete">
-        <ListBox
+        <DropdownMenu
           handleRef={containerRef}
           open={isOpen}
           onClose={() => setOpen(false)}
-          className={autocompleteClasses.listBox}
+          size={size}
         >
           {suggestions.map((opt, idx: number) => (
             <DropdownItem
@@ -162,7 +162,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
               }
             />
           ))}
-        </ListBox>
+        </DropdownMenu>
       </Portal>
     </div>
   )

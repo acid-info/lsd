@@ -119,13 +119,6 @@ export const AutocompleteStyles = css`
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 
-  .${autocompleteClasses.listBox} {
-    max-height: 400px;
-    overflow: auto;
-    border: 1px solid rgb(var(--lsd-border-primary));
-    border-top: 0;
-  }
-
   .${autocompleteClasses.dropdownItem} {
     border: 0;
 

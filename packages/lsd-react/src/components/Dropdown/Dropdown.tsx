@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { SelectOption, useSelect } from '../../utils/useSelect'
 import { DropdownItem } from '../DropdownItem'
 import { ArrowDownIcon, ArrowUpIcon, ErrorIcon } from '../Icons'
-import { ListBox } from '../ListBox'
+import { DropdownMenu } from '../DropdownMenu'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
 import { dropdownClasses } from './Dropdown.classes'
@@ -138,11 +138,10 @@ export const Dropdown: React.FC<DropdownProps> & {
       )}
 
       <Portal id="dropdown">
-        <ListBox
+        <DropdownMenu
           handleRef={containerRef}
           open={open}
           onClose={() => setOpen(false)}
-          className={dropdownClasses.listBox}
         >
           {options.map((opt) => (
             <DropdownItem
@@ -156,7 +155,7 @@ export const Dropdown: React.FC<DropdownProps> & {
               onKeyDown={(e) => e.key === 'Enter' && select(opt)}
             />
           ))}
-        </ListBox>
+        </DropdownMenu>
       </Portal>
     </div>
   )
