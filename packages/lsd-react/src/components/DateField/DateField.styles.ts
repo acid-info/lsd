@@ -4,8 +4,25 @@ import { dateFieldClasses } from './DateField.classes'
 export const DateFieldStyles = css`
   .${dateFieldClasses.root} {
     width: auto;
-    border-bottom: 1px solid rgb(var(--lsd-border-primary));
     box-sizing: border-box;
+  }
+
+  .${dateFieldClasses.label} {
+    display: block;
+  }
+
+  .${dateFieldClasses.icon} {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .${dateFieldClasses.outlined} {
+    border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  .${dateFieldClasses.outlinedBottom} {
+    border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 
   .${dateFieldClasses.inputContainer} {
@@ -48,32 +65,64 @@ export const DateFieldStyles = css`
   }
 
   .${dateFieldClasses.supportingText} {
-    width: fit-content;
-    margin-top: 20px;
+    position: absolute;
   }
 
   .${dateFieldClasses.large} {
     width: 208px;
-    height: 40px;
-    padding: 10px 14px;
+
+    .${dateFieldClasses.label} {
+      margin: 0 0 6px 18px;
+    }
+    .${dateFieldClasses.inputContainer} {
+      height: 40px;
+    }
+    .${dateFieldClasses.input} {
+      padding: 9px 13px 9px 17px;
+    }
+    .${dateFieldClasses.icon} {
+      padding: 12px 13px;
+    }
+    .${dateFieldClasses.supportingText} {
+      margin: 6px 18px 0 18px;
+    }
   }
 
   .${dateFieldClasses.medium} {
     width: 188px;
-    height: 32px;
-    padding: 6px 12px;
+    .${dateFieldClasses.label} {
+      margin: 0 0 6px 14px;
+    }
+    .${dateFieldClasses.inputContainer} {
+      height: 32px;
+    }
+    .${dateFieldClasses.input} {
+      padding: 5px 11px 5px 13px;
+    }
+    .${dateFieldClasses.icon} {
+      padding: 8px 11px;
+    }
+    .${dateFieldClasses.supportingText} {
+      margin: 6px 14px 0 14px;
+    }
   }
 
-  .${dateFieldClasses.iconButton} {
-    padding: 0;
-    width: auto;
-    height: auto;
-    margin: 0;
-    border: 0;
-
-    svg {
-      width: 100%;
-      height: auto;
+  .${dateFieldClasses.small} {
+    width: 164px;
+    .${dateFieldClasses.label} {
+      margin: 0 0 6px 12px;
+    }
+    .${dateFieldClasses.inputContainer} {
+      height: 28px;
+    }
+    .${dateFieldClasses.input} {
+      padding: 5px 9px 5px 11px;
+    }
+    .${dateFieldClasses.icon} {
+      padding: 6px 9px;
+    }
+    .${dateFieldClasses.supportingText} {
+      margin: 6px 12px 0 12px;
     }
   }
 `

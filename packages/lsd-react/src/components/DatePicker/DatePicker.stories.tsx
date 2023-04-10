@@ -8,7 +8,14 @@ export default {
     size: {
       type: {
         name: 'enum',
-        value: ['medium', 'large'],
+        value: ['small', 'medium', 'large'],
+      },
+      defaultValue: 'large',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        value: ['outlined', 'outlined-bottom'],
       },
       defaultValue: 'large',
     },
@@ -24,6 +31,7 @@ export const Controlled: Story<DatePickerProps> = ({ ...args }) => {
 }
 
 Uncontrolled.args = {
+  id: 'label',
   supportingText: 'Supporting text',
   disabled: false,
   error: false,
@@ -33,9 +41,12 @@ Uncontrolled.args = {
   clearButton: true,
   withCalendar: true,
   size: 'large',
+  variant: 'outlined-bottom',
+  label: 'Label',
 }
 
 Controlled.args = {
+  id: 'label',
   supportingText: 'Supporting text',
   disabled: false,
   error: false,
@@ -45,4 +56,6 @@ Controlled.args = {
   clearButton: true,
   withCalendar: true,
   size: 'large',
+  variant: 'outlined-bottom',
+  label: 'Label',
 }

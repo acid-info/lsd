@@ -8,7 +8,14 @@ export default {
     size: {
       type: {
         name: 'enum',
-        value: ['medium', 'large'],
+        value: ['small', 'medium', 'large'],
+      },
+      defaultValue: 'large',
+    },
+    variant: {
+      type: {
+        name: 'enum',
+        value: ['outlined', 'outlined-bottom'],
       },
       defaultValue: 'large',
     },
@@ -24,6 +31,7 @@ export const Controlled: Story<DateFieldProps> = ({ ...args }) => {
 }
 
 Uncontrolled.args = {
+  id: 'label',
   size: 'large',
   supportingText: 'Supporting text',
   disabled: false,
@@ -32,9 +40,12 @@ Uncontrolled.args = {
   error: false,
   errorIcon: false,
   clearButton: true,
+  variant: 'outlined-bottom',
+  label: 'Label',
 }
 
 Controlled.args = {
+  id: 'label',
   size: 'large',
   supportingText: 'Supporting text',
   disabled: false,
@@ -43,4 +54,6 @@ Controlled.args = {
   error: false,
   errorIcon: false,
   clearButton: true,
+  variant: 'outlined-bottom',
+  label: 'Label',
 }
