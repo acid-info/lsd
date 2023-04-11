@@ -142,6 +142,7 @@ export const Dropdown: React.FC<DropdownProps> & {
           handleRef={containerRef}
           open={open}
           onClose={() => setOpen(false)}
+          size={size}
         >
           {options.map((opt) => (
             <DropdownItem

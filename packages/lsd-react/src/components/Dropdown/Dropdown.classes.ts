@@ -12,8 +12,6 @@ export const dropdownClasses = {
 
   supportingText: 'lsd-dropdown__supporting-text',
 
-  listBox: 'lsd-dropdown__list-box',
-
   open: 'lsd-dropdown--open',
   error: 'lsd-dropdown--error',
   disabled: 'lsd-dropdown--disabled',

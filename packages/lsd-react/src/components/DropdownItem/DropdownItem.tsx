@@ -35,6 +35,7 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
     <div
       role="option"
       aria-selected={selected ? 'true' : 'false'}
+      {...props}
       className={clsx(
         className,
         dropdownItemClasses.root,
@@ -42,7 +43,6 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
         withIcon && dropdownItemClasses.withIcon,
         disabled && dropdownItemClasses.disabled,
       )}
-      {...props}
     >
       {withIcon &&
         (selected ? (

@@ -8,20 +8,22 @@ export type BreadcrumbItemProps = React.LiHTMLAttributes<HTMLLIElement> & {
   linkComponent?: React.ComponentType<
     React.AnchorHTMLAttributes<HTMLAnchorElement>
   >
-  current?: boolean
+  outlined?: boolean
   disabled?: boolean
   selected?: boolean
   ellipsisRef?: React.RefObject<HTMLLIElement>
   onClick?: () => void
+  size?: 'small' | 'large'
 }
 
 export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   classes: typeof breadcrumbItemClasses
 } = ({
+  size = 'large',
   label,
   link,
   linkComponent: LinkComponent = (props) => <a {...props}>{props.children}</a>,
-  current,
+  outlined,
   selected,
   ellipsisRef,
   onClick,
@@ -30,20 +32,28 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
 }) => {
   return (
     <li
-      className={clsx(breadcrumbItemClasses.root, className)}
+      {...props}
+      className={clsx(
+        breadcrumbItemClasses.root,
+        breadcrumbItemClasses[size],
+        className,
+      )}
       aria-selected={selected ? 'true' : 'false'}
       onClick={onClick}
       ref={ellipsisRef}
-      {...props}
     >
       <LinkComponent
         href={link}
         className={clsx(
           breadcrumbItemClasses.itemLink,
-          current && breadcrumbItemClasses.itemCurrentPage,
+          outlined && breadcrumbItemClasses.outlined,
         )}
       >
-        <Typography color="primary" component="span" variant={'label1'}>
+        <Typography
+          color="primary"
+          component="span"
+          variant={size === 'large' ? 'label1' : 'label2'}
+        >
           {label}
         </Typography>
       </LinkComponent>

@@ -53,7 +53,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
     <ul
       {...props}
       ref={ref}
-      role="dropdownMenu"
+      role="listbox"
       aria-label={label}
       style={{ ...style, ...(props.style ?? {}) }}
       className={clsx(

@@ -25,11 +25,9 @@ export const BreadcrumbStyles = css`
   .${breadcrumbClasses.listBox} {
     display: flex;
     flex-direction: column;
-    max-height: 400px;
     overflow: auto;
     border: 1px solid rgb(var(--lsd-border-primary));
     margin-top: 10px;
-    margin-left: 20px;
     position: absolute;
     width: auto !important;
   }
@@ -38,12 +36,17 @@ export const BreadcrumbStyles = css`
     &:not(:last-child) {
       border-bottom: 1px solid rgb(var(--lsd-border-primary));
     }
-    padding: 6px 10px 6px 12px;
+
     cursor: pointer;
     &:hover,
     &:focus {
       text-decoration: underline;
       text-decoration-color: rgb(var(--lsd-border-primary));
     }
+  }
+
+  .${breadcrumbClasses.listBox} li > a {
+    width: 164px;
+    padding: 5px 11px;
   }
 `

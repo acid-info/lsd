@@ -6,7 +6,6 @@ export const autocompleteClasses = {
   input: `lsd-autocomplete__input`,
   icon: `lsd-autocomplete__icon`,
 
-  dropdownItem: `lsd-autocomplete__dropdown-item`,
   dropdownItemPlaceholder: `lsd-autocomplete__dropdown-item-placeholder`,
 
   disabled: `lsd-autocomplete--disabled`,
