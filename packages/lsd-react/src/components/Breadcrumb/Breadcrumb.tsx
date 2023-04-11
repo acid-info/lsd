@@ -25,15 +25,16 @@ export type BreadcrumbProps = Omit<
   options?: BreadcrumbOption[]
   value?: string | string[]
   onChange?: (value: string | string[]) => void
+  size?: 'small' | 'large'
 }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> & {
   classes: typeof breadcrumbClasses
 } = ({
+  size = 'large',
   disabled = false,
   ellipsis = false,
   maxItems,
-
   value = [],
   onChange,
   options = [],
@@ -56,10 +57,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
     items.map((item, idx) => (
       <BreadcrumbItem
         key={idx}
-        current={idx === visible.length - 1 && item !== root}
+        outlined={idx === visible.length - 1 && item !== root}
         label={item.value}
         link={item.link}
         linkComponent={item?.linkComponent}
+        size={size}
       />
     ))
 
@@ -88,6 +90,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
             ellipsisRef={ellipsisRef}
             label={'...'}
             onClick={onTrigger}
+            size={size}
           />
         )}
         {renderItems(visible)}
@@ -99,6 +102,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
             open={open}
             onClose={() => setOpen(false)}
             className={clsx(breadcrumbClasses.listBox)}
+            size={size}
           >
             {collapsed.map((opt, idx) => (
               <BreadcrumbItem

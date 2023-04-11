@@ -119,14 +119,6 @@ export const AutocompleteStyles = css`
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 
-  .${autocompleteClasses.dropdownItem} {
-    border: 0;
-
-    &:not(:last-child) {
-      border-bottom: 1px solid rgb(var(--lsd-border-primary));
-    }
-  }
-
   .${autocompleteClasses.dropdownItemPlaceholder} {
     opacity: 0.5;
     white-space: pre;

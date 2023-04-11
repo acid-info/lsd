@@ -1,5 +1,4 @@
 import { css } from '@emotion/react'
-import { dropdownItemClasses } from '../DropdownItem/DropdownItem.classes'
 import { dropdownClasses } from './Dropdown.classes'
 
 export const DropdownStyles = css`
@@ -80,21 +79,6 @@ export const DropdownStyles = css`
   .${dropdownClasses.disabled} {
     opacity: 0.34;
     cursor: initial;
-  }
-
-  .${dropdownClasses.listBox} {
-    max-height: 400px;
-    overflow: auto;
-    border: 1px solid rgb(var(--lsd-border-primary));
-    border-top: 0;
-
-    & .${dropdownItemClasses.root} {
-      border: 0;
-
-      &:not(:last-child) {
-        border-bottom: 1px solid rgb(var(--lsd-border-primary));
-      }
-    }
   }
 
   .${dropdownClasses.large} {

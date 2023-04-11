@@ -9,9 +9,9 @@ export const BreadcrumbItemStyles = css`
     align-items: center;
   }
 
-  .${breadcrumbClasses.list} li + li::before {
+  .${breadcrumbClasses.list} > li:not(:last-child)::after {
     display: inline-block;
-    margin-inline: 10px;
+    margin-inline: 12px;
     content: '/';
   }
 
@@ -20,9 +20,15 @@ export const BreadcrumbItemStyles = css`
     cursor: pointer;
   }
 
-  .${breadcrumbItemClasses.itemCurrentPage} {
+  .${breadcrumbItemClasses.outlined} {
+    padding: 3px 11px;
     border: 1px solid rgb(var(--lsd-border-primary));
-    padding: 4px 12px;
+  }
+
+  ${breadcrumbItemClasses.large} {
+  }
+
+  ${breadcrumbItemClasses.small} {
   }
 
   .${breadcrumbClasses.root}:not(.${breadcrumbClasses.disabled}) {

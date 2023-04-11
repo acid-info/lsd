@@ -17,6 +17,14 @@ export const DropdownMenuStyles = css`
     border-top: 0;
   }
 
+  .${dropdownMenuClasses.root} > div {
+    border: 0;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgb(var(--lsd-border-primary));
+    }
+  }
+
   .${dropdownMenuClasses.open} {
     opacity: 1;
     visibility: visible;

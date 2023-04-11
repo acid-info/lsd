@@ -155,7 +155,6 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
                   </span>
                 </>
               }
-              className={autocompleteClasses.dropdownItem}
               onClick={() => handleDropdownClick(opt[0])}
               onKeyDown={(e) =>
                 e.key === 'Enter' && handleDropdownClick(opt[0])
