@@ -54,5 +54,6 @@ Root.args = {
   size: 'large',
   variant: 'outlined',
   disabled: false,
-  buttons: 1,
+  buttons: 4,
+  icon: 'KeyboardReturnIcon',
 }
