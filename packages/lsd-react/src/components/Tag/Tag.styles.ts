@@ -9,7 +9,7 @@ export const TagStyles = css`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
+    box-sizing: border-box;
     border: 1px solid rgb(var(--lsd-icon-primary));
 
     &:hover,
@@ -20,13 +20,13 @@ export const TagStyles = css`
   }
 
   .${tagClasses.large} {
-    padding: 4px 12px;
+    padding: 3px 11px;
     gap: 12px;
     height: 28px;
   }
 
   .${tagClasses.small} {
-    padding: 4px 8px;
+    padding: 3px 7px;
     gap: 8px;
     height: 24px;
   }
