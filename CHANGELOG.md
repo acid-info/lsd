@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.1](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.0...v0.1.0-alpha.1) (2023-04-13)
+
+### Bug Fixes
+
+- export all components ([87ea789](https://github.com/acid-info/logos-design-system/commit/87ea7891d0c7dd916d37acc308802ba8a05629db))
+- fix Badge component rendering in disabled state by default ([2df8631](https://github.com/acid-info/logos-design-system/commit/2df8631ff3c93431c076aaa17adbc97478a5f270))
+
 # 0.1.0-alpha.0 (2023-04-13)
 
 ### Bug Fixes
