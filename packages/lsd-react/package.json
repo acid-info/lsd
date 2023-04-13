@@ -11,7 +11,8 @@
     "watch": "tsc && vite build --watch --emptyOutDir false",
     "storybook": "start-storybook -p 6006 -s .storybook/public",
     "build-storybook": "build-storybook -s .storybook/public",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
