@@ -1,13 +1,15 @@
 import clsx from 'clsx'
 import React from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { iconButtonGroupClasses } from './IconButtonGroup.classes'
 import { IconButtonGroupContext } from './IconButtonGroup.context'
 
-export type IconButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
-  variant?: 'outlined' | 'filled'
-  size?: 'small' | 'medium' | 'large'
-  disabled?: boolean
-}
+export type IconButtonGroupProps = CommonProps &
+  React.HTMLAttributes<HTMLDivElement> & {
+    variant?: 'outlined' | 'filled'
+    size?: 'small' | 'medium' | 'large'
+    disabled?: boolean
+  }
 
 export const IconButtonGroup: React.FC<IconButtonGroupProps> & {
   classes: typeof iconButtonGroupClasses
@@ -18,10 +20,13 @@ export const IconButtonGroup: React.FC<IconButtonGroupProps> & {
   children,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
+
   return (
     <div
       {...props}
       className={clsx(
+        commonProps.className,
         props.className,
         iconButtonGroupClasses.root,
         iconButtonGroupClasses[size],

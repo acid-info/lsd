@@ -123,7 +123,9 @@ export const baseTheme: Theme = {
     label1: { fontSize: '0.875rem', lineHeight: '1.25rem' },
     label2: { fontSize: '0.75rem', lineHeight: '1rem' },
   },
-  typographyGlobal: {},
+  typographyGlobal: {
+    genericFontFamily: 'sans-serif',
+  },
   palette: {
     primary: '0, 0, 0',
     secondary: '255, 255, 255',

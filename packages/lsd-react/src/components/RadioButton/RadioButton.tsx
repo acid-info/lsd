@@ -1,15 +1,17 @@
 import clsx from 'clsx'
 import React, { useRef } from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
 import { RadioButtonFilledIcon, RadioButtonIcon } from '../Icons'
 import { useRadioButtonGroupContext } from '../RadioButtonGroup/RadioButtonGroup.context'
 import { Typography } from '../Typography'
 import { radioButtonClasses } from './RadioButton.classes'
 
-export type RadioButtonProps = Omit<
-  React.LabelHTMLAttributes<HTMLLabelElement>,
-  'onChange' | 'value' | 'color'
-> &
+export type RadioButtonProps = CommonProps &
+  Omit<
+    React.LabelHTMLAttributes<HTMLLabelElement>,
+    'onChange' | 'value' | 'color'
+  > &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'onChange' | 'checked' | 'defaultChecked'
@@ -35,6 +37,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
   children,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
 
   const radioButtonGroup = useRadioButtonGroupContext()
@@ -65,6 +68,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
       aria-disabled={disabled ? 'true' : 'false'}
       {...props}
       className={clsx(
+        commonProps.className,
         props.className,
         radioButtonClasses.root,
         radioButtonClasses[size],

@@ -1,20 +1,23 @@
 import clsx from 'clsx'
 import React from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
 import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
-export type BreadcrumbItemProps = React.LiHTMLAttributes<HTMLLIElement> & {
-  label: string
-  link?: string
-  linkComponent?: React.ComponentType<
-    React.AnchorHTMLAttributes<HTMLAnchorElement>
-  >
-  outlined?: boolean
-  disabled?: boolean
-  selected?: boolean
-  ellipsisRef?: React.RefObject<HTMLLIElement>
-  onClick?: () => void
-  size?: 'small' | 'large'
-}
+
+export type BreadcrumbItemProps = CommonProps &
+  React.LiHTMLAttributes<HTMLLIElement> & {
+    label: string
+    link?: string
+    linkComponent?: React.ComponentType<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>
+    >
+    outlined?: boolean
+    disabled?: boolean
+    selected?: boolean
+    ellipsisRef?: React.RefObject<HTMLLIElement>
+    onClick?: () => void
+    size?: 'small' | 'large'
+  }
 
 export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   classes: typeof breadcrumbItemClasses
@@ -30,10 +33,13 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   className,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
+
   return (
     <li
       {...props}
       className={clsx(
+        commonProps.className,
         breadcrumbItemClasses.root,
         breadcrumbItemClasses[size],
         className,

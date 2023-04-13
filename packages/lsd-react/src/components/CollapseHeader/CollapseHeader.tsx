@@ -1,20 +1,19 @@
 import clsx from 'clsx'
 import React from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { ArrowDownIcon, ArrowUpIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { collapseHeaderClasses } from './CollapseHeader.classes'
 
-export type CollapseHeaderProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'label' | 'disabled'
-> & {
-  label: string
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-  disabled?: boolean
-  onTrigger: () => void
-  size?: 'small' | 'medium' | 'large'
-}
+export type CollapseHeaderProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'label' | 'disabled'> & {
+    label: string
+    open: boolean
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>
+    disabled?: boolean
+    onTrigger: () => void
+    size?: 'small' | 'medium' | 'large'
+  }
 
 export const CollapseHeader: React.FC<CollapseHeaderProps> & {
   classes: typeof collapseHeaderClasses
@@ -27,10 +26,13 @@ export const CollapseHeader: React.FC<CollapseHeaderProps> & {
   onTrigger,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
+
   return (
     <div
       {...props}
       className={clsx(
+        commonProps.className,
         props.className,
         collapseHeaderClasses.root,
         collapseHeaderClasses[size],

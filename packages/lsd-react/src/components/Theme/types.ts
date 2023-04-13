@@ -3,7 +3,7 @@ import { CSSProperties } from 'react'
 import { DeepPartial } from 'utility-types'
 
 export type Breakpoints = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-export type TypographyTypefaces = 'sans-serif' | 'serif' | 'mono'
+export type TypographyGenericFontFamily = 'sans-serif' | 'serif' | 'monospace'
 export type TypographyVariants =
   | 'display1'
   | 'display2'
@@ -25,10 +25,10 @@ export type VariantThemeProperties = keyof Pick<Theme, 'typography'>
 
 export type TypographyStyles = Pick<
   CSSProperties,
-  'fontSize' | 'fontFamily' | 'lineHeight'
+  'fontSize' | 'lineHeight'
 > & { fontFamily?: string }
 export type GlobalTypographyStyles = {
-  fontFamily?: string
+  genericFontFamily: TypographyGenericFontFamily
 }
 export type TypographyProperties = keyof TypographyStyles
 export type ThemeTypography<T extends string = TypographyVariants> = {
@@ -94,7 +94,7 @@ export type CreateThemeProps = {
   name?: string
   breakpoints: ThemeOptionBreakpoints
   typography: ThemeOptionTypography
-  typographyGlobal: GlobalTypographyStyles
+  typographyGlobal: Partial<GlobalTypographyStyles>
   palette: ThemeOptionPalette
 }
 

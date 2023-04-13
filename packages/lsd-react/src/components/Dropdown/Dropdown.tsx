@@ -1,32 +1,34 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { SelectOption, useSelect } from '../../utils/useSelect'
 import { DropdownItem } from '../DropdownItem'
-import { ArrowDownIcon, ArrowUpIcon, ErrorIcon } from '../Icons'
 import { DropdownMenu } from '../DropdownMenu'
+import { ArrowDownIcon, ArrowUpIcon, ErrorIcon } from '../Icons'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
 import { dropdownClasses } from './Dropdown.classes'
 
 export type DropdownOption = SelectOption
 
-export type DropdownProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'label' | 'disabled' | 'value' | 'onChange'
-> & {
-  label?: React.ReactNode
-  error?: boolean
-  disabled?: boolean
-  supportingText?: string
-  size?: 'small' | 'medium' | 'large'
-  triggerLabel: string
+export type DropdownProps = CommonProps &
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'label' | 'disabled' | 'value' | 'onChange'
+  > & {
+    label?: React.ReactNode
+    error?: boolean
+    disabled?: boolean
+    supportingText?: string
+    size?: 'small' | 'medium' | 'large'
+    triggerLabel?: string
 
-  multi?: boolean
-  options?: DropdownOption[]
-  value?: string | string[]
-  onChange?: (value: string | string[]) => void
-  variant?: 'outlined' | 'outlined-bottom'
-}
+    multi?: boolean
+    options?: DropdownOption[]
+    value?: string | string[]
+    onChange?: (value: string | string[]) => void
+    variant?: 'outlined' | 'outlined-bottom'
+  }
 
 export const Dropdown: React.FC<DropdownProps> & {
   classes: typeof dropdownClasses
@@ -45,6 +47,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   variant = 'outlined',
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const containerRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
 
@@ -71,6 +74,7 @@ export const Dropdown: React.FC<DropdownProps> & {
       ref={containerRef}
       {...props}
       className={clsx(
+        commonProps.className,
         props.className,
         dropdownClasses.root,
         dropdownClasses[size],
@@ -143,6 +147,7 @@ export const Dropdown: React.FC<DropdownProps> & {
           open={open}
           onClose={() => setOpen(false)}
           size={size}
+          genericFontFamily={props.genericFontFamily}
         >
           {options.map((opt) => (
             <DropdownItem

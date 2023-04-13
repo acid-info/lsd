@@ -1,22 +1,22 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { CollapseHeader } from '../CollapseHeader'
 import { collapseClasses } from './Collapse.classes'
 
-export type CollapseProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'label'
-> & {
-  label: string
-  disabled?: boolean
-  size?: 'small' | 'medium' | 'large'
-  open?: boolean
-  onChange?: (open: boolean) => void
-}
+export type CollapseProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
+    label: string
+    disabled?: boolean
+    size?: 'small' | 'medium' | 'large'
+    open?: boolean
+    onChange?: (open: boolean) => void
+  }
 
 export const Collapse: React.FC<CollapseProps> & {
   classes: typeof collapseClasses
 } = ({ label, disabled = false, size = 'large', children, ...props }) => {
+  const globalProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(props.open ?? false)
 
@@ -36,6 +36,7 @@ export const Collapse: React.FC<CollapseProps> & {
       {...props}
       ref={ref}
       className={clsx(
+        globalProps.className,
         props.className,
         collapseClasses.root,
         disabled && collapseClasses.disabled,

@@ -1,11 +1,13 @@
 import clsx from 'clsx'
 import React from 'react'
+import { CommonProps, useCommonProps } from '../../../utils/useCommonProps'
 import { lsdIconClasses } from './LsdIcon.classes'
 
-export type LsdIconProps = React.SVGAttributes<SVGElement> & {
-  size?: 'small'
-  color?: 'primary' | 'secondary'
-}
+export type LsdIconProps = CommonProps &
+  React.SVGAttributes<SVGElement> & {
+    size?: 'small'
+    color?: 'primary' | 'secondary'
+  }
 
 type LsdIconComponent = React.FC<LsdIconProps> & {
   classes: typeof lsdIconClasses
@@ -24,9 +26,12 @@ export const LsdIcon = (
     className,
     ...props
   }) => {
+    const commonProps = useCommonProps(props)
+
     return (
       <Component
         className={clsx(
+          commonProps.className,
           className,
           lsdIconClasses.root,
           lsdIconClasses[size],

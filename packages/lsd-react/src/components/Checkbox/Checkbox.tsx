@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
 import { useCheckboxGroupContext } from '../CheckboxGroup/CheckboxGroup.context'
 import { CheckboxFilledIcon, CheckboxIcon } from '../Icons'
@@ -7,10 +8,11 @@ import { CheckboxIndeterminateIcon } from '../Icons/CheckboxIndeterminate'
 import { Typography } from '../Typography'
 import { checkboxClasses } from './Checkbox.classes'
 
-export type CheckboxProps = Omit<
-  React.LabelHTMLAttributes<HTMLLabelElement>,
-  'onChange' | 'value' | 'color'
-> &
+export type CheckboxProps = CommonProps &
+  Omit<
+    React.LabelHTMLAttributes<HTMLLabelElement>,
+    'onChange' | 'value' | 'color'
+  > &
   Pick<
     React.InputHTMLAttributes<HTMLInputElement>,
     'name' | 'onChange' | 'checked' | 'defaultChecked'
@@ -35,6 +37,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
   children,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const [focused, setFocused] = useState(false)
   const input = useInput({
@@ -70,6 +73,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
       aria-disabled={disabled ? 'true' : 'false'}
       {...props}
       className={clsx(
+        commonProps.className,
         props.className,
         checkboxClasses.root,
         checkboxClasses[size],

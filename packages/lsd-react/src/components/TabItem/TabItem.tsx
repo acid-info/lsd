@@ -1,16 +1,18 @@
 import clsx from 'clsx'
 import React from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { useTabsContext } from '../Tabs/Tab.context'
 import { Typography } from '../Typography'
 import { tabItemClasses } from './TabItem.classes'
 
-export type TabItemProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  name: string
-  selected?: boolean
-  inactive?: boolean
-  icon?: React.ReactNode
-  size?: 'small' | 'medium' | 'large'
-}
+export type TabItemProps = CommonProps &
+  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+    name: string
+    selected?: boolean
+    inactive?: boolean
+    icon?: React.ReactNode
+    size?: 'small' | 'medium' | 'large'
+  }
 
 export const TabItem: React.FC<TabItemProps> & {
   classes: typeof tabItemClasses
@@ -23,6 +25,7 @@ export const TabItem: React.FC<TabItemProps> & {
   children,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const tabs = useTabsContext()
   const size = tabs?.size ?? _size
   const selected = tabs ? tabs.activeTab === name : _selected
@@ -38,6 +41,7 @@ export const TabItem: React.FC<TabItemProps> & {
     <button
       {...props}
       className={clsx(
+        commonProps.className,
         props.className,
         tabItemClasses.root,
         tabItemClasses[size],

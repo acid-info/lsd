@@ -1,12 +1,12 @@
 import { DecoratorFunction, Parameters } from '@storybook/addons'
-import {
-  storybookDefaultTheme,
-  storybookDefaultThemeKey,
-  themes,
-} from './themes'
+import { ArgTypes } from '@storybook/react'
+import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/components/Theme/constants'
+import { storybookThemes } from './themes'
+import { GlobalTypes } from './types'
 import { withTheme } from './withTheme.decorator'
 
 export const parameters: Parameters = {
+  ...storybookThemes.parameters,
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
@@ -14,17 +14,10 @@ export const parameters: Parameters = {
       date: /Date$/,
     },
   },
-  backgrounds: {
-    default: 'light',
-    values: Object.entries(themes).map(([name, theme]) => ({
-      name,
-      value: `rgb(${theme.palette.secondary})`,
-    })),
-  },
   viewport: {
     viewports: {
       ...Object.fromEntries(
-        Object.entries(storybookDefaultTheme.breakpoints).map(
+        Object.entries(storybookThemes.defaultTheme.breakpoints).map(
           ([key, { width }]) => [
             key,
             {
@@ -44,18 +37,16 @@ export const parameters: Parameters = {
 
 export const decorators: DecoratorFunction[] = [withTheme]
 
-export const globalTypes = {
-  theme: {
-    name: 'Theme',
-    description: 'Theme',
-    defaultValue: storybookDefaultThemeKey,
-    toolbar: {
-      icon: 'circlehollow',
-      items: Object.entries(themes).map(([name, theme]) => ({
-        value: name,
-        icon: name.startsWith('Light') ? 'circlehollow' : 'circle',
-        title: name,
-      })),
+export const argTypes: ArgTypes = {
+  genericFontFamily: {
+    type: {
+      name: 'enum',
+      value: THEME_TYPOGRAPHY_FONT_CATEGORIES,
     },
+    defaultValue: 'inherit',
   },
+}
+
+export const globalTypes: GlobalTypes = {
+  ...storybookThemes.globalTypes,
 }

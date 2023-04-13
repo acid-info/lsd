@@ -38,6 +38,13 @@ const generateThemeGlobalStyles = withTheme((theme) => {
       })
     })
 
+    vars.push(
+      cssUtils.define(
+        cssUtils.vars.lsd('typography', 'generic-font-family'),
+        theme.typographyGlobal.genericFontFamily,
+      ),
+    )
+
     THEME_BREAKPOINTS.forEach((breakpoint, breakpointIndex) => {
       THEME_TYPOGRAPHY_VARIANTS.forEach((variant) => {
         THEME_TYPOGRAPHY_PROPERTIES.forEach((property) => {

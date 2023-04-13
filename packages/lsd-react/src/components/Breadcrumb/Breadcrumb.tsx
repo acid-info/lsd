@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { BreadcrumbItem } from '../BreadcrumbItem'
 import { breadcrumbItemClasses } from '../BreadcrumbItem/BreadcrumbItem.classes'
 import { DropdownMenu } from '../DropdownMenu'
@@ -15,18 +16,19 @@ export type BreadcrumbOption = {
   >
 }
 
-export type BreadcrumbProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'label' | 'disabled' | 'value' | 'onChange'
-> & {
-  disabled?: boolean
-  ellipsis?: boolean
-  maxItems?: number
-  options?: BreadcrumbOption[]
-  value?: string | string[]
-  onChange?: (value: string | string[]) => void
-  size?: 'small' | 'large'
-}
+export type BreadcrumbProps = CommonProps &
+  Omit<
+    React.HTMLAttributes<HTMLDivElement>,
+    'label' | 'disabled' | 'value' | 'onChange'
+  > & {
+    disabled?: boolean
+    ellipsis?: boolean
+    maxItems?: number
+    options?: BreadcrumbOption[]
+    value?: string | string[]
+    onChange?: (value: string | string[]) => void
+    size?: 'small' | 'large'
+  }
 
 export const Breadcrumb: React.FC<BreadcrumbProps> & {
   classes: typeof breadcrumbClasses
@@ -40,6 +42,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
   options = [],
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
+
   const ellipsisRef = useRef<HTMLLIElement>(null)
   const [open, setOpen] = useState<boolean>(false)
 
@@ -78,6 +82,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
       {...props}
       className={clsx(
         props.className,
+        commonProps.className,
         breadcrumbClasses.root,
         disabled && breadcrumbClasses.disabled,
         open && breadcrumbClasses.open,
@@ -103,6 +108,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
             onClose={() => setOpen(false)}
             className={clsx(breadcrumbClasses.listBox)}
             size={size}
+            genericFontFamily={props.genericFontFamily}
           >
             {collapsed.map((opt, idx) => (
               <BreadcrumbItem

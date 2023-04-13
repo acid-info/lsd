@@ -1,19 +1,18 @@
 import clsx from 'clsx'
 import React from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { CheckboxFilledIcon, CheckboxIcon, LsdIconProps } from '../Icons'
 import { Typography } from '../Typography'
 import { dropdownItemClasses } from './DropdownItem.classes'
 
-export type DropdownItemProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'label'
-> & {
-  label: React.ReactNode
-  selected?: boolean
-  withIcon?: boolean
-  disabled?: boolean
-  size: 'small' | 'medium' | 'large'
-}
+export type DropdownItemProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
+    label: React.ReactNode
+    selected?: boolean
+    withIcon?: boolean
+    disabled?: boolean
+    size: 'small' | 'medium' | 'large'
+  }
 
 export const DropdownItem: React.FC<DropdownItemProps> & {
   classes: typeof dropdownItemClasses
@@ -26,6 +25,8 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
   className,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
+
   const iconProps: LsdIconProps = {
     color: 'primary',
     className: dropdownItemClasses.icon,
@@ -37,6 +38,7 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
       aria-selected={selected ? 'true' : 'false'}
       {...props}
       className={clsx(
+        commonProps.className,
         className,
         dropdownItemClasses.root,
         dropdownItemClasses[size],

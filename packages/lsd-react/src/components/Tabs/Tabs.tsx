@@ -1,21 +1,20 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { useHorizontalScroll } from '../../utils/useHorizontalScroll'
 import { NavigateBeforeIcon, NavigateNextIcon } from '../Icons'
 import { TabItem } from '../TabItem'
 import { TabsContext } from './Tab.context'
 import { tabsClasses } from './Tabs.classes'
 
-export type TabsProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'onChange'
-> & {
-  activeTab?: string | null
-  fullWidth?: boolean
-  onChange?: (activeTab: string) => void
-  size?: 'small' | 'medium' | 'large'
-  scrollControls?: boolean
-}
+export type TabsProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> & {
+    activeTab?: string | null
+    fullWidth?: boolean
+    onChange?: (activeTab: string) => void
+    size?: 'small' | 'medium' | 'large'
+    scrollControls?: boolean
+  }
 
 export const Tabs: React.FC<TabsProps> & {
   classes: typeof tabsClasses
@@ -28,6 +27,7 @@ export const Tabs: React.FC<TabsProps> & {
   children,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [value, setValue] = useState(activeTab)
 
@@ -50,6 +50,7 @@ export const Tabs: React.FC<TabsProps> & {
         ref={ref}
         {...props}
         className={clsx(
+          commonProps.className,
           props.className,
           tabsClasses.root,
           fullWidth && tabsClasses.fullWidth,

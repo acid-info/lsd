@@ -7,11 +7,10 @@ import { DropdownMenu } from '../DropdownMenu'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
 import { autocompleteClasses } from './Autocomplete.classes'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 
-export type AutocompleteProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'onChange' | 'value'
-> &
+export type AutocompleteProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value'> &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
     label?: React.ReactNode
     size?: 'large' | 'medium' | 'small'
@@ -44,6 +43,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   variant = 'outlined',
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const input = useInput({ defaultValue, value, onChange, ref })
@@ -89,6 +89,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
       ref={containerRef}
       className={clsx(
         props.className,
+        commonProps.className,
         autocompleteClasses.root,
         autocompleteClasses[size],
         disabled && autocompleteClasses.disabled,
@@ -141,6 +142,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
           open={isOpen}
           onClose={() => setOpen(false)}
           size={size}
+          genericFontFamily={props.genericFontFamily}
         >
           {suggestions.map((opt, idx: number) => (
             <DropdownItem

@@ -1,15 +1,14 @@
 import clsx from 'clsx'
 import React, { useRef } from 'react'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
 import { IconButton } from '../IconButton'
 import { CloseIcon, ErrorIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { textFieldClasses } from './TextField.classes'
 
-export type TextFieldProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'onChange' | 'value'
-> &
+export type TextFieldProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value'> &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
     size?: 'large' | 'medium'
     icon?: React.ReactNode
@@ -44,6 +43,7 @@ export const TextField: React.FC<TextFieldProps> & {
   variant = 'outlined-bottom',
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const input = useInput({ defaultValue, value, onChange, ref })
 
@@ -54,6 +54,7 @@ export const TextField: React.FC<TextFieldProps> & {
       aria-disabled={disabled ? 'true' : 'false'}
       {...props}
       className={clsx(
+        commonProps.className,
         props.className,
         textFieldClasses.root,
         textFieldClasses[size],

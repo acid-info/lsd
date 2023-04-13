@@ -3,22 +3,30 @@ import React from 'react'
 import { CheckboxGroupContext } from './CheckboxGroup.context'
 import { checkboxGroupClasses } from './CheckboxGroup.classes'
 import { Typography } from '../Typography'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 
 export type ActiveCheckboxType = string | number | readonly string[]
 
-export type CheckboxGroupProps = React.HTMLAttributes<HTMLDivElement> & {
-  size?: 'small' | 'medium' | 'large'
-  label?: string
-}
+export type CheckboxGroupProps = CommonProps &
+  React.HTMLAttributes<HTMLDivElement> & {
+    size?: 'small' | 'medium' | 'large'
+    label?: string
+  }
 
 export const CheckboxGroup: React.FC<CheckboxGroupProps> & {
   classes: typeof checkboxGroupClasses
 } = ({ size = 'large', label, children, ...props }) => {
+  const commonProps = useCommonProps(props)
+
   return (
     <CheckboxGroupContext.Provider value={{ size }}>
       <div
         {...props}
-        className={clsx(props.className, checkboxGroupClasses.root)}
+        className={clsx(
+          commonProps.className,
+          props.className,
+          checkboxGroupClasses.root,
+        )}
       >
         <Typography
           component="span"

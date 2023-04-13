@@ -15,6 +15,10 @@ const selectors = (variant: TypographyVariants) =>
 
 export const TypographyStyles = withTheme(
   (theme) => css`
+    body * {
+      font-family: var(--lsd-typography-generic-font-family);
+    }
+
     .${typographyClasses.root} {
     }
 
@@ -26,13 +30,33 @@ export const TypographyStyles = withTheme(
       color: rgb(var(--lsd-text-secondary));
     }
 
+    .${typographyClasses.sansSerif} {
+      &,
+      * {
+        font-family: sans-serif;
+      }
+    }
+
+    .${typographyClasses.serif} {
+      &,
+      * {
+        font-family: serif;
+      }
+    }
+
+    .${typographyClasses.monospace} {
+      &,
+      * {
+        font-family: monospace;
+      }
+    }
+
     ${THEME_TYPOGRAPHY_VARIANTS.map(
       (variant) => css`
         ${selectors(variant)} {
           color: rgb(var(--lsd-text-primary));
           font-weight: normal;
           font-size: var(--lsd-${variant}-fontSize);
-          font-family: var(--lsd-${variant}-fontFamily);
           line-height: var(--lsd-${variant}-lineHeight);
         }
       `,
@@ -40,9 +64,8 @@ export const TypographyStyles = withTheme(
 
     input {
       color: rgb(var(--lsd-text-primary));
-      font-weight: normal;
       font-size: var(--lsd-body1-fontSize);
-      font-family: var(--lsd-body1-fontFamily);
+      font-weight: normal;
     }
 
     h1,

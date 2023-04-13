@@ -1,22 +1,25 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { RadioButtonGroupContext } from './RadioButtonGroup.context'
-import { radioButtonGroupClasses } from './RadioButtonGroup.classes'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
+import { radioButtonGroupClasses } from './RadioButtonGroup.classes'
+import { RadioButtonGroupContext } from './RadioButtonGroup.context'
 
 export type ActiveRadioButtonType = string | readonly string[]
 
-export type RadioButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
-  value: ActiveRadioButtonType | null
-  name?: string | null
-  onChange?: (value: ActiveRadioButtonType) => void
-  size?: 'small' | 'medium' | 'large'
-  label?: string
-}
+export type RadioButtonGroupProps = CommonProps &
+  React.HTMLAttributes<HTMLDivElement> & {
+    value: ActiveRadioButtonType | null
+    name?: string | null
+    onChange?: (value: ActiveRadioButtonType) => void
+    size?: 'small' | 'medium' | 'large'
+    label?: string
+  }
 
 export const RadioButtonGroup: React.FC<RadioButtonGroupProps> & {
   classes: typeof radioButtonGroupClasses
 } = ({ size = 'large', label, value, name, onChange, children, ...props }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [activeValue, setActiveValue] = useState(value)
 
@@ -34,7 +37,11 @@ export const RadioButtonGroup: React.FC<RadioButtonGroupProps> & {
       <div
         ref={ref}
         {...props}
-        className={clsx(props.className, radioButtonGroupClasses.root)}
+        className={clsx(
+          commonProps.className,
+          props.className,
+          radioButtonGroupClasses.root,
+        )}
       >
         <Typography
           component="span"

@@ -1,18 +1,17 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
+import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
 import { dropdownMenuClasses } from './DropdownMenu.classes'
 
-export type DropdownMenuProps = Omit<
-  React.HTMLAttributes<HTMLUListElement>,
-  'label'
-> & {
-  open?: boolean
-  label?: string
-  size?: 'small' | 'medium' | 'large'
-  onClose?: () => void
-  handleRef: React.RefObject<HTMLElement>
-}
+export type DropdownMenuProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLUListElement>, 'label'> & {
+    open?: boolean
+    label?: string
+    size?: 'small' | 'medium' | 'large'
+    onClose?: () => void
+    handleRef: React.RefObject<HTMLElement>
+  }
 
 export const DropdownMenu: React.FC<DropdownMenuProps> & {
   classes: typeof dropdownMenuClasses
@@ -25,6 +24,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
   children,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLUListElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
 
@@ -57,6 +57,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
       aria-label={label}
       style={{ ...style, ...(props.style ?? {}) }}
       className={clsx(
+        commonProps.className,
         props.className,
         dropdownMenuClasses.root,
         dropdownMenuClasses[size],

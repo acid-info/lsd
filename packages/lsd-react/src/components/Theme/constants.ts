@@ -1,5 +1,6 @@
 import {
   Breakpoints,
+  TypographyGenericFontFamily,
   TypographyProperties,
   TypographyVariants,
   VariantThemeProperties,
@@ -42,10 +43,16 @@ export const THEME_TYPOGRAPHY_ELEMENTS: Partial<
 
 export const THEME_TYPOGRAPHY_PROPERTIES = [
   'fontSize',
-  'fontFamily',
   'lineHeight',
 ] as TypographyProperties[]
 
 export const THEME_VARIANT_PROPERTIES = [
   'typography',
 ] as VariantThemeProperties[]
+
+export const THEME_TYPOGRAPHY_FONT_CATEGORIES = [
+  'inherit',
+  'monospace',
+  'sans-serif',
+  'serif',
+] as TypographyGenericFontFamily[]
