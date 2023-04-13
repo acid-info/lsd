@@ -4,7 +4,7 @@ import { badgeClasses } from './Badge.classes'
 export const BadgeStyles = css`
   .${badgeClasses.root} {
     width: fit-content;
-
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -21,13 +21,13 @@ export const BadgeStyles = css`
   }
 
   .${badgeClasses.large} {
-    padding: 4px 12px;
+    padding: 3px 11px;
     gap: 12px;
     height: 28px;
   }
 
   .${badgeClasses.small} {
-    padding: 4px 8px;
+    padding: 3px 7px;
     gap: 8px;
     height: 24px;
   }

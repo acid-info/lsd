@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/react'
-import { FolderIcon } from '../Icons'
 import { Badge, BadgeProps } from './Badge'
+import { useStorybookIconComponent } from '../../utils/storybook.utils'
 
 export default {
   title: 'Badge',
@@ -31,18 +31,32 @@ export default {
         value: [true, false],
       },
     },
+    icon: {
+      type: {
+        name: 'enum',
+        value: useStorybookIconComponent.options,
+      },
+      defaultValue: 'FolderIcon',
+    },
   },
 } as Meta
 
-export const Root: Story<BadgeProps> = (args) => (
-  <Badge {...args} icon={<FolderIcon color="primary" />}>
-    Badge
-  </Badge>
-)
+export const Root: Story<BadgeProps & { icon: string }> = ({
+  icon,
+  ...args
+}) => {
+  const Icon = useStorybookIconComponent(icon)
+  return (
+    <Badge {...args} icon={Icon && <Icon color="primary" />}>
+      Badge
+    </Badge>
+  )
+}
 
 Root.args = {
   variant: 'outlined',
   iconDirection: 'left',
   disabled: false,
   size: 'large',
+  icon: 'FolderIcon',
 }
