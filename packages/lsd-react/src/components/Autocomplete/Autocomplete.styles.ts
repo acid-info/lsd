@@ -116,6 +116,7 @@ export const AutocompleteStyles = css`
 
   .${autocompleteClasses.outlinedBottom}
     .${autocompleteClasses.inputContainer} {
+    border: 1px solid transparent;
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 
