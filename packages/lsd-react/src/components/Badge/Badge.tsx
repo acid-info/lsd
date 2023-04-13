@@ -17,7 +17,7 @@ export const Badge: React.FC<BadgeProps> & {
   classes: typeof badgeClasses
 } = ({
   variant = 'outlined',
-  disabled = 'false',
+  disabled,
   size = 'large',
   icon,
   iconDirection = 'left',
