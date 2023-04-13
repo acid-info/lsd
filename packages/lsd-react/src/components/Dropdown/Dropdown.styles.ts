@@ -137,6 +137,7 @@ export const DropdownStyles = css`
 
   .${dropdownClasses.outlinedBottom} {
     .${dropdownClasses.buttonContainer} {
+      border: 1px solid transparent;
       border-bottom: 1px solid rgb(var(--lsd-border-primary));
     }
   }

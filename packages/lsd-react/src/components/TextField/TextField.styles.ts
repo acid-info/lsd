@@ -61,6 +61,7 @@ export const TextFieldStyles = css`
   }
 
   .${textFieldClasses.outlinedBottom} {
+    border: 1px solid transparent;
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 
