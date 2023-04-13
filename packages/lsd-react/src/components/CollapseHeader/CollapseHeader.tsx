@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { ArrowDownIcon, ArrowUpIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { collapseHeaderClasses } from './CollapseHeader.classes'

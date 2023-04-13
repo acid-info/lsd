@@ -3,6 +3,6 @@ export const collapseClasses = {
 
   content: `lsd-collapse__content`,
 
-  open: 'lsd-collapse--open-item',
+  open: 'lsd-collapse--open',
   disabled: 'lsd-collapse--disabled',
 }
