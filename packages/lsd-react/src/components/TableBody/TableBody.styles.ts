@@ -24,28 +24,4 @@ export const TableBodyStyles = css`
     display: flex;
     justify-content: space-between;
   }
-
-  .${tableBodyClasses.buttons} {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .${tableBodyClasses.button} {
-    height: 28px;
-    background: rgb(var(--lsd-border-primary));
-    color: rgb(var(--lsd-icon-secondary));
-  }
-
-  .${tableBodyClasses.container} {
-    display: table;
-    width: 100%;
-    /* display: inline-grid;
-    grid-template-columns: auto auto auto auto; */
-
-    /* tr,
-    td {
-      border: 1px solid rgb(var(--lsd-border-primary));
-    } */
-  }
 `
