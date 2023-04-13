@@ -34,7 +34,7 @@ export const Root: Story<IconButtonProps & { icon: string }> = ({
 
 Root.args = {
   variant: 'outlined',
-  icon: 'FolderIcon',
+  icon: 'KeyboardReturnIcon',
   size: 'large',
   disabled: false,
 }
