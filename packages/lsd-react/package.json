@@ -1,6 +1,5 @@
 {
   "name": "@acid-info/lsd-react",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "types": "./dist/index.d.ts",
