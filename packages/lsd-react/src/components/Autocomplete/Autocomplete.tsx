@@ -87,6 +87,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   return (
     <div
       ref={containerRef}
+      {...props}
       className={clsx(
         props.className,
         commonProps.className,
@@ -98,7 +99,6 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
           ? autocompleteClasses.outlined
           : autocompleteClasses.outlinedBottom,
       )}
-      {...props}
     >
       {label && (
         <Typography
