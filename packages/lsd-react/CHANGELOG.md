@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.3](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2023-04-18)
+
+### Bug Fixes
+
+- append className prop to default class names in Autocomplete component ([2464cff](https://github.com/acid-info/logos-design-system/commit/2464cffc4bf41a9262d997b4f5b7b88a9f50f1f1))
+
 # [0.1.0-alpha.2](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.1...v0.1.0-alpha.2) (2023-04-13)
 
 **Note:** Version bump only for package @acid-info/lsd-react
