@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.4](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.3...v0.1.0-alpha.4) (2023-05-24)
+
+### Bug Fixes
+
+- remove 'type': 'module' from package.json, and remove lsd-website app ([91bf9fc](https://github.com/acid-info/logos-design-system/commit/91bf9fceecc6673072ca49080bcb1d5bd2b6363d))
+
 # [0.1.0-alpha.3](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2023-04-18)
 
 ### Bug Fixes
