@@ -24,6 +24,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, './src/index.ts'),
       name: 'lsd-react',
       fileName: 'lsd-react',
+      formats: ['cjs', 'umd'],
     },
     rollupOptions: {
       external: ['react', 'react-dom', '@emotion/styled', '@emotion/react'],
