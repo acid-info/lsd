@@ -2,8 +2,8 @@
 
 ## Introduction
 
-LSD is a  open-source design system for products and digital experiences in counter culture. Based on the Logos collective guidelines and principles, we are removing unnecessary visual design layers and logic. We are enabling people with decentralising design and placing value on accessibility and information.
-Our aim is to reduce visual elements in implementation, resulting in an approach that offsets the current web design world (2.0 or 3.0). 
+LSD is a open-source design system for products and digital experiences in counter culture. Based on the Logos collective guidelines and principles, we are removing unnecessary visual design layers and logic. We are enabling people with decentralising design and placing value on accessibility and information.
+Our aim is to reduce visual elements in implementation, resulting in an approach that offsets the current web design world (2.0 or 3.0).
 
 <br/>
 
