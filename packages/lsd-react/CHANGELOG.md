@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.5](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.4...v0.1.0-alpha.5) (2023-05-24)
+
+### Bug Fixes
+
+- downgrade React to v17.0.2 & fix entrypoint paths ([5c06d9b](https://github.com/acid-info/logos-design-system/commit/5c06d9bc25b564fba900e32d64c728feb95c77e6))
+
 # [0.1.0-alpha.4](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.3...v0.1.0-alpha.4) (2023-05-24)
 
 ### Bug Fixes
