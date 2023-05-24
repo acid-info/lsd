@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.6](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.5...v0.1.0-alpha.6) (2023-05-24)
+
+### Bug Fixes
+
+- cjs build only ([37991fa](https://github.com/acid-info/logos-design-system/commit/37991faa3a0a71dd06a2e35a433daecf46870199))
+
 # [0.1.0-alpha.5](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.4...v0.1.0-alpha.5) (2023-05-24)
 
 ### Bug Fixes
