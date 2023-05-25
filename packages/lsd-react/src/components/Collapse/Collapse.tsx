@@ -15,13 +15,20 @@ export type CollapseProps = CommonProps &
 
 export const Collapse: React.FC<CollapseProps> & {
   classes: typeof collapseClasses
-} = ({ label, disabled = false, size = 'large', children, ...props }) => {
+} = ({
+  label,
+  disabled = false,
+  size = 'large',
+  open: openProp,
+  children,
+  ...props
+}) => {
   const globalProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
-  const [open, setOpen] = useState(props.open ?? false)
+  const [open, setOpen] = useState(openProp ?? false)
 
   const handleChange = (value: boolean) => {
-    if (typeof props.open === 'undefined') return setOpen(value)
+    if (typeof openProp === 'undefined') return setOpen(value)
     props.onChange && props.onChange(value)
   }
 
@@ -30,6 +37,10 @@ export const Collapse: React.FC<CollapseProps> & {
   useEffect(() => {
     disabled && open && handleChange(false)
   }, [disabled, open, handleChange])
+
+  useEffect(() => {
+    typeof openProp !== 'undefined' && setOpen(openProp)
+  }, [openProp])
 
   return (
     <div
