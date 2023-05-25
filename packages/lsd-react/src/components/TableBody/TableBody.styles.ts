@@ -11,7 +11,7 @@ export const TableBodyStyles = css`
       height: auto;
     }
 
-    table tr:first-child td label:has(input[type='radio']) {
+    table tr:first-of-type td label:has(input[type='radio']) {
       display: none;
     }
   }
