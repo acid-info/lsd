@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.7](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.6...v0.1.0-alpha.7) (2023-05-25)
+
+### Bug Fixes
+
+- fix Collapse component's controlled state issue ([bf40a03](https://github.com/acid-info/logos-design-system/commit/bf40a03e4cf5c09bd4ac5f4642f0fac3599ed65c))
+
 # [0.1.0-alpha.6](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.5...v0.1.0-alpha.6) (2023-05-24)
 
 ### Bug Fixes
