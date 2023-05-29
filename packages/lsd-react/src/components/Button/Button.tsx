@@ -6,12 +6,13 @@ import { buttonClasses } from './Button.classes'
 export type ButtonProps = CommonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
     size?: 'large' | 'medium' | 'small'
+    variant?: 'outlined' | 'filled'
     icon?: React.ReactNode
   }
 
 export const Button: React.FC<ButtonProps> & {
   classes: typeof buttonClasses
-} = ({ size = 'medium', icon, children, ...props }) => {
+} = ({ size = 'medium', variant = 'outlined', icon, children, ...props }) => {
   const commonProps = useCommonProps(props)
 
   return (
@@ -23,6 +24,7 @@ export const Button: React.FC<ButtonProps> & {
           props.className,
           buttonClasses.root,
           buttonClasses[size],
+          buttonClasses[variant],
           props.disabled && buttonClasses.disabled,
           icon && buttonClasses.withIcon,
         )}

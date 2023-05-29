@@ -4,9 +4,6 @@ import { buttonClasses } from './Button.classes'
 export const ButtonStyles = css`
   .${buttonClasses.root} {
     width: auto;
-    color: rgb(var(--lsd-text-primary));
-    background: none;
-    border: 1px solid rgb(var(--lsd-border-primary));
 
     cursor: pointer;
     padding: 6px 24px;
@@ -64,5 +61,17 @@ export const ButtonStyles = css`
     .${buttonClasses.icon} {
       margin-left: 10px;
     }
+  }
+
+  .${buttonClasses.outlined} {
+    background: none;
+    color: rgb(var(--lsd-text-primary));
+    border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  .${buttonClasses.filled} {
+    background: rgb(var(--lsd-surface-secondary));
+    color: rgb(var(--lsd-text-secondary));
+    border: 1px solid rgb(var(--lsd-border-primary));
   }
 `
