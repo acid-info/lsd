@@ -36,6 +36,7 @@ export const ButtonStyles = css`
 
   .${buttonClasses.withIcon} {
     display: flex;
+    align-items: center;
   }
 
   .${buttonClasses.icon} {
