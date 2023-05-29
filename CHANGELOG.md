@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.8](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2023-05-29)
+
+### Bug Fixes
+
+- adjust icon's position in the button component ([ec7cdf0](https://github.com/acid-info/logos-design-system/commit/ec7cdf0e82ab0bf9f28018399eaec193bd605b1d))
+
+### Features
+
+- add outlined and filled variant options to button component ([9d01136](https://github.com/acid-info/logos-design-system/commit/9d01136a1bd49f7fd9eb86699c684d359215bebf))
+
 # [0.1.0-alpha.7](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.6...v0.1.0-alpha.7) (2023-05-25)
 
 ### Bug Fixes
