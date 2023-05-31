@@ -11,8 +11,8 @@ export const PickIcon = LsdIcon(
       {...props}
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M9.79287 3.5H2.99998V2.5H11.5V11H10.5V4.20711L3.35353 11.3536L2.64642 10.6464L9.79287 3.5Z"
         fill="black"
       />
