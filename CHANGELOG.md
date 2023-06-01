@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.9](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.8...v0.1.0-alpha.9) (2023-06-01)
+
+### Bug Fixes
+
+- fix bug with PickIcon svg props ([73a2c60](https://github.com/acid-info/logos-design-system/commit/73a2c608db03f67784cc4b265db2c2816874491a))
+- **lsd-react:** load global and baseline styles before user styles ([0fb3283](https://github.com/acid-info/logos-design-system/commit/0fb32830df5c42b8ceea997d852ed10d276a38b2))
+
 # [0.1.0-alpha.8](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2023-05-29)
 
 ### Bug Fixes
