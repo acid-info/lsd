@@ -53,7 +53,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react": "17.x || 18.x",
+    "react-dom": "17.x || 18.x"
   }
 }
