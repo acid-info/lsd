@@ -17,9 +17,9 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     <ResizeObserverProvider>
       <PortalProvider>
         <ThemeContext.Provider value={{ theme }}>
-          <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
           <CSSBaseline theme={theme} />
           <Global styles={theme.globalStyles} />
+          <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
         </ThemeContext.Provider>
       </PortalProvider>
     </ResizeObserverProvider>
