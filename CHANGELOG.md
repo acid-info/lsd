@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.10](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.9...v0.1.0-alpha.10) (2023-06-01)
+
+### Bug Fixes
+
+- fix peer dependency versions ([cff8e48](https://github.com/acid-info/logos-design-system/commit/cff8e480cf4932ddf11bf3256e978ea159e480f3))
+
 # [0.1.0-alpha.9](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.8...v0.1.0-alpha.9) (2023-06-01)
 
 ### Bug Fixes
