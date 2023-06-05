@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.12](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.11...v0.1.0-alpha.12) (2023-06-05)
+
+### Bug Fixes
+
+- **lsd-react:** use newline char to join global breakpoint var strings ([46d5248](https://github.com/acid-info/logos-design-system/commit/46d52486f6758f947290858cb85ea9631581eb35))
+
 # [0.1.0-alpha.11](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.10...v0.1.0-alpha.11) (2023-06-01)
 
 ### Bug Fixes

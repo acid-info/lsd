@@ -1,6 +1,6 @@
 {
   "name": "@acid-info/lsd-react",
-  "version": "0.1.0-alpha.11",
+  "version": "0.1.0-alpha.12",
   "types": "./dist/index.d.ts",
   "main": "./dist/lsd-react.js",
   "require": "./dist/lsd-react.umd.js",
