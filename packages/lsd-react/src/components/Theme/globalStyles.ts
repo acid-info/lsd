@@ -91,7 +91,7 @@ const generateThemeGlobalStyles = withTheme((theme) => {
   THEME_BREAKPOINTS.map((breakpoint, index) => {
     styles.push(`@media (min-width: ${theme.breakpoints[breakpoint].width}px) {
       :root {
-        ${breakpointVars[index]}
+        ${breakpointVars[index].join('\n')}
       }
 
       ${breakpointStyles[index]}
@@ -100,10 +100,10 @@ const generateThemeGlobalStyles = withTheme((theme) => {
 
   return css`
     :root {
-      ${vars}
+      ${vars.join('\n')}
     }
 
-    ${styles}
+    ${styles.join('\n')}
   `
 })
 
