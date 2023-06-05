@@ -30,19 +30,35 @@ const createBreakpointStyle = (
   index: number,
   theme: CreateThemeProps,
   defaultTheme: Theme,
+  overrides: Map<string, boolean>,
 ) => {
   switch (key) {
     case 'typography':
-      return pairs<TypographyVariants>(defaultTheme[key], (variant) => ({
-        ...defaultTheme[key][variant],
-        ...theme[key][variant],
-        ...(all?.[index - 1]?.[key]?.[variant] ?? {}),
-        ...(defaultTheme.breakpoints?.[THEME_BREAKPOINTS[index]]?.[key]?.[
-          variant
-        ] ?? {}),
-        ...(theme.breakpoints?.[THEME_BREAKPOINTS[index]]?.[key]?.[variant] ??
-          {}),
-      }))
+      return pairs<TypographyVariants>(defaultTheme[key], (variant) => {
+        const variantKey = `${key}.${variant}`
+        const overridden = overrides.get(variantKey) === true
+
+        if (
+          Object.keys(
+            theme.breakpoints?.[THEME_BREAKPOINTS[index]]?.[key]?.[variant] ??
+              {},
+          ).length > 0
+        ) {
+          overrides.set(variantKey, true)
+        }
+
+        return {
+          ...defaultTheme[key][variant],
+          ...theme[key][variant],
+          ...(overridden
+            ? all?.[index - 1]?.[key]?.[variant] ?? {}
+            : defaultTheme.breakpoints?.[THEME_BREAKPOINTS[index]]?.[key]?.[
+                variant
+              ]),
+          ...(theme.breakpoints?.[THEME_BREAKPOINTS[index]]?.[key]?.[variant] ??
+            {}),
+        }
+      })
 
     default:
       return {}
@@ -52,8 +68,10 @@ const createBreakpointStyle = (
 const createBreakpointStyles = (
   theme: CreateThemeProps,
   defaultTheme: Theme,
-): Theme['breakpoints'] =>
-  Object.fromEntries(
+): Theme['breakpoints'] => {
+  const overrides = new Map<string, boolean>()
+
+  return Object.fromEntries(
     THEME_BREAKPOINTS.reduce<BreakpointStyles[]>(
       (all, key, index) =>
         [
@@ -68,6 +86,7 @@ const createBreakpointStyles = (
                 index,
                 theme,
                 defaultTheme,
+                overrides,
               ),
             ),
           },
@@ -75,6 +94,7 @@ const createBreakpointStyles = (
       [],
     ).map((styles, index) => [THEME_BREAKPOINTS[index], styles]),
   ) as ThemeBreakpoints
+}
 
 const createPaletteStyles = (theme: CreateThemeProps, defaultTheme: Theme) => {
   const primary = theme.palette.primary ?? defaultTheme.palette.primary
