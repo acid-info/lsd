@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.13](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.12...v0.1.0-alpha.13) (2023-06-05)
+
+### Bug Fixes
+
+- **lsd-react:** respect custom breakpoint typography settings in the createTheme function ([8f8a337](https://github.com/acid-info/logos-design-system/commit/8f8a3371513fcdfb570f8920a6fd792654af9483))
+
+### BREAKING CHANGES
+
+- **lsd-react:** createTheme now ignores base theme typography settings for larger breakpoints when
+  custom typography settings are set for smaller breakpoints for a particular typography variant
+
 # [0.1.0-alpha.12](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.11...v0.1.0-alpha.12) (2023-06-05)
 
 ### Bug Fixes
