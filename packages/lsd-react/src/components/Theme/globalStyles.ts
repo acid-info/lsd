@@ -117,7 +117,7 @@ export const createThemeGlobalStyles = (() => {
   const cache: any = {}
 
   return (theme: Theme): ReturnType<typeof generateThemeGlobalStyles> => {
-    const key = theme as any as string
+    const key = theme.name
 
     if (
       cache[key] &&
