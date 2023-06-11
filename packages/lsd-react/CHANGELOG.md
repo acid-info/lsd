@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.14](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.13...v0.1.0-alpha.14) (2023-06-11)
+
+### Features
+
+- make the injection of theme CSS vars optional ([9a56d59](https://github.com/acid-info/logos-design-system/commit/9a56d59c352dd03429db27b3e8dc83457f475444))
+
 # [0.1.0-alpha.13](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.12...v0.1.0-alpha.13) (2023-06-05)
 
 ### Bug Fixes
