@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.15](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.14...v0.1.0-alpha.15) (2023-06-11)
+
+### Bug Fixes
+
+- **lsd-react:** use theme's name as the cache key when generating global styles ([6fd8880](https://github.com/acid-info/logos-design-system/commit/6fd888078e5acd4e15e5280c9185fa31c618caef))
+
 # [0.1.0-alpha.14](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.13...v0.1.0-alpha.14) (2023-06-11)
 
 ### Features
