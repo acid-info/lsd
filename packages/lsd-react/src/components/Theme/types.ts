@@ -73,6 +73,7 @@ export type Theme = {
   typographyGlobal: GlobalTypographyStyles
   palette: ThemePalette
   globalStyles: SerializedStyles
+  cssVars: string
 }
 
 export type ThemeOptionBreakpointStyles = Partial<

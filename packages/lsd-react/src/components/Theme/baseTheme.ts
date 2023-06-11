@@ -148,6 +148,10 @@ export const baseTheme: Theme = {
     },
   },
   globalStyles: css``,
+  cssVars: '',
 }
 
-baseTheme.globalStyles = createThemeGlobalStyles(baseTheme)
+const { cssVars, globalStyles } = createThemeGlobalStyles(baseTheme)
+
+baseTheme.cssVars = cssVars
+baseTheme.globalStyles = globalStyles

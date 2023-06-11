@@ -7,18 +7,20 @@ import { Theme } from './types'
 
 export type ThemeProviderProps = React.PropsWithChildren<{
   theme: Theme
+  injectCssVars?: boolean
 }>
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   theme,
   children,
+  injectCssVars = true,
 }) => {
   return (
     <ResizeObserverProvider>
       <PortalProvider>
         <ThemeContext.Provider value={{ theme }}>
           <CSSBaseline theme={theme} />
-          <Global styles={theme.globalStyles} />
+          {injectCssVars && <Global styles={theme.globalStyles} />}
           <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
         </ThemeContext.Provider>
       </PortalProvider>

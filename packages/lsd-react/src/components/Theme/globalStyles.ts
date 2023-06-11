@@ -5,7 +5,6 @@ import {
   THEME_TYPOGRAPHY_VARIANTS,
 } from './constants'
 import { Theme, TypographyProperties, TypographyVariants } from './types'
-import { withTheme } from './withTheme'
 
 const cssUtils = {
   vars: {
@@ -22,7 +21,7 @@ const cssUtils = {
   define: (name: string, value: string) => `${name}: ${value};`,
 }
 
-const generateThemeGlobalStyles = withTheme((theme) => {
+const generateThemeGlobalStyles = (theme: Theme) => {
   const vars: Array<string | string[]> = []
   const styles: Array<string | string[]> = []
   const breakpointStyles: string[][] = THEME_BREAKPOINTS.map(() => [])
@@ -98,18 +97,26 @@ const generateThemeGlobalStyles = withTheme((theme) => {
     }`)
   })
 
-  return css`
-    :root {
-      ${vars.join('\n')}
-    }
+  const cssVars = `
+    ${vars.join('\n')} 
 
     ${styles.join('\n')}
   `
-})
+
+  return {
+    cssVars,
+    globalStyles: css`
+      :root {
+        ${cssVars}
+      }
+    `,
+  }
+}
 
 export const createThemeGlobalStyles = (() => {
-  return (theme: Theme) => {
-    const cache: any = {}
+  const cache: any = {}
+
+  return (theme: Theme): ReturnType<typeof generateThemeGlobalStyles> => {
     const key = theme as any as string
 
     if (

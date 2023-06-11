@@ -136,9 +136,13 @@ export const createTheme = (
     breakpoints: createBreakpointStyles(props, from),
     palette: createPaletteStyles(props, from),
     globalStyles: css``,
+    cssVars: '',
   }
 
-  theme.globalStyles = createThemeGlobalStyles(theme)
+  const { cssVars, globalStyles } = createThemeGlobalStyles(theme)
+
+  theme.cssVars = cssVars
+  theme.globalStyles = globalStyles
 
   return theme
 }
