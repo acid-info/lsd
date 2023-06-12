@@ -17,7 +17,7 @@ export const Tag: React.FC<TagProps> & {
   classes: typeof tagClasses
 } = ({
   variant = 'outlined',
-  disabled = 'false',
+  disabled,
   icon,
   iconDirection = 'left',
   children,
