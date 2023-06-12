@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.16](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.15...v0.1.0-alpha.16) (2023-06-12)
+
+### Bug Fixes
+
+- set the default disabled state of the Tag component to false ([772285c](https://github.com/acid-info/logos-design-system/commit/772285cdd52316e8b77579cbce841b6276eaa9eb))
+
 # [0.1.0-alpha.15](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.14...v0.1.0-alpha.15) (2023-06-11)
 
 ### Bug Fixes
