@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.17](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.16...v0.1.0-alpha.17) (2023-07-17)
+
+### Features
+
+- add fontWeight to typography properties ([22804a4](https://github.com/acid-info/logos-design-system/commit/22804a4e10770a001874eac31d42e6fc05acba2e))
+
 # [0.1.0-alpha.16](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.15...v0.1.0-alpha.16) (2023-06-12)
 
 ### Bug Fixes
