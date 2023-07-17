@@ -25,7 +25,7 @@ export type VariantThemeProperties = keyof Pick<Theme, 'typography'>
 
 export type TypographyStyles = Pick<
   CSSProperties,
-  'fontSize' | 'lineHeight'
+  'fontSize' | 'fontWeight' | 'lineHeight'
 > & { fontFamily?: string }
 export type GlobalTypographyStyles = {
   genericFontFamily: TypographyGenericFontFamily

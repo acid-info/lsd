@@ -43,6 +43,7 @@ export const THEME_TYPOGRAPHY_ELEMENTS: Partial<
 
 export const THEME_TYPOGRAPHY_PROPERTIES = [
   'fontSize',
+  'fontWeight',
   'lineHeight',
 ] as TypographyProperties[]
 

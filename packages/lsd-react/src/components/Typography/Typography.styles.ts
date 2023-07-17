@@ -50,7 +50,7 @@ export const TypographyStyles = css`
     (variant) => css`
       ${selectors(variant)} {
         color: rgb(var(--lsd-text-primary));
-        font-weight: normal;
+        font-weight: var(--lsd-${variant}-fontWeight);
         font-size: var(--lsd-${variant}-fontSize);
         line-height: var(--lsd-${variant}-lineHeight);
       }
@@ -60,7 +60,7 @@ export const TypographyStyles = css`
   input {
     color: rgb(var(--lsd-text-primary));
     font-size: var(--lsd-body1-fontSize);
-    font-weight: normal;
+    font-weight: var(--lsd-body1-fontWeight);
   }
 
   h1,
