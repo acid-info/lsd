@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.18](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.17...v0.1.0-alpha.18) (2023-09-01)
+
+### Bug Fixes
+
+- **lsd-react:** make DropdownItem's icon size fixed ([66a3b78](https://github.com/acid-info/logos-design-system/commit/66a3b7855fa43121701de5f77c34a4575c6e0257))
+- **lsd-react:** set fixed padding for IconButton ([24c4196](https://github.com/acid-info/logos-design-system/commit/24c41965dbbe7b73ef02c89f602f1fabd2e81af3))
+
 # [0.1.0-alpha.17](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.16...v0.1.0-alpha.17) (2023-07-17)
 
 ### Features
