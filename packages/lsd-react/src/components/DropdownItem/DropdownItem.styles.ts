@@ -38,6 +38,7 @@ export const DropdownItemStyles = css`
 
   .${dropdownItemClasses.icon} {
     margin-right: 18px;
+    flex-shrink: 0;
   }
 
   .${dropdownItemClasses.small} {
