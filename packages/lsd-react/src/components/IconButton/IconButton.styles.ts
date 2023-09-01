@@ -9,6 +9,7 @@ export const IconButtonStyles = css`
     justify-content: center;
     cursor: pointer;
     background: none;
+    padding: 0;
     border: 1px solid rgb(var(--lsd-border-primary));
   }
 
