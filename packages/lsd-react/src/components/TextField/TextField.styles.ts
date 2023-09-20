@@ -71,11 +71,6 @@ export const TextFieldStyles = css`
     height: auto;
     margin: 0;
     border: 0;
-
-    svg {
-      width: 100%;
-      height: auto;
-    }
   }
 
   .${textFieldClasses.icon} {
