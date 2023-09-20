@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.19](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.18...v0.1.0-alpha.19) (2023-09-20)
+
+### Bug Fixes
+
+- **lsd-react:** fix TextField's inconsistent clear button size on WebKit based browsers; closes [#44](https://github.com/acid-info/logos-design-system/issues/44) ([8cfb932](https://github.com/acid-info/logos-design-system/commit/8cfb932398e91a17a3236c984a562d16fa2d2508))
+
 # [0.1.0-alpha.18](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.17...v0.1.0-alpha.18) (2023-09-01)
 
 ### Bug Fixes
