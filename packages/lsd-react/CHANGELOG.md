@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.20](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.19...v0.1.0-alpha.20) (2023-09-20)
+
+### Bug Fixes
+
+- **lsd-react:** omit common props before passing down props to html elements; closes [#39](https://github.com/acid-info/logos-design-system/issues/39) ([ea24ee7](https://github.com/acid-info/logos-design-system/commit/ea24ee790625dfc67523d4de4d2d7a016f8f33c7))
+
 # [0.1.0-alpha.19](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.18...v0.1.0-alpha.19) (2023-09-20)
 
 ### Bug Fixes
