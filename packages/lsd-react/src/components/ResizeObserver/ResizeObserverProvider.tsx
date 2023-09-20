@@ -1,4 +1,4 @@
-import { omit } from 'lodash'
+import omit from 'lodash/omit'
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { settleSync } from '../../utils/promise.utils'
 import { ResizeObserverContext } from './ResizeObserverContext'

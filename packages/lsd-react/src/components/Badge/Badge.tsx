@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
 import { badgeClasses } from './Badge.classes'
 
@@ -29,7 +33,7 @@ export const Badge: React.FC<BadgeProps> & {
   return (
     <div
       aria-label={children as string}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         props.className,
         commonProps.className,

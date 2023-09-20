@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { ArrowDownIcon, ArrowUpIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { collapseHeaderClasses } from './CollapseHeader.classes'
@@ -30,7 +34,7 @@ export const CollapseHeader: React.FC<CollapseHeaderProps> & {
 
   return (
     <div
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

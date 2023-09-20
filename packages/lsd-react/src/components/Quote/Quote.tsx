@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
 import { quoteClasses } from './Quote.classes'
 
@@ -17,7 +21,7 @@ export const Quote: React.FC<QuoteProps> & {
   return (
     <>
       <div
-        {...props}
+        {...omitCommonProps(props)}
         className={clsx(
           commonProps.className,
           props.className,

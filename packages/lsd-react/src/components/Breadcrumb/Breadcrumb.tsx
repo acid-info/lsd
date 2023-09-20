@@ -1,6 +1,11 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  pickCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { BreadcrumbItem } from '../BreadcrumbItem'
 import { breadcrumbItemClasses } from '../BreadcrumbItem/BreadcrumbItem.classes'
 import { DropdownMenu } from '../DropdownMenu'
@@ -79,7 +84,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
 
   return (
     <div
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         props.className,
         commonProps.className,
@@ -96,6 +101,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
             label={'...'}
             onClick={onTrigger}
             size={size}
+            {...pickCommonProps(props)}
           />
         )}
         {renderItems(visible)}
@@ -109,6 +115,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
             className={clsx(breadcrumbClasses.listBox)}
             size={size}
             genericFontFamily={props.genericFontFamily}
+            {...pickCommonProps(props)}
           >
             {collapsed.map((opt, idx) => (
               <BreadcrumbItem

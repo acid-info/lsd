@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { Checkbox } from '../Checkbox'
 import { RadioButton } from '../RadioButton'
 import { useTableContext } from '../Table/Table.context'
@@ -27,7 +31,7 @@ export const TableRow: React.FC<TableRowProps> & {
 
   return (
     <tr
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

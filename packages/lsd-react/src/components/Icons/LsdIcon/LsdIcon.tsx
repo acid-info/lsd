@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../../utils/useCommonProps'
 import { lsdIconClasses } from './LsdIcon.classes'
 
 export type LsdIconProps = CommonProps &
@@ -39,7 +43,7 @@ export const LsdIcon = (
           metadata?.filled && lsdIconClasses.filled,
           metadata?.stroked && lsdIconClasses.stroked,
         )}
-        {...props}
+        {...omitCommonProps(props)}
       />
     )
   }

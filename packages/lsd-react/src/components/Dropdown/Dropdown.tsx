@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { SelectOption, useSelect } from '../../utils/useSelect'
 import { DropdownItem } from '../DropdownItem'
 import { DropdownMenu } from '../DropdownMenu'
@@ -72,7 +76,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   return (
     <div
       ref={containerRef}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

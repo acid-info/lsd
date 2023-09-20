@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { useTabsContext } from '../Tabs/Tab.context'
 import { Typography } from '../Typography'
 import { tabItemClasses } from './TabItem.classes'
@@ -39,7 +43,7 @@ export const TabItem: React.FC<TabItemProps> & {
 
   return (
     <button
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

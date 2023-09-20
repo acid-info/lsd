@@ -1,7 +1,11 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { dropdownMenuClasses } from './DropdownMenu.classes'
 
 export type DropdownMenuProps = CommonProps &
@@ -51,7 +55,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
 
   return (
     <ul
-      {...props}
+      {...omitCommonProps(props)}
       ref={ref}
       role="listbox"
       aria-label={label}

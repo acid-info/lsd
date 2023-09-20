@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { cardBodyClasses } from './CardBody.classes'
 
 export type CardBodyProps = CommonProps &
@@ -13,7 +17,7 @@ export const CardBody: React.FC<CardBodyProps> & {
 
   return (
     <div
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

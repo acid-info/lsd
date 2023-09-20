@@ -3,7 +3,12 @@ import React from 'react'
 import { CheckboxGroupContext } from './CheckboxGroup.context'
 import { checkboxGroupClasses } from './CheckboxGroup.classes'
 import { Typography } from '../Typography'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  pickCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 
 export type ActiveCheckboxType = string | number | readonly string[]
 
@@ -21,7 +26,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> & {
   return (
     <CheckboxGroupContext.Provider value={{ size }}>
       <div
-        {...props}
+        {...omitCommonProps(props)}
         className={clsx(
           commonProps.className,
           props.className,
@@ -32,6 +37,7 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> & {
           component="span"
           variant={size === 'small' ? 'label2' : 'label1'}
           className={checkboxGroupClasses.label}
+          {...pickCommonProps(props)}
         >
           {label}
         </Typography>

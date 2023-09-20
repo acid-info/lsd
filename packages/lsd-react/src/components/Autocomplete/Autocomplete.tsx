@@ -7,7 +7,12 @@ import { DropdownMenu } from '../DropdownMenu'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
 import { autocompleteClasses } from './Autocomplete.classes'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  pickCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 
 export type AutocompleteProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value'> &
@@ -87,7 +92,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   return (
     <div
       ref={containerRef}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         props.className,
         commonProps.className,
@@ -142,7 +147,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
           open={isOpen}
           onClose={() => setOpen(false)}
           size={size}
-          genericFontFamily={props.genericFontFamily}
+          {...pickCommonProps(props)}
         >
           {suggestions.map((opt, idx: number) => (
             <DropdownItem

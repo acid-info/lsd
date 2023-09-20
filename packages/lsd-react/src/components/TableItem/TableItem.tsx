@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { useTableContext } from '../Table/Table.context'
 import { tableItemClasses } from './TableItem.classes'
 
@@ -18,7 +22,7 @@ export const TableItem: React.FC<TableItemProps> & {
 
   return (
     <td
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

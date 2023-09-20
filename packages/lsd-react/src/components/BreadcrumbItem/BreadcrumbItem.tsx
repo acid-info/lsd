@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
 import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
 
@@ -37,7 +41,7 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
 
   return (
     <li
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         breadcrumbItemClasses.root,

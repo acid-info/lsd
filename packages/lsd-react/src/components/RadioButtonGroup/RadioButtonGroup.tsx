@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
 import { radioButtonGroupClasses } from './RadioButtonGroup.classes'
 import { RadioButtonGroupContext } from './RadioButtonGroup.context'
@@ -36,7 +40,7 @@ export const RadioButtonGroup: React.FC<RadioButtonGroupProps> & {
     >
       <div
         ref={ref}
-        {...props}
+        {...omitCommonProps(props)}
         className={clsx(
           commonProps.className,
           props.className,

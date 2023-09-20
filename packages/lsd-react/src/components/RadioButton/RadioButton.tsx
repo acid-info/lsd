@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React, { useRef } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
 import { RadioButtonFilledIcon, RadioButtonIcon } from '../Icons'
 import { useRadioButtonGroupContext } from '../RadioButtonGroup/RadioButtonGroup.context'
@@ -66,7 +70,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
       variant={size === 'large' ? 'label1' : 'label2'}
       component="label"
       aria-disabled={disabled ? 'true' : 'false'}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

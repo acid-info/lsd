@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
 import { tagClasses } from './Tag.classes'
 
@@ -29,7 +33,7 @@ export const Tag: React.FC<TagProps> & {
   return (
     <div
       aria-label={children as string}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

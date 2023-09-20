@@ -1,6 +1,11 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  pickCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { CollapseHeader } from '../CollapseHeader'
 import { collapseClasses } from './Collapse.classes'
 
@@ -44,7 +49,7 @@ export const Collapse: React.FC<CollapseProps> & {
 
   return (
     <div
-      {...props}
+      {...omitCommonProps(props)}
       ref={ref}
       className={clsx(
         globalProps.className,
@@ -61,6 +66,7 @@ export const Collapse: React.FC<CollapseProps> & {
         size={size}
         onTrigger={onTrigger}
         disabled={disabled}
+        {...pickCommonProps(props)}
       />
       {open && <div className={collapseClasses.content}>{children}</div>}
     </div>

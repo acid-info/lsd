@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { DropdownOption } from '../Dropdown'
 import { TableBody } from '../TableBody'
 import { TableHeader } from '../TableHeader'
@@ -32,7 +36,7 @@ export const Table: React.FC<TableProps> & {
   return (
     <TableContext.Provider value={{ size, type, headerOptions }}>
       <div
-        {...props}
+        {...omitCommonProps(props)}
         className={clsx(
           commonProps.className,
           tableClasses.root,

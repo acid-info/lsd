@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { buttonClasses } from './Button.classes'
 
 export type ButtonProps = CommonProps &
@@ -18,7 +22,7 @@ export const Button: React.FC<ButtonProps> & {
   return (
     <>
       <button
-        {...props}
+        {...omitCommonProps(props)}
         className={clsx(
           commonProps.className,
           props.className,

@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
 import { useCheckboxGroupContext } from '../CheckboxGroup/CheckboxGroup.context'
 import { CheckboxFilledIcon, CheckboxIcon } from '../Icons'
@@ -71,7 +75,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
       variant={size === 'large' ? 'label1' : 'label2'}
       component="label"
       aria-disabled={disabled ? 'true' : 'false'}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { CheckboxFilledIcon, CheckboxIcon, LsdIconProps } from '../Icons'
 import { Typography } from '../Typography'
 import { dropdownItemClasses } from './DropdownItem.classes'
@@ -36,7 +40,7 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
     <div
       role="option"
       aria-selected={selected ? 'true' : 'false'}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         className,

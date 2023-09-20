@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { useIconButtonGroupContext } from '../IconButtonGroup/IconButtonGroup.context'
 import { iconButtonClasses } from './IconButton.classes'
 
@@ -28,7 +32,7 @@ export const IconButton: React.FC<IconButtonProps> & {
 
   return (
     <button
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

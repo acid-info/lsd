@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React, { useRef } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
 import { IconButton } from '../IconButton'
 import { CloseIcon, ErrorIcon } from '../Icons'
@@ -52,7 +56,7 @@ export const TextField: React.FC<TextFieldProps> & {
   return (
     <div
       aria-disabled={disabled ? 'true' : 'false'}
-      {...props}
+      {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
         props.className,

@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { TypographyVariants } from '../Theme'
 import { typographyClasses } from './Typography.classes'
 
@@ -66,7 +70,7 @@ export const Typography: React.FC<TypographyProps> & {
         color && typographyClasses[color],
         className,
       )}
-      {...props}
+      {...omitCommonProps(props)}
     >
       {children}
     </Component>

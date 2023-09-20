@@ -1,6 +1,10 @@
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
-import { CommonProps, useCommonProps } from '../../utils/useCommonProps'
+import {
+  CommonProps,
+  omitCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
 import { useHorizontalScroll } from '../../utils/useHorizontalScroll'
 import { NavigateBeforeIcon, NavigateNextIcon } from '../Icons'
 import { TabItem } from '../TabItem'
@@ -48,7 +52,7 @@ export const Tabs: React.FC<TabsProps> & {
     <TabsContext.Provider value={{ activeTab: value, setActiveTab, size }}>
       <div
         ref={ref}
-        {...props}
+        {...omitCommonProps(props)}
         className={clsx(
           commonProps.className,
           props.className,
