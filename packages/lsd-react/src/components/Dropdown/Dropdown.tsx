@@ -32,6 +32,8 @@ export type DropdownProps = CommonProps &
     value?: string | string[]
     onChange?: (value: string | string[]) => void
     variant?: 'outlined' | 'outlined-bottom'
+    isOpen?: boolean
+    onToggle?: (open: boolean) => void
   }
 
 export const Dropdown: React.FC<DropdownProps> & {
@@ -43,33 +45,43 @@ export const Dropdown: React.FC<DropdownProps> & {
   disabled = false,
   supportingText,
   triggerLabel,
-
   value = [],
   onChange,
   options = [],
   multi = false,
   variant = 'outlined',
+  isOpen,
+  onToggle,
   ...props
 }) => {
   const commonProps = useCommonProps(props)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [open, setOpen] = useState(false)
+  const isControlled = isOpen !== undefined
+  const [openState, setOpenState] = useState(false)
+
+  const open = isControlled ? isOpen : openState
 
   const { select, isSelected, selected } = useSelect(options, value, {
     multi,
     onChange,
     onDone: () => {
-      setOpen(false)
+      setOpenState(false)
     },
   })
 
   const onTrigger = () => {
-    !disabled && setOpen((value) => !value)
+    if (disabled) return
+
+    if (isControlled) {
+      onToggle && onToggle(!open)
+    } else {
+      setOpenState(!open)
+    }
   }
 
   useEffect(() => {
-    if (disabled && open) setOpen(false)
-  }, [open, disabled])
+    if (disabled && open && !isControlled) setOpenState(false)
+  }, [open, disabled, isControlled])
 
   const buttonId = props?.id ?? (props.id || 'dropdown') + '-input'
 
@@ -149,7 +161,13 @@ export const Dropdown: React.FC<DropdownProps> & {
         <DropdownMenu
           handleRef={containerRef}
           open={open}
-          onClose={() => setOpen(false)}
+          onClose={() => {
+            if (isControlled) {
+              onToggle && onToggle(false)
+            } else {
+              setOpenState(false)
+            }
+          }}
           size={size}
           genericFontFamily={props.genericFontFamily}
         >
