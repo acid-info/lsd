@@ -131,4 +131,11 @@ export const DateFieldStyles = css`
     .${dateFieldClasses.input}::-webkit-datetime-edit-day-field {
     text-decoration: line-through;
   }
+
+  /* If browser does not support ::-webkit-datetime pseudo elements, use the following. */
+  @supports not selector(::-webkit-datetime-edit-day-field) {
+    .${dateFieldClasses.error} .${dateFieldClasses.input} {
+      text-decoration: line-through;
+    }
+  }
 `
