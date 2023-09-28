@@ -93,6 +93,7 @@ export const DateField: React.FC<DateFieldProps> & {
           value={input.value}
           onChange={input.onChange}
           className={clsx(inputProps.className, dateFieldClasses.input)}
+          max={inputProps.max || '9999-12-31'}
         />
         {icon ? (
           <span

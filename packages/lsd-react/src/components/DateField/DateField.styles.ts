@@ -54,16 +54,6 @@ export const DateFieldStyles = css`
     outline: none;
   }
 
-  .${dateFieldClasses.input}:focus::-webkit-datetime-edit {
-    color: rgb(var(--lsd-text-primary));
-    opacity: 0.3;
-  }
-
-  .${dateFieldClasses.error}
-    .${dateFieldClasses.input}::-webkit-datetime-edit-fields-wrapper {
-    text-decoration: line-through;
-  }
-
   .${dateFieldClasses.supportingText} {
     position: absolute;
   }
@@ -124,5 +114,21 @@ export const DateFieldStyles = css`
     .${dateFieldClasses.supportingText} {
       margin: 6px 12px 0 12px;
     }
+  }
+
+  .${dateFieldClasses.input}::-webkit-datetime-edit-month-field:focus,
+    .${dateFieldClasses.input}::-webkit-datetime-edit-day-field:focus,
+    .${dateFieldClasses.input}::-webkit-datetime-edit-year-field:focus {
+    color: rgb(var(--lsd-text-primary));
+    opacity: 0.4;
+  }
+
+  .${dateFieldClasses.error}
+    .${dateFieldClasses.input}::-webkit-datetime-edit-year-field,
+    .${dateFieldClasses.error}
+    .${dateFieldClasses.input}::-webkit-datetime-edit-month-field,
+    .${dateFieldClasses.error}
+    .${dateFieldClasses.input}::-webkit-datetime-edit-day-field {
+    text-decoration: line-through;
   }
 `
