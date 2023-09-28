@@ -77,6 +77,9 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     ModalStyles,
     ModalFooterStyles,
     ModalBodyStyles,
+    DatePickerStyles,
+    DateFieldStyles,
+    CalendarStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
