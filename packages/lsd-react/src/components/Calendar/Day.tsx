@@ -43,6 +43,9 @@ export const Day = ({ day, date, disabled = false }: DayProps) => {
     return null
   }
 
+  const isToday =
+    new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)
+
   return (
     <button
       onClick={(e) => !disabled && onClick()}
@@ -55,11 +58,11 @@ export const Day = ({ day, date, disabled = false }: DayProps) => {
         calendarClasses.day,
         !disabled && isDateFocused(date) && calendarClasses.daySelected,
         disabled && calendarClasses.dayDisabled,
+        isToday && calendarClasses.dayIsToday,
       )}
     >
       <Typography variant="label2">{parseInt(day, 10)}</Typography>
-      {new Date(date).setHours(0, 0, 0, 0) ===
-        new Date().setHours(0, 0, 0, 0) && (
+      {isToday && (
         <Typography variant="label2" className={calendarClasses.todayIndicator}>
           ■
         </Typography>
