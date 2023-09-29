@@ -64,7 +64,7 @@ export const Day = ({ day, date, disabled = false }: DayProps) => {
       <Typography variant="label2">{parseInt(day, 10)}</Typography>
       {isToday && (
         <Typography variant="label2" className={calendarClasses.todayIndicator}>
-          ■
+          ▬
         </Typography>
       )}
     </button>
