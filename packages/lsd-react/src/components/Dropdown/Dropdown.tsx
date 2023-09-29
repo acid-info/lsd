@@ -69,14 +69,18 @@ export const Dropdown: React.FC<DropdownProps> & {
     },
   })
 
+  const handleToggle = (open: boolean) => {
+    if (isControlled) {
+      onToggle && onToggle(open)
+    } else {
+      setOpenState(open)
+    }
+  }
+
   const onTrigger = () => {
     if (disabled) return
 
-    if (isControlled) {
-      onToggle && onToggle(!open)
-    } else {
-      setOpenState(!open)
-    }
+    handleToggle(!open)
   }
 
   useEffect(() => {
@@ -161,13 +165,7 @@ export const Dropdown: React.FC<DropdownProps> & {
         <DropdownMenu
           handleRef={containerRef}
           open={open}
-          onClose={() => {
-            if (isControlled) {
-              onToggle && onToggle(false)
-            } else {
-              setOpenState(false)
-            }
-          }}
+          onClose={() => handleToggle(false)}
           size={size}
           genericFontFamily={props.genericFontFamily}
         >
