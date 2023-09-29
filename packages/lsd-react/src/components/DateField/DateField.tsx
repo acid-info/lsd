@@ -24,6 +24,7 @@ export type DateFieldProps = Omit<
     onIconClick?: () => void
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
     variant?: 'outlined' | 'outlined-bottom'
+    calendarIconRef?: React.RefObject<HTMLSpanElement>
   }
 
 export const DateField: React.FC<DateFieldProps> & {
@@ -48,7 +49,12 @@ export const DateField: React.FC<DateFieldProps> & {
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null)
-  const input = useInput({ defaultValue, value, onChange, ref })
+  const input = useInput({
+    defaultValue,
+    value,
+    onChange,
+    ref,
+  })
 
   const onCancel = () => input.setValue('')
 
@@ -90,15 +96,20 @@ export const DateField: React.FC<DateFieldProps> & {
           placeholder={placeholder}
           {...inputProps}
           ref={ref}
-          value={input.value}
+          value={input.value || ''}
           onChange={input.onChange}
-          className={clsx(inputProps.className, dateFieldClasses.input)}
+          className={clsx(
+            inputProps.className,
+            dateFieldClasses.input,
+            input.filled && dateFieldClasses.inputFilled,
+          )}
           max={inputProps.max || '9999-12-31'}
         />
         {icon ? (
           <span
             className={dateFieldClasses.icon}
             onClick={() => !disabled && onIconClick && onIconClick()}
+            ref={props.calendarIconRef}
           >
             {icon}
           </span>

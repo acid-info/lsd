@@ -22,6 +22,9 @@ export type CalendarProps = Omit<
   handleRef: React.RefObject<HTMLElement>
   size?: 'large' | 'medium' | 'small'
   onClose?: () => void
+  onCalendarClickaway?: (event: Event) => void
+  minDate?: Date
+  maxDate?: Date
 }
 
 export const Calendar: React.FC<CalendarProps> & {
@@ -34,17 +37,28 @@ export const Calendar: React.FC<CalendarProps> & {
   disabled = false,
   onChange,
   onClose,
+  onCalendarClickaway,
+  // minDate and maxDate are necessary because onDateFocus freaks out with small/large date values.
+  minDate = new Date(1900, 0, 1),
+  maxDate = new Date(2100, 0, 1),
   children,
   ...props
 }) => {
   const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
   const [value, setValue] = useState<Date | null>(
-    valueProp ? safeConvertDateToString(valueProp).date : null,
+    valueProp
+      ? safeConvertDateToString(valueProp, minDate, maxDate).date
+      : null,
   )
+  const isOpenControlled = typeof open !== 'undefined'
 
   useClickAway(ref, (event) => {
-    if (!open || event.composedPath().includes(handleRef.current!)) return
+    if (!open) return
+
+    onCalendarClickaway && onCalendarClickaway(event)
+
+    if (isOpenControlled) return
 
     onClose && onClose()
   })
@@ -84,7 +98,7 @@ export const Calendar: React.FC<CalendarProps> & {
   useEffect(() => {
     if (typeof valueProp === 'undefined') return
 
-    const { date } = safeConvertDateToString(valueProp)
+    const { date } = safeConvertDateToString(valueProp, minDate, maxDate)
     setValue(date)
   }, [valueProp])
 

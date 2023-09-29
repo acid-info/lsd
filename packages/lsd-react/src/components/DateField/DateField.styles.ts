@@ -42,6 +42,8 @@ export const DateFieldStyles = css`
     color: rgb(var(--lsd-text-primary));
     background: none;
     width: 100%;
+    opacity: 0.4;
+    transition: opacity 0.2s ease-in-out;
   }
 
   .${dateFieldClasses.input}::-webkit-inner-spin-button,
@@ -116,11 +118,9 @@ export const DateFieldStyles = css`
     }
   }
 
-  .${dateFieldClasses.input}::-webkit-datetime-edit-month-field:focus,
-    .${dateFieldClasses.input}::-webkit-datetime-edit-day-field:focus,
-    .${dateFieldClasses.input}::-webkit-datetime-edit-year-field:focus {
-    color: rgb(var(--lsd-text-primary));
-    opacity: 0.4;
+  .${dateFieldClasses.input}:invalid, .${dateFieldClasses.inputFilled} {
+    color: rgb(var(--lsd-border-primary));
+    opacity: 1;
   }
 
   .${dateFieldClasses.error}

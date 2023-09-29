@@ -43,7 +43,9 @@ export const DatePicker: React.FC<DatePickerProps> & {
   ...props
 }) => {
   const ref = useRef<HTMLDivElement>(null)
+  const calendarIconRef = useRef<HTMLSpanElement>(null)
   const [openCalendar, setOpenCalendar] = useState(false)
+  const isControlled = typeof valueProp !== 'undefined'
 
   const input = useInput({
     value: valueProp,
@@ -77,8 +79,10 @@ export const DatePicker: React.FC<DatePickerProps> & {
         variant={variant}
         icon={withCalendar && <CalendarIcon color="primary" />}
         onIconClick={() => setOpenCalendar((prev) => !prev)}
-        value={input.value}
+        // The DateField component is only controlled when the value prop is provided OR the calendar is open.
+        value={isControlled || openCalendar ? input.value : undefined}
         onChange={input.onChange}
+        calendarIconRef={calendarIconRef}
         {...props}
       >
         <Portal id="calendar">
@@ -86,7 +90,18 @@ export const DatePicker: React.FC<DatePickerProps> & {
             <Calendar
               onChange={(date) => handleDateChange(date)}
               open={openCalendar}
-              onClose={() => setOpenCalendar(false)}
+              onCalendarClickaway={(event) => {
+                // If the calendar icon was clicked, return and don't close the calendar here.
+                // Let the onIconClick above handle the closing.
+                if (
+                  calendarIconRef.current &&
+                  event?.composedPath().includes(calendarIconRef.current)
+                ) {
+                  return
+                }
+
+                setOpenCalendar(false)
+              }}
               handleRef={ref}
               value={input.value}
               disabled={props.disabled}

@@ -117,7 +117,7 @@ export const CalendarStyles = css`
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0;
+    bottom: 2px;
   }
 
   .${calendarClasses.disabled} {
