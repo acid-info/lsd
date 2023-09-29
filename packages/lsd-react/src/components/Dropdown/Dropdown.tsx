@@ -59,8 +59,6 @@ export const Dropdown: React.FC<DropdownProps> & {
   const isControlled = isOpen !== undefined
   const [openState, setOpenState] = useState(false)
 
-  const open = isControlled ? isOpen : openState
-
   const { select, isSelected, selected } = useSelect(options, value, {
     multi,
     onChange,
@@ -80,12 +78,17 @@ export const Dropdown: React.FC<DropdownProps> & {
   const onTrigger = () => {
     if (disabled) return
 
-    handleToggle(!open)
+    handleToggle(!openState)
   }
 
   useEffect(() => {
-    if (disabled && open && !isControlled) setOpenState(false)
+    if (disabled && openState && !isControlled) setOpenState(false)
   }, [open, disabled, isControlled])
+
+  // Handle the controlled version of the component:
+  useEffect(() => {
+    typeof isOpen !== 'undefined' && setOpenState(isOpen)
+  }, [isOpen])
 
   const buttonId = props?.id ?? (props.id || 'dropdown') + '-input'
 
@@ -100,7 +103,7 @@ export const Dropdown: React.FC<DropdownProps> & {
         dropdownClasses[size],
         error && dropdownClasses.error,
         disabled && dropdownClasses.disabled,
-        open && dropdownClasses.open,
+        openState && dropdownClasses.open,
         variant === 'outlined'
           ? dropdownClasses.outlined
           : dropdownClasses.outlinedBottom,
@@ -137,7 +140,7 @@ export const Dropdown: React.FC<DropdownProps> & {
               <ErrorIcon color="primary" className={dropdownClasses.icon} />
             )}
 
-            {open ? (
+            {openState ? (
               <ArrowUpIcon
                 color="primary"
                 className={dropdownClasses.menuIcon}
@@ -164,7 +167,7 @@ export const Dropdown: React.FC<DropdownProps> & {
       <Portal id="dropdown">
         <DropdownMenu
           handleRef={containerRef}
-          open={open}
+          open={openState}
           onClose={() => handleToggle(false)}
           size={size}
           genericFontFamily={props.genericFontFamily}
