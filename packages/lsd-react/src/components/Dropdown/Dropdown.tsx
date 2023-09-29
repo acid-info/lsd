@@ -59,6 +59,8 @@ export const Dropdown: React.FC<DropdownProps> & {
   const isControlled = isOpen !== undefined
   const [openState, setOpenState] = useState(false)
 
+  if (isControlled && isOpen !== openState) setOpenState(isOpen)
+
   const { select, isSelected, selected } = useSelect(options, value, {
     multi,
     onChange,
@@ -80,10 +82,6 @@ export const Dropdown: React.FC<DropdownProps> & {
 
     handleToggle(!openState)
   }
-
-  useEffect(() => {
-    if (disabled && openState && !isControlled) setOpenState(false)
-  }, [open, disabled, isControlled])
 
   // Handle the controlled version of the component:
   useEffect(() => {
