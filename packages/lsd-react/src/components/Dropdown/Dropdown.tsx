@@ -83,10 +83,9 @@ export const Dropdown: React.FC<DropdownProps> & {
     handleToggle(!openState)
   }
 
-  // Handle the controlled version of the component:
   useEffect(() => {
-    typeof isOpen !== 'undefined' && setOpenState(isOpen)
-  }, [isOpen])
+    if (disabled && openState && !isControlled) setOpenState(false)
+  }, [openState, disabled, isControlled])
 
   const buttonId = props?.id ?? (props.id || 'dropdown') + '-input'
 
