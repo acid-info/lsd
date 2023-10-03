@@ -18,7 +18,7 @@ export const TableBodyStyles = css`
 
   .${tableBodyClasses.toolbar} {
     box-sizing: border-box;
-    padding: 10px;
+    padding: 15px;
     border: 1px solid rgb(var(--lsd-border-primary));
     border-bottom: none;
     display: flex;

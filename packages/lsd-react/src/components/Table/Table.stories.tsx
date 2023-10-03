@@ -57,8 +57,13 @@ const headerOptions = new Array(8).fill(null).map((value, index) => ({
   name: `Title ${index + 1}`,
 }))
 
-export const Root: Story<TableProps> = ({ type, ...args }) => {
+export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
   const [rows, setRows] = useState(1)
+  const [footerContent, setFooterContent] = useState('Footer content goes here')
+
+  const onPageChange = (page: number) => {
+    setFooterContent(`Page ${page} of ${pages}`)
+  }
 
   const toolbar = (
     <>
@@ -105,7 +110,10 @@ export const Root: Story<TableProps> = ({ type, ...args }) => {
         header={header}
         toolbar={toolbar}
         headerOptions={headerOptions}
+        footerContent={footerContent}
+        pages={pages}
         {...args}
+        onPageChange={onPageChange}
       >
         <TableRow>
           {headerOptions.map((item) => (
@@ -123,4 +131,6 @@ export const Root: Story<TableProps> = ({ type, ...args }) => {
 Root.args = {
   size: 'large',
   type: 'default',
+  hasFooter: true,
+  pages: 10,
 }
