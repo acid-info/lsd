@@ -11,14 +11,14 @@ import { tableItemClasses } from './TableItem.classes'
 export type TableItemProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
     size?: 'large' | 'medium' | 'small'
-    cellOverflowEllipsis?: boolean
+    truncateContent?: boolean
   }
 
 export const TableItem: React.FC<TableItemProps> & {
   classes: typeof tableItemClasses
 } = ({
   size: _size = 'large',
-  cellOverflowEllipsis = false,
+  truncateContent = false,
   children,
   ...props
 }) => {
@@ -34,7 +34,7 @@ export const TableItem: React.FC<TableItemProps> & {
         props.className,
         tableItemClasses.root,
         tableItemClasses[size],
-        cellOverflowEllipsis && tableItemClasses.cellOverflowEllipsis,
+        truncateContent && tableItemClasses.truncateContent,
       )}
     >
       {children}

@@ -6,7 +6,7 @@ export const TableItemStyles = css`
     border: 1px solid rgb(var(--lsd-border-primary));
   }
 
-  .${tableItemClasses.cellOverflowEllipsis} {
+  .${tableItemClasses.truncateContent} {
     word-wrap: break-word;
     text-overflow: ellipsis;
     overflow: hidden;
