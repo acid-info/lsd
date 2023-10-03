@@ -11,11 +11,17 @@ import { tableItemClasses } from './TableItem.classes'
 export type TableItemProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
     size?: 'large' | 'medium' | 'small'
+    cellOverflowEllipsis?: boolean
   }
 
 export const TableItem: React.FC<TableItemProps> & {
   classes: typeof tableItemClasses
-} = ({ size: _size = 'large', children, ...props }) => {
+} = ({
+  size: _size = 'large',
+  cellOverflowEllipsis = false,
+  children,
+  ...props
+}) => {
   const commonProps = useCommonProps(props)
   const table = useTableContext()
   const size = table?.size ?? _size
@@ -28,6 +34,7 @@ export const TableItem: React.FC<TableItemProps> & {
         props.className,
         tableItemClasses.root,
         tableItemClasses[size],
+        cellOverflowEllipsis && tableItemClasses.cellOverflowEllipsis,
       )}
     >
       {children}

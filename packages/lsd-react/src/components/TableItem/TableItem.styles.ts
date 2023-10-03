@@ -6,6 +6,13 @@ export const TableItemStyles = css`
     border: 1px solid rgb(var(--lsd-border-primary));
   }
 
+  .${tableItemClasses.cellOverflowEllipsis} {
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
   .${tableItemClasses.root}:has(> label) {
     width: 40px;
     input {

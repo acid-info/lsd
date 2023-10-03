@@ -65,6 +65,7 @@ type SingleTableRowProps = {
   checked?: boolean
   itemContentArray: string[]
   onSelectChange?: () => void
+  cellOverflowEllipsis: boolean
 }
 
 const SingleTableRow = ({
@@ -72,10 +73,16 @@ const SingleTableRow = ({
   checked,
   itemContentArray,
   onSelectChange,
+  cellOverflowEllipsis,
 }: SingleTableRowProps) => (
   <TableRow checked={checked} onSelectChange={onSelectChange} key={rowIndex}>
     {itemContentArray.map((itemContent, itemIndex) => (
-      <TableItem key={`${rowIndex}-${itemIndex}`}>{itemContent}</TableItem>
+      <TableItem
+        key={`${rowIndex}-${itemIndex}`}
+        cellOverflowEllipsis={cellOverflowEllipsis}
+      >
+        {itemContent}
+      </TableItem>
     ))}
   </TableRow>
 )
@@ -83,9 +90,14 @@ const SingleTableRow = ({
 type DefaultTypeRowsProps = {
   rows: number
   itemContentArray: string[]
+  cellOverflowEllipsis: boolean
 }
 
-const DefaultTypeRows = ({ rows, itemContentArray }: DefaultTypeRowsProps) => (
+const DefaultTypeRows = ({
+  rows,
+  itemContentArray,
+  cellOverflowEllipsis,
+}: DefaultTypeRowsProps) => (
   <>
     {Array(rows)
       .fill(null)
@@ -94,6 +106,7 @@ const DefaultTypeRows = ({ rows, itemContentArray }: DefaultTypeRowsProps) => (
           rowIndex={rowIndex}
           itemContentArray={itemContentArray}
           key={rowIndex}
+          cellOverflowEllipsis={cellOverflowEllipsis}
         />
       ))}
   </>
@@ -104,12 +117,15 @@ type CheckboxTypeRowsProps = {
   itemContentArray: string[]
   rowsChecked: boolean[]
   handleRowCheckboxChange: (index: number) => void
+  cellOverflowEllipsis: boolean
 }
+
 const CheckboxTypeRows = ({
   rows,
   rowsChecked,
   itemContentArray,
   handleRowCheckboxChange,
+  cellOverflowEllipsis,
 }: CheckboxTypeRowsProps) => (
   <>
     {Array(rows)
@@ -121,6 +137,7 @@ const CheckboxTypeRows = ({
           itemContentArray={itemContentArray}
           onSelectChange={() => handleRowCheckboxChange(rowIndex)}
           key={rowIndex}
+          cellOverflowEllipsis={cellOverflowEllipsis}
         />
       ))}
   </>
@@ -131,6 +148,7 @@ type RadioTypeRowsProps = {
   selectedRowIndex: number | null
   itemContentArray: string[]
   handleRowCheckboxChange: (index: number) => void
+  cellOverflowEllipsis: boolean
 }
 
 const RadioTypeRows = ({
@@ -138,6 +156,7 @@ const RadioTypeRows = ({
   selectedRowIndex,
   itemContentArray,
   handleRowCheckboxChange,
+  cellOverflowEllipsis,
 }: RadioTypeRowsProps) => (
   <>
     {Array(rows)
@@ -149,12 +168,18 @@ const RadioTypeRows = ({
           itemContentArray={itemContentArray}
           onSelectChange={() => handleRowCheckboxChange(rowIndex)}
           key={rowIndex}
+          cellOverflowEllipsis={cellOverflowEllipsis}
         />
       ))}
   </>
 )
 
-export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
+export const Root: Story<TableProps & { cellOverflowEllipsis: boolean }> = ({
+  type,
+  pages,
+  cellOverflowEllipsis,
+  ...args
+}) => {
   const [rows, setRows] = useState(1)
   const [footerContent, setFooterContent] = useState('Footer content goes here')
   const [allChecked, setAllChecked] = useState(false)
@@ -269,6 +294,7 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
             rowsChecked={rowsChecked}
             itemContentArray={itemContentArray}
             handleRowCheckboxChange={handleRowCheckboxChange}
+            cellOverflowEllipsis={cellOverflowEllipsis}
           />
         ) : type === 'radio' ? (
           <RadioTypeRows
@@ -276,9 +302,14 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
             selectedRowIndex={selectedRowIndex}
             itemContentArray={itemContentArray}
             handleRowCheckboxChange={handleRowCheckboxChange}
+            cellOverflowEllipsis={cellOverflowEllipsis}
           />
         ) : (
-          <DefaultTypeRows rows={rows} itemContentArray={itemContentArray} />
+          <DefaultTypeRows
+            rows={rows}
+            itemContentArray={itemContentArray}
+            cellOverflowEllipsis={cellOverflowEllipsis}
+          />
         )}
       </Table>
     </div>
@@ -289,5 +320,6 @@ Root.args = {
   size: 'large',
   type: 'default',
   hasFooter: true,
+  cellOverflowEllipsis: false,
   pages: 10,
 }
