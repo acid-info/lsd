@@ -3,6 +3,7 @@ import { tableFooterClasses } from './TableFooter.classes'
 import { iconButtonClasses } from '../IconButton/IconButton.classes'
 import { dropdownClasses } from '../Dropdown/Dropdown.classes'
 import { typographyClasses } from '../Typography/Typography.classes'
+import { tableClasses } from '../Table/Table.classes'
 
 export const TableFooterStyles = css`
   .${tableFooterClasses.root} {
@@ -28,6 +29,13 @@ export const TableFooterStyles = css`
 
     .${dropdownClasses.icons} {
       padding-left: 10px;
+    }
+  }
+
+  /* If the footer is part of a table, remove the border top. */
+  .${tableClasses.root} {
+    .${tableFooterClasses.root} {
+      border-top: 0px;
     }
   }
 
