@@ -10,6 +10,7 @@ import { TableBody } from '../TableBody'
 import { TableHeader } from '../TableHeader'
 import { tableClasses } from './Table.classes'
 import { TableContext } from './Table.context'
+import { TableFooter } from '../TableFooter'
 
 export type TableProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
@@ -18,6 +19,10 @@ export type TableProps = CommonProps &
     headerOptions?: DropdownOption[]
     header?: React.ReactNode
     toolbar?: React.ReactNode
+    hasFooter?: boolean
+    pages: number
+    onPageChange?: (page: number) => void
+    footerContent?: React.ReactNode
   }
 
 export const Table: React.FC<TableProps> & {
@@ -28,7 +33,11 @@ export const Table: React.FC<TableProps> & {
   headerOptions,
   header,
   toolbar,
+  hasFooter,
+  onPageChange,
+  pages,
   children,
+  footerContent,
   ...props
 }) => {
   const commonProps = useCommonProps(props)
@@ -47,6 +56,11 @@ export const Table: React.FC<TableProps> & {
         <TableBody toolbar={toolbar} options={headerOptions}>
           {children}
         </TableBody>
+        {hasFooter && !!footerContent && (
+          <TableFooter onPageChange={onPageChange} pages={pages} size={size}>
+            {footerContent}
+          </TableFooter>
+        )}
       </div>
     </TableContext.Provider>
   )

@@ -32,6 +32,7 @@ import { TagStyles } from '../Tag/Tag.styles'
 import { TextFieldStyles } from '../TextField/TextField.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
+import { TableFooterStyles } from '../TableFooter/TableFooter.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
@@ -66,6 +67,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     TableBodyStyles,
     TableItemStyles,
     TableRowStyles,
+    TableFooterStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
