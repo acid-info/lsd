@@ -52,9 +52,14 @@ const header = (
   </div>
 )
 
-const headerOptions = new Array(8).fill(null).map((value, index) => ({
+const dropdownOptions = new Array(8).fill(null).map((value, index) => ({
   value: `${index}`,
   name: `Title ${index + 1}`,
+}))
+
+const headerOptions = new Array(8).fill(null).map((value, index) => ({
+  value: `${index}`,
+  name: `TITLE ${index + 1}`,
 }))
 
 export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
@@ -67,7 +72,11 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
 
   const toolbar = (
     <>
-      <Dropdown size="medium" options={headerOptions} />
+      <Dropdown
+        size="medium"
+        options={dropdownOptions}
+        value={dropdownOptions[0].value}
+      />
       <div
         style={{
           display: 'flex',
