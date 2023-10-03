@@ -27,18 +27,16 @@ export default {
   },
 } as Meta
 
-const content = (
-  <TableRow>
-    <TableItem>Content 1</TableItem>
-    <TableItem>Content 2</TableItem>
-    <TableItem>Content 3</TableItem>
-    <TableItem>Content 4</TableItem>
-    <TableItem>Content 5</TableItem>
-    <TableItem>Content 6</TableItem>
-    <TableItem>Content 7</TableItem>
-    <TableItem>Content 8</TableItem>
-  </TableRow>
-)
+const itemContentArray = [
+  'Content 1',
+  'Content 2',
+  'Content 3',
+  'Content 4',
+  'Content 5',
+  'Content 6',
+  'Content 7',
+  'Content 8',
+]
 
 const header = (
   <div
@@ -65,9 +63,30 @@ const headerOptions = new Array(8).fill(null).map((value, index) => ({
 export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
   const [rows, setRows] = useState(1)
   const [footerContent, setFooterContent] = useState('Footer content goes here')
-
+  const [allChecked, setAllChecked] = useState(false)
+  const [rowsChecked, setRowsChecked] = useState(Array(rows).fill(false))
   const onPageChange = (page: number) => {
     setFooterContent(`Page ${page} of ${pages}`)
+  }
+
+  const handleHeaderCheckboxChange = () => {
+    const newAllChecked = !allChecked
+    setAllChecked(newAllChecked)
+    // Update all rows based on the header checkbox.
+    setRowsChecked(Array(rows).fill(newAllChecked))
+  }
+
+  const handleRowCheckboxChange = (index: number) => {
+    const updatedRowsChecked = [...rowsChecked]
+    updatedRowsChecked[index] = !updatedRowsChecked[index]
+    setRowsChecked(updatedRowsChecked)
+
+    // Check if all rows are selected or if any row is unchecked
+    if (updatedRowsChecked.every((val) => val)) {
+      setAllChecked(true)
+    } else {
+      setAllChecked(false)
+    }
   }
 
   const toolbar = (
@@ -76,6 +95,10 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
         size="medium"
         options={dropdownOptions}
         value={dropdownOptions[0].value}
+        style={{
+          width: 'auto',
+          minWidth: '113px',
+        }}
       />
       <div
         style={{
@@ -124,14 +147,29 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
         {...args}
         onPageChange={onPageChange}
       >
-        <TableRow>
-          {headerOptions.map((item) => (
-            <TableItem>{item.name}</TableItem>
+        <TableRow
+          onSelectChange={handleHeaderCheckboxChange}
+          checked={allChecked}
+        >
+          {headerOptions.map((item, index) => (
+            <TableItem key={index}>{item.name}</TableItem>
           ))}
         </TableRow>
         {Array(rows)
           .fill(true)
-          .map(() => content)}
+          .map((row, rowIndex) => (
+            <TableRow
+              checked={rowsChecked[rowIndex]}
+              onSelectChange={() => handleRowCheckboxChange(rowIndex)}
+              key={rowIndex}
+            >
+              {itemContentArray.map((itemContent, itemIndex) => (
+                <TableItem key={`${rowIndex}-${itemIndex}`}>
+                  {itemContent}
+                </TableItem>
+              ))}
+            </TableRow>
+          ))}
       </Table>
     </div>
   )

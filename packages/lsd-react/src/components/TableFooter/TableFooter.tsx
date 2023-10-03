@@ -81,7 +81,7 @@ export const TableFooter: React.FC<TableFooterProps> & {
             size={size}
             onClick={() => dispatch({ type: 'DECREMENT_PAGE' })}
           >
-            <NavigateBeforeIcon />
+            <NavigateBeforeIcon color="primary" />
           </IconButton>
           <Dropdown
             {...commonProps}
@@ -96,7 +96,7 @@ export const TableFooter: React.FC<TableFooterProps> & {
             size={size}
             onClick={() => dispatch({ type: 'INCREMENT_PAGE' })}
           >
-            <NavigateNextIcon />
+            <NavigateNextIcon color="primary" />
           </IconButton>
         </div>
       )}
