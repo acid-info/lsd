@@ -11,7 +11,6 @@ import { IconButton } from '../IconButton'
 import { NavigateBeforeIcon, NavigateNextIcon } from '../Icons'
 import { Dropdown, DropdownOption } from '../Dropdown'
 
-// 1. Define the reducer and its actions
 type Action =
   | { type: 'SET_PAGE'; payload: string | string[] }
   | { type: 'INCREMENT_PAGE' }
