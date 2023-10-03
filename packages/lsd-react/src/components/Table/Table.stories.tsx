@@ -60,11 +60,111 @@ const headerOptions = new Array(8).fill(null).map((value, index) => ({
   name: `TITLE ${index + 1}`,
 }))
 
+type SingleTableRowProps = {
+  rowIndex: number
+  checked?: boolean
+  itemContentArray: string[]
+  onSelectChange?: () => void
+}
+
+const SingleTableRow = ({
+  rowIndex,
+  checked,
+  itemContentArray,
+  onSelectChange,
+}: SingleTableRowProps) => (
+  <TableRow checked={checked} onSelectChange={onSelectChange} key={rowIndex}>
+    {itemContentArray.map((itemContent, itemIndex) => (
+      <TableItem key={`${rowIndex}-${itemIndex}`}>{itemContent}</TableItem>
+    ))}
+  </TableRow>
+)
+
+type DefaultTypeRowsProps = {
+  rows: number
+  itemContentArray: string[]
+}
+
+const DefaultTypeRows = ({ rows, itemContentArray }: DefaultTypeRowsProps) => (
+  <>
+    {Array(rows)
+      .fill(null)
+      .map((_, rowIndex) => (
+        <SingleTableRow
+          rowIndex={rowIndex}
+          itemContentArray={itemContentArray}
+          key={rowIndex}
+        />
+      ))}
+  </>
+)
+
+type CheckboxTypeRowsProps = {
+  rows: number
+  itemContentArray: string[]
+  rowsChecked: boolean[]
+  handleRowCheckboxChange: (index: number) => void
+}
+const CheckboxTypeRows = ({
+  rows,
+  rowsChecked,
+  itemContentArray,
+  handleRowCheckboxChange,
+}: CheckboxTypeRowsProps) => (
+  <>
+    {Array(rows)
+      .fill(null)
+      .map((_, rowIndex) => (
+        <SingleTableRow
+          rowIndex={rowIndex}
+          checked={rowsChecked[rowIndex]}
+          itemContentArray={itemContentArray}
+          onSelectChange={() => handleRowCheckboxChange(rowIndex)}
+          key={rowIndex}
+        />
+      ))}
+  </>
+)
+
+type RadioTypeRowsProps = {
+  rows: number
+  selectedRowIndex: number | null
+  itemContentArray: string[]
+  handleRowCheckboxChange: (index: number) => void
+}
+
+const RadioTypeRows = ({
+  rows,
+  selectedRowIndex,
+  itemContentArray,
+  handleRowCheckboxChange,
+}: RadioTypeRowsProps) => (
+  <>
+    {Array(rows)
+      .fill(null)
+      .map((_, rowIndex) => (
+        <SingleTableRow
+          rowIndex={rowIndex}
+          checked={rowIndex === selectedRowIndex}
+          itemContentArray={itemContentArray}
+          onSelectChange={() => handleRowCheckboxChange(rowIndex)}
+          key={rowIndex}
+        />
+      ))}
+  </>
+)
+
 export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
   const [rows, setRows] = useState(1)
   const [footerContent, setFooterContent] = useState('Footer content goes here')
   const [allChecked, setAllChecked] = useState(false)
-  const [rowsChecked, setRowsChecked] = useState(Array(rows).fill(false))
+  // For radio type:
+  const [selectedRowIndex, setSelectedRowIndex] = useState<number | null>(null)
+  // For checkbox type:
+  const [rowsChecked, setRowsChecked] = useState<boolean[]>(
+    Array(rows).fill(false),
+  )
+
   const onPageChange = (page: number) => {
     setFooterContent(`Page ${page} of ${pages}`)
   }
@@ -77,15 +177,17 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
   }
 
   const handleRowCheckboxChange = (index: number) => {
-    const updatedRowsChecked = [...rowsChecked]
-    updatedRowsChecked[index] = !updatedRowsChecked[index]
-    setRowsChecked(updatedRowsChecked)
-
-    // Check if all rows are selected or if any row is unchecked
-    if (updatedRowsChecked.every((val) => val)) {
-      setAllChecked(true)
+    if (type === 'radio') {
+      setSelectedRowIndex(index)
     } else {
-      setAllChecked(false)
+      const updatedRowsChecked = [...rowsChecked]
+      updatedRowsChecked[index] = !updatedRowsChecked[index]
+      setRowsChecked(updatedRowsChecked)
+
+      setAllChecked(
+        updatedRowsChecked.every((val) => val) &&
+          updatedRowsChecked.length === rows,
+      )
     }
   }
 
@@ -108,15 +210,21 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
         }}
       >
         <IconButton
-          onClick={() => setRows((prev: number) => prev + 1)}
+          onClick={() => {
+            setRows((prev: number) => prev + 1)
+            setRowsChecked((prev) => [...prev, false])
+          }}
           size="medium"
         >
           <AddIcon color="primary" />
         </IconButton>
         <IconButton
-          onClick={() =>
+          onClick={() => {
             setRows((prev: number) => (prev > 1 ? prev - 1 : prev))
-          }
+            if (rows > 1) {
+              setRowsChecked((prev) => prev.slice(0, -1))
+            }
+          }}
           size="medium"
         >
           <RemoveIcon color="primary" />
@@ -155,21 +263,23 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
             <TableItem key={index}>{item.name}</TableItem>
           ))}
         </TableRow>
-        {Array(rows)
-          .fill(true)
-          .map((row, rowIndex) => (
-            <TableRow
-              checked={rowsChecked[rowIndex]}
-              onSelectChange={() => handleRowCheckboxChange(rowIndex)}
-              key={rowIndex}
-            >
-              {itemContentArray.map((itemContent, itemIndex) => (
-                <TableItem key={`${rowIndex}-${itemIndex}`}>
-                  {itemContent}
-                </TableItem>
-              ))}
-            </TableRow>
-          ))}
+        {type === 'checkbox' ? (
+          <CheckboxTypeRows
+            rows={rows}
+            rowsChecked={rowsChecked}
+            itemContentArray={itemContentArray}
+            handleRowCheckboxChange={handleRowCheckboxChange}
+          />
+        ) : type === 'radio' ? (
+          <RadioTypeRows
+            rows={rows}
+            selectedRowIndex={selectedRowIndex}
+            itemContentArray={itemContentArray}
+            handleRowCheckboxChange={handleRowCheckboxChange}
+          />
+        ) : (
+          <DefaultTypeRows rows={rows} itemContentArray={itemContentArray} />
+        )}
       </Table>
     </div>
   )
