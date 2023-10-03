@@ -67,7 +67,7 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
 
   const toolbar = (
     <>
-      <Dropdown size="small" label="Label" options={headerOptions} />
+      <Dropdown size="medium" options={headerOptions} />
       <div
         style={{
           display: 'flex',
@@ -77,7 +77,7 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
       >
         <IconButton
           onClick={() => setRows((prev: number) => prev + 1)}
-          size="small"
+          size="medium"
         >
           <AddIcon color="primary" />
         </IconButton>
@@ -85,14 +85,14 @@ export const Root: Story<TableProps> = ({ type, pages, ...args }) => {
           onClick={() =>
             setRows((prev: number) => (prev > 1 ? prev - 1 : prev))
           }
-          size="small"
+          size="medium"
         >
           <RemoveIcon color="primary" />
         </IconButton>
         <Button
-          size="small"
+          size="medium"
           style={{
-            height: '28px',
+            height: '32px',
             background: 'rgb(var(--lsd-border-primary))',
             color: 'rgb(var(--lsd-icon-secondary))',
           }}
