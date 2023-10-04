@@ -15,16 +15,23 @@ export default {
 
 export const Root: Story<
   ModalBodyProps & {
-    body: string
-    title: string
+    content: string
   }
-> = ({ body, ...args }) => (
-  <div style={{ width: 400 }}>
-    <ModalBody {...args}>{body}</ModalBody>
-  </div>
-)
+> = ({ content, ...args }) => {
+  const bodyStyle: React.CSSProperties = {
+    boxSizing: 'border-box',
+    border: '1px solid rgb(var(--lsd-border-primary)',
+    padding: '30px',
+  }
+
+  return (
+    <ModalBody {...args} style={bodyStyle}>
+      {content}
+    </ModalBody>
+  )
+}
 
 Root.args = {
-  title: 'Title',
-  body: 'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
+  content:
+    'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
 }

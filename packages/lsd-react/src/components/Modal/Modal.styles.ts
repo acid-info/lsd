@@ -69,7 +69,7 @@ export const ModalStyles = css`
     }
   }
 
-  .${modalClasses.extraSmall} {
+  .${modalClasses.xsmall} {
     .${modalClasses.modalContainer} {
       min-width: 490px;
     }

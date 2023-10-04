@@ -34,6 +34,8 @@ import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 import { NumberInputStyles } from '../NumberInput/NumberInput.styles'
 import { ModalStyles } from '../Modal/Modal.styles'
+import { ModalFooterStyles } from '../ModalFooter/ModalFooter.styles'
+import { ModalBody } from '../ModalBody'
 import { ModalBodyStyles } from '../ModalBody/ModalBody.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
@@ -71,6 +73,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     TableRowStyles,
     NumberInputStyles,
     ModalStyles,
+    ModalFooterStyles,
     ModalBodyStyles,
   ]
 

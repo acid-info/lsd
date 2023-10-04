@@ -4,7 +4,7 @@ export const modalClasses = {
   small: 'lsd-modal--small',
   medium: 'lsd-modal--medium',
   large: 'lsd-modal--large',
-  extraSmall: 'lsd-modal--extra-small',
+  xsmall: 'lsd-modal--extra-small',
 
   modalContainer: 'lsd-modal__container',
 

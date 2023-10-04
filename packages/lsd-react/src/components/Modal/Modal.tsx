@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import {
   CommonProps,
   omitCommonProps,
@@ -13,9 +13,9 @@ import { IconButton } from '../IconButton'
 export type ModalProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
     isOpen: boolean
-    size?: 'extraSmall' | 'small' | 'medium' | 'large'
-    title?: string
-    subtitle?: string
+    size?: 'xsmall' | 'small' | 'medium' | 'large'
+    title?: ReactNode
+    subtitle?: ReactNode
     onClose?: () => void
   }
 
@@ -67,7 +67,7 @@ export const Modal: React.FC<ModalProps> & {
 
             {!!subtitle && (
               <Typography
-                className={modalClasses.title}
+                className={modalClasses.subtitle}
                 variant={size === 'small' ? 'label2' : 'label1'}
                 component="div"
               >
