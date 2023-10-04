@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Meta, Story } from '@storybook/react'
-import { ModalBody } from '../ModalBody'
 import { Modal, ModalProps } from './Modal'
 import { Button } from '../Button'
+import { ModalBody } from '../ModalBody'
+import { ModalFooter } from '../ModalFooter'
 
 export default {
   title: 'Modal',
@@ -11,7 +12,7 @@ export default {
     size: {
       type: {
         name: 'enum',
-        value: ['extraSmall', 'small', 'medium', 'large'],
+        value: ['xsmall', 'small', 'medium', 'large'],
       },
     },
   },
@@ -23,25 +24,37 @@ export const Root: Story<
   }
 > = ({ body, ...args }) => {
   const [isOpen, setIsOpen] = useState(false)
+  const slotStyles: React.CSSProperties = {
+    boxSizing: 'border-box',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: '1px solid rgb(var(--lsd-border-primary)',
+    padding: '30px',
+  }
 
   return (
     <div style={{ width: 400 }}>
       <Button onClick={() => setIsOpen(!isOpen)}>Open Modal</Button>
       <Modal {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <ModalBody>{body}</ModalBody>
-        <div style={{ display: 'flex' }}>
+        <ModalBody>
+          <div style={slotStyles}>{body}</div>
+        </ModalBody>
+
+        <ModalFooter>
           <Button
-            size={args.size === 'extraSmall' ? 'small' : args.size}
+            size={args.size === 'xsmall' ? 'small' : args.size}
             style={{
               marginRight: 12,
             }}
           >
             Button 1
           </Button>
-          <Button size={args.size === 'extraSmall' ? 'small' : args.size}>
+          <Button size={args.size === 'xsmall' ? 'small' : args.size}>
             Button 2
           </Button>
-        </div>
+        </ModalFooter>
       </Modal>
     </div>
   )
