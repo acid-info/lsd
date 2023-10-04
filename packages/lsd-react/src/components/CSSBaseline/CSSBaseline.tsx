@@ -33,6 +33,8 @@ import { TextFieldStyles } from '../TextField/TextField.styles'
 import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 import { NumberInputStyles } from '../NumberInput/NumberInput.styles'
+import { ModalStyles } from '../Modal/Modal.styles'
+import { ModalBodyStyles } from '../ModalBody/ModalBody.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
@@ -68,6 +70,8 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     TableItemStyles,
     TableRowStyles,
     NumberInputStyles,
+    ModalStyles,
+    ModalBodyStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
