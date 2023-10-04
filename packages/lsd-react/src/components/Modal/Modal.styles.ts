@@ -21,6 +21,8 @@ export const ModalStyles = css`
   }
 
   .${modalClasses.modalContainer} {
+    position: relative;
+
     background: rgb(var(--lsd-surface-primary));
     padding: 20px;
 
@@ -43,6 +45,9 @@ export const ModalStyles = css`
   }
 
   .${modalClasses.closeIcon} {
+    position: absolute;
+    top: 8px;
+    right: 8px;
     cursor: pointer;
   }
 
