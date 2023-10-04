@@ -59,28 +59,12 @@ export const NumberInput: React.FC<NumberInputProps> & {
     if (disabled) return
     const newValue = Math.min(max, Number(input.value || '0') + step)
     input.setValue(newValue.toString())
-
-    const fakeEvent = {
-      target: { value: newValue.toString() },
-    }
-
-    if (onChange) {
-      input.onChange(fakeEvent as any)
-    }
   }
 
   const handleDecrement = () => {
     if (disabled) return
     const newValue = Math.max(min, Number(input.value || '0') - step)
     input.setValue(newValue.toString())
-
-    const fakeEvent = {
-      target: { value: newValue.toString() },
-    }
-
-    if (onChange) {
-      input.onChange(fakeEvent as any)
-    }
   }
 
   return (
