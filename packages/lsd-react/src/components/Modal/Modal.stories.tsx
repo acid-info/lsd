@@ -15,6 +15,11 @@ export default {
         value: ['xsmall', 'small', 'medium', 'large'],
       },
     },
+    isOpen: {
+      table: {
+        disable: true,
+      },
+    },
   },
 } as Meta
 
