@@ -25,6 +25,9 @@ export const ModalStyles = css`
     padding: 20px;
 
     max-width: 90%;
+
+    box-sizing: border-box;
+    border: 1px solid rgb(var(--lsd-border-primary));
   }
 
   .${modalClasses.header} {
