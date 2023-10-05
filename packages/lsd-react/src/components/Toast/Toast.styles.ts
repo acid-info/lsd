@@ -6,13 +6,14 @@ export const ToastStyles = css`
     box-sizing: border-box;
     display: flex;
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    align-items: center;
     background: rgb(var(--lsd-surface-primary));
     border: 1px solid rgb(var(--lsd-border-primary));
     padding: 8px;
-    align-items: center;
+
     z-index: 9999;
+
+    height: fit-content;
   }
 
   .${toastClasses.inlineButtonContainer} {
@@ -84,6 +85,47 @@ export const ToastStyles = css`
     position: absolute;
     top: 5px;
     left: -26px;
+  }
+
+  @keyframes moveDown {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes moveUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOutAnimation {
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }
+
+  .${toastClasses.moveDown} {
+    animation: moveDown 0.3s ease-out forwards;
+  }
+
+  .${toastClasses.moveUp} {
+    animation: moveUp 0.3s ease-out forwards;
+  }
+
+  .${toastClasses.closingAnimation} {
+    animation: fadeOutAnimation 0.3s forwards;
   }
 
   .${toastClasses.large} {
