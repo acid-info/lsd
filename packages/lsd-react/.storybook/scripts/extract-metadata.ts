@@ -11,6 +11,7 @@ const BUILD_DIR = path.resolve(ROOT_DIR, 'storybook-static')
 const STORIES_JSON = path.resolve(BUILD_DIR, 'stories.json')
 
 ;(global as any).__STORYBOOK_MODULE_ADDONS__ = {}
+;(global as any).__STORYBOOK_MODULE_PREVIEW_API__ = {}
 
 type StoryInfo = {
   id: string
@@ -72,18 +73,32 @@ export const fromStories = async (
 }
 
 export const extractGlobalTypes = async (assetsDir: string) => {
-  const filenames = await glob(assetsDir + `/preview-*.js`)
+  const filenames = await glob(assetsDir + `/preview-*.js.map`)
+
+  let previewFilename: string | null = null
 
   for (const filename of filenames) {
-    const file = await fsp.readFile(filename, 'utf-8')
-    if (!file.includes('as globalTypes')) continue
+    const file = await fsp.readFile(filename, 'utf8')
+    const json = JSON.parse(file)
 
-    const mod = await import(filename)
-
-    return mod.globalTypes
+    if (
+      json.sources &&
+      json.sources.some((source: string) =>
+        source.endsWith('.storybook/preview.tsx'),
+      )
+    ) {
+      previewFilename = filename.slice(0, -4)
+      break
+    }
   }
 
-  return []
+  if (!previewFilename) {
+    console.error('The preview.js file not found!')
+    return
+  }
+
+  const mod = await import(previewFilename)
+  return mod.default.globalTypes || []
 }
 
 export const extractMetadata = async (dir: string) => {
