@@ -10,6 +10,8 @@ const ROOT_DIR = path.resolve(DIRNAME, '../../../')
 const BUILD_DIR = path.resolve(ROOT_DIR, 'storybook-static')
 const STORIES_JSON = path.resolve(BUILD_DIR, 'stories.json')
 
+;(global as any).__STORYBOOK_MODULE_ADDONS__ = {}
+
 type StoryInfo = {
   id: string
   name: string
@@ -30,7 +32,10 @@ type StoriesJson = {
   stories: StoryInfo[]
 }
 
-export const fromStories = async (storiesJson: StoriesJson) => {
+export const fromStories = async (
+  storiesJson: StoriesJson,
+  assetsDir: string,
+) => {
   const { stories: storiesMap } = storiesJson
   const stories = Object.values(storiesMap).filter(
     (story) => !story.parameters.docsOnly,
@@ -45,9 +50,7 @@ export const fromStories = async (storiesJson: StoriesJson) => {
     }
   > = {}
 
-  const storyFiles = await glob(
-    path.join(BUILD_DIR, 'assets') + `/*.stories-*.js`,
-  )
+  const storyFiles = await glob(assetsDir + `/*.stories-*.js`)
 
   for (const file of storyFiles) {
     const mod = await import(file)
@@ -68,6 +71,48 @@ export const fromStories = async (storiesJson: StoriesJson) => {
     .sort((a, b) => a.name.localeCompare(b.name))
 }
 
+export const extractGlobalTypes = async (assetsDir: string) => {
+  const filenames = await glob(assetsDir + `/preview-*.js`)
+
+  for (const filename of filenames) {
+    const file = await fsp.readFile(filename, 'utf-8')
+    if (!file.includes('as globalTypes')) continue
+
+    const mod = await import(filename)
+
+    return mod.globalTypes
+  }
+
+  return []
+}
+
+export const extractMetadata = async (dir: string) => {
+  const assetsDir = path.join(dir, 'assets')
+
+  await fsp.writeFile(
+    path.join(assetsDir, 'package.json'),
+    Buffer.from(
+      JSON.stringify({
+        type: 'module',
+      }),
+    ),
+  )
+
+  const stories = await import(path.join(dir, 'stories.json'), {
+    assert: { type: 'json' },
+  })
+
+  const components = await fromStories(stories.default, assetsDir)
+  const globalTypes = await extractGlobalTypes(assetsDir)
+
+  fs.unlinkSync(path.join(assetsDir, 'package.json'))
+
+  return {
+    components,
+    globalTypes,
+  }
+}
+
 export const run = async () => {
   if (!fs.existsSync(BUILD_DIR)) {
     console.error('The storybook-static dir not found!')
@@ -78,25 +123,12 @@ export const run = async () => {
     process.exit(1)
   }
 
-  const stories = await import(STORIES_JSON, { assert: { type: 'json' } })
+  const metadata = await extractMetadata(BUILD_DIR)
 
   await fsp.writeFile(
-    path.join(BUILD_DIR, 'package.json'),
-    Buffer.from(
-      JSON.stringify({
-        type: 'module',
-      }),
-    ),
+    path.join(BUILD_DIR, '_metadata.json'),
+    Buffer.from(JSON.stringify(metadata)),
   )
-
-  const result = await fromStories(stories.default)
-
-  await fsp.writeFile(
-    path.join(BUILD_DIR, 'components.json'),
-    Buffer.from(JSON.stringify(result)),
-  )
-
-  fs.unlinkSync(path.join(BUILD_DIR, 'package.json'))
 }
 
 run()
