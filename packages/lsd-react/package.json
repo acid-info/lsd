@@ -9,7 +9,8 @@
     "build": "tsc && vite build",
     "watch": "tsc && vite build --watch --emptyOutDir false",
     "storybook": "storybook dev -p 6006 -s .storybook/public",
-    "build-storybook": "storybook build -s .storybook/public && ts-node -P tsconfig.node.json .storybook/scripts/export-storybook.ts",
+    "build-storybook": "storybook build -s .storybook/public && yarn storybook:export-components",
+    "storybook:export-components": "ts-node -P tsconfig.node.json .storybook/scripts/export-components.ts",
     "preview": "vite preview",
     "prepublish": "yarn build"
   },
