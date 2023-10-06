@@ -1,4 +1,4 @@
-import { useGlobals } from '@storybook/manager-api'
+import { useGlobals } from '@storybook/preview-api'
 import { Decorator } from '@storybook/react'
 import React, { useEffect } from 'react'
 import { ThemeProvider } from '../src'
