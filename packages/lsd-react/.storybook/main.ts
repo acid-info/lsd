@@ -1,5 +1,4 @@
-const { dirname, join } = require('path')
-
+import { dirname, join } from 'path'
 module.exports = {
   stories: [
     '../src/components/**/*.stories.mdx',
@@ -11,8 +10,9 @@ module.exports = {
     getAbsolutePath('@storybook/addon-essentials'),
   ],
 
-  core: {
-    builder: getAbsolutePath('@storybook/builder-vite'),
+  framework: {
+    name: getAbsolutePath('@storybook/react-vite'),
+    options: {},
   },
 
   docs: {
@@ -20,6 +20,6 @@ module.exports = {
   },
 }
 
-function getAbsolutePath(value) {
+function getAbsolutePath(value: string): any {
   return dirname(require.resolve(join(value, 'package.json')))
 }
