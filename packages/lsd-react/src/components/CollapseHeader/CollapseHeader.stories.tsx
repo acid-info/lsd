@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { CollapseHeader, CollapseHeaderProps } from './CollapseHeader'
 
 export default {
@@ -14,14 +14,16 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CollapseHeaderProps> = (args) => (
-  <div style={{ width: 'fit-content' }}>
-    <CollapseHeader {...args}></CollapseHeader>
-  </div>
-)
+export const Root: StoryObj<CollapseHeaderProps> = {
+  render: (args) => (
+    <div style={{ width: 'fit-content' }}>
+      <CollapseHeader {...args}></CollapseHeader>
+    </div>
+  ),
 
-Root.args = {
-  size: 'large',
-  label: 'title',
-  disabled: false,
+  args: {
+    size: 'large',
+    label: 'title',
+    disabled: false,
+  },
 }

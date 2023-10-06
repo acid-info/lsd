@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { DateField, DateFieldProps } from './DateField'
 
 export default {
@@ -22,38 +22,42 @@ export default {
   },
 } as Meta
 
-export const Uncontrolled: Story<DateFieldProps> = ({ ...args }) => {
-  return <DateField {...args} />
+export const Uncontrolled: StoryObj<DateFieldProps> = {
+  render: ({ ...args }) => {
+    return <DateField {...args} />
+  },
+
+  args: {
+    id: 'label',
+    size: 'large',
+    supportingText: 'Supporting text',
+    disabled: false,
+    value: undefined,
+    onChange: undefined,
+    error: false,
+    errorIcon: false,
+    clearButton: true,
+    variant: 'outlined-bottom',
+    label: 'Label',
+  },
 }
 
-export const Controlled: Story<DateFieldProps> = ({ ...args }) => {
-  return <DateField {...args} />
-}
+export const Controlled: StoryObj<DateFieldProps> = {
+  render: ({ ...args }) => {
+    return <DateField {...args} />
+  },
 
-Uncontrolled.args = {
-  id: 'label',
-  size: 'large',
-  supportingText: 'Supporting text',
-  disabled: false,
-  value: undefined,
-  onChange: undefined,
-  error: false,
-  errorIcon: false,
-  clearButton: true,
-  variant: 'outlined-bottom',
-  label: 'Label',
-}
-
-Controlled.args = {
-  id: 'label',
-  size: 'large',
-  supportingText: 'Supporting text',
-  disabled: false,
-  value: '2023-01-01',
-  onChange: undefined,
-  error: false,
-  errorIcon: false,
-  clearButton: true,
-  variant: 'outlined-bottom',
-  label: 'Label',
+  args: {
+    id: 'label',
+    size: 'large',
+    supportingText: 'Supporting text',
+    disabled: false,
+    value: '2023-01-01',
+    onChange: undefined,
+    error: false,
+    errorIcon: false,
+    clearButton: true,
+    variant: 'outlined-bottom',
+    label: 'Label',
+  },
 }

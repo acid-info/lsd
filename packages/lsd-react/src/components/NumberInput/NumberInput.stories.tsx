@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { NumberInput, NumberInputProps } from './NumberInput'
 
 export default {
@@ -15,21 +15,23 @@ export default {
   },
 } as Meta
 
-export const Root: Story<NumberInputProps> = ({ ...args }) => {
-  return <NumberInput {...args} />
-}
+export const Root: StoryObj<NumberInputProps> = {
+  render: ({ ...args }) => {
+    return <NumberInput {...args} />
+  },
 
-Root.args = {
-  id: 'label',
-  size: 'large',
-  supportingText: 'Supporting text',
-  disabled: false,
-  value: undefined,
-  onChange: undefined,
-  error: false,
-  errorIcon: false,
-  min: -10,
-  max: 10,
-  step: 1,
-  label: 'Label',
+  args: {
+    id: 'label',
+    size: 'large',
+    supportingText: 'Supporting text',
+    disabled: false,
+    value: undefined,
+    onChange: undefined,
+    error: false,
+    errorIcon: false,
+    min: -10,
+    max: 10,
+    step: 1,
+    label: 'Label',
+  },
 }

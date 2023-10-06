@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { CardHeader, CardHeaderProps } from './CardHeader'
 
 export default {
@@ -14,16 +14,15 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CardHeaderProps & { title: string }> = ({
-  title,
-  ...args
-}) => (
-  <div style={{ width: 400 }}>
-    <CardHeader {...args}>{title}</CardHeader>
-  </div>
-)
+export const Root: StoryObj<CardHeaderProps & { title: string }> = {
+  render: ({ title, ...args }) => (
+    <div style={{ width: 400 }}>
+      <CardHeader {...args}>{title}</CardHeader>
+    </div>
+  ),
 
-Root.args = {
-  size: 'large',
-  title: 'Title',
+  args: {
+    size: 'large',
+    title: 'Title',
+  },
 }

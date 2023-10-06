@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Checkbox } from '../Checkbox'
 import { CheckboxGroup, CheckboxGroupProps } from './CheckboxGroup'
 
@@ -16,20 +16,22 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CheckboxGroupProps> = (args) => (
-  <CheckboxGroup {...args}>
-    <Checkbox>Checkbox label</Checkbox>
-    <Checkbox>Checkbox label</Checkbox>
-    <Checkbox>Checkbox label</Checkbox>
-    <Checkbox>Checkbox label</Checkbox>
-    <Checkbox>Checkbox label</Checkbox>
-    <Checkbox>Checkbox label</Checkbox>
-    <Checkbox>Checkbox label</Checkbox>
-    <Checkbox>Checkbox label</Checkbox>
-  </CheckboxGroup>
-)
+export const Root: StoryObj<CheckboxGroupProps> = {
+  render: (args) => (
+    <CheckboxGroup {...args}>
+      <Checkbox>Checkbox label</Checkbox>
+      <Checkbox>Checkbox label</Checkbox>
+      <Checkbox>Checkbox label</Checkbox>
+      <Checkbox>Checkbox label</Checkbox>
+      <Checkbox>Checkbox label</Checkbox>
+      <Checkbox>Checkbox label</Checkbox>
+      <Checkbox>Checkbox label</Checkbox>
+      <Checkbox>Checkbox label</Checkbox>
+    </CheckboxGroup>
+  ),
 
-Root.args = {
-  size: 'large',
-  label: 'Label',
+  args: {
+    size: 'large',
+    label: 'Label',
+  },
 }

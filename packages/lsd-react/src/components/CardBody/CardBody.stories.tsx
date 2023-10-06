@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { CardBody, CardBodyProps } from './CardBody'
 
 export default {
@@ -14,15 +14,14 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CardBodyProps & { body: string }> = ({
-  body,
-  ...args
-}) => (
-  <div style={{ width: 400 }}>
-    <CardBody {...args}>{body}</CardBody>
-  </div>
-)
+export const Root: StoryObj<CardBodyProps & { body: string }> = {
+  render: ({ body, ...args }) => (
+    <div style={{ width: 400 }}>
+      <CardBody {...args}>{body}</CardBody>
+    </div>
+  ),
 
-Root.args = {
-  body: 'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
+  args: {
+    body: 'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
+  },
 }

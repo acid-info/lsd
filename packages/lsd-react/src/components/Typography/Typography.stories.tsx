@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { THEME_TYPOGRAPHY_VARIANTS } from '../Theme'
 import { Typography, TypographyProps } from './Typography'
 
@@ -23,10 +23,10 @@ export default {
   },
 } as Meta
 
-export const Root: Story<TypographyProps> = (args) => (
-  <Typography {...args}>Text</Typography>
-)
+export const Root: StoryObj<TypographyProps> = {
+  render: (args) => <Typography {...args}>Text</Typography>,
 
-Root.args = {
-  color: 'primary',
+  args: {
+    color: 'primary',
+  },
 }

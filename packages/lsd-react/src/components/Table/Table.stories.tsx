@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { useState } from 'react'
 import { Button } from '../Button'
 import { Dropdown } from '../Dropdown'
@@ -57,70 +57,72 @@ const headerOptions = new Array(8).fill(null).map((value, index) => ({
   name: `Title ${index + 1}`,
 }))
 
-export const Root: Story<TableProps> = ({ type, ...args }) => {
-  const [rows, setRows] = useState(1)
+export const Root: StoryObj<TableProps> = {
+  render: ({ type, ...args }) => {
+    const [rows, setRows] = useState(1)
 
-  const toolbar = (
-    <>
-      <Dropdown size="small" label="Label" options={headerOptions} />
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-        }}
-      >
-        <IconButton
-          onClick={() => setRows((prev: number) => prev + 1)}
-          size="small"
-        >
-          <AddIcon color="primary" />
-        </IconButton>
-        <IconButton
-          onClick={() =>
-            setRows((prev: number) => (prev > 1 ? prev - 1 : prev))
-          }
-          size="small"
-        >
-          <RemoveIcon color="primary" />
-        </IconButton>
-        <Button
-          size="small"
+    const toolbar = (
+      <>
+        <Dropdown size="small" label="Label" options={headerOptions} />
+        <div
           style={{
-            height: '28px',
-            background: 'rgb(var(--lsd-border-primary))',
-            color: 'rgb(var(--lsd-icon-secondary))',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
           }}
         >
-          Button
-        </Button>
+          <IconButton
+            onClick={() => setRows((prev: number) => prev + 1)}
+            size="small"
+          >
+            <AddIcon color="primary" />
+          </IconButton>
+          <IconButton
+            onClick={() =>
+              setRows((prev: number) => (prev > 1 ? prev - 1 : prev))
+            }
+            size="small"
+          >
+            <RemoveIcon color="primary" />
+          </IconButton>
+          <Button
+            size="small"
+            style={{
+              height: '28px',
+              background: 'rgb(var(--lsd-border-primary))',
+              color: 'rgb(var(--lsd-icon-secondary))',
+            }}
+          >
+            Button
+          </Button>
+        </div>
+      </>
+    )
+
+    return (
+      <div style={{ maxWidth: 800 }}>
+        <Table
+          type={type}
+          header={header}
+          toolbar={toolbar}
+          headerOptions={headerOptions}
+          {...args}
+        >
+          <TableRow>
+            {headerOptions.map((item) => (
+              <TableItem>{item.name}</TableItem>
+            ))}
+          </TableRow>
+          {Array(rows)
+            .fill(true)
+            .map(() => content)}
+        </Table>
       </div>
-    </>
-  )
+    )
+  },
 
-  return (
-    <div style={{ maxWidth: 800 }}>
-      <Table
-        type={type}
-        header={header}
-        toolbar={toolbar}
-        headerOptions={headerOptions}
-        {...args}
-      >
-        <TableRow>
-          {headerOptions.map((item) => (
-            <TableItem>{item.name}</TableItem>
-          ))}
-        </TableRow>
-        {Array(rows)
-          .fill(true)
-          .map(() => content)}
-      </Table>
-    </div>
-  )
-}
-
-Root.args = {
-  size: 'large',
-  type: 'default',
+  args: {
+    size: 'large',
+    type: 'default',
+  },
 }

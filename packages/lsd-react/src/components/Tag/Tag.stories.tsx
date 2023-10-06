@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { FolderIcon } from '../Icons'
 import { Tag, TagProps } from './Tag'
 
@@ -34,15 +34,17 @@ export default {
   },
 } as Meta
 
-export const Root: Story<TagProps> = (args) => (
-  <Tag {...args} icon={<FolderIcon color="primary" />}>
-    Tag
-  </Tag>
-)
+export const Root: StoryObj<TagProps> = {
+  render: (args) => (
+    <Tag {...args} icon={<FolderIcon color="primary" />}>
+      Tag
+    </Tag>
+  ),
 
-Root.args = {
-  variant: 'outlined',
-  iconDirection: 'left',
-  disabled: false,
-  size: 'large',
+  args: {
+    variant: 'outlined',
+    iconDirection: 'left',
+    disabled: false,
+    size: 'large',
+  },
 }

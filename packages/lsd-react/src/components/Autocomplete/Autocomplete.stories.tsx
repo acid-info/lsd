@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Autocomplete, AutocompleteProps } from './Autocomplete'
 
 const list = JSON.parse(
@@ -26,18 +26,19 @@ export default {
   },
 } as Meta
 
-export const Root: Story<AutocompleteProps> = (args) => (
-  <Autocomplete {...args}>Autocomplete</Autocomplete>
-)
-Root.args = {
-  id: 'cryptocurrency',
-  size: 'large',
-  disabled: false,
-  withIcon: false,
-  error: false,
-  variant: 'outlined',
-  placeholder: 'Placeholder',
-  onChange: undefined,
-  options: list,
-  label: 'Cryptocurrency',
+export const Root: StoryObj<AutocompleteProps> = {
+  render: (args) => <Autocomplete {...args}>Autocomplete</Autocomplete>,
+
+  args: {
+    id: 'cryptocurrency',
+    size: 'large',
+    disabled: false,
+    withIcon: false,
+    error: false,
+    variant: 'outlined',
+    placeholder: 'Placeholder',
+    onChange: undefined,
+    options: list,
+    label: 'Cryptocurrency',
+  },
 }

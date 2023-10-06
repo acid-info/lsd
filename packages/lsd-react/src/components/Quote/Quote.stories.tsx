@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Quote, QuoteProps } from './Quote'
 
 export default {
@@ -14,16 +14,19 @@ export default {
   },
 } as Meta
 
-export const Root: Story<QuoteProps> = (args) => (
-  <div style={{ maxWidth: '600px' }}>
-    <Quote {...args}>
-      <div>
-        A wise man can learn more from a foolish question than a fool can learn
-        from a wise answer.
-      </div>
-    </Quote>
-  </div>
-)
-Root.args = {
-  mode: 'indented-line',
+export const Root: StoryObj<QuoteProps> = {
+  render: (args) => (
+    <div style={{ maxWidth: '600px' }}>
+      <Quote {...args}>
+        <div>
+          A wise man can learn more from a foolish question than a fool can
+          learn from a wise answer.
+        </div>
+      </Quote>
+    </div>
+  ),
+
+  args: {
+    mode: 'indented-line',
+  },
 }

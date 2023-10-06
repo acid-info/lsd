@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { IconButton } from '../IconButton/IconButton'
 import { IconButtonGroup, IconButtonGroupProps } from './IconButtonGroup'
@@ -31,29 +31,31 @@ export default {
   },
 } as Meta
 
-export const Root: Story<
+export const Root: StoryObj<
   IconButtonGroupProps & {
     icon: string
     buttons: number
   }
-> = ({ icon, buttons, ...args }) => {
-  const IconComponent = useStorybookIconComponent(icon)
+> = {
+  render: ({ icon, buttons, ...args }) => {
+    const IconComponent = useStorybookIconComponent(icon)
 
-  return (
-    <IconButtonGroup {...args}>
-      {new Array(Math.max(1, buttons)).fill(null).map((tab, index) => (
-        <IconButton key={index}>
-          {IconComponent && <IconComponent color="primary"></IconComponent>}
-        </IconButton>
-      ))}
-    </IconButtonGroup>
-  )
-}
+    return (
+      <IconButtonGroup {...args}>
+        {new Array(Math.max(1, buttons)).fill(null).map((tab, index) => (
+          <IconButton key={index}>
+            {IconComponent && <IconComponent color="primary"></IconComponent>}
+          </IconButton>
+        ))}
+      </IconButtonGroup>
+    )
+  },
 
-Root.args = {
-  size: 'large',
-  variant: 'outlined',
-  disabled: false,
-  buttons: 4,
-  icon: 'KeyboardReturnIcon',
+  args: {
+    size: 'large',
+    variant: 'outlined',
+    disabled: false,
+    buttons: 4,
+    icon: 'KeyboardReturnIcon',
+  },
 }

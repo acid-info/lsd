@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { TableItem, TableItemProps } from './TableItem'
 
 export default {
@@ -15,8 +15,10 @@ export default {
   },
 } as Meta
 
-export const Root: Story<TableItemProps> = ({ ...args }) => {
-  return <TableItem {...args}>Content</TableItem>
-}
+export const Root: StoryObj<TableItemProps> = {
+  render: ({ ...args }) => {
+    return <TableItem {...args}>Content</TableItem>
+  },
 
-Root.args = {}
+  args: {},
+}

@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { TextField, TextFieldProps } from './TextField'
 
@@ -30,29 +30,28 @@ export default {
   },
 } as Meta
 
-export const Root: Story<Omit<TextFieldProps, 'icon'> & { icon: string }> = ({
-  icon,
-  ...args
-}) => {
-  const Icon = useStorybookIconComponent(icon)
+export const Root: StoryObj<Omit<TextFieldProps, 'icon'> & { icon: string }> = {
+  render: ({ icon, ...args }) => {
+    const Icon = useStorybookIconComponent(icon)
 
-  return (
-    <TextField {...args} icon={Icon && <Icon color="primary" />}>
-      TextField
-    </TextField>
-  )
-}
+    return (
+      <TextField {...args} icon={Icon && <Icon color="primary" />}>
+        TextField
+      </TextField>
+    )
+  },
 
-Root.args = {
-  size: 'large',
-  supportingText: 'Supporting text',
-  disabled: false,
-  error: false,
-  errorIcon: false,
-  icon: 'None',
-  variant: 'outlined-bottom',
-  clearButton: true,
-  placeholder: 'Placeholder',
-  defaultValue: 'default value',
-  onChange: undefined,
+  args: {
+    size: 'large',
+    supportingText: 'Supporting text',
+    disabled: false,
+    error: false,
+    errorIcon: false,
+    icon: 'None',
+    variant: 'outlined-bottom',
+    clearButton: true,
+    placeholder: 'Placeholder',
+    defaultValue: 'default value',
+    onChange: undefined,
+  },
 }

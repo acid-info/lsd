@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { TableBody, TableBodyProps } from './TableBody'
 
 export default {
@@ -14,19 +14,18 @@ export default {
   },
 } as Meta
 
-export const Root: Story<TableBodyProps & { body: string }> = ({
-  body,
-  ...args
-}) => (
-  <div style={{ maxWidth: 800 }}>
-    <TableBody {...args}>{body}</TableBody>
-  </div>
-)
+export const Root: StoryObj<TableBodyProps & { body: string }> = {
+  render: ({ body, ...args }) => (
+    <div style={{ maxWidth: 800 }}>
+      <TableBody {...args}>{body}</TableBody>
+    </div>
+  ),
 
-Root.args = {
-  size: 'large',
-  options: new Array(4).fill(null).map((value, index) => ({
-    value: `${index}`,
-    name: `Title ${index + 1}`,
-  })),
+  args: {
+    size: 'large',
+    options: new Array(4).fill(null).map((value, index) => ({
+      value: `${index}`,
+      name: `Title ${index + 1}`,
+    })),
+  },
 }

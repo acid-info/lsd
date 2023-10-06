@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { TabItem } from '../TabItem'
 import { Tabs, TabsProps } from './Tabs'
@@ -30,35 +30,37 @@ export default {
   },
 } as Meta
 
-export const Root: Story<
+export const Root: StoryObj<
   TabsProps & {
     icon: string
     tabs: number
   }
-> = ({ icon, tabs, ...args }) => {
-  const IconComponent = useStorybookIconComponent(icon)
+> = {
+  render: ({ icon, tabs, ...args }) => {
+    const IconComponent = useStorybookIconComponent(icon)
 
-  return (
-    <div style={{ width: '100%' }}>
-      <Tabs {...args} activeTab="Tab 1">
-        {new Array(Math.max(1, tabs)).fill(null).map((tab, index) => (
-          <TabItem
-            key={index}
-            name={`Tab ${index + 1}`}
-            icon={
-              IconComponent && <IconComponent color="primary"></IconComponent>
-            }
-          >
-            {`Tab ${index + 1}`}
-          </TabItem>
-        ))}
-      </Tabs>
-    </div>
-  )
-}
+    return (
+      <div style={{ width: '100%' }}>
+        <Tabs {...args} activeTab="Tab 1">
+          {new Array(Math.max(1, tabs)).fill(null).map((tab, index) => (
+            <TabItem
+              key={index}
+              name={`Tab ${index + 1}`}
+              icon={
+                IconComponent && <IconComponent color="primary"></IconComponent>
+              }
+            >
+              {`Tab ${index + 1}`}
+            </TabItem>
+          ))}
+        </Tabs>
+      </div>
+    )
+  },
 
-Root.args = {
-  fullWidth: false,
-  scrollControls: true,
-  onChange: undefined,
+  args: {
+    fullWidth: false,
+    scrollControls: true,
+    onChange: undefined,
+  },
 }

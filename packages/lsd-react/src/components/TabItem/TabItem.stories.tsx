@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { TabItem, TabItemProps } from './TabItem'
 
@@ -23,21 +23,20 @@ export default {
   },
 } as Meta
 
-export const Root: Story<TabItemProps & { icon: string }> = ({
-  icon,
-  ...args
-}) => {
-  const Icon = useStorybookIconComponent(icon)
+export const Root: StoryObj<TabItemProps & { icon: string }> = {
+  render: ({ icon, ...args }) => {
+    const Icon = useStorybookIconComponent(icon)
 
-  return (
-    <TabItem {...args} icon={Icon && <Icon color="primary" />}>
-      Tab
-    </TabItem>
-  )
-}
+    return (
+      <TabItem {...args} icon={Icon && <Icon color="primary" />}>
+        Tab
+      </TabItem>
+    )
+  },
 
-Root.args = {
-  disabled: false,
-  selected: false,
-  size: 'large',
+  args: {
+    disabled: false,
+    selected: false,
+    size: 'large',
+  },
 }

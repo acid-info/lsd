@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { BreadcrumbItem, BreadcrumbItemProps } from './BreadcrumbItem'
 
 export default {
@@ -14,14 +14,16 @@ export default {
   },
 } as Meta
 
-export const Root: Story<BreadcrumbItemProps> = (args) => (
-  <div style={{ width: 'fit-content' }}>
-    <BreadcrumbItem {...args}></BreadcrumbItem>
-  </div>
-)
+export const Root: StoryObj<BreadcrumbItemProps> = {
+  render: (args) => (
+    <div style={{ width: 'fit-content' }}>
+      <BreadcrumbItem {...args}></BreadcrumbItem>
+    </div>
+  ),
 
-Root.args = {
-  label: 'label',
-  outlined: true,
-  size: 'large',
+  args: {
+    label: 'label',
+    outlined: true,
+    size: 'large',
+  },
 }

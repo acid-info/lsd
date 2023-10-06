@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { CardBody } from '../CardBody'
 import { CardHeader } from '../CardHeader'
 import { Card, CardProps } from './Card'
@@ -16,22 +16,24 @@ export default {
   },
 } as Meta
 
-export const Root: Story<
+export const Root: StoryObj<
   CardProps & {
     body: string
     title: string
   }
-> = ({ title, body, ...args }) => (
-  <div style={{ width: 400 }}>
-    <Card {...args}>
-      <CardHeader>{title}</CardHeader>
-      <CardBody>{body}</CardBody>
-    </Card>
-  </div>
-)
+> = {
+  render: ({ title, body, ...args }) => (
+    <div style={{ width: 400 }}>
+      <Card {...args}>
+        <CardHeader>{title}</CardHeader>
+        <CardBody>{body}</CardBody>
+      </Card>
+    </div>
+  ),
 
-Root.args = {
-  size: 'large',
-  title: 'Title',
-  body: 'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
+  args: {
+    size: 'large',
+    title: 'Title',
+    body: 'A wise man can learn more from a foolish question than a fool can learn from a wise answer.',
+  },
 }

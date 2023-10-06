@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Dropdown, DropdownProps } from './Dropdown'
 
 export default {
@@ -21,25 +21,27 @@ export default {
   },
 } as Meta
 
-export const Root: Story<DropdownProps> = (args) => (
-  <div style={{ width: 300 }}>
-    <Dropdown {...args}></Dropdown>
-  </div>
-)
+export const Root: StoryObj<DropdownProps> = {
+  render: (args) => (
+    <div style={{ width: 300 }}>
+      <Dropdown {...args}></Dropdown>
+    </div>
+  ),
 
-Root.args = {
-  id: 'cryptocurrency',
-  size: 'large',
-  triggerLabel: 'Choose an option',
-  supportingText: '',
-  disabled: false,
-  error: false,
-  multi: false,
-  variant: 'outlined',
-  onChange: undefined,
-  options: new Array(16).fill(null).map((value, index) => ({
-    value: `${index}`,
-    name: `Option ${index + 1}`,
-  })),
-  label: 'Cryptocurrency',
+  args: {
+    id: 'cryptocurrency',
+    size: 'large',
+    triggerLabel: 'Choose an option',
+    supportingText: '',
+    disabled: false,
+    error: false,
+    multi: false,
+    variant: 'outlined',
+    onChange: undefined,
+    options: new Array(16).fill(null).map((value, index) => ({
+      value: `${index}`,
+      name: `Option ${index + 1}`,
+    })),
+    label: 'Cryptocurrency',
+  },
 }

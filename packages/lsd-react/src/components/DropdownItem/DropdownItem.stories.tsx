@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { DropdownItem, DropdownItemProps } from './DropdownItem'
 
 export default {
@@ -14,16 +14,18 @@ export default {
   },
 } as Meta
 
-export const Root: Story<DropdownItemProps> = (args) => (
-  <div style={{ width: 400, overflow: 'hidden' }}>
-    <DropdownItem {...args}></DropdownItem>
-  </div>
-)
+export const Root: StoryObj<DropdownItemProps> = {
+  render: (args) => (
+    <div style={{ width: 400, overflow: 'hidden' }}>
+      <DropdownItem {...args}></DropdownItem>
+    </div>
+  ),
 
-Root.args = {
-  label: 'label',
-  size: 'large',
-  selected: false,
-  withIcon: false,
-  disabled: false,
+  args: {
+    label: 'label',
+    size: 'large',
+    selected: false,
+    withIcon: false,
+    disabled: false,
+  },
 }

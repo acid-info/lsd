@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { RadioButton, RadioButtonProps } from './RadioButton'
 
 export default {
@@ -15,14 +15,14 @@ export default {
   },
 } as Meta
 
-export const Root: Story<RadioButtonProps> = (args) => (
-  <RadioButton {...args}>RadioButton label</RadioButton>
-)
+export const Root: StoryObj<RadioButtonProps> = {
+  render: (args) => <RadioButton {...args}>RadioButton label</RadioButton>,
 
-Root.args = {
-  size: 'large',
-  disabled: false,
-  checked: undefined,
-  onChange: undefined,
-  value: '1',
+  args: {
+    size: 'large',
+    disabled: false,
+    checked: undefined,
+    onChange: undefined,
+    value: '1',
+  },
 }

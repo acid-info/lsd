@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Checkbox, CheckboxProps } from './Checkbox'
 
 export default {
@@ -15,14 +15,14 @@ export default {
   },
 } as Meta
 
-export const Root: Story<CheckboxProps> = (args) => (
-  <Checkbox {...args}>Checkbox</Checkbox>
-)
+export const Root: StoryObj<CheckboxProps> = {
+  render: (args) => <Checkbox {...args}>Checkbox</Checkbox>,
 
-Root.args = {
-  size: 'large',
-  disabled: false,
-  indeterminate: false,
-  checked: undefined,
-  onChange: undefined,
+  args: {
+    size: 'large',
+    disabled: false,
+    indeterminate: false,
+    checked: undefined,
+    onChange: undefined,
+  },
 }

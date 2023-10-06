@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { IconButton, IconButtonProps } from './IconButton'
 
@@ -23,18 +23,17 @@ export default {
   },
 } as Meta
 
-export const Root: Story<IconButtonProps & { icon: string }> = ({
-  icon,
-  ...args
-}) => {
-  const Icon = useStorybookIconComponent(icon)
+export const Root: StoryObj<IconButtonProps & { icon: string }> = {
+  render: ({ icon, ...args }) => {
+    const Icon = useStorybookIconComponent(icon)
 
-  return <IconButton {...args}>{Icon && <Icon color="primary" />}</IconButton>
-}
+    return <IconButton {...args}>{Icon && <Icon color="primary" />}</IconButton>
+  },
 
-Root.args = {
-  variant: 'outlined',
-  icon: 'KeyboardReturnIcon',
-  size: 'large',
-  disabled: false,
+  args: {
+    variant: 'outlined',
+    icon: 'KeyboardReturnIcon',
+    size: 'large',
+    disabled: false,
+  },
 }

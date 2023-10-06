@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { DatePicker, DatePickerProps } from './DatePicker'
 
 export default {
@@ -22,40 +22,44 @@ export default {
   },
 } as Meta
 
-export const Uncontrolled: Story<DatePickerProps> = ({ ...args }) => {
-  return <DatePicker {...args}>DatePicker</DatePicker>
+export const Uncontrolled: StoryObj<DatePickerProps> = {
+  render: ({ ...args }) => {
+    return <DatePicker {...args}>DatePicker</DatePicker>
+  },
+
+  args: {
+    id: 'label',
+    supportingText: 'Supporting text',
+    disabled: false,
+    error: false,
+    value: undefined,
+    onChange: undefined,
+    errorIcon: false,
+    clearButton: true,
+    withCalendar: true,
+    size: 'large',
+    variant: 'outlined-bottom',
+    label: 'Label',
+  },
 }
 
-export const Controlled: Story<DatePickerProps> = ({ ...args }) => {
-  return <DatePicker {...args}>DatePicker</DatePicker>
-}
+export const Controlled: StoryObj<DatePickerProps> = {
+  render: ({ ...args }) => {
+    return <DatePicker {...args}>DatePicker</DatePicker>
+  },
 
-Uncontrolled.args = {
-  id: 'label',
-  supportingText: 'Supporting text',
-  disabled: false,
-  error: false,
-  value: undefined,
-  onChange: undefined,
-  errorIcon: false,
-  clearButton: true,
-  withCalendar: true,
-  size: 'large',
-  variant: 'outlined-bottom',
-  label: 'Label',
-}
-
-Controlled.args = {
-  id: 'label',
-  supportingText: 'Supporting text',
-  disabled: false,
-  error: false,
-  value: '2023-01-01',
-  onChange: undefined,
-  errorIcon: false,
-  clearButton: true,
-  withCalendar: true,
-  size: 'large',
-  variant: 'outlined-bottom',
-  label: 'Label',
+  args: {
+    id: 'label',
+    supportingText: 'Supporting text',
+    disabled: false,
+    error: false,
+    value: '2023-01-01',
+    onChange: undefined,
+    errorIcon: false,
+    clearButton: true,
+    withCalendar: true,
+    size: 'large',
+    variant: 'outlined-bottom',
+    label: 'Label',
+  },
 }

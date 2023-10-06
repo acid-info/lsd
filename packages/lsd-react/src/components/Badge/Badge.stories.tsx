@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import { StoryObj, Meta, StoryFn } from '@storybook/react'
 import { Badge, BadgeProps } from './Badge'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 
@@ -41,22 +41,21 @@ export default {
   },
 } as Meta
 
-export const Root: Story<BadgeProps & { icon: string }> = ({
-  icon,
-  ...args
-}) => {
-  const Icon = useStorybookIconComponent(icon)
-  return (
-    <Badge {...args} icon={Icon && <Icon color="primary" />}>
-      Badge
-    </Badge>
-  )
-}
+export const Root: StoryObj<BadgeProps & { icon: string }> = {
+  render: ({ icon, ...args }) => {
+    const Icon = useStorybookIconComponent(icon)
+    return (
+      <Badge {...args} icon={Icon && <Icon color="primary" />}>
+        Badge
+      </Badge>
+    )
+  },
 
-Root.args = {
-  variant: 'outlined',
-  iconDirection: 'left',
-  disabled: false,
-  size: 'large',
-  icon: 'FolderIcon',
+  args: {
+    variant: 'outlined',
+    iconDirection: 'left',
+    disabled: false,
+    size: 'large',
+    icon: 'FolderIcon',
+  },
 }
