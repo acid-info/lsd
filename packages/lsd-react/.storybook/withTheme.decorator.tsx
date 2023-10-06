@@ -1,9 +1,10 @@
-import { DecoratorFunction, useGlobals } from '@storybook/addons'
+import { useGlobals } from '@storybook/manager-api'
+import { Decorator } from '@storybook/react'
 import React, { useEffect } from 'react'
 import { ThemeProvider } from '../src'
 import { storybookThemes } from './themes'
 
-export const withTheme: DecoratorFunction = (Story, context) => {
+export const withTheme: Decorator = (Story, context) => {
   const StoryComponent = Story as any as React.ComponentType
 
   const theme = storybookThemes.getTheme(context)
