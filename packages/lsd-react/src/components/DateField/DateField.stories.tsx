@@ -17,7 +17,6 @@ export default {
         name: 'enum',
         value: ['outlined', 'underlined'],
       },
-      defaultValue: 'large',
     },
   },
 } as Meta
