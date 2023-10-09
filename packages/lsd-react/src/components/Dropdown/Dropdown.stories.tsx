@@ -10,7 +10,6 @@ export default {
         name: 'enum',
         value: ['outlined', 'underlined'],
       },
-      defaultValue: 'large',
     },
     size: {
       type: {
