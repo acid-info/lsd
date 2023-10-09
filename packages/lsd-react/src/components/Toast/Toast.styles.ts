@@ -53,7 +53,6 @@ export const ToastStyles = css`
 
   .${toastClasses.title} {
     position: relative;
-    font-weight: bold;
   }
 
   .${toastClasses.information} {
@@ -83,7 +82,7 @@ export const ToastStyles = css`
 
   .${toastClasses.errorIcon} {
     position: absolute;
-    top: 5px;
+    top: 3px;
     left: -26px;
   }
 
@@ -143,6 +142,10 @@ export const ToastStyles = css`
   .${toastClasses.small} {
     .${toastClasses.textContainer} {
       min-width: 144px;
+    }
+
+    .${toastClasses.errorIcon} {
+      top: 0px;
     }
   }
 `

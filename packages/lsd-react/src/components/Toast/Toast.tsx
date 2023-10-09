@@ -126,7 +126,11 @@ export const Toast: React.FC<ToastProps> & {
       >
         <div className={clsx(toastClasses.textContainer)}>
           {!!title && (
-            <Typography className={toastClasses.title} component="div">
+            <Typography
+              className={toastClasses.title}
+              component="div"
+              variant={size === 'small' ? 'label2' : 'label1'}
+            >
               <ErrorIcon
                 color="primary"
                 className={toastClasses.errorIcon}
@@ -137,7 +141,11 @@ export const Toast: React.FC<ToastProps> & {
           )}
 
           {!!information && (
-            <Typography className={toastClasses.information} component="div">
+            <Typography
+              className={toastClasses.information}
+              component="div"
+              variant={size === 'small' ? 'label2' : 'label1'}
+            >
               {information}
             </Typography>
           )}
