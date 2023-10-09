@@ -36,7 +36,6 @@ export default {
       type: {
         name: 'number',
       },
-      defaultValue: 4,
     },
   },
 } as Meta
