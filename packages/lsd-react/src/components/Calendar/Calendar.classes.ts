@@ -6,7 +6,6 @@ export const calendarClasses = {
   disabled: 'lsd-calendar--disabled',
 
   header: 'lsd-calendar-header',
-  grid: 'lsd-calendar-body',
   weekDay: 'lsd-calendar__week_day',
   button: 'lsd-calendar__button',
   row: 'lsd-calendar__row',
@@ -16,9 +15,19 @@ export const calendarClasses = {
   year: 'lsd-calendar-year',
   month: 'lsd-calendar-month',
   day: 'lsd-calendar-day',
+
+  dayContainer: 'lsd-calendar-day__container',
+  dayRange: 'lsd-calendar-day--range',
   daySelected: 'lsd-calendar-day--selected',
   dayDisabled: 'lsd-calendar-day--disabled',
   dayIsToday: 'lsd-calendar-day--today',
+
+  dayBorderLeft: 'lsd-calendar-day--border-left',
+  dayBorderRight: 'lsd-calendar-day--border-right',
+  dayBorderLeftAndRight: 'lsd-calendar-day--border-left-and-right',
+  dayBorderTopAndBottom: 'lsd-calendar-day--border-up-and-down',
+
   todayIndicator: 'lsd-calendar-day__today_indicator',
-  dayRange: 'lsd-calendar-day--range',
+
+  monthTable: 'lsd-calendar__month-table',
 }

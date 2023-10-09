@@ -17,9 +17,9 @@ export const CalendarStyles = css`
   }
 
   .${calendarClasses.container} {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     margin: 8px 2px 2px;
-    grid-gap: 0 64px;
   }
 
   .${calendarClasses.open} {
@@ -35,19 +35,11 @@ export const CalendarStyles = css`
     padding-bottom: 10px;
   }
 
-  .${calendarClasses.grid} {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    justify-content: center;
-    cursor: pointer;
-  }
-
   .${calendarClasses.weekDay} {
-    text-align: center;
-    aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    aspect-ratio: 1 / 1;
   }
 
   .${calendarClasses.row} {
@@ -86,12 +78,22 @@ export const CalendarStyles = css`
     text-decoration-color: rgb(var(--lsd-border-primary));
   }
 
-  .${calendarClasses.day} {
+  .${calendarClasses.dayContainer} {
     cursor: pointer;
-    border: none;
     background: transparent;
-    aspect-ratio: 1 / 1;
+
     position: relative;
+    box-sizing: border-box;
+
+    /* Prevents layout shifts when we add borders to the days */
+    border: 1px solid transparent;
+  }
+
+  .${calendarClasses.day} {
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .${calendarClasses.day}:hover {
@@ -143,5 +145,30 @@ export const CalendarStyles = css`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  /* Using style double instead of solid. When collapsing borders, */
+  /* this prevents the transparent borders from overriding the other borders. */
+  /* This happens because the 'double' style is more specific than the 'solid' style */
+  .${calendarClasses.dayBorderLeft} {
+    border-left: 1px double rgb(var(--lsd-border-primary));
+  }
+
+  .${calendarClasses.dayBorderRight} {
+    border-right: 1px double rgb(var(--lsd-border-primary));
+  }
+
+  .${calendarClasses.dayBorderLeftAndRight} {
+    border-left: 1px double rgb(var(--lsd-border-primary));
+    border-right: 1px double rgb(var(--lsd-border-primary));
+  }
+
+  .${calendarClasses.dayBorderTopAndBottom} {
+    border-top: 1px double rgb(var(--lsd-border-primary));
+    border-bottom: 1px double rgb(var(--lsd-border-primary));
+  }
+
+  .${calendarClasses.monthTable} {
+    border-collapse: collapse;
   }
 `

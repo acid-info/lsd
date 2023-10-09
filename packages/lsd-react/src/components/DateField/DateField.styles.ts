@@ -12,9 +12,26 @@ export const DateFieldStyles = css`
   }
 
   .${dateFieldClasses.icon} {
+    position: absolute;
+    right: 0;
+
     cursor: pointer;
     display: flex;
     align-items: center;
+    background-color: rgb(var(--lsd-surface-primary));
+  }
+
+  .${dateFieldClasses.icon}:focus {
+    background: blue;
+    background-color: pink;
+    border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  .${dateFieldClasses.noIcon} {
+    position: absolute;
+    right: 0;
+    background-color: rgb(var(--lsd-surface-primary));
+    padding: 12px;
   }
 
   .${dateFieldClasses.outlined} {
@@ -26,6 +43,9 @@ export const DateFieldStyles = css`
   }
 
   .${dateFieldClasses.inputContainer} {
+    // Position relative allows the icons to be absolute positioned...
+    // ... and the icons should be absolute positioned to be on top of the browser's default icons.
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -70,7 +90,7 @@ export const DateFieldStyles = css`
       height: 40px;
     }
     .${dateFieldClasses.input} {
-      padding: 9px 13px 9px 17px;
+      padding: 9px 0px 9px 17px;
     }
     .${dateFieldClasses.icon} {
       padding: 12px 13px;
@@ -82,6 +102,7 @@ export const DateFieldStyles = css`
 
   .${dateFieldClasses.medium} {
     width: 188px;
+
     .${dateFieldClasses.label} {
       margin: 0 0 6px 14px;
     }
@@ -101,6 +122,7 @@ export const DateFieldStyles = css`
 
   .${dateFieldClasses.small} {
     width: 164px;
+
     .${dateFieldClasses.label} {
       margin: 0 0 6px 12px;
     }
@@ -109,6 +131,7 @@ export const DateFieldStyles = css`
     }
     .${dateFieldClasses.input} {
       padding: 5px 9px 5px 11px;
+      font-size: 12px;
     }
     .${dateFieldClasses.icon} {
       padding: 6px 9px;

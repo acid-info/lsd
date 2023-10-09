@@ -4,11 +4,14 @@ import { useInput } from '../../utils/useInput'
 import { CloseIcon, ErrorIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { dateFieldClasses } from './DateField.classes'
+import {
+  CommonProps,
+  useCommonProps,
+  omitCommonProps,
+} from '../../utils/useCommonProps'
 
-export type DateFieldProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'onChange' | 'value'
-> &
+export type DateFieldProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value'> &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
     label?: React.ReactNode
     size?: 'large' | 'medium' | 'small'
@@ -45,9 +48,11 @@ export const DateField: React.FC<DateFieldProps> & {
   icon,
   onIconClick,
   inputProps = {},
+  calendarIconRef,
   variant = 'underlined',
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const input = useInput({
     defaultValue,
@@ -65,7 +70,9 @@ export const DateField: React.FC<DateFieldProps> & {
       aria-disabled={disabled ? 'true' : 'false'}
       {...props}
       className={clsx(
+        { ...omitCommonProps(props) },
         props.className,
+        commonProps.className,
         dateFieldClasses.root,
         dateFieldClasses[size],
         disabled && dateFieldClasses.disabled,
@@ -109,7 +116,7 @@ export const DateField: React.FC<DateFieldProps> & {
           <span
             className={dateFieldClasses.icon}
             onClick={() => !disabled && onIconClick && onIconClick()}
-            ref={props.calendarIconRef}
+            ref={calendarIconRef}
           >
             {icon}
           </span>
@@ -124,7 +131,10 @@ export const DateField: React.FC<DateFieldProps> & {
           >
             <CloseIcon color="primary" />
           </span>
-        ) : null}
+        ) : (
+          // Default case: just show and empty span on top of the browser's default icon.
+          <span className={dateFieldClasses.noIcon} />
+        )}
       </div>
       {supportingText && (
         <div className={clsx(dateFieldClasses.supportingText)}>

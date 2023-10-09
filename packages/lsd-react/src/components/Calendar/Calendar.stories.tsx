@@ -28,12 +28,6 @@ export const Uncontrolled: StoryObj<CalendarProps> = {
       </div>
     )
   },
-
-  args: {
-    value: undefined,
-    onChange: undefined,
-    size: 'large',
-  },
 }
 
 export const Controlled: StoryObj<CalendarProps> = {
@@ -48,10 +42,16 @@ export const Controlled: StoryObj<CalendarProps> = {
       </div>
     )
   },
+}
 
-  args: {
-    value: '2023-01-01',
-    onChange: undefined,
-    size: 'large',
-  },
+Uncontrolled.args = {
+  startDate: undefined,
+  onStartDateChange: undefined,
+  size: 'large',
+}
+
+Controlled.args = {
+  startDate: '2023-01-01',
+  onStartDateChange: undefined,
+  size: 'large',
 }

@@ -1,72 +1,80 @@
-import { useRef, useContext } from 'react'
+import { useRef } from 'react'
 import { useDay } from '@datepicker-react/hooks'
-import { CalendarContext } from './Calendar.context'
+import { useCalendarContext } from './Calendar.context'
 import clsx from 'clsx'
-import { calendarClasses } from './Calendar.classes'
 import { Typography } from '../Typography'
+import {
+  getDayBorders,
+  isDateWithinRange,
+  isSameDay,
+  resetHours,
+} from '../../utils/date.utils'
+import { calendarClasses } from './Calendar.classes'
 
 export type DayProps = {
   day?: string
-  date: Date
+  index: number
+  fullMonthDays: Date[]
   disabled?: boolean
 }
 
-export const Day = ({ day, date, disabled = false }: DayProps) => {
+export const Day = ({
+  day,
+  index,
+  fullMonthDays,
+  disabled = false,
+}: DayProps) => {
+  const date = fullMonthDays[index]
+  const { mode, startDate, endDate, ...calendarContext } = useCalendarContext()
   const dayRef = useRef(null)
-  const {
-    focusedDate,
-    isDateFocused,
-    isDateSelected,
-    isDateHovered,
-    isDateBlocked,
-    isFirstOrLastSelectedDate,
-    onDateSelect,
-    onDateFocus,
-    onDateHover,
-  } = useContext(CalendarContext)
+  const dayHandlers = useDay({ date, dayRef, ...calendarContext })
+  const isToday = resetHours(date) === resetHours(new Date())
+  const isInDateRange =
+    mode === 'range' && isDateWithinRange(date, startDate, endDate)
 
-  const { onClick, onKeyDown, onMouseEnter, tabIndex } = useDay({
-    date,
-    focusedDate,
-    isDateFocused,
-    isDateSelected,
-    isDateHovered,
-    isDateBlocked,
-    isFirstOrLastSelectedDate,
-    onDateFocus,
-    onDateSelect,
-    onDateHover,
-    dayRef,
-  })
+  const isStartDate = isSameDay(date, startDate)
+  const isEndDate = mode === 'range' && isSameDay(date, endDate)
+  const isSelected = isStartDate || isEndDate || isInDateRange
 
   if (!day) {
     return null
   }
 
-  const isToday =
-    new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0)
+  const borderClasses = getDayBorders(
+    index,
+    fullMonthDays,
+    isSelected,
+    startDate,
+    endDate,
+  )
 
   return (
-    <button
-      onClick={(e) => !disabled && onClick()}
-      onKeyDown={(e) => !disabled && onKeyDown(e)}
-      onMouseEnter={(e) => !disabled && onMouseEnter()}
-      tabIndex={tabIndex}
-      type="button"
+    <td
+      onClick={dayHandlers.onClick}
+      onMouseEnter={dayHandlers.onMouseEnter}
+      tabIndex={dayHandlers.tabIndex}
       ref={dayRef}
       className={clsx(
-        calendarClasses.day,
-        !disabled && isDateFocused(date) && calendarClasses.daySelected,
+        calendarClasses.dayContainer,
+        // The top and bottom borders are always shown for every selected day.
+        // That's not the case for left and right borders (e.g. 2 adjacent days will not have the middle border).
+        isSelected && calendarClasses.dayBorderTopAndBottom,
         disabled && calendarClasses.dayDisabled,
         isToday && calendarClasses.dayIsToday,
+        borderClasses,
       )}
     >
-      <Typography variant="label2">{parseInt(day, 10)}</Typography>
-      {isToday && (
-        <Typography variant="label2" className={calendarClasses.todayIndicator}>
-          ▬
-        </Typography>
-      )}
-    </button>
+      <div className={calendarClasses.day}>
+        <Typography variant="label2">{parseInt(day, 10)}</Typography>
+        {isToday && (
+          <Typography
+            variant="label2"
+            className={calendarClasses.todayIndicator}
+          >
+            ▬
+          </Typography>
+        )}
+      </div>
+    </td>
   )
 }

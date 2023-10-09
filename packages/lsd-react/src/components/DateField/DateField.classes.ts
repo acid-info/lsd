@@ -6,6 +6,7 @@ export const dateFieldClasses = {
   input: `lsd-date-field__input-container__input`,
   inputFilled: `lsd-date-field__input-container__input--filled`,
   icon: `lsd-date-field__input-container__icon`,
+  noIcon: `lsd-date-field__input-container__no-icon`,
   iconButton: `lsd-date-field__input-container__icon-button`,
 
   supportingText: 'lsd-date-field__supporting-text',

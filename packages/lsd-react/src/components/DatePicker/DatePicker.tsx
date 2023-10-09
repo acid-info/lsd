@@ -10,11 +10,17 @@ import { DateField } from '../DateField'
 import { CalendarIcon } from '../Icons'
 import { Portal } from '../PortalProvider/Portal'
 import { datePickerClasses } from './DatePicker.classes'
+import { wasElementClicked } from '../../utils/dom.util'
 
-export type DatePickerProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'onChange' | 'value'
-> &
+import {
+  CommonProps,
+  omitCommonProps,
+  pickCommonProps,
+  useCommonProps,
+} from '../../utils/useCommonProps'
+
+export type DatePickerProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value'> &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
     label?: React.ReactNode
     error?: boolean
@@ -42,6 +48,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
   variant = 'underlined',
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const calendarIconRef = useRef<HTMLSpanElement>(null)
   const [openCalendar, setOpenCalendar] = useState(false)
@@ -68,7 +75,9 @@ export const DatePicker: React.FC<DatePickerProps> & {
       ref={ref}
       {...props}
       className={clsx(
+        { ...omitCommonProps(props) },
         props.className,
+        commonProps.className,
         datePickerClasses.root,
         datePickerClasses[size],
       )}
@@ -88,22 +97,20 @@ export const DatePicker: React.FC<DatePickerProps> & {
         <Portal id="calendar">
           {withCalendar && (
             <Calendar
-              onChange={(date) => handleDateChange(date)}
+              {...pickCommonProps(props)}
+              onStartDateChange={(date) => handleDateChange(date)}
               open={openCalendar}
               onCalendarClickaway={(event) => {
                 // If the calendar icon was clicked, return and don't close the calendar here.
                 // Let the onIconClick above handle the closing.
-                if (
-                  calendarIconRef.current &&
-                  event?.composedPath().includes(calendarIconRef.current)
-                ) {
+                if (wasElementClicked(event, calendarIconRef.current)) {
                   return
                 }
 
                 setOpenCalendar(false)
               }}
               handleRef={ref}
-              value={input.value}
+              startDate={input.value}
               disabled={props.disabled}
               className={datePickerClasses.calendar}
             />
