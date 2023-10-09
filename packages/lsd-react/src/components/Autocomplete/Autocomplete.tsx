@@ -27,7 +27,7 @@ export type AutocompleteProps = CommonProps &
     defaultValue?: string
     options?: string[]
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-    variant?: 'outlined' | 'outlined-bottom'
+    variant?: 'outlined' | 'underlined'
   }
 
 export const Autocomplete: React.FC<AutocompleteProps> & {
@@ -102,7 +102,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
         withIcon && autocompleteClasses.withIcon,
         variant === 'outlined'
           ? autocompleteClasses.outlined
-          : autocompleteClasses.outlinedBottom,
+          : autocompleteClasses.underlined,
       )}
     >
       {label && (

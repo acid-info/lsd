@@ -15,7 +15,7 @@ export default {
     variant: {
       type: {
         name: 'enum',
-        value: ['outlined', 'outlined-bottom'],
+        value: ['outlined', 'underlined'],
       },
       defaultValue: 'large',
     },
@@ -37,7 +37,7 @@ export const Uncontrolled: StoryObj<DateFieldProps> = {
     error: false,
     errorIcon: false,
     clearButton: true,
-    variant: 'outlined-bottom',
+    variant: 'underlined',
     label: 'Label',
   },
 }
@@ -57,7 +57,7 @@ export const Controlled: StoryObj<DateFieldProps> = {
     error: false,
     errorIcon: false,
     clearButton: true,
-    variant: 'outlined-bottom',
+    variant: 'underlined',
     label: 'Label',
   },
 }

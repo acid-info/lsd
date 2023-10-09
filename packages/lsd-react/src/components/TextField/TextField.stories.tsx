@@ -23,7 +23,7 @@ export default {
     variant: {
       type: {
         name: 'enum',
-        value: ['outlined', 'outlined-bottom'],
+        value: ['outlined', 'underlined'],
       },
       defaultValue: 'large',
     },
@@ -48,7 +48,7 @@ export const Root: StoryObj<Omit<TextFieldProps, 'icon'> & { icon: string }> = {
     error: false,
     errorIcon: false,
     icon: 'None',
-    variant: 'outlined-bottom',
+    variant: 'underlined',
     clearButton: true,
     placeholder: 'Placeholder',
     defaultValue: 'default value',

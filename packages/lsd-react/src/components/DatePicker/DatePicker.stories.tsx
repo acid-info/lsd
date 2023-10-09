@@ -15,7 +15,7 @@ export default {
     variant: {
       type: {
         name: 'enum',
-        value: ['outlined', 'outlined-bottom'],
+        value: ['outlined', 'underlined'],
       },
       defaultValue: 'large',
     },
@@ -38,7 +38,7 @@ export const Uncontrolled: StoryObj<DatePickerProps> = {
     clearButton: true,
     withCalendar: true,
     size: 'large',
-    variant: 'outlined-bottom',
+    variant: 'underlined',
     label: 'Label',
   },
 }
@@ -59,7 +59,7 @@ export const Controlled: StoryObj<DatePickerProps> = {
     clearButton: true,
     withCalendar: true,
     size: 'large',
-    variant: 'outlined-bottom',
+    variant: 'underlined',
     label: 'Label',
   },
 }

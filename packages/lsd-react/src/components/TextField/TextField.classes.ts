@@ -13,5 +13,5 @@ export const textFieldClasses = {
   large: `lsd-text-field--large`,
   medium: `lsd-text-field--medium`,
   outlined: `lsd-text-field--outlined`,
-  outlinedBottom: `lsd-text-field--outlined-bottom`,
+  underlined: `lsd-text-field--underlined`,
 }
