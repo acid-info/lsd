@@ -6,68 +6,91 @@ import {
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
-import { safeConvertDateToString } from '../../utils/date.utils'
 import { calendarClasses } from './Calendar.classes'
 import { CalendarContext } from './Calendar.context'
 import { Month } from './Month'
+import { getNewDates, isSameDay, safeConvertDate } from '../../utils/date.utils'
+import {
+  CommonProps,
+  useCommonProps,
+  omitCommonProps,
+} from '../../utils/useCommonProps'
 
-export type CalendarProps = Omit<
-  React.HTMLAttributes<HTMLDivElement>,
-  'label' | 'onChange'
-> & {
-  open?: boolean
-  disabled?: boolean
-  value?: string
-  onChange: (data: Date) => void
-  handleRef: React.RefObject<HTMLElement>
-  size?: 'large' | 'medium' | 'small'
-  onClose?: () => void
-  onCalendarClickaway?: (event: Event) => void
-  minDate?: Date
-  maxDate?: Date
-}
+export type CalendarType = null | 'endDate' | 'startDate'
+
+export type CalendarProps = CommonProps &
+  Omit<React.HTMLAttributes<HTMLDivElement>, 'label' | 'onChange'> & {
+    open?: boolean
+    disabled?: boolean
+    calendarType?: CalendarType
+    onStartDateChange?: (startDate: Date) => void
+    onEndDateChange?: (endDate: Date) => void
+    handleRef: React.RefObject<HTMLElement>
+    size?: 'large' | 'medium' | 'small'
+    mode?: 'date' | 'range'
+    onClose?: () => void
+    onCalendarClickaway?: (event: Event) => void
+    startDate: string
+    endDate?: string
+    minDate?: Date
+    maxDate?: Date
+  }
 
 export const Calendar: React.FC<CalendarProps> & {
   classes: typeof calendarClasses
 } = ({
   open,
   handleRef,
-  value: valueProp,
   size = 'large',
+  mode = 'date',
   disabled = false,
-  onChange,
+  onStartDateChange,
+  onEndDateChange,
   onClose,
   onCalendarClickaway,
+  startDate: startDateProp,
+  endDate: endDateProp,
+  calendarType = 'startDate',
   // minDate and maxDate are necessary because onDateFocus freaks out with small/large date values.
-  minDate = new Date(1900, 0, 1),
+  minDate = new Date(1950, 0, 1),
   maxDate = new Date(2100, 0, 1),
-  children,
   ...props
 }) => {
+  const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [style, setStyle] = useState<React.CSSProperties>({})
-  const [value, setValue] = useState<Date | null>(
-    valueProp
-      ? safeConvertDateToString(valueProp, minDate, maxDate).date
+  const [startDate, setStartDate] = useState<Date | null>(
+    startDateProp
+      ? safeConvertDate(startDateProp, minDate, maxDate).date
       : null,
   )
-  const isOpenControlled = typeof open !== 'undefined'
+  const [endDate, setEndDate] = useState<Date | null>(
+    endDateProp ? safeConvertDate(endDateProp, minDate, maxDate).date : null,
+  )
+  const [changeYearMode, setChangeYearMode] = useState(false)
 
   useClickAway(ref, (event) => {
     if (!open) return
 
     onCalendarClickaway && onCalendarClickaway(event)
-
-    if (isOpenControlled) return
-
-    onClose && onClose()
+    if (typeof open === 'undefined') {
+      onClose && onClose()
+    }
   })
 
   const handleDateChange = (data: OnDatesChangeProps) => {
-    if (typeof valueProp !== 'undefined')
-      return onChange?.(data.startDate ?? new Date())
+    const newDates = getNewDates(calendarType, startDate, endDate, data)
+    const { newStartDate, newEndDate } = newDates
 
-    setValue(data.startDate)
+    if (newStartDate !== startDate) {
+      onStartDateChange?.(newStartDate ?? new Date())
+      setStartDate(newStartDate)
+    }
+
+    if (newEndDate !== endDate && mode === 'range') {
+      onEndDateChange?.(newEndDate ?? new Date())
+      setEndDate(newEndDate)
+    }
   }
 
   const {
@@ -83,29 +106,52 @@ export const Calendar: React.FC<CalendarProps> & {
     onDateFocus,
     goToPreviousMonths,
     goToNextMonths,
+    goToNextYear,
+    goToPreviousYear,
   } = useDatepicker({
-    startDate: value ? new Date(value) : null,
-    endDate: null,
+    startDate,
+    endDate,
+    // focusedInput is meant to define which <input> is currently selected. However,
+    // that's not why we're setting it here. We're setting it here just because it's a required arg.
     focusedInput: START_DATE,
     onDatesChange: handleDateChange,
     numberOfMonths: 1,
   })
 
+  // Handle startDateProp and endDateProp changes. Only updates them if they differ from current state.
   useEffect(() => {
-    onDateFocus(value ? new Date(value) : new Date())
-  }, [value])
+    const newStart = safeConvertDate(startDateProp, minDate, maxDate)
+
+    if (!isSameDay(newStart.date, startDate)) {
+      setStartDate(newStart.isValid ? newStart.date : null)
+    }
+
+    if (mode === 'range') {
+      const newEnd = safeConvertDate(endDateProp, minDate, maxDate)
+
+      if (!isSameDay(newEnd.date, endDate)) {
+        setEndDate(newEnd.isValid ? newEnd.date : null)
+      }
+    }
+  }, [startDateProp, endDateProp, mode, minDate, maxDate, startDate, endDate])
 
   useEffect(() => {
-    if (typeof valueProp === 'undefined') return
+    // When the startDate state changes, focus the calendar on that date.
+    if (startDate) {
+      onDateFocus(startDate)
+    }
+  }, [startDate])
 
-    const { date } = safeConvertDateToString(valueProp, minDate, maxDate)
-    setValue(date)
-  }, [valueProp])
+  useEffect(() => {
+    // When the endDate state changes, focus the calendar on that date.
+    if (endDate) {
+      onDateFocus(endDate)
+    }
+  }, [endDate])
 
   const updateStyle = () => {
     const { width, height, top, left } =
       handleRef.current!.getBoundingClientRect()
-
     setStyle({
       left,
       width,
@@ -121,6 +167,9 @@ export const Calendar: React.FC<CalendarProps> & {
     <CalendarContext.Provider
       value={{
         size,
+        mode,
+        startDate,
+        endDate,
         focusedDate,
         isDateFocused,
         isDateSelected,
@@ -130,11 +179,19 @@ export const Calendar: React.FC<CalendarProps> & {
         onDateSelect,
         onDateFocus,
         onDateHover,
+        goToPreviousMonths,
+        goToNextMonths,
+        goToNextYear,
+        goToPreviousYear,
+        changeYearMode,
+        setChangeYearMode,
       }}
     >
       <div
         {...props}
         className={clsx(
+          { ...omitCommonProps(props) },
+          commonProps.className,
           props.className,
           calendarClasses.root,
           open && calendarClasses.open,
@@ -151,8 +208,6 @@ export const Calendar: React.FC<CalendarProps> & {
               month={month.month}
               firstDayOfWeek={0}
               size={size}
-              goToPreviousMonths={goToPreviousMonths}
-              goToNextMonths={goToNextMonths}
             />
           ))}
         </div>
