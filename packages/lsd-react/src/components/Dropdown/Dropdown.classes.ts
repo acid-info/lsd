@@ -20,5 +20,5 @@ export const dropdownClasses = {
   medium: `lsd-dropdown--medium`,
   large: `lsd-dropdown--large`,
   outlined: `lsd-dropdown--outlined`,
-  outlinedBottom: `lsd-dropdown--outlined-bottom`,
+  underlined: `lsd-dropdown--underlined`,
 }

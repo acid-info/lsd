@@ -23,7 +23,7 @@ export type DateFieldProps = Omit<
     icon?: React.ReactNode
     onIconClick?: () => void
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-    variant?: 'outlined' | 'outlined-bottom'
+    variant?: 'outlined' | 'underlined'
     calendarIconRef?: React.RefObject<HTMLSpanElement>
   }
 
@@ -45,7 +45,7 @@ export const DateField: React.FC<DateFieldProps> & {
   icon,
   onIconClick,
   inputProps = {},
-  variant = 'outlined-bottom',
+  variant = 'underlined',
   ...props
 }) => {
   const ref = useRef<HTMLInputElement>(null)
@@ -87,7 +87,7 @@ export const DateField: React.FC<DateFieldProps> & {
           dateFieldClasses.inputContainer,
           variant === 'outlined'
             ? dateFieldClasses.outlined
-            : dateFieldClasses.outlinedBottom,
+            : dateFieldClasses.underlined,
         )}
       >
         <input

@@ -31,7 +31,7 @@ export type DropdownProps = CommonProps &
     options?: DropdownOption[]
     value?: string | string[]
     onChange?: (value: string | string[]) => void
-    variant?: 'outlined' | 'outlined-bottom'
+    variant?: 'outlined' | 'underlined'
     isOpen?: boolean
     onToggle?: (open: boolean) => void
   }
@@ -103,7 +103,7 @@ export const Dropdown: React.FC<DropdownProps> & {
         openState && dropdownClasses.open,
         variant === 'outlined'
           ? dropdownClasses.outlined
-          : dropdownClasses.outlinedBottom,
+          : dropdownClasses.underlined,
       )}
     >
       {label && (

@@ -19,7 +19,7 @@ export default {
     variant: {
       type: {
         name: 'enum',
-        value: ['outlined', 'outlined-bottom'],
+        value: ['outlined', 'underlined'],
       },
       defaultValue: 'large',
     },

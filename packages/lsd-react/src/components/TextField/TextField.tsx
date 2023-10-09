@@ -25,7 +25,7 @@ export type TextFieldProps = CommonProps &
     defaultValue?: string
     placeholder?: string
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-    variant?: 'outlined' | 'outlined-bottom'
+    variant?: 'outlined' | 'underlined'
   }
 
 export const TextField: React.FC<TextFieldProps> & {
@@ -44,7 +44,7 @@ export const TextField: React.FC<TextFieldProps> & {
   disabled,
   onChange,
   inputProps = {},
-  variant = 'outlined-bottom',
+  variant = 'underlined',
   ...props
 }) => {
   const commonProps = useCommonProps(props)
@@ -66,7 +66,7 @@ export const TextField: React.FC<TextFieldProps> & {
         error && textFieldClasses.error,
         variant === 'outlined'
           ? textFieldClasses.outlined
-          : textFieldClasses.outlinedBottom,
+          : textFieldClasses.underlined,
       )}
     >
       <div className={textFieldClasses.inputContainer}>

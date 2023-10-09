@@ -27,7 +27,7 @@ export type DatePickerProps = Omit<
     defaultValue?: string
     placeholder?: string
     size?: 'large' | 'medium' | 'small'
-    variant?: 'outlined' | 'outlined-bottom'
+    variant?: 'outlined' | 'underlined'
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
@@ -39,7 +39,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
   value: valueProp,
   onChange,
   withCalendar = true,
-  variant = 'outlined-bottom',
+  variant = 'underlined',
   ...props
 }) => {
   const ref = useRef<HTMLDivElement>(null)

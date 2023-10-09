@@ -16,5 +16,5 @@ export const autocompleteClasses = {
   small: `lsd-autocomplete--small`,
   withIcon: `lsd-autocomplete--with-icon`,
   outlined: `lsd-autocomplete--outlined`,
-  outlinedBottom: `lsd-autocomplete--outlined-bottom`,
+  underlined: `lsd-autocomplete--underlined`,
 }

@@ -21,7 +21,7 @@ export const DateFieldStyles = css`
     border: 1px solid rgb(var(--lsd-border-primary));
   }
 
-  .${dateFieldClasses.outlinedBottom} {
+  .${dateFieldClasses.underlined} {
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }
 

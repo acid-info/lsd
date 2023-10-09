@@ -18,5 +18,5 @@ export const dateFieldClasses = {
   small: `lsd-date-field--small`,
 
   outlined: `lsd-date-field--outlined`,
-  outlinedBottom: `lsd-date-field--outlined-bottom`,
+  underlined: `lsd-date-field--underlined`,
 }
