@@ -5,6 +5,15 @@ import { dateFieldClasses } from '../DateField/DateField.classes'
 export const DateRangePickerStyles = css`
   .${dateRangePickerClasses.root} {
     box-sizing: border-box;
+
+    /* Remove default outline styles from date fields. */
+    .${dateFieldClasses.outlined} {
+      border: none;
+    }
+
+    .${dateFieldClasses.icon} {
+      padding: 8px;
+    }
   }
 
   .${dateRangePickerClasses.label} {
@@ -129,15 +138,6 @@ export const DateRangePickerStyles = css`
     .${dateRangePickerClasses.supportingText} {
       margin: 6px 12px 0 12px;
     }
-  }
-
-  .${dateFieldClasses.icon} {
-    padding: 8px;
-  }
-
-  /* Remove default outline styles from date fields. */
-  .${dateFieldClasses.outlined} {
-    border: none;
   }
 
   .${dateRangePickerClasses.separator} {
