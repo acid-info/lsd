@@ -21,9 +21,4 @@ export const toastClasses = {
 
   errorIcon: 'lsd-toast__error-icon',
   errorIconContainer: 'lsd-toast__error-icon-container',
-
-  moveUp: 'lsd-toast--move-up',
-  moveDown: 'lsd-toast--move-down',
-
-  closingAnimation: 'lsd-toast--closing-animation',
 }

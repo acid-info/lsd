@@ -86,47 +86,6 @@ export const ToastStyles = css`
     left: -26px;
   }
 
-  @keyframes moveDown {
-    from {
-      transform: translateY(-20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes moveUp {
-    from {
-      transform: translateY(20px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOutAnimation {
-    to {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-  }
-
-  .${toastClasses.moveDown} {
-    animation: moveDown 0.3s ease-out forwards;
-  }
-
-  .${toastClasses.moveUp} {
-    animation: moveUp 0.3s ease-out forwards;
-  }
-
-  .${toastClasses.closingAnimation} {
-    animation: fadeOutAnimation 0.3s forwards;
-  }
-
   .${toastClasses.large} {
     .${toastClasses.textContainer} {
       min-width: 204px;

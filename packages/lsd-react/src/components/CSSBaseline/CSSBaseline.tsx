@@ -40,6 +40,7 @@ import { ModalStyles } from '../Modal/Modal.styles'
 import { ModalFooterStyles } from '../ModalFooter/ModalFooter.styles'
 import { ModalBodyStyles } from '../ModalBody/ModalBody.styles'
 import { ToastStyles } from '../Toast/Toast.styles'
+import { ToastProviderStyles } from '../ToastProvider/ToastProvider.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
@@ -82,6 +83,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     DateFieldStyles,
     CalendarStyles,
     ToastStyles,
+    ToastProviderStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
