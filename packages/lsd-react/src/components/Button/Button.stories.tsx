@@ -36,10 +36,14 @@ export default {
 export const Root: StoryObj<ButtonProps & { icon: string }> = {
   render: ({ icon, ...args }) => {
     const IconComponent = useStorybookIconComponent(icon)
+    const iconColor = args.variant === 'outlined' ? 'primary' : 'secondary'
+
     return (
       <Button
         {...args}
-        icon={IconComponent && <IconComponent color="primary"></IconComponent>}
+        icon={
+          IconComponent && <IconComponent color={iconColor}></IconComponent>
+        }
       >
         Button
       </Button>
