@@ -19,7 +19,7 @@ export const ButtonStyles = css`
   }
 
   .${buttonClasses.medium} {
-    padding: 6px, 24px;
+    padding: 6px 24px;
   }
 
   .${buttonClasses.small} {
@@ -41,26 +41,30 @@ export const ButtonStyles = css`
 
   .${buttonClasses.icon} {
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
   }
 
   .${buttonClasses.large}.${buttonClasses.withIcon} {
-    padding: 10px 14px 10px 18px;
+    padding: 10px 0px 10px 18px;
     .${buttonClasses.icon} {
-      margin-left: 18px;
+      width: 42px;
     }
   }
 
   .${buttonClasses.medium}.${buttonClasses.withIcon} {
-    padding: 6px 12px 6px 14px;
+    padding: 6px 0px 6px 14px;
     .${buttonClasses.icon} {
-      margin-left: 14px;
+      width: 38px;
     }
   }
 
   .${buttonClasses.small}.${buttonClasses.withIcon} {
-    padding: 6px 10px 6px 12px;
+    padding: 6px 0px 6px 12px;
     .${buttonClasses.icon} {
-      margin-left: 10px;
+      width: 34px;
     }
   }
 
