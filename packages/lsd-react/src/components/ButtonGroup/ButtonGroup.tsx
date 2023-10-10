@@ -37,6 +37,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> & {
             ...child.props,
             size,
             variant,
+            disabled: props.disabled || child.props.disabled,
           })
         }
 
