@@ -141,6 +141,7 @@ export const createTheme = (
     palette: createPaletteStyles(props, from),
     globalStyles: css``,
     cssVars: '',
+    spacing: props.spacing.length ? props.spacing : from.spacing,
   }
 
   const { cssVars, globalStyles } = createThemeGlobalStyles(theme)

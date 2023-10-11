@@ -8,6 +8,7 @@ const themeProps: CreateThemeProps = {
   breakpoints: {},
   palette: {},
   typographyGlobal: {},
+  spacing: [],
 }
 
 const createThemes = () => {

@@ -87,6 +87,14 @@ const generateThemeGlobalStyles = (theme: Theme) => {
     )
   }
 
+  // Spacing-related CSS variable definitions
+  {
+    theme.spacing.map((spacingValue) => {
+      const varName = cssUtils.vars.lsd('spacing', spacingValue.toString())
+      vars.push(cssUtils.define(varName, `${spacingValue}px`))
+    })
+  }
+
   THEME_BREAKPOINTS.map((breakpoint, index) => {
     styles.push(`@media (min-width: ${theme.breakpoints[breakpoint].width}px) {
       :root {

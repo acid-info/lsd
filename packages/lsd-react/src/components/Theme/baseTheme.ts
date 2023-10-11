@@ -201,6 +201,7 @@ export const baseTheme: Theme = {
       secondary: '255, 255, 255',
     },
   },
+  spacing: [4, 8, 16, 24, 32, 40, 64, 80, 96, 120],
   globalStyles: css``,
   cssVars: '',
 }
