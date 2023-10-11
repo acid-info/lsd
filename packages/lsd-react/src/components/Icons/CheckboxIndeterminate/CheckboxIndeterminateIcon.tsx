@@ -1,6 +1,6 @@
-import { LsdIcon } from '../LsdIcon'
+import { Icon } from '../Icon'
 
-export const CheckboxIndeterminateIcon = LsdIcon(
+export const CheckboxIndeterminateIcon = Icon(
   (props) => (
     <svg
       width="14"

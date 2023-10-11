@@ -1,6 +1,6 @@
-import { LsdIcon } from '../LsdIcon'
+import { Icon } from '../Icon'
 
-export const ArrowDownIcon = LsdIcon(
+export const ArrowDownIcon = Icon(
   (props) => (
     <svg
       width="14"

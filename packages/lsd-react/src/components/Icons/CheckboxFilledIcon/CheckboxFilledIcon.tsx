@@ -1,6 +1,6 @@
-import { LsdIcon } from '../LsdIcon'
+import { Icon } from '../Icon'
 
-export const CheckboxFilledIcon = LsdIcon(
+export const CheckboxFilledIcon = Icon(
   (props) => (
     <svg
       width="14"

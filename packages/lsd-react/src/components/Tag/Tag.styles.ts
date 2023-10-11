@@ -10,7 +10,7 @@ export const TagStyles = css`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    border: 1px solid rgb(var(--lsd-icon-primary));
+    border: 1px solid rgb(var(--icon-primary));
 
     &:hover,
     &:focus {
@@ -32,13 +32,13 @@ export const TagStyles = css`
   }
 
   .${tagClasses.filled} {
-    background-color: rgb(var(--lsd-icon-primary));
+    background-color: rgb(var(--icon-primary));
     .${tagClasses.label} {
       color: rgb(var(--lsd-text-secondary));
     }
 
     svg {
-      --lsd-icon-primary: var(--lsd-icon-secondary);
+      --icon-primary: var(--icon-secondary);
     }
   }
 

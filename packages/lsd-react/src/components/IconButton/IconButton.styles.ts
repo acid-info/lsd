@@ -14,10 +14,10 @@ export const IconButtonStyles = css`
   }
 
   .${iconButtonClasses.filled} {
-    background-color: rgb(var(--lsd-icon-primary));
+    background-color: rgb(var(--icon-primary));
 
     svg {
-      --lsd-icon-primary: var(--lsd-icon-secondary);
+      --icon-primary: var(--icon-secondary);
     }
   }
 

@@ -19,7 +19,7 @@ import { DropdownStyles } from '../Dropdown/Dropdown.styles'
 import { DropdownItemStyles } from '../DropdownItem/DropdownItem.styles'
 import { IconButtonStyles } from '../IconButton/IconButton.styles'
 import { IconButtonGroupStyles } from '../IconButtonGroup/IconButtonGroup.styles'
-import { LsdIconStyles } from '../Icons/LsdIcon/LsdIcon.styles'
+import { IconStyles } from '../Icons/Icon/Icon.styles'
 import { DropdownMenuStyles } from '../DropdownMenu/DropdownMenu.styles'
 import { QuoteStyles } from '../Quote/Quote.styles'
 import { RadioButtonStyles } from '../RadioButton/RadioButton.styles'
@@ -46,7 +46,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     IconButtonStyles,
     IconButtonGroupStyles,
     TypographyStyles,
-    LsdIconStyles,
+    IconStyles,
     TabItemStyles,
     TabsStyles,
     DropdownMenuStyles,

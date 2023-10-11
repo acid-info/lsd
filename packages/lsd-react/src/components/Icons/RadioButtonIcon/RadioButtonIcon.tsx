@@ -1,6 +1,6 @@
-import { LsdIcon } from '../LsdIcon'
+import { Icon } from '../Icon'
 
-export const RadioButtonIcon = LsdIcon(
+export const RadioButtonIcon = Icon(
   (props) => (
     <svg
       width="14"

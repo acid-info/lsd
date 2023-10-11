@@ -5,9 +5,10 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { CheckboxFilledIcon, CheckboxIcon, LsdIconProps } from '../Icons'
+import { CheckboxFilledIcon, CheckboxIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { dropdownItemClasses } from './DropdownItem.classes'
+import { IconProps } from '../Icons/Icon/Icon'
 
 export type DropdownItemProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
@@ -31,7 +32,7 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
 }) => {
   const commonProps = useCommonProps(props)
 
-  const iconProps: LsdIconProps = {
+  const iconProps: IconProps = {
     color: 'primary',
     className: dropdownItemClasses.icon,
   }

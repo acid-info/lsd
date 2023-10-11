@@ -90,7 +90,7 @@ export const Root: StoryObj<TableProps> = {
             style={{
               height: '28px',
               background: 'rgb(var(--lsd-border-primary))',
-              color: 'rgb(var(--lsd-icon-secondary))',
+              color: 'rgb(var(--icon-secondary))',
             }}
           >
             Button

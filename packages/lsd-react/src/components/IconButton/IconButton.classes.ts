@@ -1,12 +1,12 @@
 export const iconButtonClasses = {
-  root: `lsd-icon-button`,
+  root: `icon-button`,
 
-  outlined: `lsd-icon-button--outlined`,
-  filled: `lsd-icon-button--filled`,
+  outlined: `icon-button--outlined`,
+  filled: `icon-button--filled`,
 
-  disabled: `lsd-icon-button--disabled`,
+  disabled: `icon-button--disabled`,
 
-  small: `lsd-icon-button--small`,
-  medium: `lsd-icon-button--medium`,
-  large: `lsd-icon-button--large`,
+  small: `icon-button--small`,
+  medium: `icon-button--medium`,
+  large: `icon-button--large`,
 }

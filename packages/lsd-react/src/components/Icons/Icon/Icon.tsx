@@ -5,26 +5,26 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../../utils/useCommonProps'
-import { lsdIconClasses } from './LsdIcon.classes'
+import { iconClasses } from './Icon.classes'
 
-export type LsdIconProps = CommonProps &
+export type IconProps = CommonProps &
   React.SVGAttributes<SVGElement> & {
     size?: 'small'
     color?: 'primary' | 'secondary'
   }
 
-type LsdIconComponent = React.FC<LsdIconProps> & {
-  classes: typeof lsdIconClasses
+type IconComponent = React.FC<IconProps> & {
+  classes: typeof iconClasses
 }
 
-export const LsdIcon = (
+export const Icon = (
   Component: React.ComponentType<React.SVGAttributes<SVGElement>>,
   metadata?: {
     filled?: boolean
     stroked?: boolean
   },
-): LsdIconComponent => {
-  const IconComponent: LsdIconComponent = ({
+): IconComponent => {
+  const IconComponent: IconComponent = ({
     color,
     size = 'small',
     className,
@@ -37,11 +37,11 @@ export const LsdIcon = (
         className={clsx(
           commonProps.className,
           className,
-          lsdIconClasses.root,
-          lsdIconClasses[size],
-          color && lsdIconClasses[color],
-          metadata?.filled && lsdIconClasses.filled,
-          metadata?.stroked && lsdIconClasses.stroked,
+          iconClasses.root,
+          iconClasses[size],
+          color && iconClasses[color],
+          metadata?.filled && iconClasses.filled,
+          metadata?.stroked && iconClasses.stroked,
         )}
         {...omitCommonProps(props)}
       />
@@ -49,7 +49,7 @@ export const LsdIcon = (
   }
 
   IconComponent.displayName = Component.displayName
-  IconComponent.classes = lsdIconClasses
+  IconComponent.classes = iconClasses
 
   return IconComponent
 }
