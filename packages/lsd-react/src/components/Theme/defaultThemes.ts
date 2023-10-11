@@ -8,6 +8,7 @@ const lightTheme = createTheme(
     typography: {},
     typographyGlobal: {},
     palette: {},
+    spacing: [],
   },
   baseTheme,
 )
@@ -22,6 +23,7 @@ const darkTheme = createTheme(
       primary: '255, 255, 255',
       secondary: '0, 0, 0',
     },
+    spacing: [],
   },
   lightTheme,
 )

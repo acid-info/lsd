@@ -77,6 +77,7 @@ export type Theme = {
   palette: ThemePalette
   globalStyles: SerializedStyles
   cssVars: string
+  spacing: number[]
 }
 
 export type ThemeOptionBreakpointStyles = Partial<
@@ -100,6 +101,7 @@ export type CreateThemeProps = {
   typography: ThemeOptionTypography
   typographyGlobal: Partial<GlobalTypographyStyles>
   palette: ThemeOptionPalette
+  spacing: number[]
 }
 
 export type ThemeContext = {
