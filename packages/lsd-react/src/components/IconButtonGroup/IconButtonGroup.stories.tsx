@@ -1,11 +1,22 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { IconButton } from '../IconButton/IconButton'
 import { IconButtonGroup, IconButtonGroupProps } from './IconButtonGroup'
 
+const subtitle = `Input`
+const description = `IconButtonGroup component groups multiple IconButton components, inheriting all their available styles.`
+
 export default {
   title: 'IconButtonGroup',
   component: IconButtonGroup,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

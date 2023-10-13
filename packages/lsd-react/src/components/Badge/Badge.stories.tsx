@@ -1,10 +1,21 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-import { Badge, BadgeProps } from './Badge'
+import { Meta, StoryObj } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
+import { Badge, BadgeProps } from './Badge'
+
+const subtitle = `Data Display`
+const description = `Badge component is used to display concise pieces of information, such as notifications, counts, statuses, and more. Typically, it is positioned near other UI elements to convey information associated with them.`
 
 export default {
   title: 'Badge',
   component: Badge,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     variant: {
       type: {

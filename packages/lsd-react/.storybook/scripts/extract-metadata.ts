@@ -118,13 +118,13 @@ export const extractMetadata = async (dir: string) => {
   })
 
   const components = await fromStories(stories.default, assetsDir)
-  const globalTypes = await extractGlobalTypes(assetsDir)
+  // const globalTypes = await extractGlobalTypes(assetsDir)
 
   fs.unlinkSync(path.join(assetsDir, 'package.json'))
 
   return {
     components,
-    globalTypes,
+    // globalTypes,
   }
 }
 

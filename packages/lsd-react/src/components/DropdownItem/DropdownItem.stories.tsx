@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { DropdownItem, DropdownItemProps } from './DropdownItem'
+
+const subtitle = ``
+const description = ``
 
 export default {
   title: 'DropdownItem',
   component: DropdownItem,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

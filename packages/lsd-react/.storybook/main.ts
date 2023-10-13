@@ -1,7 +1,9 @@
 import { dirname, join } from 'path'
+
 module.exports = {
   stories: [
-    '../src/components/**/*.stories.mdx',
+    '../src/docs/**/*.mdx',
+    '../src/components/**/*.mdx',
     '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
   ],
 

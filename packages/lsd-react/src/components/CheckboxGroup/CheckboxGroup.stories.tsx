@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Checkbox } from '../Checkbox'
 import { CheckboxGroup, CheckboxGroupProps } from './CheckboxGroup'
 
+const subtitle = `Input`
+const description = `CheckboxGroup component groups multiple Checkbox components, inheriting all their available styles.`
+
 export default {
   title: 'CheckboxGroup',
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   component: CheckboxGroup,
   argTypes: {
     size: {

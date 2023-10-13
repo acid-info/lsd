@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { CardHeader, CardHeaderProps } from './CardHeader'
+
+const subtitle = ``
+const description = ``
 
 export default {
   title: 'CardHeader',
   component: CardHeader,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

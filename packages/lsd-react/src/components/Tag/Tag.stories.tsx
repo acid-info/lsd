@@ -1,10 +1,21 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { FolderIcon } from '../Icons'
 import { Tag, TagProps } from './Tag'
+
+const subtitle = `Data Display`
+const description = `Tags are used to label, categorise and organise items with descriptive keywords.`
 
 export default {
   title: 'Tag',
   component: Tag,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     variant: {
       type: {

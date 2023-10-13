@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { TableRow, TableRowProps } from './TableRow'
+
+const subtitle = ``
+const description = ``
 
 export default {
   title: 'TableRow',
   component: TableRow,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     type: {
       type: {

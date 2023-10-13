@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { TableHeader, TableHeaderProps } from './TableHeader'
+
+const subtitle = ``
+const description = ``
 
 export default {
   title: 'TableHeader',
   component: TableHeader,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

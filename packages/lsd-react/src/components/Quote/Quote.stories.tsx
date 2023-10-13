@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Quote, QuoteProps } from './Quote'
+
+const subtitle = `Surface`
+const description = `Quote component is used to display a quotation.`
 
 export default {
   title: 'Quote',
   component: Quote,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     mode: {
       type: {

@@ -1,13 +1,24 @@
+import { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-import { Modal, ModalProps } from './Modal'
 import { Button } from '../Button'
 import { ModalBody } from '../ModalBody'
 import { ModalFooter } from '../ModalFooter'
+import { Modal, ModalProps } from './Modal'
+
+const subtitle = `Feedback`
+const description = `A modal is a window positioned above the page content to direct the user's attention solely toward a single task or piece of information.`
 
 export default {
   title: 'Modal',
   component: Modal,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

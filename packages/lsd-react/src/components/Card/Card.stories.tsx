@@ -1,11 +1,22 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { CardBody } from '../CardBody'
 import { CardHeader } from '../CardHeader'
 import { Card, CardProps } from './Card'
 
+const subtitle = `Surface`
+const description = `Card is a flexible component designed to group and present content about a single subject in a clear and concise format, often including associated actions.`
+
 export default {
   title: 'Card',
   component: Card,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { NumberInput, NumberInputProps } from './NumberInput'
+
+const subtitle = `Input`
+const description = `NumberInput allows users to input a numeric value and adjust the value incrementally using a two-segment control.`
 
 export default {
   title: 'NumberInput',
   component: NumberInput,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

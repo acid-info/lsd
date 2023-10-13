@@ -1,10 +1,21 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { RadioButton } from '../RadioButton'
 import { RadioButtonGroup, RadioButtonGroupProps } from './RadioButtonGroup'
+
+const subtitle = `Input`
+const description = `RadioButtonGroup component groups multiple RadioButton components, inheriting all their available styles.`
 
 export default {
   title: 'RadioButtonGroup',
   component: RadioButtonGroup,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

@@ -1,10 +1,21 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Typography } from '../Typography'
 import { Collapse, CollapseProps } from './Collapse'
+
+const subtitle = `Surface`
+const description = `A collapsible and expandable content section that can be used to group or hide content.`
 
 export default {
   title: 'Collapse',
   component: Collapse,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

@@ -1,11 +1,22 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { TabItem } from '../TabItem'
 import { Tabs, TabsProps } from './Tabs'
 
+const subtitle = `Navigation`
+const description = `Tabs are a navigational component that efficiently organizes related content, enabling users to switch between different groups of information within the same context.`
+
 export default {
   title: 'Tabs',
   component: Tabs,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {
@@ -62,5 +73,6 @@ export const Root: StoryObj<
     fullWidth: false,
     scrollControls: true,
     onChange: undefined,
+    tabs: 4,
   },
 }

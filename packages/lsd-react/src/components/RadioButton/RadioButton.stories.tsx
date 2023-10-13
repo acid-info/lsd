@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { RadioButton, RadioButtonProps } from './RadioButton'
+
+const subtitle = `Input`
+const description = `Radio buttons enable users to make a single selection from a list of options, particularly suitable for scenarios where you have a set of mutually exclusive choices.`
 
 export default {
   title: 'RadioButton',
   component: RadioButton,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

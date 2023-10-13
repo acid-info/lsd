@@ -1,0 +1,51 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Overview/Quick Start" />
+
+## 1. Installation
+
+Install the latest version of `@acid-info/lsd-react`
+
+```shell
+yarn add @acid-info/lsd-react @emotion/react @emotion/styled
+```
+
+## 2. Setup
+
+To use LSD theme and design tokens in your React app, wrap your app with the ThemeProvider component. This component:
+
+- Creates a CSS baseline for the components using CSS-in-JS and inserts it into the DOM.
+- Injects the LSD CSS variables into the DOM for the theme prop.
+
+The ThemeProvider component should be at the root of your app, as shown below:
+
+```tsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { ThemeProvider, defaultThemes } from '@acid-info/lsd-react'
+
+import App from './App'
+
+ReactDOM.render(
+  <ThemeProvider theme={defaultThemes.dark}>
+    <App />
+  </ThemeProvider>,
+  document.getElementById('root'),
+)
+```
+
+## 3. Usage
+
+Import LSD components from `@acid-info/lsd-react` and use them in your React app!
+
+```tsx
+import { Button } from '@acid-info/lsd-react'
+
+function App() {
+  return (
+    <div>
+      <Button>Button</Button>
+    </div>
+  )
+}
+```

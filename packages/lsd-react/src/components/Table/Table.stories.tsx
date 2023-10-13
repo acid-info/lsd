@@ -1,4 +1,4 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { Button } from '../Button'
 import { Dropdown } from '../Dropdown'
@@ -8,9 +8,20 @@ import { TableItem } from '../TableItem'
 import { TableRow } from '../TableRow'
 import { Table, TableProps } from './Table'
 
+const subtitle = `Data Display`
+const description = `Table component is used to efficiently organise and display sets of information in rows and columns, facilitating easy scanning for patterns and insights. Component allows for customisation with additional functionality.`
+
 export default {
   title: 'Table',
   component: Table,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

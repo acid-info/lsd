@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { ModalBody, ModalBodyProps } from './ModalBody'
+
+const subtitle = ``
+const description = ``
 
 export default {
   title: 'ModalBody',
   component: ModalBody,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       table: {

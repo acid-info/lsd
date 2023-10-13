@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { DateField, DateFieldProps } from './DateField'
+
+const subtitle = `Input`
+const description = `DateField component allows users to manually enter a specific date.`
 
 export default {
   title: 'DateField',
   component: DateField,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

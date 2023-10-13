@@ -1,10 +1,21 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { TextField, TextFieldProps } from './TextField'
+
+const subtitle = `Input`
+const description = `TextField component allows users to enter free-form text data, accommodating both long and short-form entries.`
 
 export default {
   title: 'TextField',
   component: TextField,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

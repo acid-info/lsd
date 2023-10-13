@@ -1,10 +1,21 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { useStorybookIconComponent } from '../../utils/storybook.utils'
 import { Button, ButtonProps } from './Button'
+
+const subtitle = `Input`
+const description = `Button component is used to trigger an action or event, it is labeled to convey what will happen upon interaction.`
 
 export default {
   title: 'Button',
   component: Button,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

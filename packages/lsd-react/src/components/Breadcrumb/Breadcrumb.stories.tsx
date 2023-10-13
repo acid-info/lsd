@@ -1,8 +1,19 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { Breadcrumb, BreadcrumbProps } from './Breadcrumb'
+
+const subtitle = `Navigation`
+const description = `Breadcrumbs show users their current location on the website or app and allow them to quickly navigate back to a parent level or a previous step.`
 
 export default {
   title: 'Breadcrumb',
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   component: Breadcrumb,
   argTypes: {
     size: {

@@ -1,4 +1,5 @@
 import { Parameters, StoryContext } from '@storybook/react'
+import { create } from '@storybook/theming/create'
 import { GlobalTypes } from '@storybook/types'
 import { CreateThemeProps, createTheme, defaultThemes } from '../src'
 import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/components/Theme/constants'
@@ -104,3 +105,30 @@ const createThemes = () => {
 }
 
 export const storybookThemes = createThemes()
+
+const darkTheme = defaultThemes.dark
+export const docTheme = create({
+  base: 'dark',
+  fontBase: darkTheme.typographyGlobal.genericFontFamily,
+  fontCode: darkTheme.typographyGlobal.genericFontFamily,
+  colorPrimary: `rgb(${darkTheme.palette.primary})`,
+  colorSecondary: `rgb(${darkTheme.palette.secondary})`,
+  appBg: `rgb(${darkTheme.palette.surface.primary})`,
+  appContentBg: `rgb(${darkTheme.palette.surface.primary})`,
+  appBorderColor: `rgb(${darkTheme.palette.border.primary})`,
+  appBorderRadius: 0,
+  textColor: `rgb(${darkTheme.palette.text.primary})`,
+  textInverseColor: `rgb(${darkTheme.palette.text.secondary})`,
+  barTextColor: `rgb(${darkTheme.palette.text.primary})`,
+  barSelectedColor: `rgb(${darkTheme.palette.text.primary})`,
+  barBg: `rgb(${darkTheme.palette.surface.primary})`,
+  inputBg: `rgb(${darkTheme.palette.surface.secondary})`,
+  inputBorder: `rgb(${darkTheme.palette.border.primary})`,
+  inputTextColor: `rgb(${darkTheme.palette.text.secondary})`,
+  inputBorderRadius: 0,
+  booleanBg: `rgb(${darkTheme.palette.surface.primary})`,
+  booleanSelectedBg: `rgb(${darkTheme.palette.surface.primary})`,
+  buttonBorder: `rgb(${darkTheme.palette.border.primary})`,
+  buttonBg: `rgb(${darkTheme.palette.surface.secondary})`,
+  textMutedColor: `rgb(${darkTheme.palette.text.primary})`,
+})

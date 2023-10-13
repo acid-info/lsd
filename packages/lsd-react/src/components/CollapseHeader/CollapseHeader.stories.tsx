@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { CollapseHeader, CollapseHeaderProps } from './CollapseHeader'
+
+const subtitle = ``
+const description = ``
 
 export default {
   title: 'CollapseHeader',
   component: CollapseHeader,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

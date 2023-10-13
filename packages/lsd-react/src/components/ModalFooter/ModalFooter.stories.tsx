@@ -1,10 +1,21 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
-import { ModalFooter, ModalFooterProps } from './ModalFooter'
+import { Meta, StoryObj } from '@storybook/react'
 import { Button } from '../Button'
+import { ModalFooter, ModalFooterProps } from './ModalFooter'
+
+const subtitle = ``
+const description = ``
 
 export default {
   title: 'ModalFooter',
   component: ModalFooter,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

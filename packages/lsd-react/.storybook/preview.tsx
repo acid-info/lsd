@@ -1,6 +1,15 @@
+import {
+  Canvas,
+  Controls,
+  Description,
+  Subtitle,
+  Title,
+  useOf,
+} from '@storybook/blocks'
 import type { Preview } from '@storybook/react'
+import React from 'react'
 import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/components/Theme/constants'
-import { storybookThemes } from './themes'
+import { docTheme, storybookThemes } from './themes'
 import { withTheme } from './withTheme.decorator'
 
 const preview: Preview = {
@@ -30,6 +39,27 @@ const preview: Preview = {
             ],
           ),
         ),
+      },
+    },
+    docs: {
+      theme: docTheme,
+      page: () => {
+        const resolvedOf = useOf('meta', ['meta'])
+        const { stories, meta, moduleExports } = resolvedOf.csfFile
+
+        const controls =
+          typeof meta?.parameters?.docs?.controls === 'undefined' ||
+          meta?.parameters?.docs?.controls === true
+
+        return (
+          <>
+            <Title />
+            <Subtitle />
+            <Description />
+            <Canvas sourceState="shown" />
+            {controls && <Controls />}
+          </>
+        )
       },
     },
   },

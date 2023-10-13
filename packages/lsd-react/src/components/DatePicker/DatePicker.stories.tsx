@@ -1,9 +1,20 @@
-import { StoryObj, Meta, StoryFn } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 import { DatePicker, DatePickerProps } from './DatePicker'
+
+const subtitle = `Input`
+const description = `DatePicker component allows users select a date.`
 
 export default {
   title: 'DatePicker',
   component: DatePicker,
+  parameters: {
+    componentSubtitle: subtitle,
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: {

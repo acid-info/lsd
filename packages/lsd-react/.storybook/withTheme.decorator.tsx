@@ -1,3 +1,4 @@
+import { Global, css } from '@emotion/react'
 import { useGlobals } from '@storybook/preview-api'
 import { Decorator } from '@storybook/react'
 import React, { useEffect } from 'react'
@@ -6,9 +7,9 @@ import { storybookThemes } from './themes'
 
 export const withTheme: Decorator = (Story, context) => {
   const StoryComponent = Story as any as React.ComponentType
+  const isDoc = context.viewMode === 'docs'
 
   const theme = storybookThemes.getTheme(context)
-
   const [globals, setGlobals] = useGlobals()
 
   useEffect(() => {
@@ -28,8 +29,19 @@ export const withTheme: Decorator = (Story, context) => {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme} injectCssVars={true}>
         <StoryComponent />
+        {isDoc && (
+          <Global
+            styles={css`
+              .docs-story {
+                ${theme.cssVars}
+
+                background: rgb(var(--lsd-surface-primary));
+              }
+            `}
+          />
+        )}
       </ThemeProvider>
     </div>
   )
