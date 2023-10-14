@@ -1,9 +1,11 @@
 import { Meta, Story } from '@storybook/react'
-import { ToastProps } from '../Toast'
-import { ToastProvider, useLSDToast } from './ToastProvider'
+import {
+  ToastContantAndOptions,
+  ToastProvider,
+  useToast,
+} from './ToastProvider'
 import { FC } from 'react'
 import { Button } from '../Button'
-import { ToastOptions } from 'react-hot-toast'
 import { pickCommonProps } from '../../utils/useCommonProps'
 
 export default {
@@ -16,31 +18,43 @@ export default {
         value: ['small', 'medium', 'large'],
       },
     },
+    position: {
+      type: {
+        name: 'enum',
+        value: [
+          'top-left',
+          'top-center',
+          'top-right',
+          'bottom-left',
+          'bottom-center',
+          'bottom-right',
+        ],
+      },
+    },
   },
 } as Meta
 
-type ToastButtonProps = {
-  toastArgs: ToastProps & ToastOptions
-}
-
-const ToastButton: FC<ToastButtonProps> = ({ toastArgs }) => {
-  const showToast = useLSDToast()
+const ToastButton: FC<ToastContantAndOptions> = ({
+  information,
+  title,
+  ...toastArgs
+}) => {
+  const showToast = useToast()
 
   return (
     <Button
       {...pickCommonProps(toastArgs)}
-      onClick={() => showToast(toastArgs, { duration: toastArgs.duration })}
-      style={{ marginBottom: 8 }}
+      onClick={() => showToast({ title, information }, { ...toastArgs })}
     >
       Show Toast
     </Button>
   )
 }
 
-export const Root: Story<ToastProps & ToastOptions> = (args) => {
+export const Root: Story<ToastContantAndOptions> = (args) => {
   return (
     <ToastProvider>
-      <ToastButton toastArgs={args} />
+      <ToastButton {...args} />
     </ToastProvider>
   )
 }
@@ -49,7 +63,6 @@ Root.args = {
   title: 'Toast Title',
   information: '',
   size: 'large',
-  buttonText: 'Click me',
-  inline: true,
+  position: 'top-center',
   duration: 4000,
 }

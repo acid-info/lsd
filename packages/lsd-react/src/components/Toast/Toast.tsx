@@ -5,60 +5,63 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { toastClasses } from './Toast.classes'
-import { CloseIcon, ErrorIcon } from '../Icons'
+import { CloseIcon, ErrorIcon, LsdIconProps } from '../Icons'
 import { IconButton } from '../IconButton'
 import { Typography } from '../Typography'
-import { Button } from '../Button'
 
 export type ToastProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
-    isOpen?: boolean
     title: string
     information?: string
-    inline?: boolean
-    buttonText?: string
-    onButtonClick?: () => void
     onClose?: () => void
     size?: 'large' | 'medium' | 'small'
-    toastRefFunction?: (el: HTMLDivElement | null) => void
+    toastRef?: React.Ref<HTMLDivElement>
+    icon?: React.ComponentType<LsdIconProps> | null | false
+    actions?: React.ReactNode
   }
 
 export const Toast: React.FC<ToastProps> & {
   classes: typeof toastClasses
 } = ({
-  isOpen,
   title,
   information,
-  inline = true,
-  buttonText,
-  onButtonClick,
   onClose,
   size = 'large',
-  toastRefFunction,
+  toastRef,
   children,
+  icon,
+  actions,
   ...props
 }) => {
   const commonProps = useCommonProps(props)
-  const isInlineButtonHidden = !inline || !!information || !buttonText
+  const isInline = !information
 
-  // If the toast is not open, do not render anything.
-  if (isOpen === false) {
-    return null
-  }
+  const Icon = typeof icon === 'undefined' ? ErrorIcon : icon
 
   return (
     <div
-      ref={toastRefFunction}
+      ref={toastRef}
       {...omitCommonProps(props)}
       className={clsx(
+        props.className,
         commonProps.className,
         toastClasses.root,
         toastClasses[size],
       )}
     >
       <div
+        className={clsx(
+          isInline
+            ? toastClasses.inlineIconContainer
+            : toastClasses.columnIconContainer,
+        )}
+      >
+        {Icon && <Icon color="primary" className={toastClasses.icon} />}
+      </div>
+
+      <div
         className={
-          inline ? toastClasses.inlineContainer : toastClasses.blockContainer
+          isInline ? toastClasses.inlineContainer : toastClasses.columnContainer
         }
       >
         <div className={clsx(toastClasses.textContainer)}>
@@ -68,11 +71,6 @@ export const Toast: React.FC<ToastProps> & {
               component="div"
               variant={size === 'small' ? 'label2' : 'label1'}
             >
-              <ErrorIcon
-                color="primary"
-                className={toastClasses.errorIcon}
-                style={{ width: '16px' }}
-              />
               {title}
             </Typography>
           )}
@@ -86,30 +84,20 @@ export const Toast: React.FC<ToastProps> & {
               {information}
             </Typography>
           )}
-
-          {!inline && !!buttonText && (
-            <Button
-              onClick={onButtonClick}
-              className={clsx(
-                toastClasses.actionButton,
-                toastClasses.blockButton,
-              )}
-            >
-              {buttonText}
-            </Button>
-          )}
         </div>
 
-        <div
-          className={clsx(
-            toastClasses.inlineButtonContainer,
-            isInlineButtonHidden && toastClasses.hiddenButtonContainer,
-          )}
-        >
-          <Button onClick={onButtonClick} className={toastClasses.actionButton}>
-            {`${isInlineButtonHidden ? '' : buttonText}`}
-          </Button>
-        </div>
+        {!!actions && (
+          <div
+            className={clsx(
+              toastClasses.buttonContainer,
+              isInline
+                ? toastClasses.inlineButtonContainer
+                : toastClasses.columnButtonContainer,
+            )}
+          >
+            {actions}
+          </div>
+        )}
       </div>
 
       <IconButton

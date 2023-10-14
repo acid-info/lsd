@@ -4,51 +4,42 @@ import { toastClasses } from './Toast.classes'
 export const ToastStyles = css`
   .${toastClasses.root} {
     box-sizing: border-box;
-    display: flex;
-    position: fixed;
+    display: inline-flex;
     align-items: center;
     background: rgb(var(--lsd-surface-primary));
     border: 1px solid rgb(var(--lsd-border-primary));
     padding: 8px;
 
-    z-index: 9999;
-
     height: fit-content;
   }
 
   .${toastClasses.inlineButtonContainer} {
-    margin: 0 8px;
+    flex-shrink: 0;
   }
 
-  .${toastClasses.hiddenButtonContainer} {
-    visibility: hidden;
-  }
-
-  .${toastClasses.blockButton} {
+  .${toastClasses.columnButtonContainer} {
     margin-top: 18px;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
   }
 
   .${toastClasses.inlineContainer} {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
+    flex-grow: 1;
   }
 
-  .${toastClasses.blockContainer} {
+  .${toastClasses.columnContainer} {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    width: 100%;
   }
 
   .${toastClasses.textContainer} {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     color: rgb(var(--lsd-text-secondary));
-    margin-left: 32px;
+    padding-left: 12px;
   }
 
   .${toastClasses.title} {
@@ -59,11 +50,11 @@ export const ToastStyles = css`
     margin-top: 4px;
   }
 
-  .${toastClasses.actionButton} {
-    height: 28px;
+  .${toastClasses.buttonContainer} {
+    min-height: 28px;
     min-width: 60px;
     width: fit-content;
-    padding: 6px 12px;
+    padding: 0px 12px;
   }
 
   .${toastClasses.closeButton} {
@@ -71,39 +62,43 @@ export const ToastStyles = css`
     flex-shrink: 0;
     height: 28px;
     width: 28px;
+
+    margin-left: auto;
   }
 
-  .${toastClasses.errorIconContainer} {
-    width: 26px;
+  .${toastClasses.columnIconContainer} {
     display: flex;
-    position: relative;
+    justify-content: center;
     margin-bottom: auto;
+
+    position: relative;
+    top: 4px;
+    padding-left: 4px;
   }
 
-  .${toastClasses.errorIcon} {
-    position: absolute;
-    top: 3px;
-    left: -26px;
+  .${toastClasses.inlineIconContainer} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 4px;
+  }
+
+  .${toastClasses.icon} {
+    position: relative;
   }
 
   .${toastClasses.large} {
-    .${toastClasses.textContainer} {
-      min-width: 204px;
-    }
+    width: 364px;
   }
 
   .${toastClasses.medium} {
-    .${toastClasses.textContainer} {
-      min-width: 184px;
-    }
+    width: 336px;
   }
 
   .${toastClasses.small} {
-    .${toastClasses.textContainer} {
-      min-width: 144px;
-    }
+    width: 296px;
 
-    .${toastClasses.errorIcon} {
+    .${toastClasses.icon} {
       top: 0px;
     }
   }
