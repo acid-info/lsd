@@ -27,7 +27,7 @@ export const Button: React.FC<ButtonProps> & {
 }) => {
   const context = useButtonGroupContext()
   const commonProps = useCommonProps(props)
-  const contextCommonProps = useCommonProps(context)
+  const contextCommonProps = useCommonProps(context || {})
   const commonPropsClassName =
     commonProps.className || contextCommonProps.className
 
