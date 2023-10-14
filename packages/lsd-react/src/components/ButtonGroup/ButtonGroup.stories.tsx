@@ -31,11 +31,13 @@ export default {
 type ButtonGroupStoryProps = ButtonGroupProps & {
   icon: string
   buttonText: string
+  buttons: number
 }
 
 export const Root: StoryObj<ButtonGroupStoryProps> = ({
   icon,
   buttonText,
+  buttons,
   ...args
 }: ButtonGroupStoryProps) => {
   const IconComponent = useStorybookIconComponent(icon)
@@ -43,34 +45,16 @@ export const Root: StoryObj<ButtonGroupStoryProps> = ({
 
   return (
     <ButtonGroup {...args}>
-      <Button
-        icon={
-          IconComponent && <IconComponent color={iconColor}></IconComponent>
-        }
-      >
-        {buttonText}
-      </Button>
-      <Button
-        icon={
-          IconComponent && <IconComponent color={iconColor}></IconComponent>
-        }
-      >
-        {buttonText}
-      </Button>
-      <Button
-        icon={
-          IconComponent && <IconComponent color={iconColor}></IconComponent>
-        }
-      >
-        {buttonText}
-      </Button>
-      <Button
-        icon={
-          IconComponent && <IconComponent color={iconColor}></IconComponent>
-        }
-      >
-        {buttonText}
-      </Button>
+      {new Array(Math.max(1, buttons)).fill(null).map((_, index) => (
+        <Button
+          key={index}
+          icon={
+            IconComponent && <IconComponent color={iconColor}></IconComponent>
+          }
+        >
+          {buttonText}
+        </Button>
+      ))}
     </ButtonGroup>
   )
 }
@@ -79,5 +63,6 @@ Root.args = {
   size: 'large',
   buttonText: 'Button',
   disabled: false,
+  buttons: 4,
   variant: 'outlined',
 }

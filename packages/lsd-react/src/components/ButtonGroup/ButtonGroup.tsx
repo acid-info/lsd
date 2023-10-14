@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { buttonGroupClasses } from './ButtonGroup.classes'
-import { Button } from '../Button/Button'
+import { ButtonGroupContext } from './ButtonGroup.context'
 
 export type ButtonGroupProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
@@ -17,7 +17,13 @@ export type ButtonGroupProps = CommonProps &
 
 export const ButtonGroup: React.FC<ButtonGroupProps> & {
   classes: typeof buttonGroupClasses
-} = ({ size = 'medium', variant = 'outlined', children, ...props }) => {
+} = ({
+  size = 'large',
+  disabled,
+  variant = 'outlined',
+  children,
+  ...props
+}) => {
   const commonProps = useCommonProps(props)
 
   return (
@@ -27,23 +33,20 @@ export const ButtonGroup: React.FC<ButtonGroupProps> & {
         commonProps.className,
         props.className,
         buttonGroupClasses.root,
+        buttonGroupClasses[size],
+        buttonGroupClasses[variant],
+        disabled && buttonGroupClasses.disabled,
       )}
     >
-      {React.Children.map(children, (child) => {
-        // Check if the child is a valid React element and if it's of type Button.
-        if (React.isValidElement(child) && child.type === Button) {
-          // Clone the child element (Button) and provide the updated props.
-          return React.cloneElement(child, {
-            ...child.props,
-            size,
-            variant,
-            disabled: props.disabled || child.props.disabled,
-          })
-        }
-
-        // If not a Button, return the child unchanged.
-        return child
-      })}
+      <ButtonGroupContext.Provider
+        value={{
+          size,
+          variant,
+          disabled,
+        }}
+      >
+        {children}
+      </ButtonGroupContext.Provider>
     </div>
   )
 }
