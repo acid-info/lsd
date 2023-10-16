@@ -18,16 +18,18 @@ import { useCalendarContext } from './Calendar.context'
 type CalendarNavigationButtonProps = {
   direction: 'previous' | 'next'
   onClick: () => void
+  className?: string
 }
 
 export const CalendarNavigationButton: FC<CalendarNavigationButtonProps> = ({
   direction,
   onClick,
+  className,
 }) => {
   const Icon = direction === 'previous' ? NavigateBeforeIcon : NavigateNextIcon
   return (
     <button
-      className={clsx(calendarClasses.button)}
+      className={clsx(calendarClasses.button, className)}
       type="button"
       onClick={onClick}
     >
@@ -39,20 +41,11 @@ export const CalendarNavigationButton: FC<CalendarNavigationButtonProps> = ({
 type YearControlProps = {
   year: string
   size: 'large' | 'medium' | 'small'
-  onClickAway: () => void
 }
 
-export const YearControl: FC<YearControlProps> = ({
-  year,
-  size,
-  onClickAway,
-}) => {
+export const YearControl: FC<YearControlProps> = ({ year, size }) => {
   const ref = useRef<HTMLDivElement>(null)
   const { goToNextYear, goToPreviousYear } = useCalendarContext()
-
-  useClickAway(ref, () => {
-    onClickAway()
-  })
 
   return (
     <div ref={ref} className={calendarClasses.changeYear}>
@@ -91,12 +84,7 @@ type MonthHeaderProps = {
 }
 
 export const MonthHeader: FC<MonthHeaderProps> = ({ monthLabel, size }) => {
-  const {
-    goToPreviousMonths,
-    goToNextMonths,
-    changeYearMode,
-    setChangeYearMode,
-  } = useCalendarContext()
+  const { goToPreviousMonths, goToNextMonths } = useCalendarContext()
   const [month, year] = monthLabel.split(' ')
 
   return (
@@ -104,6 +92,7 @@ export const MonthHeader: FC<MonthHeaderProps> = ({ monthLabel, size }) => {
       <CalendarNavigationButton
         direction="previous"
         onClick={goToPreviousMonths}
+        className={calendarClasses.previousMonthButton}
       />
       <div className={calendarClasses.row}>
         <Typography
@@ -113,25 +102,14 @@ export const MonthHeader: FC<MonthHeaderProps> = ({ monthLabel, size }) => {
         >
           {month}
         </Typography>
-        {changeYearMode ? (
-          <YearControl
-            year={year}
-            size={size}
-            onClickAway={() => {
-              setChangeYearMode(false)
-            }}
-          />
-        ) : (
-          <Typography
-            onClick={() => setChangeYearMode(true)}
-            variant={size === 'large' ? 'label1' : 'label2'}
-            className={calendarClasses.year}
-          >
-            {year}
-          </Typography>
-        )}
+
+        <YearControl year={year} size={size} />
       </div>
-      <CalendarNavigationButton direction="next" onClick={goToNextMonths} />
+      <CalendarNavigationButton
+        direction="next"
+        onClick={goToNextMonths}
+        className={calendarClasses.nextMonthButton}
+      />
     </div>
   )
 }
