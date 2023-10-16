@@ -6,9 +6,11 @@ export const ButtonGroupStyles = css`
   .${buttonGroupClasses.root} {
     display: flex;
     flex-direction: row;
-  }
 
-  .${buttonGroupClasses.outlined} .${buttonClasses.root}:not(:last-child) {
-    border-right: none;
+    > *:not(:last-child) {
+      &.${buttonClasses.outlined}, .${buttonClasses.outlined} {
+        border-right: none;
+      }
+    }
   }
 `
