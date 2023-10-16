@@ -5,7 +5,7 @@ export const CalendarStyles = css`
   .${calendarClasses.root} {
     border: 1px solid rgb(var(--lsd-border-primary));
     visibility: hidden;
-    position: absolute;
+    position: absolute !important;
     top: 0;
     left: 0;
     opacity: 0;
@@ -16,12 +16,12 @@ export const CalendarStyles = css`
     background: rgb(var(--lsd-surface-primary));
 
     user-select: none;
-    padding: 8px;
   }
 
   .${calendarClasses.container} {
     display: flex;
     flex-direction: column;
+    padding: 8px;
   }
 
   .${calendarClasses.open} {

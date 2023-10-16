@@ -15,6 +15,7 @@ import {
   useCommonProps,
   omitCommonProps,
 } from '../../utils/useCommonProps'
+import { TooltipBase } from '../TooltipBase'
 
 export type CalendarType = null | 'endDate' | 'startDate'
 
@@ -34,6 +35,7 @@ export type CalendarProps = CommonProps &
     endDate?: string
     minDate?: Date
     maxDate?: Date
+    tooltipArrowOffset?: number
   }
 
 export const Calendar: React.FC<CalendarProps> & {
@@ -54,6 +56,7 @@ export const Calendar: React.FC<CalendarProps> & {
   // minDate and maxDate are necessary because onDateFocus freaks out with small/large date values.
   minDate = new Date(1950, 0, 1),
   maxDate = new Date(2100, 0, 1),
+  tooltipArrowOffset,
   ...props
 }) => {
   const commonProps = useCommonProps(props)
@@ -184,7 +187,7 @@ export const Calendar: React.FC<CalendarProps> & {
         goToPreviousYear,
       }}
     >
-      <div
+      <TooltipBase
         {...props}
         className={clsx(
           { ...omitCommonProps(props) },
@@ -194,8 +197,9 @@ export const Calendar: React.FC<CalendarProps> & {
           open && calendarClasses.open,
           disabled && calendarClasses.disabled,
         )}
-        ref={ref}
+        rootRef={ref}
         style={{ ...style, ...(props.style ?? {}) }}
+        arrowOffset={tooltipArrowOffset}
       >
         <div className={clsx(calendarClasses.container)}>
           {activeMonths.map((month, idx) => (
@@ -208,7 +212,7 @@ export const Calendar: React.FC<CalendarProps> & {
             />
           ))}
         </div>
-      </div>
+      </TooltipBase>
     </CalendarContext.Provider>
   )
 }

@@ -1,6 +1,7 @@
 import { css } from '@emotion/react'
 import { dateRangePickerClasses } from './DateRangePicker.classes'
 import { dateFieldClasses } from '../DateField/DateField.classes'
+import { tooltipBaseClasses } from '../TooltipBase/TooltipBase.classes'
 
 export const DateRangePickerStyles = css`
   .${dateRangePickerClasses.root} {
@@ -31,6 +32,10 @@ export const DateRangePickerStyles = css`
 
   .${dateRangePickerClasses.calendar} {
     border-top: none !important;
+
+    .${tooltipBaseClasses.arrowTip} {
+      transition: left 0.2s ease-in-out;
+    }
   }
 
   .${dateRangePickerClasses.openCalendar} {
