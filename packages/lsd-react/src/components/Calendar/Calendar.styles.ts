@@ -14,12 +14,14 @@ export const CalendarStyles = css`
     padding: 0;
     box-sizing: border-box;
     background: rgb(var(--lsd-surface-primary));
+
+    user-select: none;
+    padding: 8px;
   }
 
   .${calendarClasses.container} {
     display: flex;
     flex-direction: column;
-    margin: 8px 2px 2px;
   }
 
   .${calendarClasses.open} {
@@ -29,10 +31,10 @@ export const CalendarStyles = css`
 
   .${calendarClasses.header} {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding-inline: 10px;
-    padding-bottom: 10px;
+    height: 32px;
+    margin-bottom: 8px;
   }
 
   .${calendarClasses.weekDay} {
@@ -40,6 +42,7 @@ export const CalendarStyles = css`
     justify-content: center;
     align-items: center;
     aspect-ratio: 1 / 1;
+    margin-bottom: 4px;
   }
 
   .${calendarClasses.row} {
@@ -70,12 +73,6 @@ export const CalendarStyles = css`
 
   .${calendarClasses.month} {
     margin-right: 8px;
-  }
-
-  .${calendarClasses.year}:hover {
-    cursor: pointer;
-    text-decoration: underline;
-    text-decoration-color: rgb(var(--lsd-border-primary));
   }
 
   .${calendarClasses.dayContainer} {
@@ -145,6 +142,18 @@ export const CalendarStyles = css`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    position: absolute;
+  }
+
+  .${calendarClasses.nextMonthButton} {
+    top: 8px;
+    right: 8px;
+  }
+
+  .${calendarClasses.previousMonthButton} {
+    top: 8px;
+    left: 8px;
   }
 
   /* Using style double instead of solid. When collapsing borders, */

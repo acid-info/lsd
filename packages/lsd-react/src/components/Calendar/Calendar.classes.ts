@@ -30,4 +30,7 @@ export const calendarClasses = {
   todayIndicator: 'lsd-calendar-day__today_indicator',
 
   monthTable: 'lsd-calendar__month-table',
+
+  nextMonthButton: 'lsd-calendar__next-month-button',
+  previousMonthButton: 'lsd-calendar__previous-month-button',
 }

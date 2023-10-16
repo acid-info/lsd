@@ -67,7 +67,6 @@ export const Calendar: React.FC<CalendarProps> & {
   const [endDate, setEndDate] = useState<Date | null>(
     endDateProp ? safeConvertDate(endDateProp, minDate, maxDate).date : null,
   )
-  const [changeYearMode, setChangeYearMode] = useState(false)
 
   useClickAway(ref, (event) => {
     if (!open) return
@@ -183,8 +182,6 @@ export const Calendar: React.FC<CalendarProps> & {
         goToNextMonths,
         goToNextYear,
         goToPreviousYear,
-        changeYearMode,
-        setChangeYearMode,
       }}
     >
       <div

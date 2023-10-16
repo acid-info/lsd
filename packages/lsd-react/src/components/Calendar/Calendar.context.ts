@@ -18,8 +18,6 @@ export type CalendarContextType = {
   goToNextMonths: () => void
   goToNextYear: () => void
   goToPreviousYear: () => void
-  changeYearMode: boolean
-  setChangeYearMode: (value: boolean) => void
 }
 
 export const CalendarContext = React.createContext<CalendarContextType>(
