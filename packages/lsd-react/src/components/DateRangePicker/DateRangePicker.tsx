@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import React, { ChangeEvent, ChangeEventHandler, useRef, useState } from 'react'
 import {
   dateToISODateString,
+  getCalendarTooltipArrowOffset,
   isValidRange,
   removeDateTimezoneOffset,
   switchCalendar,
@@ -23,9 +24,11 @@ import {
 } from '../../utils/useCommonProps'
 
 export type DateRangePickerProps = CommonProps &
-  Omit<DatePickerProps, 'value' | 'clearButton'> & {
+  Omit<DatePickerProps, 'value' | 'clearButton' | 'onChange'> & {
     startValue?: string
     endValue?: string
+    onStartDateChange: DatePickerProps['onChange']
+    onEndDateChange: DatePickerProps['onChange']
   }
 
 export const DateRangePicker: React.FC<DateRangePickerProps> & {
@@ -33,7 +36,8 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
 } = ({
   startValue: startValueProp,
   endValue: endValueProp,
-  onChange,
+  onStartDateChange,
+  onEndDateChange,
   size = 'large',
   variant = 'outlined-bottom',
   withCalendar = true,
@@ -53,7 +57,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   const startInput = useInput({
     value: startValueProp,
     defaultValue: '',
-    onChange,
+    onChange: onStartDateChange,
     getInput: () =>
       ref.current?.querySelectorAll(
         `input.${DateField.classes.input}`,
@@ -63,7 +67,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   const endInput = useInput({
     value: endValueProp,
     defaultValue: '',
-    onChange,
+    onChange: onEndDateChange,
     getInput: () =>
       ref.current?.querySelectorAll(
         `input.${DateField.classes.input}`,
@@ -73,6 +77,9 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   const onStartInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!endInput.value || isValidRange(e.target.value, endInput.value)) {
       startInput.onChange(e)
+
+      // Switch to endDate calendar when the startDate is set.
+      setCalendarType('endDate')
     }
   }
 
@@ -206,6 +213,10 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
             startDate={startInput.value}
             endDate={endInput.value}
             className={dateRangePickerClasses.calendar}
+            tooltipArrowOffset={getCalendarTooltipArrowOffset(
+              calendarType,
+              size,
+            )}
           />
         </Portal>
       )}

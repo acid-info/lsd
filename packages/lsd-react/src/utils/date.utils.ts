@@ -1,6 +1,7 @@
 import { OnDatesChangeProps, UseMonthResult } from '@datepicker-react/hooks'
 import { calendarClasses } from '../components/Calendar/Calendar.classes'
 import { CalendarType } from '../components/Calendar'
+import { DateRangePickerProps } from '../components/DateRangePicker'
 
 type SafeConvertDateResult = {
   isValid: boolean
@@ -230,4 +231,35 @@ export function isValidRange(
 
   // Check if the end date is after the start date
   return endDate > startDate
+}
+
+export const getCalendarTooltipArrowOffset = (
+  calendarType: CalendarType,
+  size: DateRangePickerProps['size'],
+): number => {
+  if (size === 'large') {
+    if (calendarType === 'startDate') {
+      return 130
+    } else {
+      return 290
+    }
+  }
+
+  if (size === 'medium') {
+    if (calendarType === 'startDate') {
+      return 120
+    } else {
+      return 267
+    }
+  }
+
+  if (size === 'small') {
+    if (calendarType === 'startDate') {
+      return 107
+    } else {
+      return 239
+    }
+  }
+
+  return 0
 }

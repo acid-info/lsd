@@ -43,6 +43,7 @@ import { ToastStyles } from '../Toast/Toast.styles'
 import { ToastProviderStyles } from '../ToastProvider/ToastProvider.styles'
 import { ButtonGroupStyles } from '../ButtonGroup/ButtonGroup.styles'
 import { DateRangePickerStyles } from '../DateRangePicker/DateRangePicker.styles'
+import { TooltipBaseStyles } from '../TooltipBase/TooltipBase.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
@@ -88,6 +89,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     ToastProviderStyles,
     ButtonGroupStyles,
     DateRangePickerStyles,
+    TooltipBaseStyles,
   ]
 
 export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
