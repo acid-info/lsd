@@ -1,5 +1,4 @@
-import { useRef } from 'react'
-import { useDay } from '@datepicker-react/hooks'
+import { useCallback, useRef } from 'react'
 import { useCalendarContext } from './Calendar.context'
 import clsx from 'clsx'
 import { Typography } from '../Typography'
@@ -25,12 +24,13 @@ export const Day = ({
   disabled = false,
 }: DayProps) => {
   const date = fullMonthDays[index]
-  const { mode, startDate, endDate, ...calendarContext } = useCalendarContext()
+  const { mode, startDate, endDate, onDateSelect } = useCalendarContext()
   const dayRef = useRef(null)
-  const dayHandlers = useDay({ date, dayRef, ...calendarContext })
   const isToday = resetHours(date) === resetHours(new Date())
   const isInDateRange =
     mode === 'range' && isDateWithinRange(date, startDate, endDate)
+
+  const onClick = useCallback(() => onDateSelect(date), [date, onDateSelect])
 
   const isStartDate = isSameDay(date, startDate)
   const isEndDate = mode === 'range' && isSameDay(date, endDate)
@@ -50,9 +50,7 @@ export const Day = ({
 
   return (
     <td
-      onClick={dayHandlers.onClick}
-      onMouseEnter={dayHandlers.onMouseEnter}
-      tabIndex={dayHandlers.tabIndex}
+      onClick={onClick}
       ref={dayRef}
       className={clsx(
         calendarClasses.dayContainer,

@@ -14,7 +14,10 @@ export const safeConvertDate = (
   maxDate: Date,
 ): SafeConvertDateResult => {
   if (!value) return { isValid: false, date: null }
-  const date = new Date(value ?? undefined)
+  // If we call new Date() without 'T00:00:00', the resulting Date object may be incorrect.
+  // For example, in my timezone (GMT+1) if I do new Date('1900-01-01')
+  // I'll get back 'Dec 31 1899 23:23:15'. But, doing new Date('1900-01-01T00:00:00') works.
+  const date = new Date(value + 'T00:00:00')
   const isValid = !Number.isNaN(+date) && date >= minDate && date <= maxDate
 
   return {
@@ -22,11 +25,11 @@ export const safeConvertDate = (
     date,
   }
 }
-export const removeDateTimezoneOffset = (date: Date) =>
-  new Date(+date - date.getTimezoneOffset() * 60 * 1000)
 
-export const dateToISODateString = (date: Date) =>
-  date.toISOString().split('T')[0]
+export const adjustedTimezoneISOString = (date: Date): string => {
+  const localDate = new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+  return localDate.toISOString().split('T')[0]
+}
 
 export const resetHours = (date: Date) => date.setHours(0, 0, 0, 0)
 
@@ -43,12 +46,15 @@ export const isDateWithinRange = (
 }
 
 export const isSameDay = (
-  date: Date | null | undefined,
-  start: Date | null | undefined,
+  firstDate: Date | null | undefined,
+  secondDate: Date | null | undefined,
 ): boolean => {
-  if (!date || !start) return false
+  if (!firstDate || !secondDate) return false
 
-  return resetHours(date) === resetHours(start)
+  const isoStringFirstDate = adjustedTimezoneISOString(firstDate)
+  const isoStringSecondDate = adjustedTimezoneISOString(secondDate)
+
+  return isoStringFirstDate === isoStringSecondDate
 }
 
 type NewDates = {
@@ -221,13 +227,9 @@ export function isValidRange(
   if (!startDateString || !endDateString) return true
 
   // Convert string to Date objects after removing timezone offset
-  let startDate = new Date(
-    dateToISODateString(removeDateTimezoneOffset(new Date(startDateString))),
-  )
+  let startDate = new Date(adjustedTimezoneISOString(new Date(startDateString)))
 
-  let endDate = new Date(
-    dateToISODateString(removeDateTimezoneOffset(new Date(endDateString))),
-  )
+  let endDate = new Date(adjustedTimezoneISOString(new Date(endDateString)))
 
   // Check if the end date is after the start date
   return endDate > startDate
@@ -241,7 +243,7 @@ export const getCalendarTooltipArrowOffset = (
     if (calendarType === 'startDate') {
       return 130
     } else {
-      return 290
+      return 291
     }
   }
 

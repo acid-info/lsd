@@ -58,16 +58,8 @@ export const CalendarStyles = css`
   }
 
   .${calendarClasses.changeYearActive} {
-    .${calendarClasses.year} {
-      padding: 5px 0px 5px 10px;
-    }
-
     .${calendarClasses.yearAndIcon} {
       border: 1px solid rgb(var(--lsd-border-primary));
-    }
-
-    .${calendarClasses.changeYearIconContainer} {
-      padding-right: 5px;
     }
   }
 
@@ -78,7 +70,7 @@ export const CalendarStyles = css`
     cursor: pointer;
     border: none;
     width: 14px;
-    padding-left: 5px;
+    padding: 0 6px;
   }
 
   .${calendarClasses.month} {
@@ -209,11 +201,17 @@ export const CalendarStyles = css`
     width: 100%;
 
     border: 1px solid rgb(var(--lsd-border-primary));
+    border-top: none;
+
     z-index: 1;
 
     .${calendarClasses.year} {
       border-bottom: 1px solid rgb(var(--lsd-border-primary));
     }
+  }
+
+  .${calendarClasses.yearDropdownHidden} {
+    visibility: hidden;
   }
 
   .${calendarClasses.year} {
@@ -224,17 +222,14 @@ export const CalendarStyles = css`
 
     background: rgb(var(--lsd-surface-primary));
 
+    padding: 5px 0px 5px 12px;
+
     :hover {
       text-decoration: underline;
-      padding: 5px 0px 5px 10px;
     }
   }
 
-  .${calendarClasses.yearAndIcon}:hover {
+  .${calendarClasses.yearAndIcon} {
     border: 1px solid rgb(var(--lsd-border-primary));
-
-    .${calendarClasses.changeYearIconContainer} {
-      padding-right: 5px;
-    }
   }
 `
