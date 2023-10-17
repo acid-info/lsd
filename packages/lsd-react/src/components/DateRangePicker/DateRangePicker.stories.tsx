@@ -38,7 +38,7 @@ Uncontrolled.args = {
   errorIcon: false,
   withCalendar: true,
   size: 'large',
-  variant: 'outlined-bottom',
+  variant: 'underlined',
 }
 
 Controlled.args = {
@@ -51,5 +51,5 @@ Controlled.args = {
   errorIcon: false,
   withCalendar: true,
   size: 'large',
-  variant: 'outlined-bottom',
+  variant: 'underlined',
 }

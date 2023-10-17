@@ -1,10 +1,9 @@
 import clsx from 'clsx'
 import React, { ChangeEvent, ChangeEventHandler, useRef, useState } from 'react'
 import {
-  dateToISODateString,
+  adjustedTimezoneISOString,
   getCalendarTooltipArrowOffset,
   isValidRange,
-  removeDateTimezoneOffset,
   switchCalendar,
 } from '../../utils/date.utils'
 import { useInput } from '../../utils/useInput'
@@ -39,7 +38,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   onStartDateChange,
   onEndDateChange,
   size = 'large',
-  variant = 'outlined-bottom',
+  variant = 'underlined',
   withCalendar = true,
   label,
   supportingText,
@@ -87,14 +86,14 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   }
 
   const calendarStartDateChange = (date: Date) => {
-    startInput.setValue(dateToISODateString(removeDateTimezoneOffset(date)))
+    startInput.setValue(adjustedTimezoneISOString(date))
 
     // Switch to endDate calendar when the startDate is set.
     setCalendarType('endDate')
   }
 
   const calendarEndDateChange = (date: Date) =>
-    endInput.setValue(dateToISODateString(removeDateTimezoneOffset(date)))
+    endInput.setValue(adjustedTimezoneISOString(date))
 
   const dateFieldProps: DateFieldProps = {
     ...props,

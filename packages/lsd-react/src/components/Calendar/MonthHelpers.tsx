@@ -1,19 +1,13 @@
 import clsx from 'clsx'
 import { Day } from './Day'
-import { FC, useRef } from 'react'
-import {
-  ArrowDownIcon,
-  ArrowUpIcon,
-  NavigateBeforeIcon,
-  NavigateNextIcon,
-} from '../Icons'
+import { FC } from 'react'
+import { NavigateBeforeIcon, NavigateNextIcon } from '../Icons'
 import { calendarClasses } from './Calendar.classes'
 import { Typography } from '../Typography'
-import { IconButton } from '../IconButton'
 import { UseMonthResult } from '@datepicker-react/hooks'
-import { useClickAway } from 'react-use'
 import { generateFullMonthDays } from '../../utils/date.utils'
 import { useCalendarContext } from './Calendar.context'
+import { YearControl } from './YearControl'
 
 type CalendarNavigationButtonProps = {
   direction: 'previous' | 'next'
@@ -35,82 +29,6 @@ export const CalendarNavigationButton: FC<CalendarNavigationButtonProps> = ({
     >
       <Icon color="primary" />
     </button>
-  )
-}
-
-type YearControlProps = {
-  year: string
-  monthNumber: number
-  size: 'large' | 'medium' | 'small'
-}
-
-export const YearControl: FC<YearControlProps> = ({
-  year,
-  monthNumber,
-  size,
-}) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const { goToDate, changeYearMode, setChangeYearMode } = useCalendarContext()
-
-  useClickAway(ref, () => {
-    setChangeYearMode(false)
-  })
-
-  const handleYearClick = (selectedYear: number) => {
-    const selectedDate = new Date(selectedYear, monthNumber, 1)
-    goToDate(selectedDate)
-    setChangeYearMode(false)
-  }
-
-  const yearsList = Array.from({ length: 101 }, (_, i) => 1950 + i)
-
-  return (
-    <div
-      ref={ref}
-      className={clsx(
-        calendarClasses.changeYear,
-        changeYearMode && calendarClasses.changeYearActive,
-      )}
-      onClick={() => {
-        setChangeYearMode(!changeYearMode)
-      }}
-    >
-      <div className={clsx(calendarClasses.year, calendarClasses.yearAndIcon)}>
-        <Typography
-          component="span"
-          variant={size === 'large' ? 'label1' : 'label2'}
-        >
-          {year}
-        </Typography>
-
-        <div className={calendarClasses.changeYearIconContainer}>
-          {changeYearMode ? (
-            <ArrowUpIcon color="primary" />
-          ) : (
-            <ArrowDownIcon color="primary" />
-          )}
-        </div>
-      </div>
-
-      {changeYearMode && (
-        <div className={calendarClasses.yearDropdown}>
-          {yearsList.map((year) => (
-            <div
-              key={year}
-              className={calendarClasses.year}
-              onClick={() => handleYearClick(year)}
-            >
-              <Typography
-                component="span"
-                variant={size === 'large' ? 'label1' : 'label2'}
-              >
-                {year}
-              </Typography>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
   )
 }
 

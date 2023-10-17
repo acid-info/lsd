@@ -39,4 +39,5 @@ export const calendarClasses = {
   previousMonthButton: 'lsd-calendar__previous-month-button',
 
   yearDropdown: 'lsd-calendar__year-dropdown',
+  yearDropdownHidden: 'lsd-calendar__year-dropdown--hidden',
 }

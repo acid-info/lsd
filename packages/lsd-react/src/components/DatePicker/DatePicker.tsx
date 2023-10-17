@@ -1,9 +1,6 @@
 import clsx from 'clsx'
 import React, { useRef, useState } from 'react'
-import {
-  dateToISODateString,
-  removeDateTimezoneOffset,
-} from '../../utils/date.utils'
+import { adjustedTimezoneISOString } from '../../utils/date.utils'
 import { useInput } from '../../utils/useInput'
 import { Calendar } from '../Calendar'
 import { DateField } from '../DateField'
@@ -65,7 +62,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
   })
 
   const handleDateChange = (date: Date) =>
-    input.setValue(dateToISODateString(removeDateTimezoneOffset(date)))
+    input.setValue(adjustedTimezoneISOString(date))
 
   const inputId = (props.id || 'date-picker') + '-input'
 
