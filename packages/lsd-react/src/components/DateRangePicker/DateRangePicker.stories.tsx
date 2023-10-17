@@ -10,14 +10,12 @@ export default {
         name: 'enum',
         value: ['small', 'medium', 'large'],
       },
-      defaultValue: 'large',
     },
     variant: {
       type: {
         name: 'enum',
         value: ['outlined', 'outlined-bottom'],
       },
-      defaultValue: 'large',
     },
   },
 } as Meta

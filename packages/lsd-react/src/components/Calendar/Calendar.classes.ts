@@ -8,13 +8,17 @@ export const calendarClasses = {
   header: 'lsd-calendar-header',
   weekDay: 'lsd-calendar__week_day',
   button: 'lsd-calendar__button',
-  row: 'lsd-calendar__row',
   changeYear: 'lsd-calendar__change-year',
-  changeYearButton: 'lsd-calendar__change-year__button',
+  changeYearActive: 'lsd-calendar__change-year--active',
+  changeYearIconContainer: 'lsd-calendar__change-year-icon-container',
 
   year: 'lsd-calendar-year',
   month: 'lsd-calendar-month',
   day: 'lsd-calendar-day',
+
+  yearAndIcon: 'lsd-calendar__year-and-icon',
+
+  monthAndYear: 'lsd-calendar__month-and-year',
 
   dayContainer: 'lsd-calendar-day__container',
   dayRange: 'lsd-calendar-day--range',
@@ -33,4 +37,6 @@ export const calendarClasses = {
 
   nextMonthButton: 'lsd-calendar__next-month-button',
   previousMonthButton: 'lsd-calendar__previous-month-button',
+
+  yearDropdown: 'lsd-calendar__year-dropdown',
 }

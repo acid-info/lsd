@@ -40,50 +40,91 @@ export const CalendarNavigationButton: FC<CalendarNavigationButtonProps> = ({
 
 type YearControlProps = {
   year: string
+  monthNumber: number
   size: 'large' | 'medium' | 'small'
 }
 
-export const YearControl: FC<YearControlProps> = ({ year, size }) => {
+export const YearControl: FC<YearControlProps> = ({
+  year,
+  monthNumber,
+  size,
+}) => {
   const ref = useRef<HTMLDivElement>(null)
-  const { goToNextYear, goToPreviousYear } = useCalendarContext()
+  const { goToDate, changeYearMode, setChangeYearMode } = useCalendarContext()
+
+  useClickAway(ref, () => {
+    setChangeYearMode(false)
+  })
+
+  const handleYearClick = (selectedYear: number) => {
+    const selectedDate = new Date(selectedYear, monthNumber, 1)
+    goToDate(selectedDate)
+    setChangeYearMode(false)
+  }
+
+  const yearsList = Array.from({ length: 101 }, (_, i) => 1950 + i)
 
   return (
-    <div ref={ref} className={calendarClasses.changeYear}>
-      <Typography
-        component="span"
-        className={calendarClasses.year}
-        variant={size === 'large' ? 'label1' : 'label2'}
-      >
-        {year}
-      </Typography>
-      <div className={calendarClasses.row}>
-        <IconButton
-          onClick={() => {
-            goToNextYear()
-          }}
-          className={calendarClasses.changeYearButton}
+    <div
+      ref={ref}
+      className={clsx(
+        calendarClasses.changeYear,
+        changeYearMode && calendarClasses.changeYearActive,
+      )}
+      onClick={() => {
+        setChangeYearMode(!changeYearMode)
+      }}
+    >
+      <div className={clsx(calendarClasses.year, calendarClasses.yearAndIcon)}>
+        <Typography
+          component="span"
+          variant={size === 'large' ? 'label1' : 'label2'}
         >
-          <ArrowUpIcon color="primary" />
-        </IconButton>
-        <IconButton
-          onClick={() => {
-            goToPreviousYear()
-          }}
-          className={calendarClasses.changeYearButton}
-        >
-          <ArrowDownIcon color="primary" />
-        </IconButton>
+          {year}
+        </Typography>
+
+        <div className={calendarClasses.changeYearIconContainer}>
+          {changeYearMode ? (
+            <ArrowUpIcon color="primary" />
+          ) : (
+            <ArrowDownIcon color="primary" />
+          )}
+        </div>
       </div>
+
+      {changeYearMode && (
+        <div className={calendarClasses.yearDropdown}>
+          {yearsList.map((year) => (
+            <div
+              key={year}
+              className={calendarClasses.year}
+              onClick={() => handleYearClick(year)}
+            >
+              <Typography
+                component="span"
+                variant={size === 'large' ? 'label1' : 'label2'}
+              >
+                {year}
+              </Typography>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
 
 type MonthHeaderProps = {
   monthLabel: string
+  monthNumber: number
   size: 'large' | 'medium' | 'small'
 }
 
-export const MonthHeader: FC<MonthHeaderProps> = ({ monthLabel, size }) => {
+export const MonthHeader: FC<MonthHeaderProps> = ({
+  monthLabel,
+  monthNumber,
+  size,
+}) => {
   const { goToPreviousMonths, goToNextMonths } = useCalendarContext()
   const [month, year] = monthLabel.split(' ')
 
@@ -94,7 +135,7 @@ export const MonthHeader: FC<MonthHeaderProps> = ({ monthLabel, size }) => {
         onClick={goToPreviousMonths}
         className={calendarClasses.previousMonthButton}
       />
-      <div className={calendarClasses.row}>
+      <div className={calendarClasses.monthAndYear}>
         <Typography
           className={calendarClasses.month}
           component="span"
@@ -103,7 +144,7 @@ export const MonthHeader: FC<MonthHeaderProps> = ({ monthLabel, size }) => {
           {month}
         </Typography>
 
-        <YearControl year={year} size={size} />
+        <YearControl year={year} monthNumber={monthNumber} size={size} />
       </div>
       <CalendarNavigationButton
         direction="next"

@@ -77,9 +77,6 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   const onStartInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!endInput.value || isValidRange(e.target.value, endInput.value)) {
       startInput.onChange(e)
-
-      // Switch to endDate calendar when the startDate is set.
-      setCalendarType('endDate')
     }
   }
 
@@ -89,8 +86,12 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
     }
   }
 
-  const calendarStartDateChange = (date: Date) =>
+  const calendarStartDateChange = (date: Date) => {
     startInput.setValue(dateToISODateString(removeDateTimezoneOffset(date)))
+
+    // Switch to endDate calendar when the startDate is set.
+    setCalendarType('endDate')
+  }
 
   const calendarEndDateChange = (date: Date) =>
     endInput.setValue(dateToISODateString(removeDateTimezoneOffset(date)))
@@ -143,7 +144,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
           icon={withCalendar && <CalendarIcon color="primary" />}
           // The DateField component is only controlled when the value prop is provided OR the calendar is open.
           value={
-            isStartValueControlled || isStartDateCalendar
+            isStartValueControlled || isCalendarOpen
               ? startInput.value
               : undefined
           }
@@ -164,9 +165,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
           icon={withCalendar && <CalendarIcon color="primary" />}
           // The DateField component is only controlled when the value prop is provided OR the calendar is open.
           value={
-            isEndValueControlled || isEndDateCalendar
-              ? endInput.value
-              : undefined
+            isEndValueControlled || isCalendarOpen ? endInput.value : undefined
           }
           onIconClick={() =>
             setCalendarType((currentCalendarType) =>
@@ -217,6 +216,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
               calendarType,
               size,
             )}
+            size={size}
           />
         </Portal>
       )}
