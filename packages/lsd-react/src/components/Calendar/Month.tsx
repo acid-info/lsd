@@ -17,8 +17,9 @@ export const Month = ({
   month,
   firstDayOfWeek,
 }: MonthProps) => {
-  const sizeContext = useCalendarContext()
-  const size = sizeContext?.size ?? _size
+  const calendarContext = useCalendarContext()
+  const size = calendarContext?.size ?? _size
+
   const { days, weekdayLabels, monthLabel } = useMonth({
     year,
     month,
@@ -27,7 +28,7 @@ export const Month = ({
 
   return (
     <>
-      <MonthHeader monthLabel={monthLabel} size={size} />
+      <MonthHeader monthLabel={monthLabel} monthNumber={month} size={size} />
       <table className={calendarClasses.monthTable}>
         <thead>
           <WeekdayHeader weekdayLabels={weekdayLabels} />

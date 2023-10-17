@@ -16,8 +16,9 @@ export type CalendarContextType = {
   onDateSelect: (date: Date) => void
   goToPreviousMonths: () => void
   goToNextMonths: () => void
-  goToNextYear: () => void
-  goToPreviousYear: () => void
+  changeYearMode: boolean
+  setChangeYearMode: (value: boolean) => void
+  goToDate: (date: Date) => void
 }
 
 export const CalendarContext = React.createContext<CalendarContextType>(

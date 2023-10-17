@@ -45,34 +45,50 @@ export const CalendarStyles = css`
     margin-bottom: 4px;
   }
 
-  .${calendarClasses.row} {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
   .${calendarClasses.changeYear} {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(var(--lsd-border-primary));
-    padding: 2px 6px;
+    padding: 2px 0xp 2px 8px;
     gap: 6px;
+
+    /* The transparent border prevents slight layout shifts when the hover border shows up. */
+    border: 1px solid transparent;
   }
 
-  .${calendarClasses.changeYearButton} {
+  .${calendarClasses.changeYearActive} {
+    .${calendarClasses.year} {
+      padding: 5px 0px 5px 10px;
+    }
+
+    .${calendarClasses.yearAndIcon} {
+      border: 1px solid rgb(var(--lsd-border-primary));
+    }
+
+    .${calendarClasses.changeYearIconContainer} {
+      padding-right: 5px;
+    }
+  }
+
+  .${calendarClasses.changeYearIconContainer} {
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     border: none;
-    height: 14px;
     width: 14px;
-    padding: 0;
+    padding-left: 5px;
   }
 
   .${calendarClasses.month} {
     margin-right: 8px;
+  }
+
+  .${calendarClasses.monthAndYear} {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .${calendarClasses.dayContainer} {
@@ -179,5 +195,46 @@ export const CalendarStyles = css`
 
   .${calendarClasses.monthTable} {
     border-collapse: collapse;
+  }
+
+  .${calendarClasses.yearDropdown} {
+    box-sizing: border-box;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+
+    border: 1px solid rgb(var(--lsd-border-primary));
+    z-index: 1;
+
+    .${calendarClasses.year} {
+      border-bottom: 1px solid rgb(var(--lsd-border-primary));
+    }
+  }
+
+  .${calendarClasses.year} {
+    display: flex;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-items: center;
+
+    background: rgb(var(--lsd-surface-primary));
+
+    :hover {
+      text-decoration: underline;
+      padding: 5px 0px 5px 10px;
+    }
+  }
+
+  .${calendarClasses.yearAndIcon}:hover {
+    border: 1px solid rgb(var(--lsd-border-primary));
+
+    .${calendarClasses.changeYearIconContainer} {
+      padding-right: 5px;
+    }
   }
 `
