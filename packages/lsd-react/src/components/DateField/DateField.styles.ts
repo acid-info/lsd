@@ -43,8 +43,8 @@ export const DateFieldStyles = css`
   }
 
   .${dateFieldClasses.inputContainer} {
-    // Position relative allows the icons to be absolute positioned...
-    // ... and the icons should be absolute positioned to be on top of the browser's default icons.
+    /* Position relative allows the icons to be absolute positioned... */
+    /* ... and the icons should be absolute positioned to be on top of the browser's default icons. */
     position: relative;
     display: flex;
     align-items: center;

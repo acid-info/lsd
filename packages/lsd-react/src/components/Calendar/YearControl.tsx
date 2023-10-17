@@ -58,6 +58,8 @@ export const YearControl: FC<YearControlProps> = ({
     }
   }, [changeYearMode])
 
+  // The following useEffect adds more years to the dropdown when
+  // users scroll to the top or bottom.
   useEffect(() => {
     const scrollHeight = scrollRef?.current?.scrollHeight
     const clientHeight = scrollRef?.current?.clientHeight
