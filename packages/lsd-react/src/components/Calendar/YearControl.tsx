@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { FC, useEffect, useRef, useState } from 'react'
-import { ArrowDownIcon, ArrowUpIcon } from '../Icons'
 import { calendarClasses } from './Calendar.classes'
 import { Typography } from '../Typography'
 import { useClickAway, useScroll } from 'react-use'
 import { useCalendarContext } from './Calendar.context'
 import { CALENDAR_MAX_YEAR, CALENDAR_MIN_YEAR } from '.'
+import { ChevronDownIcon, ChevronUpIcon } from '../Icons'
 
 type YearControlProps = {
   year: string
@@ -102,9 +102,9 @@ export const YearControl: FC<YearControlProps> = ({
 
         <div className={calendarClasses.changeYearIconContainer}>
           {changeYearMode ? (
-            <ArrowUpIcon color="primary" />
+            <ChevronUpIcon color="primary" />
           ) : (
-            <ArrowDownIcon color="primary" />
+            <ChevronDownIcon color="primary" />
           )}
         </div>
       </div>

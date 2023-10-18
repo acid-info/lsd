@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { Day } from './Day'
 import { FC } from 'react'
-import { NavigateBeforeIcon, NavigateNextIcon } from '../Icons'
 import { calendarClasses } from './Calendar.classes'
 import { Typography } from '../Typography'
 import { UseMonthResult } from '@datepicker-react/hooks'
 import { generateFullMonthDays } from '../../utils/date.utils'
 import { useCalendarContext } from './Calendar.context'
 import { YearControl } from './YearControl'
+import { ChevronLeftIcon, ChevronRightIcon } from '../Icons'
 
 type CalendarNavigationButtonProps = {
   direction: 'previous' | 'next'
@@ -20,7 +20,7 @@ export const CalendarNavigationButton: FC<CalendarNavigationButtonProps> = ({
   onClick,
   className,
 }) => {
-  const Icon = direction === 'previous' ? NavigateBeforeIcon : NavigateNextIcon
+  const Icon = direction === 'previous' ? ChevronLeftIcon : ChevronRightIcon
   return (
     <button
       className={clsx(calendarClasses.button, className)}
