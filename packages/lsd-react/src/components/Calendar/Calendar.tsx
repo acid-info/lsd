@@ -184,6 +184,7 @@ export const Calendar: React.FC<CalendarProps> & {
           commonProps.className,
           props.className,
           calendarClasses.root,
+          calendarClasses[size],
           open && calendarClasses.open,
           disabled && calendarClasses.disabled,
         )}
