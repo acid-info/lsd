@@ -33,7 +33,7 @@ export const calendarClasses = {
   dayBorderLeft: 'lsd-calendar-day--border-left',
   dayBorderRight: 'lsd-calendar-day--border-right',
   dayBorderLeftAndRight: 'lsd-calendar-day--border-left-and-right',
-  dayBorderTopAndBottom: 'lsd-calendar-day--border-up-and-down',
+  dayBorderTopAndBottom: 'lsd-calendar-day--border-top-and-bottom',
 
   todayIndicator: 'lsd-calendar-day__today_indicator',
 
