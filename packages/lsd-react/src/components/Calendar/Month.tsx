@@ -1,5 +1,4 @@
 import { FirstDayOfWeek, useMonth } from '@datepicker-react/hooks'
-import { useState } from 'react'
 import { useCalendarContext } from './Calendar.context'
 import { Days, MonthHeader, WeekdayHeader } from './MonthHelpers'
 import { calendarClasses } from './Calendar.classes'
