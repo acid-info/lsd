@@ -2,6 +2,10 @@ export const calendarClasses = {
   root: `lsd-calendar`,
   container: 'lsd-calendar-container',
 
+  small: 'lsd-calendar--small',
+  medium: 'lsd-calendar--medium',
+  large: 'lsd-calendar--large',
+
   open: 'lsd-calendar--open',
   disabled: 'lsd-calendar--disabled',
 

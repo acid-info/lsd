@@ -69,8 +69,6 @@ export const CalendarStyles = css`
     align-items: center;
     cursor: pointer;
     border: none;
-    width: 14px;
-    padding: 0 6px;
   }
 
   .${calendarClasses.month} {
@@ -222,8 +220,6 @@ export const CalendarStyles = css`
 
     background: rgb(var(--lsd-surface-primary));
 
-    padding: 5px 0px 5px 12px;
-
     :hover {
       text-decoration: underline;
     }
@@ -231,5 +227,35 @@ export const CalendarStyles = css`
 
   .${calendarClasses.yearAndIcon} {
     border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  .${calendarClasses.large} {
+    .${calendarClasses.year} {
+      padding: 6px 0px 6px 14px;
+    }
+
+    .${calendarClasses.changeYearIconContainer} {
+      width: 32px;
+    }
+  }
+
+  .${calendarClasses.medium} {
+    .${calendarClasses.year} {
+      padding: 6px 0px 6px 12px;
+    }
+
+    .${calendarClasses.changeYearIconContainer} {
+      width: 28px;
+    }
+  }
+
+  .${calendarClasses.small} {
+    .${calendarClasses.year} {
+      padding: 6px 0px 6px 12px;
+    }
+
+    .${calendarClasses.changeYearIconContainer} {
+      width: 28px;
+    }
   }
 `
