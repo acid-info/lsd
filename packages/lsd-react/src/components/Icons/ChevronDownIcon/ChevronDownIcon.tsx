@@ -1,6 +1,6 @@
 import { LsdIcon } from '../LsdIcon'
 
-export const ArrowUpIcon = LsdIcon(
+export const ChevronDownIcon = LsdIcon(
   (props) => (
     <svg
       width="14"
@@ -11,7 +11,7 @@ export const ArrowUpIcon = LsdIcon(
       {...props}
     >
       <path
-        d="M3.5 8.33875L4.3225 9.16125L7 6.48959L9.6775 9.16125L10.5 8.33875L7 4.83875L3.5 8.33875Z"
+        d="M10.5 5.66125L9.6775 4.83875L7 7.51041L4.3225 4.83874L3.5 5.66125L7 9.16125L10.5 5.66125Z"
         fill="black"
       />
     </svg>

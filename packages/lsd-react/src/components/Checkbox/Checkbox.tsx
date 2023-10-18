@@ -7,8 +7,8 @@ import {
 } from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
 import { useCheckboxGroupContext } from '../CheckboxGroup/CheckboxGroup.context'
-import { CheckboxFilledIcon, CheckboxIcon } from '../Icons'
-import { CheckboxIndeterminateIcon } from '../Icons/CheckboxIndeterminate'
+import { CheckboxIcon, CheckboxOutlineBlankIcon } from '../Icons'
+import { IndeterminateCheckboxFilledIcon } from '../Icons/IndeterminateCheckboxFilledIcon'
 import { Typography } from '../Typography'
 import { checkboxClasses } from './Checkbox.classes'
 
@@ -98,11 +98,11 @@ export const Checkbox: React.FC<CheckboxProps> & {
         {...inputProps}
       />
       {indeterminate ? (
-        <CheckboxIndeterminateIcon color="primary" focusable={false} />
+        <IndeterminateCheckboxFilledIcon color="primary" focusable={false} />
       ) : input.value ? (
-        <CheckboxFilledIcon color="primary" focusable={false} />
-      ) : (
         <CheckboxIcon color="primary" focusable={false} />
+      ) : (
+        <CheckboxOutlineBlankIcon color="primary" focusable={false} />
       )}
       <span className={checkboxClasses.label}>{children}</span>
     </Typography>

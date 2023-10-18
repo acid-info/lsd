@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { ArrowDownIcon, ArrowUpIcon } from '../Icons'
+import { ChevronDownIcon, ChevronUpIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { collapseHeaderClasses } from './CollapseHeader.classes'
 
@@ -58,12 +58,12 @@ export const CollapseHeader: React.FC<CollapseHeaderProps> & {
         </Typography>
         <div className={collapseHeaderClasses.icons}>
           {open ? (
-            <ArrowUpIcon
+            <ChevronUpIcon
               color="primary"
               className={collapseHeaderClasses.menuIcon}
             />
           ) : (
-            <ArrowDownIcon
+            <ChevronDownIcon
               color="primary"
               className={collapseHeaderClasses.menuIcon}
             />

@@ -1,6 +1,6 @@
 import { LsdIcon } from '../LsdIcon'
 
-export const NavigateNextIcon = LsdIcon(
+export const ChevronLeftIcon = LsdIcon(
   (props) => (
     <svg
       width="14"
@@ -11,7 +11,7 @@ export const NavigateNextIcon = LsdIcon(
       {...props}
     >
       <path
-        d="M5.66137 3.5L4.83887 4.3225L7.51053 7L4.83887 9.6775L5.66137 10.5L9.16137 7L5.66137 3.5Z"
+        d="M9.16137 4.3225L8.33887 3.5L4.83887 7L8.33887 10.5L9.16137 9.6775L6.4897 7L9.16137 4.3225Z"
         fill="black"
       />
     </svg>
