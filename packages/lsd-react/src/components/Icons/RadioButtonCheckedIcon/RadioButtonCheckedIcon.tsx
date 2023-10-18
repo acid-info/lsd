@@ -1,6 +1,6 @@
 import { LsdIcon } from '../LsdIcon'
 
-export const RadioButtonFilledIcon = LsdIcon(
+export const RadioButtonCheckedIcon = LsdIcon(
   (props) => (
     <svg
       width="14"

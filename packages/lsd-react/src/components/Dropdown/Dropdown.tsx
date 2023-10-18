@@ -8,7 +8,7 @@ import {
 import { SelectOption, useSelect } from '../../utils/useSelect'
 import { DropdownItem } from '../DropdownItem'
 import { DropdownMenu } from '../DropdownMenu'
-import { ArrowDownIcon, ArrowUpIcon, ErrorIcon } from '../Icons'
+import { ChevronDownIcon, ChevronUpIcon, ErrorIcon } from '../Icons'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
 import { dropdownClasses } from './Dropdown.classes'
@@ -138,12 +138,12 @@ export const Dropdown: React.FC<DropdownProps> & {
             )}
 
             {openState ? (
-              <ArrowUpIcon
+              <ChevronUpIcon
                 color="primary"
                 className={dropdownClasses.menuIcon}
               />
             ) : (
-              <ArrowDownIcon
+              <ChevronDownIcon
                 color="primary"
                 className={dropdownClasses.menuIcon}
               />

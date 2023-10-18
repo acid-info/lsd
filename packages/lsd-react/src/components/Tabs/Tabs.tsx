@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { useHorizontalScroll } from '../../utils/useHorizontalScroll'
-import { NavigateBeforeIcon, NavigateNextIcon } from '../Icons'
+import { ChevronLeftIcon, ChevronRightIcon } from '../Icons'
 import { TabItem } from '../TabItem'
 import { TabsContext } from './Tab.context'
 import { tabsClasses } from './Tabs.classes'
@@ -69,7 +69,7 @@ export const Tabs: React.FC<TabsProps> & {
             onClick={() => scroll.toLeft()}
             className={tabsClasses.leftScrollControl}
           >
-            <NavigateBeforeIcon color="primary" />
+            <ChevronLeftIcon color="primary" />
           </TabItem>
         )}
         {children}
@@ -81,7 +81,7 @@ export const Tabs: React.FC<TabsProps> & {
             onClick={() => scroll.toRight()}
             className={tabsClasses.rightScrollControl}
           >
-            <NavigateNextIcon color="primary" />
+            <ChevronRightIcon color="primary" />
           </TabItem>
         )}
       </div>

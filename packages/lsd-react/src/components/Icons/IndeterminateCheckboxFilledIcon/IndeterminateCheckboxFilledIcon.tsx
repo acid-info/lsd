@@ -1,6 +1,6 @@
 import { LsdIcon } from '../LsdIcon'
 
-export const NewPageIcon = LsdIcon(
+export const IndeterminateCheckboxFilledIcon = LsdIcon(
   (props) => (
     <svg
       width="14"
@@ -13,7 +13,7 @@ export const NewPageIcon = LsdIcon(
       <path
         fillRule="evenodd"
         clipRule="evenodd"
-        d="M9.79293 3.5H3.00004V2.5H11.5V11H10.5V4.20711L3.35359 11.3536L2.64648 10.6464L9.79293 3.5Z"
+        d="M2.91667 1.75C2.27233 1.75 1.75 2.27233 1.75 2.91667V11.0833C1.75 11.7277 2.27233 12.25 2.91667 12.25H11.0833C11.7277 12.25 12.25 11.7277 12.25 11.0833V2.91667C12.25 2.27233 11.7277 1.75 11.0833 1.75H2.91667ZM9.91667 6.41667H4.08333V7.58333H9.91667V6.41667Z"
         fill="black"
       />
     </svg>

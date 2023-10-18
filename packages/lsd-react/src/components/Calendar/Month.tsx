@@ -4,10 +4,10 @@ import { useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
 import { IconButton } from '../IconButton'
 import {
-  ArrowDownIcon,
-  ArrowUpIcon,
-  NavigateBeforeIcon,
-  NavigateNextIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 } from '../Icons'
 import { Typography } from '../Typography'
 import { calendarClasses } from './Calendar.classes'
@@ -68,7 +68,7 @@ export const Month = ({
           type="button"
           onClick={goToPreviousMonths}
         >
-          <NavigateBeforeIcon color="primary" />
+          <ChevronLeftIcon color="primary" />
         </button>
         <div className={calendarClasses.row}>
           <Typography
@@ -92,13 +92,13 @@ export const Month = ({
                   onClick={() => setYear(year + 1)}
                   className={calendarClasses.changeYearButton}
                 >
-                  <ArrowUpIcon color="primary" />
+                  <ChevronUpIcon color="primary" />
                 </IconButton>
                 <IconButton
                   onClick={() => setYear(year - 1)}
                   className={calendarClasses.changeYearButton}
                 >
-                  <ArrowDownIcon color="primary" />
+                  <ChevronDownIcon color="primary" />
                 </IconButton>
               </div>
             </div>
@@ -117,7 +117,7 @@ export const Month = ({
           type="button"
           onClick={goToNextMonths}
         >
-          <NavigateNextIcon color="primary" />
+          <ChevronRightIcon color="primary" />
         </button>
       </div>
       <div className={clsx(calendarClasses.grid)}>

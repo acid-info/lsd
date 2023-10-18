@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { CheckboxFilledIcon, CheckboxIcon, LsdIconProps } from '../Icons'
+import { CheckboxIcon, CheckboxOutlineBlankIcon, LsdIconProps } from '../Icons'
 import { Typography } from '../Typography'
 import { dropdownItemClasses } from './DropdownItem.classes'
 
@@ -52,9 +52,9 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
     >
       {withIcon &&
         (selected ? (
-          <CheckboxFilledIcon {...iconProps} />
-        ) : (
           <CheckboxIcon {...iconProps} />
+        ) : (
+          <CheckboxOutlineBlankIcon {...iconProps} />
         ))}
       <Typography
         variant={size === 'large' ? 'label1' : 'label2'}

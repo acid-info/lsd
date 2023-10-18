@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { useInput } from '../../utils/useInput'
-import { RadioButtonFilledIcon, RadioButtonIcon } from '../Icons'
+import { RadioButtonCheckedIcon, RadioButtonIcon } from '../Icons'
 import { useRadioButtonGroupContext } from '../RadioButtonGroup/RadioButtonGroup.context'
 import { Typography } from '../Typography'
 import { radioButtonClasses } from './RadioButton.classes'
@@ -91,7 +91,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
         {...inputProps}
       />
       {input.value ? (
-        <RadioButtonFilledIcon color="primary" focusable={false} />
+        <RadioButtonCheckedIcon color="primary" focusable={false} />
       ) : (
         <RadioButtonIcon color="primary" focusable={false} />
       )}
