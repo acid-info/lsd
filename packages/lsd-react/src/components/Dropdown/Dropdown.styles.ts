@@ -84,6 +84,10 @@ export const DropdownStyles = css`
   .${dropdownClasses.large} {
     width: 208px;
 
+    &.${dropdownClasses.error} {
+      width: 230px;
+    }
+
     .${dropdownClasses.label} {
       margin: 0 0 6px 18px;
     }
@@ -97,12 +101,16 @@ export const DropdownStyles = css`
     }
 
     .${dropdownClasses.icons} {
-      width: 42px;
+      padding: 0px 14px;
     }
   }
 
   .${dropdownClasses.medium} {
     width: 188px;
+
+    &.${dropdownClasses.error} {
+      width: 210px;
+    }
 
     .${dropdownClasses.label} {
       margin: 0 0 6px 14px;
@@ -117,12 +125,16 @@ export const DropdownStyles = css`
     }
 
     .${dropdownClasses.icons} {
-      width: 38px;
+      padding: 0px 12px;
     }
   }
 
   .${dropdownClasses.small} {
     width: 164px;
+
+    &.${dropdownClasses.error} {
+      width: 186px;
+    }
 
     .${dropdownClasses.label} {
       margin: 0 0 6px 12px;
@@ -137,7 +149,7 @@ export const DropdownStyles = css`
     }
 
     .${dropdownClasses.icons} {
-      width: 34px;
+      padding: 0px 10px;
     }
   }
 
