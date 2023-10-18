@@ -54,7 +54,7 @@ export const DropdownStyles = css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 8px;
   }
 
@@ -93,7 +93,11 @@ export const DropdownStyles = css`
     }
 
     .${dropdownClasses.trigger} {
-      padding: 9px 17px;
+      padding: 10px 0px 10px 18px;
+    }
+
+    .${dropdownClasses.icons} {
+      width: 42px;
     }
   }
 
@@ -109,7 +113,11 @@ export const DropdownStyles = css`
     }
 
     .${dropdownClasses.trigger} {
-      padding: 5px 13px;
+      padding: 6px 0px 6px 14px;
+    }
+
+    .${dropdownClasses.icons} {
+      width: 38px;
     }
   }
 
@@ -125,7 +133,11 @@ export const DropdownStyles = css`
     }
 
     .${dropdownClasses.trigger} {
-      padding: 5px 11px;
+      padding: 6px 0px 6px 12px;
+    }
+
+    .${dropdownClasses.icons} {
+      width: 34px;
     }
   }
 
