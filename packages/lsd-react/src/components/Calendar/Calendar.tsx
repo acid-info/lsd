@@ -16,6 +16,7 @@ import {
   omitCommonProps,
 } from '../../utils/useCommonProps'
 import { TooltipBase } from '../TooltipBase'
+import { useUpdatePositionStyle } from '../../utils/useUpdatePositionStyle'
 
 export const CALENDAR_MIN_YEAR = 1850
 export const CALENDAR_MAX_YEAR = 2100
@@ -64,7 +65,6 @@ export const Calendar: React.FC<CalendarProps> & {
 }) => {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
-  const [style, setStyle] = useState<React.CSSProperties>({})
   const [startDate, setStartDate] = useState<Date | null>(
     startDateProp
       ? safeConvertDate(startDateProp, minDate, maxDate).date
@@ -147,19 +147,7 @@ export const Calendar: React.FC<CalendarProps> & {
     }
   }, [endDate])
 
-  const updateStyle = () => {
-    const { width, height, top, left } =
-      handleRef.current!.getBoundingClientRect()
-    setStyle({
-      left,
-      width,
-      top: top + height,
-    })
-  }
-
-  useEffect(() => {
-    updateStyle()
-  }, [open])
+  const positionStyle = useUpdatePositionStyle(handleRef, open)
 
   return (
     <CalendarContext.Provider
@@ -189,7 +177,7 @@ export const Calendar: React.FC<CalendarProps> & {
           disabled && calendarClasses.disabled,
         )}
         rootRef={ref}
-        style={{ ...style, ...(props.style ?? {}) }}
+        style={{ ...positionStyle, ...(props.style ?? {}) }}
         arrowOffset={tooltipArrowOffset}
       >
         <div className={clsx(calendarClasses.container)}>

@@ -7,6 +7,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { dropdownMenuClasses } from './DropdownMenu.classes'
+import { useUpdatePositionStyle } from '../../utils/useUpdatePositionStyle'
 
 export type DropdownMenuProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLUListElement>, 'label'> & {
@@ -30,7 +31,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
 }) => {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLUListElement>(null)
-  const [style, setStyle] = useState<React.CSSProperties>({})
 
   useClickAway(ref, (event) => {
     if (!open || event.composedPath().includes(handleRef.current!)) return
@@ -38,20 +38,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
     onClose && onClose()
   })
 
-  const updateStyle = () => {
-    const { width, height, top, left } =
-      handleRef.current!.getBoundingClientRect()
-
-    setStyle({
-      left,
-      width,
-      top: top + height,
-    })
-  }
-
-  useEffect(() => {
-    updateStyle()
-  }, [open])
+  const positionStyle = useUpdatePositionStyle(handleRef, open)
 
   return (
     <ul
@@ -59,7 +46,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
       ref={ref}
       role="listbox"
       aria-label={label}
-      style={{ ...style, ...(props.style ?? {}) }}
+      style={{ ...positionStyle, ...(props.style ?? {}) }}
       className={clsx(
         commonProps.className,
         props.className,

@@ -70,7 +70,6 @@ export const DatePicker: React.FC<DatePickerProps> & {
     <div
       id={inputId}
       ref={ref}
-      {...props}
       className={clsx(
         { ...omitCommonProps(props) },
         props.className,
