@@ -15,6 +15,12 @@ export const TabItemStyles = css`
     &:hover {
       text-decoration: underline;
     }
+
+    &:not(${tabItemClasses.selected}) {
+      border-bottom: 1px solid rgb(var(--lsd-border-primary));
+    }
+
+    box-sizing: border-box;
   }
 
   .${tabItemClasses.text} {

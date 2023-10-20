@@ -1,5 +1,6 @@
 import { css } from '@emotion/react'
 import { tabsClasses } from './Tabs.classes'
+import { tabItemClasses } from '../TabItem/TabItem.classes'
 
 export const TabsStyles = css`
   .${tabsClasses.root} {
@@ -7,8 +8,17 @@ export const TabsStyles = css`
     flex-direction: row;
     overflow: auto;
 
+    width: fit-content;
+    max-width: 100%;
+
     & > * {
       flex-shrink: 0;
+    }
+
+    border-bottom: 1px solid rgb(var(--lsd-border-primary));
+
+    .${tabItemClasses.root} {
+      border-bottom: none;
     }
   }
 
