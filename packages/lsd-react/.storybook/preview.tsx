@@ -148,17 +148,16 @@ const preview: Preview = {
           typeof meta?.parameters?.docs?.controls === 'undefined' ||
           meta?.parameters?.docs?.controls === true
 
-        const storyId = new URLSearchParams(window.location.search).get(
-          'storyId',
-        ) as string
-        const embedded =
-          new URLSearchParams(window.location.search).get('embedded') === 'true'
-        const globalControls =
-          new URLSearchParams(window.location.search).get('globalControls') ===
-          'true'
-        const hideElements = (
-          new URLSearchParams(window.location.search).get('hide') || ''
-        ).split(',')
+        const searchParams = new URLSearchParams(window.location.search)
+
+        const storyId = searchParams.get('storyId') as string
+        const embedded = searchParams.get('embedded') === 'true'
+        const globalControls = (searchParams.get('globalControls') || '').split(
+          ',',
+        )
+        const hideElements = (searchParams.get('hide') || '').split(',')
+
+        const canvasPadding = searchParams.get('canvasPadding') || '0,0'
 
         const hideTitle = hideElements.includes('title')
         const hideSubtitle = hideElements.includes('subtitle')
@@ -174,26 +173,34 @@ const preview: Preview = {
                 embedded && 'docs-wrapper--embedded',
                 hideElements.map((element) => `docs-wrapper--hide-${element}`),
               )}
+              style={
+                {
+                  '--canvas-padding': canvasPadding.replace(',', ' '),
+                } as any
+              }
             >
               {!hideTitle && <Title />}
               {!hideSubtitle && <Subtitle />}
               {!hideDescription && <Description />}
-              {globalControls && (
+              {globalControls && globalControls.length > 0 && (
                 <div className="docs-global-controls">
-                  {globals.props.map((prop, index) => (
-                    <Dropdown
-                      key={index}
-                      menuProps={{ className: 'docs-dropdown-menu' }}
-                      value={prop.value}
-                      onChange={(value) => prop.set(value as string)}
-                      options={prop.values.map((i) => ({
-                        name: i.title,
-                        value: i.value,
-                      }))}
-                      triggerLabel={prop.name}
-                      label={prop.name}
-                    />
-                  ))}
+                  {globals.props
+                    .filter((prop) => globalControls.includes(prop.key))
+                    .map((prop, index) => (
+                      <Dropdown
+                        id={prop.key + '-dropdown'}
+                        key={index}
+                        menuProps={{ className: 'docs-dropdown-menu' }}
+                        value={prop.value}
+                        onChange={(value) => prop.set(value as string)}
+                        options={prop.values.map((i) => ({
+                          name: i.title,
+                          value: i.value,
+                        }))}
+                        triggerLabel={prop.name}
+                        label={prop.name}
+                      />
+                    ))}
                 </div>
               )}
               <Canvas
@@ -271,7 +278,7 @@ const preview: Preview = {
                       .sbdocs-preview {
                         border: none;
                         .docs-story > div:nth-child(1) {
-                          padding: 0 !important;
+                          padding: 0px !important;
                         }
                       }
                     }
@@ -285,6 +292,10 @@ const preview: Preview = {
                 styles={css`
                   .sbdocs-wrapper {
                     padding: 1px;
+                  }
+
+                  .sbdocs-preview .story-wrapper {
+                    padding: var(--canvas-padding) !important;
                   }
                 `}
               />
