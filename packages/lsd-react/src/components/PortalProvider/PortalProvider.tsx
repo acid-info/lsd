@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { PortalContext } from './PortalContext'
+import { settleSync } from '../../utils/promise.utils'
 
 export type PortalProviderProps = React.PropsWithChildren
 
@@ -10,14 +11,17 @@ export const PortalProvider: React.FC<PortalProviderProps> = ({ children }) => {
     if (typeof window === 'undefined') return
 
     const body = document.querySelector('body')!
-    const container = document.createElement('div')
-    container.id = 'lsd-presentation'
+    let container = body.querySelector('#lsd-presentation')
+    if (!container) {
+      container = document.createElement('div')
+      container.id = 'lsd-presentation'
+    }
     body.appendChild(container)
 
     setInitialized(true)
 
     return () => {
-      body.removeChild(container)
+      settleSync(() => body.removeChild(container!))
     }
   }, [])
 
