@@ -41,6 +41,10 @@ export const TabItemStyles = css`
     }
   }
 
+  .${tabItemClasses.tabWithoutIcon} {
+    justify-content: center;
+  }
+
   .${tabItemClasses.disabled} {
     cursor: default;
     opacity: 0.34;
