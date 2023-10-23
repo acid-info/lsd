@@ -8,4 +8,6 @@ export const tabItemClasses = {
   small: 'lsd-tab-item--small',
   medium: 'lsd-tab-item--medium',
   large: 'lsd-tab-item--large',
+
+  tabWithoutIcon: 'lsd-tab-item--without-icon',
 }
