@@ -1,16 +1,11 @@
-import styled from '@emotion/styled'
 import { Meta, StoryObj } from '@storybook/react'
-import { get } from 'lodash'
-import React from 'react'
-import { Typography } from '../Typography'
-import { ThemeProvider, ThemeProviderProps } from './ThemeProvider'
-import { Theme, TypographyVariants } from './types'
-import { useTheme } from './useTheme'
 import {
   ColorDesignTokens,
-  TypographyDesignTokens,
   SpacingDesignTokens,
+  TypographyDesignTokens,
 } from '../../docs/components/DesignTokens'
+import { Typography } from '../Typography'
+import { ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 
 const subtitle = ``
 const description = ``

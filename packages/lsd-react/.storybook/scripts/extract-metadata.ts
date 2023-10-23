@@ -4,6 +4,7 @@ import * as fsp from 'fs/promises'
 import { glob } from 'glob'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import * as _ from 'lodash'
 
 const DIRNAME = fileURLToPath(import.meta.url)
 const ROOT_DIR = path.resolve(DIRNAME, '../../../')
@@ -45,6 +46,11 @@ export const fromStories = async (
   const components: Record<
     string,
     {
+      component: {
+        title: string
+        subtitle: string
+        description: string
+      }
       stories: StoryInfo[]
       argTypes: ArgTypes
       __docgenInfo: any
@@ -57,7 +63,17 @@ export const fromStories = async (
     const mod = await import(file)
     const { title, component, argTypes } = mod.default
 
+    const componentTitle = mod.default.title || title
+    const componentSubtitle = mod.default.parameters?.componentSubtitle || ''
+    const componentDescription =
+      mod.default.parameters?.docs?.description?.component || ''
+
     components[component.displayName] = {
+      component: {
+        title: componentTitle,
+        subtitle: componentSubtitle,
+        description: componentDescription,
+      },
       argTypes,
       stories: stories.filter((story) => story.kind === title),
       __docgenInfo: component.__docgenInfo,

@@ -28,7 +28,7 @@ export default {
 
 export const Root: StoryObj<NumberInputProps> = {
   render: ({ ...args }) => {
-    return <NumberInput {...args} />
+    return <NumberInput {...args} defaultValue="2" />
   },
 
   args: {

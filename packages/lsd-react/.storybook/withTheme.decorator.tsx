@@ -29,19 +29,23 @@ export const withTheme: Decorator = (Story, context) => {
 
   return (
     <div>
-      <ThemeProvider theme={theme} injectCssVars={true}>
-        <StoryComponent />
-        {isDoc && (
+      <ThemeProvider theme={theme} injectCssVars={false}>
+        <div className="story-wrapper">
+          <StoryComponent />
+        </div>
+        {
           <Global
             styles={css`
-              .docs-story {
+              .story-wrapper,
+              #lsd-presentation {
                 ${theme.cssVars}
-
-                background: rgb(var(--lsd-surface-primary));
+              }
+              .docs-story {
+                background: rgb(${theme.palette.surface.primary});
               }
             `}
           />
-        )}
+        }
       </ThemeProvider>
     </div>
   )
