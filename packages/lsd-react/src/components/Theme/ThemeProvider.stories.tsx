@@ -4,7 +4,7 @@ import {
   SpacingDesignTokens,
   TypographyDesignTokens,
 } from '../../docs/components/DesignTokens'
-import { Typography } from '../Typography'
+import { Typography as TypographyComponent } from '../Typography'
 import { ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 
 const subtitle = ``
@@ -28,21 +28,66 @@ export const Root: StoryObj<ThemeProviderProps> = {
   render: (args) => {
     return (
       <div>
-        <Typography variant="h6" component="h2">
+        <TypographyComponent variant="h6" component="h2">
           Colour
-        </Typography>
+        </TypographyComponent>
         <ColorDesignTokens />
-        <Typography variant="h6" component="h2">
+        <TypographyComponent variant="h6" component="h2">
           Spacing
-        </Typography>
+        </TypographyComponent>
         <SpacingDesignTokens />
 
-        <Typography variant="h6" component="h2">
-          Typography
-        </Typography>
+        <TypographyComponent variant="h6" component="h2">
+          TypographyComponent
+        </TypographyComponent>
         <TypographyDesignTokens />
       </div>
     )
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: null,
+      },
+    },
+  },
+
+  args: {},
+}
+
+export const Colors: StoryObj<ThemeProviderProps> = {
+  render: (args) => {
+    return <ColorDesignTokens />
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: null,
+      },
+    },
+  },
+
+  args: {},
+}
+
+export const Spacing: StoryObj<ThemeProviderProps> = {
+  render: (args) => {
+    return <SpacingDesignTokens />
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: null,
+      },
+    },
+  },
+
+  args: {},
+}
+
+export const Typography: StoryObj<ThemeProviderProps> = {
+  render: (args) => {
+    return <TypographyDesignTokens />
   },
   parameters: {
     docs: {

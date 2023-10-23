@@ -38,7 +38,7 @@ const useGlobals = () => {
     themeFont: {
       defaultValue: 'sans-serif',
       description: 'Theme font',
-      name: 'Theme Font',
+      name: 'Theme font',
       toolbar: {
         icon: '',
         items: [
@@ -148,6 +148,9 @@ const preview: Preview = {
           typeof meta?.parameters?.docs?.controls === 'undefined' ||
           meta?.parameters?.docs?.controls === true
 
+        const storyId = new URLSearchParams(window.location.search).get(
+          'storyId',
+        ) as string
         const embedded =
           new URLSearchParams(window.location.search).get('embedded') === 'true'
         const globalControls =
@@ -193,7 +196,13 @@ const preview: Preview = {
                   ))}
                 </div>
               )}
-              <Canvas className="canvas" withToolbar={!hideToolbar} />
+              <Canvas
+                className="canvas"
+                withToolbar={!hideToolbar}
+                {...(storyId && stories[storyId]
+                  ? { story: stories[storyId] as any }
+                  : {})}
+              />
               {controls && !hideControls && <Controls />}
             </div>
             <Global
