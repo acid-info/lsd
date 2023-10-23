@@ -7,7 +7,7 @@ import {
 } from '../../utils/useCommonProps'
 import { SelectOption, useSelect } from '../../utils/useSelect'
 import { DropdownItem } from '../DropdownItem'
-import { DropdownMenu } from '../DropdownMenu'
+import { DropdownMenu, DropdownMenuProps } from '../DropdownMenu'
 import { ChevronDownIcon, ChevronUpIcon, ErrorIcon } from '../Icons'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
@@ -34,6 +34,8 @@ export type DropdownProps = CommonProps &
     variant?: 'outlined' | 'underlined'
     isOpen?: boolean
     onToggle?: (open: boolean) => void
+
+    menuProps?: Partial<DropdownMenuProps>
   }
 
 export const Dropdown: React.FC<DropdownProps> & {
@@ -52,6 +54,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   variant = 'outlined',
   isOpen,
   onToggle,
+  menuProps = {},
   ...props
 }) => {
   const commonProps = useCommonProps(props)
@@ -168,6 +171,7 @@ export const Dropdown: React.FC<DropdownProps> & {
           onClose={() => handleToggle(false)}
           size={size}
           genericFontFamily={props.genericFontFamily}
+          {...menuProps}
         >
           {options.map((opt) => (
             <DropdownItem
