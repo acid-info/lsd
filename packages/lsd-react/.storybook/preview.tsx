@@ -275,7 +275,7 @@ const preview: Preview = {
               <Global
                 styles={css`
                   .sbdocs-wrapper {
-                    padding: 0;
+                    padding: 1px;
                   }
                 `}
               />
