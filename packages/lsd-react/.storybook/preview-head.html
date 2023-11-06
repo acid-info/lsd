@@ -1,0 +1,23 @@
+<script>
+  function sendHeightToParent() {
+    const height =
+      document.documentElement.scrollHeight || document.body.scrollHeight
+    window.parent.postMessage(
+      {
+        type: 'iframeResize',
+        height: height,
+      },
+      '*',
+    )
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Send initial height.
+    sendHeightToParent()
+
+    // Ensure the interval is set only once.
+    if (!window.heightIntervalSet) {
+      window.heightIntervalSet = setInterval(sendHeightToParent, 1000)
+    }
+  })
+</script>
