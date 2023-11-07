@@ -9,5 +9,5 @@ export const tabItemClasses = {
   medium: 'lsd-tab-item--medium',
   large: 'lsd-tab-item--large',
 
-  tabWithoutIcon: 'lsd-tab-item--without-icon',
+  withIcon: 'lsd-tab-item--with-icon',
 }

@@ -51,7 +51,7 @@ export const TabItem: React.FC<TabItemProps> & {
         tabItemClasses[size],
         selected && tabItemClasses.selected,
         props.disabled && tabItemClasses.disabled,
-        !icon && tabItemClasses.tabWithoutIcon,
+        !!icon && tabItemClasses.withIcon,
       )}
       onClick={onClick}
     >
