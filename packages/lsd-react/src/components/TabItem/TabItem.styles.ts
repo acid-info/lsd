@@ -10,7 +10,7 @@ export const TabItemStyles = css`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 
     &:hover {
       text-decoration: underline;
@@ -41,8 +41,8 @@ export const TabItemStyles = css`
     }
   }
 
-  .${tabItemClasses.tabWithoutIcon} {
-    justify-content: center;
+  .${tabItemClasses.withIcon} {
+    justify-content: space-between;
   }
 
   .${tabItemClasses.disabled} {
