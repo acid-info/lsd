@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.22](https://github.com/acid-info/lsd/compare/v0.1.0-alpha.21...v0.1.0-alpha.22) (2023-12-05)
+
+### Bug Fixes
+
+- **lsd-react:** update typography variant names ([a5b3af3](https://github.com/acid-info/lsd/commit/a5b3af33b7d91a14c42b31ee1a27f73c44a2dbe6))
+
+### Features
+
+- **lsd-react:** add small size and label to TextField component ([145a563](https://github.com/acid-info/lsd/commit/145a563a7550239c38831b173c2d71ef4b42737b))
+
 # [0.1.0-alpha.21](https://github.com/acid-info/logos-design-system/compare/v0.1.0-alpha.20...v0.1.0-alpha.21) (2023-11-16)
 
 ### Bug Fixes
