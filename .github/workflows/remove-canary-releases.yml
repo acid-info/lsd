@@ -1,0 +1,73 @@
+name: Remove Canary Releases
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  remove-canary-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Authenticate with NPM
+        run: |
+          echo ".npmrc" >> .git/info/exclude
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Get package names
+        id: packages
+        run: |
+          packages=$(yarn -s lerna list --json --loglevel error | jq '.[]["name"]')
+          echo "name<<EOF" >> $GITHUB_OUTPUT
+          echo $packages >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          cat $GITHUB_OUTPUT
+
+      - name: List merged pull requests
+        id: merged_branches
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const response = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "closed",
+              base: "main",
+              head: "topic-*",
+            });
+
+            console.log(response.data.map(pr => pr.head.ref))
+
+            const prs = response.data
+              .filter((pr) => !!pr.merged_at)
+              .filter((pr) => +new Date() - new Date(pr.merged_at) > 24 * 60 * 60 * 1000);
+
+            const branches = prs.map((pr) => pr.head.ref);
+            core.setOutput('branches', branches.join("\n"));
+
+      - name: Remove canary releases
+        run: |
+          packages=$(echo "${{ steps.packages.outputs.name }}" | tr -d '"')
+          branches=$(echo "${{ steps.merged_branches.outputs.branches }}")
+          for package in $packages; do
+            for branch in $branches; do
+              npm view $package dist-tags.$branch | xargs -i -d '\n' sh -c "npm unpublish $package@{} --force 2>&1 || true"
+              npm dist-tag rm $package $branch 2>&1 || true
+            done
+          done

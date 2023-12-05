@@ -1,0 +1,144 @@
+name: Release PR
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+'
+      - 'v[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  delete-release-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: pullRequests } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+            });
+            for (const pr of pullRequests) {
+              if (
+                (pr.head.ref === "release-beta" || pr.head.ref === "release-stable") &&
+                pr.user.login.includes("github-actions")
+              ) {
+                await github.rest.pulls.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  pull_number: pr.number,
+                  state: "closed",
+                });
+                console.log(`Closed PR #${pr.number}`);
+              }
+            }
+
+  create-release-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: 1
+          ref: main
+
+      - name: Extract version from lerna.json
+        run: echo "value=$(jq .version lerna.json -r)" >> $GITHUB_OUTPUT
+        id: current_version
+
+      - name: Determine Release type
+        run: echo "value=$([[ ${{ steps.current_version.outputs.value }} =~ alpha ]] && echo "beta" || echo "stable")" >> $GITHUB_OUTPUT
+        id: release_type
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+          yarn lerna link
+
+      - name: Bump versions
+        id: bump
+        run: |
+          git config --global user.name 'github-actions';
+          git config --global user.email 'github-actions@users.noreply.github.com';
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc;
+          mkdir ${{ runner.temp }}/main;
+          export type='${{ steps.release_type.outputs.value }}';
+          export branch=release-$type;
+          echo "RELEASE_BRANCH=$branch" >> $GITHUB_ENV;
+          git switch -C $branch;
+
+          if [[ $type == 'beta' ]]; then
+            out=$(yarn -s lerna version prerelease --no-private --conventional-commits --conventional-prerelease --preid=beta --no-git-tag-version --force-publish --yes);
+          else
+            out=$(yarn -s lerna version --conventional-commits --conventional-graduate --no-git-tag-version --yes);
+          fi;
+
+          changes=$(echo "$out" | sed -n '/Changes:/,$p' | sed -n '/^ - .* => .*$/p');
+          echo "changes<<EOF" >> $GITHUB_OUTPUT;
+          echo "$changes" >> $GITHUB_OUTPUT;
+          echo "EOF" >> $GITHUB_OUTPUT;
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Extract version from lerna.json
+        run: echo "value=$(jq .version lerna.json -r)" >> $GITHUB_OUTPUT
+        id: next_version
+
+      - name: Commit changes
+        run: |
+          git add .;
+          git restore --staged .npmrc;
+          git commit -m "chore: release v${{ steps.next_version.outputs.value }}";
+          git push origin $RELEASE_BRANCH --force;
+
+      - name: Get release commit
+        run: |
+          COMMIT_HASH=$(git rev-parse --verify HEAD);
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 $COMMIT_HASH);
+          echo "sha=$COMMIT_HASH" >> $GITHUB_OUTPUT
+          echo "head=$RELEASE_BRANCH" >> $GITHUB_OUTPUT
+          echo "message=$COMMIT_MESSAGE" >> $GITHUB_OUTPUT
+        id: release_commit
+
+      - name: Find latest stable release
+        id: latest_stable_release
+        run: |
+          echo "tag=$(git tag | grep -v -- "-alpha" | grep -v -- "-beta" | sort -V | tail -2 | head -1)" > $GITHUB_OUTPUT;
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # TODO
+        env:
+          GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/github-script@v6
+        id: pr
+        env:
+          CHANGES: ${{ steps.bump.outputs.changes }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const type = "${{ steps.release_type.outputs.value }}";
+            const head = "${{ steps.release_commit.outputs.head }}";
+            const title = "${{ steps.release_commit.outputs.message }}";
+            const body = `This PR will bump the following packages:\n\`\`\`\n${process.env.CHANGES}\n\`\`\`\n\nPlease review and test the code, before merging this PR. You can also check the changelog for more details on what has changed.\n\n**Warning**: Once you merge this PR, the changes will be published to the npm registry and cannot be undone. Please make sure you are confident about the quality and stability of the code before publishing.`;
+
+            const res = await github.rest.pulls.create({
+              body,
+              head,
+              title,
+              base: "main",
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+            });

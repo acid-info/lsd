@@ -1,0 +1,131 @@
+name: Prerelease
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  prerelease:
+    concurrency:
+      group: ${{ github.workflow }}
+      cancel-in-progress: true
+
+    if: github.actor_id != vars.CI_BOT_ID && !contains(github.event.head_commit.message, format('chore{0} release', ':'))
+    runs-on: ubuntu-latest
+    steps:
+      - id: create_token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.CI_APP_ID }}
+          private_key: ${{ secrets.CI_APP_PRIVATE_KEY }}
+          permissions: >-
+            { "contents": "write", "statuses": "write" }
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: 1
+          token: ${{ steps.create_token.outputs.token }}
+
+      - name: Extract version from lerna.json
+        run: echo "value=$(jq .version lerna.json -r)" >> $GITHUB_OUTPUT
+        id: current_version
+
+      - name: Determine Prerelease Preid
+        shell: bash
+        run: echo "value=$([[ ${{ steps.current_version.outputs.value }} =~ beta ]] && echo "beta" || echo "alpha")" >> $GITHUB_OUTPUT
+        id: preid
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+          yarn lerna link
+
+      - name: Check for changed packages
+        id: changes
+        run: |
+          error_filename="${{ runner.temp }}/changes_errors.log";
+          changes=$(echo $(yarn -s lerna changed --json --loglevel 2>>$error_filename) 2>>$error_filename);
+          cat $error_filename;
+          count=$([[ -n $changes ]] && echo $(echo $changes | jq '. | map(select(.private == false)) | length')) || echo 0
+          changed=$([[ $changes > 0 ]] && echo "true" || echo "false")
+          echo "changes=$count" >> $GITHUB_OUTPUT
+          echo "changed=$changed" >> $GITHUB_OUTPUT
+
+          echo "changes: $changes - changed: $changed"
+
+      - name: Build packages
+        run: yarn build
+
+      - name: Publish
+        id: publish
+        if: ${{ steps.changes.outputs.changed == 'true' }}
+        run: |
+          git config --global user.name '${{ vars.CI_APP_NAME }}[bot]'
+          git config --global user.email '${{ vars.CI_BOT_ID }}+${{ vars.CI_APP_NAME }}[bot]@users.noreply.github.com'
+          echo ".npmrc" >> .git/info/exclude
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+          yarn lerna version prerelease --no-private --conventional-commits --conventional-prerelease --preid=${{ steps.preid.outputs.value }} --yes
+          yarn lerna publish from-git --summary-file=${{ runner.temp }} --yes
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
+
+      # - name: Run release-pr.yaml workflow
+      #   if: ${{ steps.changes.outputs.changed == 'true' }}
+      #   run: |
+      #     tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+      #     echo "${{ runner.temp }}/lerna-publish-summary.json";
+      #     if [[ -f "${{ runner.temp }}/lerna-publish-summary.json" ]]; then
+      #       gh workflow run release-pr.yml --ref $tag;
+      #     fi;
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get release commit
+        if: ${{ steps.changes.outputs.changed == 'true' }}
+        shell: bash
+        run: echo "sha=$(git rev-parse --verify HEAD)" >> $GITHUB_OUTPUT
+        id: release_commit
+
+      - uses: actions/github-script@v6
+        if: ${{ steps.changes.outputs.changed == 'true' }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const fs = require("fs/promises");
+            let summary = null;
+
+            try {
+              summary = await fs.readFile(
+                "${{ runner.temp }}/lerna-publish-summary.json",
+                "utf8"
+              );
+            } catch {
+              console.log("No new releases!");
+            }
+
+            if (!summary) return;
+
+            summary = JSON.parse(summary);
+
+            const packages = summary
+              .map(
+                (pkg) =>
+                  `**${pkg.packageName}@${pkg.version}**\n\`\`\`bash\nyarn add ${pkg.packageName}@${pkg.version}\n\`\`\``
+              )
+              .join("\n");
+
+            const preid = "${{ steps.preid.outputs.value }}";
+
+            github.rest.repos.createCommitComment({
+              commit_sha: "${{ steps.release_commit.outputs.sha }}",
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🎉 ${preid === 'alpha' ? 'Alpha' : 'Beta'} Release!\n\n${packages}`,
+            });

@@ -1,0 +1,57 @@
+name: Canary Release
+on:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  publish-canary:
+    if: startsWith(github.head_ref, 'topic-')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name
+        shell: bash
+        run: echo "name=$(echo $GITHUB_HEAD_REF | sed 's/refs\/heads\///' | tr '/' '-')" >> $GITHUB_OUTPUT
+        id: branch_name
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: 1
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: |
+          yarn install --frozen-lockfile
+          yarn lerna link
+
+      - name: Publish
+        id: publish
+        run: |
+          echo ".npmrc" >> .git/info/exclude
+          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+          mkdir ${{ runner.temp }}/${{ steps.branch_name.outputs.name }}
+          yarn lerna publish prerelease --canary --no-private --no-verify-access --yes --exact --dist-tag=${{ steps.branch_name.outputs.name }} --preid=${{ steps.branch_name.outputs.name }} --summary-file=${{ runner.temp }}/${{ steps.branch_name.outputs.name }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const summary = JSON.parse(fs.readFileSync('${{ runner.temp }}/${{ steps.branch_name.outputs.name }}/lerna-publish-summary.json', 'utf8'));
+            const packages = summary.map(pkg => `**${pkg.packageName}@${pkg.version}**\n\`\`\`bash\nyarn add ${pkg.packageName}@${{ steps.branch_name.outputs.name }}\n\`\`\``).join('\n');
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🎉 Canary Release!\n\n${packages}`
+            })
