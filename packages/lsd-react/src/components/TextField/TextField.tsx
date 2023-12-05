@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import uniqueId from 'lodash/uniqueId'
 import React, { useRef } from 'react'
 import {
   CommonProps,
@@ -8,13 +9,13 @@ import {
 import { useInput } from '../../utils/useInput'
 import { IconButton } from '../IconButton'
 import { CloseIcon, ErrorIcon } from '../Icons'
-import { Typography } from '../Typography'
+import { Typography, TypographyProps } from '../Typography'
 import { textFieldClasses } from './TextField.classes'
 
 export type TextFieldProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value'> &
   Pick<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
-    size?: 'large' | 'medium'
+    size?: 'large' | 'medium' | 'small'
     icon?: React.ReactNode
     error?: boolean
     errorIcon?: boolean
@@ -26,12 +27,15 @@ export type TextFieldProps = CommonProps &
     placeholder?: string
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
     variant?: 'outlined' | 'underlined'
+    label?: React.ReactNode
+    labelProps?: Partial<Extract<TypographyProps, { component?: 'label' }>>
   }
 
 export const TextField: React.FC<TextFieldProps> & {
   classes: typeof textFieldClasses
 } = ({
   size = 'large',
+  label,
   icon,
   error = false,
   errorIcon = false,
@@ -44,6 +48,7 @@ export const TextField: React.FC<TextFieldProps> & {
   disabled,
   onChange,
   inputProps = {},
+  labelProps = {},
   variant = 'underlined',
   ...props
 }) => {
@@ -52,6 +57,8 @@ export const TextField: React.FC<TextFieldProps> & {
   const input = useInput({ defaultValue, value, onChange, ref })
 
   const onCancel = () => input.setValue('')
+
+  const inputId = inputProps.id || uniqueId('TextField-')
 
   return (
     <div
@@ -69,13 +76,25 @@ export const TextField: React.FC<TextFieldProps> & {
           : textFieldClasses.underlined,
       )}
     >
+      {label && (
+        <Typography
+          variant="label2"
+          component="label"
+          htmlFor={inputId}
+          {...labelProps}
+          className={clsx(textFieldClasses.label, labelProps.className)}
+        >
+          {label}
+        </Typography>
+      )}
       <div className={textFieldClasses.inputContainer}>
         <input
+          id={inputId}
           placeholder={placeholder}
-          {...inputProps}
           ref={ref}
           value={input.value}
           onChange={input.onChange}
+          {...inputProps}
           className={clsx(inputProps.className, textFieldClasses.input)}
         />
         {error && errorIcon ? (

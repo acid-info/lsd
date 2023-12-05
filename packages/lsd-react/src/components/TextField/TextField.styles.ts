@@ -3,8 +3,9 @@ import { textFieldClasses } from './TextField.classes'
 
 export const TextFieldStyles = css`
   .${textFieldClasses.root} {
-    width: auto;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   }
 
   .${textFieldClasses.inputContainer} {
@@ -41,26 +42,47 @@ export const TextFieldStyles = css`
 
   .${textFieldClasses.supportingText} {
     width: fit-content;
-    margin-top: 20px;
   }
 
   .${textFieldClasses.large} {
     width: 208px;
-    height: 40px;
-    padding: 10px 14px;
+
+    & > * {
+      padding: 10px 14px 10px 18px;
+    }
   }
 
   .${textFieldClasses.medium} {
     width: 188px;
-    height: 32px;
-    padding: 6px 12px;
+
+    & > * {
+      padding: 6px 12px 6px 14px;
+    }
   }
 
-  .${textFieldClasses.outlined} {
+  .${textFieldClasses.small} {
+    width: 164px;
+
+    & > * {
+      padding: 6px 10px 6px 12px;
+    }
+  }
+
+  .${textFieldClasses.label} {
+    padding-top: 0;
+    padding-bottom: 6px;
+  }
+
+  .${textFieldClasses.supportingText} {
+    padding-bottom: 0;
+    padding-top: 6px;
+  }
+
+  .${textFieldClasses.outlined} .${textFieldClasses.inputContainer} {
     border: 1px solid rgb(var(--lsd-border-primary));
   }
 
-  .${textFieldClasses.underlined} {
+  .${textFieldClasses.underlined} .${textFieldClasses.inputContainer} {
     border: 1px solid transparent;
     border-bottom: 1px solid rgb(var(--lsd-border-primary));
   }

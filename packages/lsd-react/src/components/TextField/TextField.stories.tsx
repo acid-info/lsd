@@ -20,7 +20,7 @@ export default {
     size: {
       type: {
         name: 'enum',
-        value: ['medium', 'large'],
+        value: ['small', 'medium', 'large'],
       },
       defaultValue: 'large',
     },
@@ -53,6 +53,7 @@ export const Root: StoryObj<Omit<TextFieldProps, 'icon'> & { icon: string }> = {
 
   args: {
     size: 'large',
+    label: 'Label',
     supportingText: 'Supporting text',
     disabled: false,
     error: false,
