@@ -5,6 +5,8 @@
   "scripts": {
     "commit": "git-cz",
     "test": "lerna run test",
+    "watch": "lerna run watch",
+    "build": "lerna run build",
     "format:check": "prettier --config .prettierrc --check --ignore-unknown .",
     "format:fix": "prettier --config .prettierrc --write --ignore-unknown -l .",
     "prepare": "husky install"
