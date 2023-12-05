@@ -13,6 +13,8 @@ export const THEME_BREAKPOINTS = ['xs', 'sm', 'md', 'lg', 'xl'] as Breakpoints[]
 export const THEME_TYPOGRAPHY_VARIANTS = [
   'display1',
   'display2',
+  'display3',
+  'display4',
   'h1',
   'h2',
   'h3',
@@ -23,7 +25,6 @@ export const THEME_TYPOGRAPHY_VARIANTS = [
   'subtitle2',
   'subtitle3',
   'subtitle4',
-  'subtitle5',
   'body1',
   'body2',
   'body3',
