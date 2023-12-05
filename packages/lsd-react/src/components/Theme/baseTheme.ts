@@ -10,6 +10,8 @@ export const baseTheme: Theme = {
       typography: {
         display1: {},
         display2: {},
+        display3: {},
+        display4: {},
         h1: {},
         h2: {},
         h3: {},
@@ -25,7 +27,6 @@ export const baseTheme: Theme = {
         subtitle2: {},
         subtitle3: {},
         subtitle4: {},
-        subtitle5: {},
       },
     },
     sm: {
@@ -33,6 +34,8 @@ export const baseTheme: Theme = {
       typography: {
         display1: {},
         display2: {},
+        display3: {},
+        display4: {},
         h1: {},
         h2: {},
         h3: {},
@@ -43,7 +46,6 @@ export const baseTheme: Theme = {
         body2: {},
         body3: {},
         label1: {},
-        subtitle5: {},
         subtitle4: {},
         subtitle3: {},
         label2: {},
@@ -56,6 +58,8 @@ export const baseTheme: Theme = {
       typography: {
         display1: {},
         display2: {},
+        display3: {},
+        display4: {},
         h1: {},
         h2: {},
         h3: {},
@@ -66,7 +70,6 @@ export const baseTheme: Theme = {
         body2: {},
         body3: {},
         label1: {},
-        subtitle5: {},
         subtitle4: {},
         subtitle3: {},
         label2: {},
@@ -79,6 +82,8 @@ export const baseTheme: Theme = {
       typography: {
         display1: {},
         display2: {},
+        display3: {},
+        display4: {},
         h1: {},
         h2: {},
         h3: {},
@@ -89,7 +94,6 @@ export const baseTheme: Theme = {
         body2: {},
         body3: {},
         label1: {},
-        subtitle5: {},
         subtitle4: {},
         subtitle3: {},
         label2: {},
@@ -102,6 +106,8 @@ export const baseTheme: Theme = {
       typography: {
         display1: {},
         display2: {},
+        display3: {},
+        display4: {},
         h1: {},
         h2: {},
         h3: {},
@@ -112,7 +118,6 @@ export const baseTheme: Theme = {
         body2: {},
         body3: {},
         label1: {},
-        subtitle5: {},
         subtitle4: {},
         subtitle3: {},
         label2: {},
@@ -123,59 +128,100 @@ export const baseTheme: Theme = {
   },
   typography: {
     display1: {
-      fontSize: '5.625rem',
+      fontSize: '5.5rem',
       fontWeight: 'normal',
-      lineHeight: '6.125rem',
+      lineHeight: '6rem',
     },
     display2: {
-      fontSize: '3.5625rem',
+      fontSize: '4rem',
+      fontWeight: 'normal',
+      lineHeight: '4.5rem',
+    },
+    display3: {
+      fontSize: '3.5rem',
       fontWeight: 'normal',
       lineHeight: '4rem',
     },
-    h1: { fontSize: '2.875rem', fontWeight: 'normal', lineHeight: '3.25rem' },
-    h2: { fontSize: '2.25rem', fontWeight: 'normal', lineHeight: '2.75rem' },
-    h3: { fontSize: '2rem', fontWeight: 'normal', lineHeight: '2.5rem' },
-    h4: { fontSize: '1.75rem', fontWeight: 'normal', lineHeight: '2.25rem' },
-    h5: { fontSize: '1.5rem', fontWeight: 'normal', lineHeight: '2rem' },
-    h6: { fontSize: '1.375rem', fontWeight: 'normal', lineHeight: '1.75rem' },
-    subtitle1: {
+    display4: {
+      fontSize: '3rem',
+      fontWeight: 'normal',
+      lineHeight: '3.5rem',
+    },
+    h1: {
+      fontSize: '2.5rem',
+      fontWeight: 'normal',
+      lineHeight: '3rem',
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 'normal',
+      lineHeight: '2.5rem',
+    },
+    h3: {
+      fontSize: '1.75rem',
+      fontWeight: 'normal',
+      lineHeight: '2.25rem',
+    },
+    h4: {
+      fontSize: '1.5rem',
+      fontWeight: 'normal',
+      lineHeight: '2rem',
+    },
+    h5: {
       fontSize: '1.25rem',
       fontWeight: 'normal',
-      lineHeight: '1.625rem',
+      lineHeight: '1.75rem',
     },
-    subtitle2: {
-      fontSize: '1.125rem',
-      fontWeight: 'normal',
-      lineHeight: '1.5rem',
-    },
-    subtitle3: {
+    h6: {
       fontSize: '1rem',
       fontWeight: 'normal',
       lineHeight: '1.5rem',
     },
-    subtitle4: {
+    subtitle1: {
+      fontSize: '1.125rem',
+      fontWeight: 'normal',
+      lineHeight: '1.5rem',
+    },
+    subtitle2: {
+      fontSize: '1rem',
+      fontWeight: 'normal',
+      lineHeight: '1.5rem',
+    },
+    subtitle3: {
       fontSize: '0.875rem',
       fontWeight: 'normal',
       lineHeight: '1.25rem',
     },
-    subtitle5: {
+    subtitle4: {
       fontSize: '0.75rem',
       fontWeight: 'normal',
       lineHeight: '1rem',
     },
-    body1: { fontSize: '1rem', fontWeight: 'normal', lineHeight: '1.5rem' },
+    body1: {
+      fontSize: '1rem',
+      fontWeight: 'normal',
+      lineHeight: '1.5rem',
+    },
     body2: {
       fontSize: '0.875rem',
       fontWeight: 'normal',
       lineHeight: '1.25rem',
     },
-    body3: { fontSize: '0.75rem', fontWeight: 'normal', lineHeight: '1rem' },
+    body3: {
+      fontSize: '0.75rem',
+      fontWeight: 'normal',
+      lineHeight: '1rem',
+    },
     label1: {
       fontSize: '0.875rem',
       fontWeight: 'normal',
       lineHeight: '1.25rem',
     },
-    label2: { fontSize: '0.75rem', fontWeight: 'normal', lineHeight: '1rem' },
+    label2: {
+      fontSize: '0.75rem',
+      fontWeight: 'normal',
+      lineHeight: '1rem',
+    },
   },
   typographyGlobal: {
     genericFontFamily: 'sans-serif',
