@@ -5,8 +5,9 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { buttonClasses } from './Button.classes'
 import { useButtonGroupContext } from '../ButtonGroup/ButtonGroup.context'
+import { Typography } from '../Typography'
+import { buttonClasses } from './Button.classes'
 
 export type ButtonProps = CommonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -49,7 +50,13 @@ export const Button: React.FC<ButtonProps> & {
           icon && buttonClasses.withIcon,
         )}
       >
-        <span className={buttonClasses.text}>{children}</span>
+        <Typography
+          component="span"
+          className={buttonClasses.text}
+          variant={size === 'small' ? 'label2' : 'label1'}
+        >
+          {children}
+        </Typography>
         {icon && <span className={buttonClasses.icon}>{icon}</span>}
       </button>
     </>
