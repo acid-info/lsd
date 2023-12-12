@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.1](https://github.com/acid-info/lsd/compare/v0.1.0-alpha.23...v0.1.0-beta.1) (2023-12-12)
+
+### Bug Fixes
+
+- **lsd-react:** fix Button typography styles ([cdfb9d4](https://github.com/acid-info/lsd/commit/cdfb9d468e8cc778ea4de5e030e921a351934817))
+
 # [0.1.0-beta.0](https://github.com/acid-info/lsd/compare/v0.1.0-alpha.23...v0.1.0-beta.0) (2023-12-06)
 
 **Note:** Version bump only for package @acid-info/logos-design-system
