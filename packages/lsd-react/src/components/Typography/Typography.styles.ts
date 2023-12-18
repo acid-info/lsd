@@ -15,14 +15,7 @@ export const TypographyStyles = css`
   }
 
   .${typographyClasses.root} {
-  }
-
-  .${typographyClasses.primary} {
     color: rgb(var(--lsd-text-primary));
-  }
-
-  .${typographyClasses.secondary} {
-    color: rgb(var(--lsd-text-secondary));
   }
 
   .${typographyClasses.sansSerif} {
@@ -56,6 +49,14 @@ export const TypographyStyles = css`
       }
     `,
   )}
+
+  .${typographyClasses.primary} {
+    color: rgb(var(--lsd-text-primary));
+  }
+
+  .${typographyClasses.secondary} {
+    color: rgb(var(--lsd-text-secondary));
+  }
 
   input {
     color: rgb(var(--lsd-text-primary));
