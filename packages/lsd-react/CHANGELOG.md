@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.2](https://github.com/acid-info/lsd/compare/v0.1.0-beta.1...v0.1.0-beta.2) (2023-12-18)
+
+### Bug Fixes
+
+- fix filled Button text color ([d5e0797](https://github.com/acid-info/lsd/commit/d5e07971ea55458db819c4d4d7248444c2e957a9))
+
 # [0.1.0-beta.1](https://github.com/acid-info/lsd/compare/v0.1.0-alpha.23...v0.1.0-beta.1) (2023-12-12)
 
 ### Bug Fixes
