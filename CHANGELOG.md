@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.3](https://github.com/acid-info/lsd/compare/v0.1.0-beta.2...v0.1.0-beta.3) (2024-01-10)
+
+### Features
+
+- export the Portal component ([aeb6645](https://github.com/acid-info/lsd/commit/aeb6645965cb70d70bb2e0f19f343b9c2db84342))
+
 # [0.1.0-beta.2](https://github.com/acid-info/lsd/compare/v0.1.0-beta.1...v0.1.0-beta.2) (2023-12-18)
 
 ### Bug Fixes
