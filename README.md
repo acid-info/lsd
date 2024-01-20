@@ -1,4 +1,4 @@
-# Logos Design System (LSD)
+# Logos System Design (LSD)
 
 LSD is an open-source design system challenging conventional norms in the world of digital products and experiences. Rooted in a philosophy that values content over excess, we're here to decentralize design and empower the message. Our minimalist approach is a rebellion against the cluttered design landscape. Join us in our mission to simplify and refocus design for all, with working code, tools, resources, and a community of like-minded individuals.
 
