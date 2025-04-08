@@ -31,6 +31,9 @@ jobs:
         run: |
           yarn install --frozen-lockfile
 
+      - name: Build packages
+        run: yarn build
+
       - name: Publish
         id: publish
         run: |
@@ -47,10 +50,6 @@ jobs:
           script: |
             const fs = require('fs');
             const path = '${{ runner.temp }}/${{ steps.branch_name.outputs.name }}/lerna-publish-summary.json';
-            if (!fs.existsSync(path)) {
-              console.log('lerna-publish-summary.json not found. Skipping comment creation.');
-              return;
-            }
             const summary = JSON.parse(fs.readFileSync(path, 'utf8'));
             const packages = summary.map(pkg => `**${pkg.packageName}@${pkg.version}**\n\`\`\`bash\nyarn add ${pkg.packageName}@${{ steps.branch_name.outputs.name }}\n\`\`\``).join('\n');
             github.rest.issues.createComment({
