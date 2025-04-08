@@ -54,7 +54,12 @@ export const TextField: React.FC<TextFieldProps> & {
 }) => {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
-  const input = useInput({ defaultValue, value, onChange, ref })
+  const input = useInput({
+    defaultValue,
+    value,
+    onChange,
+    ref: ref as React.RefObject<HTMLInputElement>,
+  })
 
   const onCancel = () => input.setValue('')
 

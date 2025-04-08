@@ -46,8 +46,8 @@ export const Button: React.FC<ButtonProps> & {
           buttonClasses.root,
           buttonClasses[size],
           buttonClasses[variant],
-          disabled && buttonClasses.disabled,
-          icon && buttonClasses.withIcon,
+          Boolean(disabled) && buttonClasses.disabled,
+          Boolean(icon) && buttonClasses.withIcon,
         )}
       >
         <Typography

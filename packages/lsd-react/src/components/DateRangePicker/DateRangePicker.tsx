@@ -139,7 +139,9 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
       >
         <DateField
           variant={variant}
-          calendarIconRef={startCalendarIconRef}
+          calendarIconRef={
+            startCalendarIconRef as React.RefObject<HTMLSpanElement>
+          }
           icon={withCalendar && <CalendarIcon color="primary" />}
           // The DateField component is only controlled when the value prop is provided OR the calendar is open.
           value={
@@ -160,7 +162,9 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
 
         <DateField
           variant={variant}
-          calendarIconRef={endCalendarIconRef}
+          calendarIconRef={
+            endCalendarIconRef as React.RefObject<HTMLSpanElement>
+          }
           icon={withCalendar && <CalendarIcon color="primary" />}
           // The DateField component is only controlled when the value prop is provided OR the calendar is open.
           value={
@@ -205,7 +209,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
             calendarType={calendarType}
             open={isCalendarOpen}
             onClose={() => setCalendarType(null)}
-            handleRef={ref}
+            handleRef={ref as React.RefObject<HTMLElement>}
             mode="range"
             disabled={disabled}
             startDate={startInput.value}

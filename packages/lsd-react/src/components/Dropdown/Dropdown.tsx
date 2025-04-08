@@ -166,7 +166,7 @@ export const Dropdown: React.FC<DropdownProps> & {
 
       <Portal id="dropdown">
         <DropdownMenu
-          handleRef={containerRef}
+          handleRef={containerRef as React.RefObject<HTMLElement>}
           open={openState}
           onClose={() => handleToggle(false)}
           size={size}

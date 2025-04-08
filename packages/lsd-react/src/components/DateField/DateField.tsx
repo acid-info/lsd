@@ -58,7 +58,7 @@ export const DateField: React.FC<DateFieldProps> & {
     defaultValue,
     value,
     onChange,
-    ref,
+    ref: ref as React.RefObject<HTMLInputElement>,
   })
 
   const onCancel = () => input.setValue('')

@@ -48,7 +48,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
     value: checked,
     defaultValue: defaultChecked ?? false,
     onChange,
-    ref,
+    ref: ref as React.RefObject<HTMLInputElement>,
   })
 
   const checkboxGroup = useCheckboxGroupContext()
