@@ -55,7 +55,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
     value: selected,
     defaultValue: defaultChecked ?? false,
     onChange,
-    ref,
+    ref: ref as React.RefObject<HTMLInputElement>,
   })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -6,7 +6,7 @@ import { ResizeObserverContext } from './ResizeObserverContext'
 export const ResizeObserverProvider: React.FC<React.PropsWithChildren<{}>> = ({
   children,
 }) => {
-  const ro = useRef<ResizeObserver>()
+  const ro = useRef<ResizeObserver | null>(null)
   const elements = useRef<Record<string, MutableRefObject<Element>>>({})
   const [rects, setRects] = useState<Record<string, DOMRect>>({})
   const [ready, setReady] = useState(false)

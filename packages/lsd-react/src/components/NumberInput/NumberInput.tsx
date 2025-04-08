@@ -53,7 +53,12 @@ export const NumberInput: React.FC<NumberInputProps> & {
 }) => {
   const ref = useRef<HTMLInputElement>(null)
   const commonProps = useCommonProps(props)
-  const input = useInput({ defaultValue, value, onChange, ref })
+  const input = useInput({
+    defaultValue,
+    value,
+    onChange,
+    ref: ref as React.RefObject<HTMLInputElement>,
+  })
 
   const handleIncrement = () => {
     if (disabled) return

@@ -97,7 +97,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
         {root && renderItems([root])}
         {collapsed.length > 0 && (
           <BreadcrumbItem
-            ellipsisRef={ellipsisRef}
+            ellipsisRef={ellipsisRef as React.RefObject<HTMLLIElement>}
             label={'...'}
             onClick={onTrigger}
             size={size}
@@ -109,7 +109,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
       {ellipsisRef?.current != null && ellipsis && maxItems && (
         <Portal id="breadcrumb">
           <DropdownMenu
-            handleRef={ellipsisRef}
+            handleRef={ellipsisRef as React.RefObject<HTMLElement>}
             open={open}
             onClose={() => setOpen(false)}
             className={clsx(breadcrumbClasses.listBox)}

@@ -40,13 +40,13 @@
     "@storybook/react-vite": "^7.4.6",
     "@storybook/testing-library": "^0.2.2",
     "@types/lodash": "^4.14.191",
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
     "@vitejs/plugin-react": "^3.0.0",
     "chromatic": "^6.15.0",
     "glob": "^10.3.10",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "sass": "^1.58.0",
     "storybook": "^7.4.6",
     "ts-node": "^10.9.1",
@@ -58,7 +58,7 @@
   "peerDependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "react": "17.x || 18.x",
-    "react-dom": "17.x || 18.x"
+    "react": "17.x || 18.x || 19.x",
+    "react-dom": "17.x || 18.x || 19.x"
   }
 }

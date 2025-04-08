@@ -24,7 +24,7 @@ export const YearControl: FC<YearControlProps> = ({
   const currentYearRef = useRef<HTMLDivElement>(null)
   const { goToDate, changeYearMode, setChangeYearMode } = useCalendarContext()
   const scrollRef = useRef<HTMLDivElement>(null)
-  const { y } = useScroll(scrollRef)
+  const { y } = useScroll(scrollRef as React.RefObject<HTMLElement>)
 
   const [minYear, setMinYear] = useState(() => parseInt(year) - yearStep)
   const [maxYear, setMaxYear] = useState(() => parseInt(year) + yearStep)

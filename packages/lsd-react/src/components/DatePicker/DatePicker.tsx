@@ -87,7 +87,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
         // The DateField component is only controlled when the value prop is provided OR the calendar is open.
         value={isControlled || openCalendar ? input.value : undefined}
         onChange={input.onChange}
-        calendarIconRef={calendarIconRef}
+        calendarIconRef={calendarIconRef as React.RefObject<HTMLSpanElement>}
         {...props}
       >
         <Portal id="calendar">
@@ -105,7 +105,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
 
                 setOpenCalendar(false)
               }}
-              handleRef={ref}
+              handleRef={ref as React.RefObject<HTMLElement>}
               startDate={input.value}
               disabled={props.disabled}
               className={datePickerClasses.calendar}
