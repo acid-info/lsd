@@ -44,7 +44,6 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
-          yarn lerna link
 
       - name: Check for changed packages
         id: changes

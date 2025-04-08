@@ -37,7 +37,6 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --frozen-lockfile
-          yarn lerna link
 
       - name: Bump versions
         id: bump

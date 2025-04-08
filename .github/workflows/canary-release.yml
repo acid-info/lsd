@@ -43,10 +43,15 @@ jobs:
 
       - uses: actions/github-script@v6
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require('fs');
-            const summary = JSON.parse(fs.readFileSync('${{ runner.temp }}/${{ steps.branch_name.outputs.name }}/lerna-publish-summary.json', 'utf8'));
+            const path = '${{ runner.temp }}/${{ steps.branch_name.outputs.name }}/lerna-publish-summary.json';
+            if (!fs.existsSync(path)) {
+              console.log('lerna-publish-summary.json not found. Skipping comment creation.');
+              return;
+            }
+            const summary = JSON.parse(fs.readFileSync(path, 'utf8'));
             const packages = summary.map(pkg => `**${pkg.packageName}@${pkg.version}**\n\`\`\`bash\nyarn add ${pkg.packageName}@${{ steps.branch_name.outputs.name }}\n\`\`\``).join('\n');
             github.rest.issues.createComment({
               issue_number: context.issue.number,
