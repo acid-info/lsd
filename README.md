@@ -13,3 +13,4 @@ The "Radical Theme" is a minimalistic and unified design system that challenges 
 → [Available in React](./packages/lsd-react/)
 
 [Library • acid-info/lsd](https://www.chromatic.com/library?appId=63e4f71c39dc65c5c703c1e8)
+
