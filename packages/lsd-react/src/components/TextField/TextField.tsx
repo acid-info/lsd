@@ -9,7 +9,7 @@ import {
 import { useInput } from '../../utils/useInput'
 import { IconButton } from '../IconButton'
 import { CloseIcon, ErrorIcon } from '../Icons'
-import { Typography, TypographyProps } from '../Typography'
+import { Typography, TypographyComponent, TypographyProps } from '../Typography'
 import { textFieldClasses } from './TextField.classes'
 
 export type TextFieldProps = CommonProps &
@@ -28,7 +28,7 @@ export type TextFieldProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
     variant?: 'outlined' | 'underlined'
     label?: React.ReactNode
-    labelProps?: Partial<Extract<TypographyProps, { component?: 'label' }>>
+    labelProps?: Partial<TypographyProps<'label'> & { className?: string }>
   }
 
 export const TextField: React.FC<TextFieldProps> & {
