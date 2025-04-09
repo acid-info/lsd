@@ -30,9 +30,9 @@ export type DateRangePickerProps = CommonProps &
     onEndDateChange: DatePickerProps['onChange']
   }
 
-export const DateRangePicker: React.FC<DateRangePickerProps> & {
-  classes: typeof dateRangePickerClasses
-} = ({
+const classes = dateRangePickerClasses
+
+function DateRangePicker({
   startValue: startValueProp,
   endValue: endValueProp,
   onStartDateChange,
@@ -44,7 +44,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   supportingText,
   disabled,
   ...props
-}) => {
+}: DateRangePickerProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const endCalendarIconRef = useRef<HTMLSpanElement>(null)
@@ -227,4 +227,6 @@ export const DateRangePicker: React.FC<DateRangePickerProps> & {
   )
 }
 
-DateRangePicker.classes = dateRangePickerClasses
+DateRangePicker.classes = classes
+
+export { DateRangePicker }

@@ -13,9 +13,9 @@ export type QuoteProps = CommonProps &
     mode?: 'indented-line' | 'parentheses'
   }
 
-export const Quote: React.FC<QuoteProps> & {
-  classes: typeof quoteClasses
-} = ({ mode = 'indented-line', children, ...props }) => {
+const classes = quoteClasses
+
+function Quote({ mode = 'indented-line', children, ...props }: QuoteProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -39,4 +39,6 @@ export const Quote: React.FC<QuoteProps> & {
   )
 }
 
-Quote.classes = quoteClasses
+Quote.classes = classes
+
+export { Quote }

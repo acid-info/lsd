@@ -20,9 +20,9 @@ export type TabsProps = CommonProps &
     scrollControls?: boolean
   }
 
-export const Tabs: React.FC<TabsProps> & {
-  classes: typeof tabsClasses
-} = ({
+const classes = tabsClasses
+
+function Tabs({
   size = 'large',
   fullWidth = false,
   scrollControls = false,
@@ -30,7 +30,7 @@ export const Tabs: React.FC<TabsProps> & {
   activeTab,
   children,
   ...props
-}) => {
+}: TabsProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [value, setValue] = useState(activeTab)
@@ -89,4 +89,6 @@ export const Tabs: React.FC<TabsProps> & {
   )
 }
 
-Tabs.classes = tabsClasses
+Tabs.classes = classes
+
+export { Tabs }

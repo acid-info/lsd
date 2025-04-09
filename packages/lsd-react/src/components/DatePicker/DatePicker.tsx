@@ -34,9 +34,9 @@ export type DatePickerProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
-export const DatePicker: React.FC<DatePickerProps> & {
-  classes: typeof datePickerClasses
-} = ({
+const classes = datePickerClasses
+
+function DatePicker({
   label,
   size = 'large',
   value: valueProp,
@@ -44,7 +44,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
   withCalendar = true,
   variant = 'underlined',
   ...props
-}) => {
+}: DatePickerProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const calendarIconRef = useRef<HTMLSpanElement>(null)
@@ -117,4 +117,6 @@ export const DatePicker: React.FC<DatePickerProps> & {
   )
 }
 
-DatePicker.classes = datePickerClasses
+DatePicker.classes = classes
+
+export { DatePicker }

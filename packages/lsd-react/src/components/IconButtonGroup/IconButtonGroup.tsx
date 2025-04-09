@@ -15,15 +15,15 @@ export type IconButtonGroupProps = CommonProps &
     disabled?: boolean
   }
 
-export const IconButtonGroup: React.FC<IconButtonGroupProps> & {
-  classes: typeof iconButtonGroupClasses
-} = ({
+const classes = iconButtonGroupClasses
+
+function IconButtonGroup({
   size = 'large',
   disabled,
   variant = 'outlined',
   children,
   ...props
-}) => {
+}: IconButtonGroupProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -51,4 +51,6 @@ export const IconButtonGroup: React.FC<IconButtonGroupProps> & {
   )
 }
 
-IconButtonGroup.classes = iconButtonGroupClasses
+IconButtonGroup.classes = classes
+
+export { IconButtonGroup }

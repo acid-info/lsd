@@ -7,17 +7,19 @@ export type PortalProps = React.PropsWithChildren & {
   id: string
 }
 
-export const Portal: React.FC<PortalProps> = ({ id, children }) => {
+function Portal({ id, children }: PortalProps) {
   const canUse = useCanUsePortal()
   if (!canUse) return <></>
 
   return <PortalContent id={id}>{children}</PortalContent>
 }
 
-const PortalContent: React.FC<PortalProps> = ({ id, children }) => {
+function PortalContent({ id, children }: PortalProps) {
   const element = usePortal({ parentId: 'lsd-presentation' })
 
   if (!element) return <></>
 
   return createPortal(children, element, id)
 }
+
+export { Portal }

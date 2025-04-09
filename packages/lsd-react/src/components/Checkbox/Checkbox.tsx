@@ -27,9 +27,9 @@ export type CheckboxProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
-export const Checkbox: React.FC<CheckboxProps> & {
-  classes: typeof checkboxClasses
-} = ({
+const classes = checkboxClasses
+
+function Checkbox({
   name,
   size: _size = 'large',
   onChange,
@@ -40,7 +40,7 @@ export const Checkbox: React.FC<CheckboxProps> & {
   inputProps = {},
   children,
   ...props
-}) => {
+}: CheckboxProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const [focused, setFocused] = useState(false)
@@ -109,4 +109,6 @@ export const Checkbox: React.FC<CheckboxProps> & {
   )
 }
 
-Checkbox.classes = checkboxClasses
+Checkbox.classes = classes
+
+export { Checkbox }

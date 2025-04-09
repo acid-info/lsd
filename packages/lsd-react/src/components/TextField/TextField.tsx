@@ -31,9 +31,9 @@ export type TextFieldProps = CommonProps &
     labelProps?: Partial<TypographyProps<'label'> & { className?: string }>
   }
 
-export const TextField: React.FC<TextFieldProps> & {
-  classes: typeof textFieldClasses
-} = ({
+const classes = textFieldClasses
+
+function TextField({
   size = 'large',
   label,
   icon,
@@ -51,7 +51,7 @@ export const TextField: React.FC<TextFieldProps> & {
   labelProps = {},
   variant = 'underlined',
   ...props
-}) => {
+}: TextFieldProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const input = useInput({
@@ -131,4 +131,6 @@ export const TextField: React.FC<TextFieldProps> & {
   )
 }
 
-TextField.classes = textFieldClasses
+TextField.classes = classes
+
+export { TextField }

@@ -65,11 +65,11 @@ type ToastContainerProps = React.HTMLAttributes<HTMLDivElement> & {
   toastsPropsMap: Map<string, ToastContantAndOptions>
 }
 
-const ToastContainer: React.FC<ToastContainerProps> = ({
+function ToastContainer({
   toastsPropsMap,
   className,
   ...containerProps
-}) => {
+}: ToastContainerProps) {
   const { toasts, handlers } = useToaster()
   const { startPause, endPause, calculateOffset, updateHeight } = handlers
 
@@ -151,11 +151,11 @@ type ToastProviderProps = React.HTMLAttributes<HTMLDivElement> & {
   children: ReactNode
 }
 
-export const ToastProvider: React.FC<ToastProviderProps> = ({
+function ToastProvider({
   providerToastOptions,
   children,
   ...toastsContainerProps
-}) => {
+}: ToastProviderProps) {
   const [toastsPropsMap, setToastsPropsMap] = React.useState<
     Map<string, ToastContantAndOptions>
   >(new Map())
@@ -194,3 +194,5 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({
     </ToastContext.Provider>
   )
 }
+
+export { ToastProvider }

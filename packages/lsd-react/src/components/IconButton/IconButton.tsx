@@ -14,15 +14,15 @@ export type IconButtonProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
   }
 
-export const IconButton: React.FC<IconButtonProps> & {
-  classes: typeof iconButtonClasses
-} = ({
+const classes = iconButtonClasses
+
+function IconButton({
   size: sizeProp,
   disabled: disabledProp,
   variant: variantProp,
   children,
   ...props
-}) => {
+}: IconButtonProps) {
   const commonProps = useCommonProps(props)
   const context = useIconButtonGroupContext()
 
@@ -41,10 +41,13 @@ export const IconButton: React.FC<IconButtonProps> & {
         iconButtonClasses[variant],
         disabled && iconButtonClasses.disabled,
       )}
+      disabled={disabled}
     >
       {children}
     </button>
   )
 }
 
-IconButton.classes = iconButtonClasses
+IconButton.classes = classes
+
+export { IconButton }

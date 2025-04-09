@@ -18,9 +18,9 @@ export type DropdownMenuProps = CommonProps &
     handleRef: React.RefObject<HTMLElement>
   }
 
-export const DropdownMenu: React.FC<DropdownMenuProps> & {
-  classes: typeof dropdownMenuClasses
-} = ({
+const classes = dropdownMenuClasses
+
+function DropdownMenu({
   size = 'large',
   open,
   label,
@@ -28,7 +28,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
   onClose,
   children,
   ...props
-}) => {
+}: DropdownMenuProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLUListElement>(null)
 
@@ -60,4 +60,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> & {
   )
 }
 
-DropdownMenu.classes = dropdownMenuClasses
+DropdownMenu.classes = classes
+
+export { DropdownMenu }

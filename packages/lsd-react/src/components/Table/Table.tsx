@@ -20,9 +20,9 @@ export type TableProps = CommonProps &
     toolbar?: React.ReactNode
   }
 
-export const Table: React.FC<TableProps> & {
-  classes: typeof tableClasses
-} = ({
+const classes = tableClasses
+
+function Table({
   size = 'large',
   type = 'default',
   headerOptions,
@@ -30,7 +30,7 @@ export const Table: React.FC<TableProps> & {
   toolbar,
   children,
   ...props
-}) => {
+}: TableProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -52,4 +52,6 @@ export const Table: React.FC<TableProps> & {
   )
 }
 
-Table.classes = tableClasses
+Table.classes = classes
+
+export { Table }
