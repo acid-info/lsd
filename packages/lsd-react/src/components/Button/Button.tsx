@@ -16,16 +16,16 @@ export type ButtonProps = CommonProps &
     icon?: React.ReactNode
   }
 
-export const Button: React.FC<ButtonProps> & {
-  classes: typeof buttonClasses
-} = ({
+const classes = buttonClasses
+
+function Button({
   size: sizeProp,
   variant: variantProp,
   disabled: disabledProp,
   icon,
   children,
   ...props
-}) => {
+}: ButtonProps) {
   const context = useButtonGroupContext()
   const commonProps = useCommonProps(props)
   const contextCommonProps = useCommonProps(context || {})
@@ -49,6 +49,7 @@ export const Button: React.FC<ButtonProps> & {
           Boolean(disabled) && buttonClasses.disabled,
           Boolean(icon) && buttonClasses.withIcon,
         )}
+        disabled={disabled}
       >
         <Typography
           component="span"
@@ -63,4 +64,6 @@ export const Button: React.FC<ButtonProps> & {
   )
 }
 
-Button.classes = buttonClasses
+Button.classes = classes
+
+export { Button }
