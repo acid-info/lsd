@@ -15,16 +15,16 @@ export type TooltipBaseProps = CommonProps &
     rootRef?: React.Ref<HTMLDivElement>
   }
 
-export const TooltipBase: React.FC<TooltipBaseProps> & {
-  classes: typeof tooltipBaseClasses
-} = ({
+const classes = tooltipBaseClasses
+
+function TooltipBase({
   children,
   arrowOffset,
   arrowPosition = 'top',
   arrowSize = 10,
   rootRef,
   ...props
-}) => {
+}: TooltipBaseProps) {
   const commonProps = useCommonProps(props)
 
   // Calculate arrow tip style based on position and offset.
@@ -65,4 +65,6 @@ export const TooltipBase: React.FC<TooltipBaseProps> & {
   )
 }
 
-TooltipBase.classes = tooltipBaseClasses
+TooltipBase.classes = classes
+
+export { TooltipBase }

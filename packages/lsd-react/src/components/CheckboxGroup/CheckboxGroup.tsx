@@ -18,9 +18,14 @@ export type CheckboxGroupProps = CommonProps &
     label?: string
   }
 
-export const CheckboxGroup: React.FC<CheckboxGroupProps> & {
-  classes: typeof checkboxGroupClasses
-} = ({ size = 'large', label, children, ...props }) => {
+const classes = checkboxGroupClasses
+
+function CheckboxGroup({
+  size = 'large',
+  label,
+  children,
+  ...props
+}: CheckboxGroupProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -47,4 +52,6 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> & {
   )
 }
 
-CheckboxGroup.classes = checkboxGroupClasses
+CheckboxGroup.classes = classes
+
+export { CheckboxGroup }

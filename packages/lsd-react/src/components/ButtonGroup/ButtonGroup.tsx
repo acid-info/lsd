@@ -15,15 +15,15 @@ export type ButtonGroupProps = CommonProps &
     disabled?: boolean
   }
 
-export const ButtonGroup: React.FC<ButtonGroupProps> & {
-  classes: typeof buttonGroupClasses
-} = ({
+const classes = buttonGroupClasses
+
+function ButtonGroup({
   size = 'large',
   disabled,
   variant = 'outlined',
   children,
   ...props
-}) => {
+}: ButtonGroupProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -51,4 +51,6 @@ export const ButtonGroup: React.FC<ButtonGroupProps> & {
   )
 }
 
-ButtonGroup.classes = buttonGroupClasses
+ButtonGroup.classes = classes
+
+export { ButtonGroup }

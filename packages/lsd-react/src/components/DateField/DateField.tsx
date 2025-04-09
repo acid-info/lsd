@@ -30,9 +30,9 @@ export type DateFieldProps = CommonProps &
     calendarIconRef?: React.RefObject<HTMLSpanElement>
   }
 
-export const DateField: React.FC<DateFieldProps> & {
-  classes: typeof dateFieldClasses
-} = ({
+const classes = dateFieldClasses
+
+function DateField({
   label,
   size = 'large',
   error = false,
@@ -51,7 +51,7 @@ export const DateField: React.FC<DateFieldProps> & {
   calendarIconRef,
   variant = 'underlined',
   ...props
-}) => {
+}: DateFieldProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const input = useInput({
@@ -148,4 +148,6 @@ export const DateField: React.FC<DateFieldProps> & {
   )
 }
 
-DateField.classes = dateFieldClasses
+DateField.classes = classes
+
+export { DateField }

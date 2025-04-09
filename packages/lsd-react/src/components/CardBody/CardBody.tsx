@@ -10,9 +10,9 @@ import { cardBodyClasses } from './CardBody.classes'
 export type CardBodyProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {}
 
-export const CardBody: React.FC<CardBodyProps> & {
-  classes: typeof cardBodyClasses
-} = ({ children, ...props }) => {
+const classes = cardBodyClasses
+
+function CardBody({ children, ...props }: CardBodyProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -29,4 +29,6 @@ export const CardBody: React.FC<CardBodyProps> & {
   )
 }
 
-CardBody.classes = cardBodyClasses
+CardBody.classes = classes
+
+export { CardBody }

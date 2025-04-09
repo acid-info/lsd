@@ -3,9 +3,7 @@ import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { settleSync } from '../../utils/promise.utils'
 import { ResizeObserverContext } from './ResizeObserverContext'
 
-export const ResizeObserverProvider: React.FC<React.PropsWithChildren<{}>> = ({
-  children,
-}) => {
+function ResizeObserverProvider({ children }: React.PropsWithChildren<{}>) {
   const ro = useRef<ResizeObserver | null>(null)
   const elements = useRef<Record<string, MutableRefObject<Element>>>({})
   const [rects, setRects] = useState<Record<string, DOMRect>>({})
@@ -81,3 +79,5 @@ export const ResizeObserverProvider: React.FC<React.PropsWithChildren<{}>> = ({
     </ResizeObserverContext.Provider>
   )
 }
+
+export { ResizeObserverProvider }

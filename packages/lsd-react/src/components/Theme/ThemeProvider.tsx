@@ -10,11 +10,11 @@ export type ThemeProviderProps = React.PropsWithChildren<{
   injectCssVars?: boolean
 }>
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+function ThemeProvider({
   theme,
   children,
   injectCssVars = true,
-}) => {
+}: ThemeProviderProps) {
   return (
     <ResizeObserverProvider>
       <PortalProvider>
@@ -31,3 +31,5 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 export const ThemeContext = React.createContext({
   theme: null as any,
 })
+
+export { ThemeProvider }

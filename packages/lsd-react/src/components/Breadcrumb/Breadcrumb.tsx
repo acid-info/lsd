@@ -35,9 +35,9 @@ export type BreadcrumbProps = CommonProps &
     size?: 'small' | 'large'
   }
 
-export const Breadcrumb: React.FC<BreadcrumbProps> & {
-  classes: typeof breadcrumbClasses
-} = ({
+const classes = breadcrumbClasses
+
+function Breadcrumb({
   size = 'large',
   disabled = false,
   ellipsis = false,
@@ -46,7 +46,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
   onChange,
   options = [],
   ...props
-}) => {
+}: BreadcrumbProps) {
   const commonProps = useCommonProps(props)
 
   const ellipsisRef = useRef<HTMLLIElement>(null)
@@ -133,4 +133,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> & {
   )
 }
 
-Breadcrumb.classes = breadcrumbClasses
+Breadcrumb.classes = classes
+
+export { Breadcrumb }

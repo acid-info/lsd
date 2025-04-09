@@ -19,9 +19,9 @@ export type ModalProps = CommonProps &
     onClose?: () => void
   }
 
-export const Modal: React.FC<ModalProps> & {
-  classes: typeof modalClasses
-} = ({
+const classes = modalClasses
+
+function Modal({
   isOpen,
   size = 'large',
   title,
@@ -29,7 +29,7 @@ export const Modal: React.FC<ModalProps> & {
   onClose,
   children,
   ...props
-}) => {
+}: ModalProps) {
   const commonProps = useCommonProps(props)
 
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -90,4 +90,6 @@ export const Modal: React.FC<ModalProps> & {
   )
 }
 
-Modal.classes = modalClasses
+Modal.classes = classes
+
+export { Modal }

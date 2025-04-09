@@ -23,9 +23,9 @@ export type BreadcrumbItemProps = CommonProps &
     size?: 'small' | 'large'
   }
 
-export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
-  classes: typeof breadcrumbItemClasses
-} = ({
+const classes = breadcrumbItemClasses
+
+function BreadcrumbItem({
   size = 'large',
   label,
   link,
@@ -36,7 +36,7 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   onClick,
   className,
   ...props
-}) => {
+}: BreadcrumbItemProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -71,4 +71,6 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> & {
   )
 }
 
-BreadcrumbItem.classes = breadcrumbItemClasses
+BreadcrumbItem.classes = classes
+
+export { BreadcrumbItem }

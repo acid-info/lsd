@@ -30,9 +30,9 @@ export type NumberInputProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
-export const NumberInput: React.FC<NumberInputProps> & {
-  classes: typeof numberInputClasses
-} = ({
+const classes = numberInputClasses
+
+function NumberInput({
   label,
   size = 'large',
   error = false,
@@ -50,7 +50,7 @@ export const NumberInput: React.FC<NumberInputProps> & {
   max = Number.MAX_SAFE_INTEGER,
   step = 1,
   ...props
-}) => {
+}: NumberInputProps) {
   const ref = useRef<HTMLInputElement>(null)
   const commonProps = useCommonProps(props)
   const input = useInput({
@@ -144,4 +144,6 @@ export const NumberInput: React.FC<NumberInputProps> & {
   )
 }
 
-NumberInput.classes = numberInputClasses
+NumberInput.classes = classes
+
+export { NumberInput }

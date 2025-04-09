@@ -19,9 +19,9 @@ export type CollapseHeaderProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
   }
 
-export const CollapseHeader: React.FC<CollapseHeaderProps> & {
-  classes: typeof collapseHeaderClasses
-} = ({
+const classes = collapseHeaderClasses
+
+function CollapseHeader({
   label,
   disabled = false,
   open,
@@ -29,7 +29,7 @@ export const CollapseHeader: React.FC<CollapseHeaderProps> & {
   size = 'large',
   onTrigger,
   ...props
-}) => {
+}: CollapseHeaderProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -74,4 +74,6 @@ export const CollapseHeader: React.FC<CollapseHeaderProps> & {
   )
 }
 
-CollapseHeader.classes = collapseHeaderClasses
+CollapseHeader.classes = classes
+
+export { CollapseHeader }

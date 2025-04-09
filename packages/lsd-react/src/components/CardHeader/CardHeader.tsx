@@ -14,9 +14,13 @@ export type CardHeaderProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
   }
 
-export const CardHeader: React.FC<CardHeaderProps> & {
-  classes: typeof cardHeaderClasses
-} = ({ size: _size = 'large', children, ...props }) => {
+const classes = cardHeaderClasses
+
+function CardHeader({
+  size: _size = 'large',
+  children,
+  ...props
+}: CardHeaderProps) {
   const commonProps = useCommonProps(props)
   const sizeContext = useCardContext()
   const size = sizeContext?.size ?? _size
@@ -42,4 +46,6 @@ export const CardHeader: React.FC<CardHeaderProps> & {
   )
 }
 
-CardHeader.classes = cardHeaderClasses
+CardHeader.classes = classes
+
+export { CardHeader }

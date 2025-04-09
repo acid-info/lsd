@@ -10,9 +10,9 @@ import { modalBodyClasses } from './ModalBody.classes'
 export type ModalBodyProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'>
 
-export const ModalBody: React.FC<ModalBodyProps> & {
-  classes: typeof modalBodyClasses
-} = ({ children, ...props }) => {
+const classes = modalBodyClasses
+
+function ModalBody({ children, ...props }: ModalBodyProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -25,4 +25,6 @@ export const ModalBody: React.FC<ModalBodyProps> & {
   )
 }
 
-ModalBody.classes = modalBodyClasses
+ModalBody.classes = classes
+
+export { ModalBody }

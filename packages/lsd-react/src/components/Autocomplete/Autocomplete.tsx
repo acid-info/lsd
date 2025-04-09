@@ -30,9 +30,9 @@ export type AutocompleteProps = CommonProps &
     variant?: 'outlined' | 'underlined'
   }
 
-export const Autocomplete: React.FC<AutocompleteProps> & {
-  classes: typeof autocompleteClasses
-} = ({
+const classes = autocompleteClasses
+
+function Autocomplete({
   label,
   size = 'large',
   withIcon = false,
@@ -47,7 +47,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   inputProps = {},
   variant = 'outlined',
   ...props
-}) => {
+}: AutocompleteProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -179,4 +179,6 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   )
 }
 
-Autocomplete.classes = autocompleteClasses
+Autocomplete.classes = classes
+
+export { Autocomplete }

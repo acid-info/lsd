@@ -13,9 +13,9 @@ export type CardProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
   }
 
-export const Card: React.FC<CardProps> & {
-  classes: typeof cardClasses
-} = ({ size = 'large', children, ...props }) => {
+const classes = cardClasses
+
+function Card({ size = 'large', children, ...props }: CardProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -34,4 +34,6 @@ export const Card: React.FC<CardProps> & {
   )
 }
 
-Card.classes = cardClasses
+Card.classes = classes
+
+export { Card }

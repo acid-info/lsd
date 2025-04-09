@@ -38,9 +38,9 @@ export type DropdownProps = CommonProps &
     menuProps?: Partial<DropdownMenuProps>
   }
 
-export const Dropdown: React.FC<DropdownProps> & {
-  classes: typeof dropdownClasses
-} = ({
+const classes = dropdownClasses
+
+function Dropdown({
   label,
   size = 'large',
   error = false,
@@ -56,7 +56,7 @@ export const Dropdown: React.FC<DropdownProps> & {
   onToggle,
   menuProps = {},
   ...props
-}) => {
+}: DropdownProps) {
   const commonProps = useCommonProps(props)
   const containerRef = useRef<HTMLDivElement>(null)
   const isControlled = isOpen !== undefined
@@ -191,4 +191,6 @@ export const Dropdown: React.FC<DropdownProps> & {
   )
 }
 
-Dropdown.classes = dropdownClasses
+Dropdown.classes = classes
+
+export { Dropdown }
