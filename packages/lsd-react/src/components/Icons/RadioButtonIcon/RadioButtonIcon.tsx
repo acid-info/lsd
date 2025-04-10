@@ -1,7 +1,9 @@
 import { LsdIcon } from '../LsdIcon'
+import type { LsdIconProps } from '../LsdIcon'
+import React from 'react'
 
-export const RadioButtonIcon = LsdIcon(
-  (props) => (
+function RadioButtonIconSvg(props: React.SVGAttributes<SVGElement>) {
+  return (
     <svg
       width="14"
       height="14"
@@ -15,8 +17,9 @@ export const RadioButtonIcon = LsdIcon(
         fill="black"
       />
     </svg>
-  ),
-  {
-    filled: true,
-  },
-)
+  )
+}
+
+const RadioButtonIcon = LsdIcon(RadioButtonIconSvg, { filled: true })
+
+export { RadioButtonIcon }
