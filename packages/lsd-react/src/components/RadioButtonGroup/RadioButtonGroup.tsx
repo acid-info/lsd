@@ -20,9 +20,15 @@ export type RadioButtonGroupProps = CommonProps &
     label?: string
   }
 
-export const RadioButtonGroup: React.FC<RadioButtonGroupProps> & {
-  classes: typeof radioButtonGroupClasses
-} = ({ size = 'large', label, value, name, onChange, children, ...props }) => {
+function RadioButtonGroup({
+  size = 'large',
+  label,
+  value,
+  name,
+  onChange,
+  children,
+  ...props
+}: RadioButtonGroupProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [activeValue, setActiveValue] = useState(value)
@@ -61,3 +67,5 @@ export const RadioButtonGroup: React.FC<RadioButtonGroupProps> & {
 }
 
 RadioButtonGroup.classes = radioButtonGroupClasses
+
+export { RadioButtonGroup }
