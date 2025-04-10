@@ -1,7 +1,9 @@
 import { LsdIcon } from '../LsdIcon'
+import type { LsdIconProps } from '../LsdIcon'
+import React from 'react'
 
-export const KeyboardReturnIcon = LsdIcon(
-  (props) => (
+function KeyboardReturnIconSvg(props: React.SVGAttributes<SVGElement>) {
+  return (
     <svg
       width="14"
       height="14"
@@ -15,8 +17,9 @@ export const KeyboardReturnIcon = LsdIcon(
         fill="black"
       />
     </svg>
-  ),
-  {
-    filled: true,
-  },
-)
+  )
+}
+
+const KeyboardReturnIcon = LsdIcon(KeyboardReturnIconSvg, { filled: true })
+
+export { KeyboardReturnIcon }

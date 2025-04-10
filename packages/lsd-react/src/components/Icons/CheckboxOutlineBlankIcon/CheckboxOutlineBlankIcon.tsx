@@ -1,7 +1,9 @@
 import { LsdIcon } from '../LsdIcon'
+import type { LsdIconProps } from '../LsdIcon'
+import React from 'react'
 
-export const CheckboxOutlineBlankIcon = LsdIcon(
-  (props) => (
+function CheckboxOutlineBlankIconSvg(props: React.SVGAttributes<SVGElement>) {
+  return (
     <svg
       width="14"
       height="14"
@@ -15,8 +17,11 @@ export const CheckboxOutlineBlankIcon = LsdIcon(
         fill="black"
       />
     </svg>
-  ),
-  {
-    filled: true,
-  },
-)
+  )
+}
+
+const CheckboxOutlineBlankIcon = LsdIcon(CheckboxOutlineBlankIconSvg, {
+  filled: true,
+})
+
+export { CheckboxOutlineBlankIcon }

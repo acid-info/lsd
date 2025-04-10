@@ -1,7 +1,9 @@
 import { LsdIcon } from '../LsdIcon'
+import type { LsdIconProps } from '../LsdIcon'
+import React from 'react'
 
-export const MoreIcon = LsdIcon(
-  (props) => (
+function MoreIconSvg(props: React.SVGAttributes<SVGElement>) {
+  return (
     <svg
       width="14"
       height="14"
@@ -17,8 +19,9 @@ export const MoreIcon = LsdIcon(
         fill="black"
       />
     </svg>
-  ),
-  {
-    filled: true,
-  },
-)
+  )
+}
+
+const MoreIcon = LsdIcon(MoreIconSvg, { filled: true })
+
+export { MoreIcon }
