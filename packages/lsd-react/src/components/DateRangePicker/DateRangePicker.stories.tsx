@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/react'
-import { DateRangePicker, DateRangePickerProps } from './DateRangePicker'
+import type { Meta, StoryObj } from '@storybook/react'
+import { DateRangePicker } from './DateRangePicker'
 
 export default {
   title: 'DateRangePicker',
@@ -18,38 +18,40 @@ export default {
       },
     },
   },
-} as Meta
+} as Meta<typeof DateRangePicker>
 
-export const Uncontrolled: Story<DateRangePickerProps> = ({ ...args }) => {
-  return <DateRangePicker {...args} />
+type Story = StoryObj<typeof DateRangePicker>
+
+export const Uncontrolled: Story = {
+  args: {
+    supportingText: 'Supporting text',
+    label: 'Label',
+    disabled: false,
+    error: false,
+    startValue: undefined,
+    endValue: undefined,
+    errorIcon: false,
+    withCalendar: true,
+    size: 'large',
+    variant: 'underlined',
+    onStartDateChange: () => {},
+    onEndDateChange: () => {},
+  },
 }
 
-export const Controlled: Story<DateRangePickerProps> = ({ ...args }) => {
-  return <DateRangePicker {...args} />
-}
-
-Uncontrolled.args = {
-  supportingText: 'Supporting text',
-  label: 'Label',
-  disabled: false,
-  error: false,
-  startValue: undefined,
-  endValue: undefined,
-  errorIcon: false,
-  withCalendar: true,
-  size: 'large',
-  variant: 'underlined',
-}
-
-Controlled.args = {
-  supportingText: 'Supporting text',
-  label: 'Label',
-  disabled: false,
-  error: false,
-  startValue: '2023-01-02',
-  endValue: '2023-01-10',
-  errorIcon: false,
-  withCalendar: true,
-  size: 'large',
-  variant: 'underlined',
+export const Controlled: Story = {
+  args: {
+    supportingText: 'Supporting text',
+    label: 'Label',
+    disabled: false,
+    error: false,
+    startValue: '2023-01-02',
+    endValue: '2023-01-10',
+    errorIcon: false,
+    withCalendar: true,
+    size: 'large',
+    variant: 'underlined',
+    onStartDateChange: () => {},
+    onEndDateChange: () => {},
+  },
 }
