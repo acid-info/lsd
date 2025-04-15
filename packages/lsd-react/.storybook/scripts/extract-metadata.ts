@@ -9,7 +9,7 @@ import * as _ from 'lodash'
 const DIRNAME = fileURLToPath(import.meta.url)
 const ROOT_DIR = path.resolve(DIRNAME, '../../../')
 const BUILD_DIR = path.resolve(ROOT_DIR, 'storybook-static')
-const STORIES_JSON = path.resolve(BUILD_DIR, 'stories.json')
+const STORIES_JSON = path.resolve(BUILD_DIR, 'index.json')
 
 ;(global as any).__STORYBOOK_MODULE_ADDONS__ = {}
 ;(global as any).__STORYBOOK_MODULE_PREVIEW_API__ = {}

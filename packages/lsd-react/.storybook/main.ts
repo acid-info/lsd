@@ -1,22 +1,17 @@
-const config = {
-  stories: [
-    '../src/docs/**/*.mdx',
-    '../src/components/**/*.mdx',
-    '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
+import type { StorybookConfig } from '@storybook/react-vite'
+
+const config: StorybookConfig = {
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  addons: [
+    '@storybook/addon-essentials',
+    '@storybook/addon-onboarding',
+    '@chromatic-com/storybook',
+    '@storybook/experimental-addon-test',
   ],
-
-  addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
-
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
-
-  docs: {
-    autodocs: true,
-  },
-
   staticDirs: ['./public'],
 }
-
 export default config
