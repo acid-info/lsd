@@ -17,6 +17,18 @@ const config = {
   },
 
   staticDirs: ['./public'],
+
+  typescript: {
+    check: true,
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      shouldRemoveUndefinedFromOptional: true,
+      propFilter: (prop) =>
+        prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
+      skipChildrenPropWithoutFunction: true,
+    },
+  },
 }
 
 export default config

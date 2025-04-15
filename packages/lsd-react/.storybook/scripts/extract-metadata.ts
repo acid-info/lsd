@@ -9,7 +9,6 @@ import * as _ from 'lodash'
 const DIRNAME = fileURLToPath(import.meta.url)
 const ROOT_DIR = path.resolve(DIRNAME, '../../../')
 const BUILD_DIR = path.resolve(ROOT_DIR, 'storybook-static')
-const STORIES_JSON = path.resolve(BUILD_DIR, 'stories.json')
 
 ;(global as any).__STORYBOOK_MODULE_ADDONS__ = {}
 ;(global as any).__STORYBOOK_MODULE_PREVIEW_API__ = {}
@@ -32,6 +31,52 @@ type StoryInfo = {
 type StoriesJson = {
   v: number
   stories: StoryInfo[]
+}
+
+// Find the index JSON file that contains story data
+async function findIndexJsonFile() {
+  const indexJsonPath = path.join(BUILD_DIR, 'index.json')
+  if (fs.existsSync(indexJsonPath)) {
+    return indexJsonPath
+  }
+
+  // Fallback to looking for older index-*.json pattern if index.json doesn't exist
+  const files = await glob(path.join(BUILD_DIR, 'index-*.json'))
+  if (files.length === 0) {
+    return null
+  }
+  return files[0]
+}
+
+// Convert new index-*.json format to the old stories.json format
+async function convertIndexJsonToStoriesJson(
+  indexJsonPath: string,
+): Promise<StoriesJson> {
+  const content = await fsp.readFile(indexJsonPath, 'utf8')
+  const data = JSON.parse(content)
+
+  // Transform the new format to match the old expected format
+  const stories = Object.entries(data.stories || {}).map(
+    ([id, story]: [string, any]) => ({
+      id,
+      name: story.name || '',
+      title: story.title || '',
+      kind: story.title || '', // In new format, kind == title
+      importPath: story.importPath || '',
+      tags: story.tags || [],
+      story: story.name || '',
+      parameters: {
+        __id: id,
+        docsOnly: story.parameters?.docsOnly || false,
+        fileName: story.parameters?.fileName || '',
+      },
+    }),
+  )
+
+  return {
+    v: data.v || 4,
+    stories,
+  }
 }
 
 export const fromStories = async (
@@ -60,23 +105,29 @@ export const fromStories = async (
   const storyFiles = await glob(assetsDir + `/*.stories-*.js`)
 
   for (const file of storyFiles) {
-    const mod = await import(file)
-    const { title, component, argTypes } = mod.default
+    try {
+      const mod = await import(file)
+      const { title, component, argTypes } = mod.default || {}
 
-    const componentTitle = mod.default.title || title
-    const componentSubtitle = mod.default.parameters?.componentSubtitle || ''
-    const componentDescription =
-      mod.default.parameters?.docs?.description?.component || ''
+      if (!component || !component.displayName) continue
 
-    components[component.displayName] = {
-      component: {
-        title: componentTitle,
-        subtitle: componentSubtitle,
-        description: componentDescription,
-      },
-      argTypes,
-      stories: stories.filter((story) => story.kind === title),
-      __docgenInfo: component.__docgenInfo,
+      const componentTitle = mod.default?.title || title || ''
+      const componentSubtitle = mod.default?.parameters?.componentSubtitle || ''
+      const componentDescription =
+        mod.default?.parameters?.docs?.description?.component || ''
+
+      components[component.displayName] = {
+        component: {
+          title: componentTitle,
+          subtitle: componentSubtitle,
+          description: componentDescription,
+        },
+        argTypes: argTypes || {},
+        stories: stories.filter((story) => story.kind === componentTitle),
+        __docgenInfo: component.__docgenInfo,
+      }
+    } catch (error) {
+      console.warn(`Error processing file ${file}:`, error)
     }
   }
 
@@ -129,11 +180,13 @@ export const extractMetadata = async (dir: string) => {
     ),
   )
 
-  const stories = await import(path.join(dir, 'stories.json'), {
-    assert: { type: 'json' },
-  })
+  const indexJsonPath = await findIndexJsonFile()
+  if (!indexJsonPath) {
+    throw new Error('Could not find index.json file')
+  }
 
-  const components = await fromStories(stories.default, assetsDir)
+  const storiesJson = await convertIndexJsonToStoriesJson(indexJsonPath)
+  const components = await fromStories(storiesJson, assetsDir)
   // const globalTypes = await extractGlobalTypes(assetsDir)
 
   fs.unlinkSync(path.join(assetsDir, 'package.json'))
@@ -149,17 +202,20 @@ export const run = async () => {
     console.error('The storybook-static dir not found!')
     process.exit(1)
   }
-  if (!fs.existsSync(STORIES_JSON)) {
-    console.error('The stories.json file not found!')
+
+  try {
+    const metadata = await extractMetadata(BUILD_DIR)
+
+    await fsp.writeFile(
+      path.join(BUILD_DIR, '_metadata.json'),
+      Buffer.from(JSON.stringify(metadata)),
+    )
+
+    console.log('Metadata extraction complete!')
+  } catch (error) {
+    console.error('Error extracting metadata:', error)
     process.exit(1)
   }
-
-  const metadata = await extractMetadata(BUILD_DIR)
-
-  await fsp.writeFile(
-    path.join(BUILD_DIR, '_metadata.json'),
-    Buffer.from(JSON.stringify(metadata)),
-  )
 }
 
 run()
