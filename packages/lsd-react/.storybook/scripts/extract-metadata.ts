@@ -8,7 +8,19 @@ import * as _ from 'lodash'
 
 const DIRNAME = fileURLToPath(import.meta.url)
 const ROOT_DIR = path.resolve(DIRNAME, '../../../')
-const BUILD_DIR = path.resolve(ROOT_DIR, 'storybook-static')
+
+let BUILD_DIR = path.resolve(ROOT_DIR, 'storybook-static')
+
+// Parse command line arguments for output directory override
+const outputDirArg = process.argv.find((arg) => arg.startsWith('--output-dir='))
+if (outputDirArg) {
+  const outputDir = outputDirArg.split('=')[1]
+
+  if (outputDir && fs.existsSync(outputDir)) {
+    BUILD_DIR = outputDir
+    console.log(`Using custom output directory: ${BUILD_DIR}`)
+  }
+}
 
 ;(global as any).__STORYBOOK_MODULE_ADDONS__ = {}
 ;(global as any).__STORYBOOK_MODULE_PREVIEW_API__ = {}
@@ -199,7 +211,7 @@ export const extractMetadata = async (dir: string) => {
 
 export const run = async () => {
   if (!fs.existsSync(BUILD_DIR)) {
-    console.error('The storybook-static dir not found!')
+    console.error(`The build directory not found: ${BUILD_DIR}`)
     process.exit(1)
   }
 
@@ -211,7 +223,7 @@ export const run = async () => {
       Buffer.from(JSON.stringify(metadata)),
     )
 
-    console.log('Metadata extraction complete!')
+    console.log(`Metadata extraction complete for: ${BUILD_DIR}`)
   } catch (error) {
     console.error('Error extracting metadata:', error)
     process.exit(1)

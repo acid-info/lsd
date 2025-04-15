@@ -9,8 +9,8 @@
     "build": "tsc && vite build",
     "watch": "tsc && vite build --watch --emptyOutDir false",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build && yarn storybook:extract-metadata",
-    "storybook:extract-metadata": "ts-node -P tsconfig.node.json .storybook/scripts/extract-metadata.ts",
+    "build-storybook": "storybook build",
+    "postbuild-storybook": "ts-node -P tsconfig.node.json .storybook/scripts/extract-metadata.ts",
     "preview": "vite preview",
     "prepublish": "yarn build"
   },
