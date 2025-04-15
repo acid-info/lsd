@@ -30,9 +30,9 @@ export type AutocompleteProps = CommonProps &
     variant?: 'outlined' | 'underlined'
   }
 
-export const Autocomplete: React.FC<AutocompleteProps> & {
-  classes: typeof autocompleteClasses
-} = ({
+const classes = autocompleteClasses
+
+function Autocomplete({
   label,
   size = 'large',
   withIcon = false,
@@ -47,11 +47,16 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   inputProps = {},
   variant = 'outlined',
   ...props
-}) => {
+}: AutocompleteProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const input = useInput({ defaultValue, value, onChange, ref })
+  const input = useInput({
+    defaultValue,
+    value,
+    onChange,
+    ref: ref as React.RefObject<HTMLInputElement>,
+  })
   const inputValue = input.value as string
 
   const [open, setOpen] = useState(false)
@@ -143,7 +148,7 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
       </div>
       <Portal id="autocomplete">
         <DropdownMenu
-          handleRef={containerRef}
+          handleRef={containerRef as React.RefObject<HTMLElement>}
           open={isOpen}
           onClose={() => setOpen(false)}
           size={size}
@@ -174,4 +179,6 @@ export const Autocomplete: React.FC<AutocompleteProps> & {
   )
 }
 
-Autocomplete.classes = autocompleteClasses
+Autocomplete.classes = classes
+
+export { Autocomplete }

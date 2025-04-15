@@ -10,9 +10,9 @@ import { modalFooterClasses } from './ModalFooter.classes'
 export type ModalFooterProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'>
 
-export const ModalFooter: React.FC<ModalFooterProps> & {
-  classes: typeof modalFooterClasses
-} = ({ children, ...props }) => {
+const classes = modalFooterClasses
+
+function ModalFooter({ children, ...props }: ModalFooterProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -25,4 +25,6 @@ export const ModalFooter: React.FC<ModalFooterProps> & {
   )
 }
 
-ModalFooter.classes = modalFooterClasses
+ModalFooter.classes = classes
+
+export { ModalFooter }

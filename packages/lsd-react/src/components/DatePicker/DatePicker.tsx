@@ -34,9 +34,9 @@ export type DatePickerProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
-export const DatePicker: React.FC<DatePickerProps> & {
-  classes: typeof datePickerClasses
-} = ({
+const classes = datePickerClasses
+
+function DatePicker({
   label,
   size = 'large',
   value: valueProp,
@@ -44,7 +44,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
   withCalendar = true,
   variant = 'underlined',
   ...props
-}) => {
+}: DatePickerProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const calendarIconRef = useRef<HTMLSpanElement>(null)
@@ -87,7 +87,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
         // The DateField component is only controlled when the value prop is provided OR the calendar is open.
         value={isControlled || openCalendar ? input.value : undefined}
         onChange={input.onChange}
-        calendarIconRef={calendarIconRef}
+        calendarIconRef={calendarIconRef as React.RefObject<HTMLSpanElement>}
         {...props}
       >
         <Portal id="calendar">
@@ -105,7 +105,7 @@ export const DatePicker: React.FC<DatePickerProps> & {
 
                 setOpenCalendar(false)
               }}
-              handleRef={ref}
+              handleRef={ref as React.RefObject<HTMLElement>}
               startDate={input.value}
               disabled={props.disabled}
               className={datePickerClasses.calendar}
@@ -117,4 +117,6 @@ export const DatePicker: React.FC<DatePickerProps> & {
   )
 }
 
-DatePicker.classes = datePickerClasses
+DatePicker.classes = classes
+
+export { DatePicker }

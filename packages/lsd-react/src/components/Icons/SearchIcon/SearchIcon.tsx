@@ -1,7 +1,9 @@
 import { LsdIcon } from '../LsdIcon'
+import type { LsdIconProps } from '../LsdIcon'
+import React from 'react'
 
-export const SearchIcon = LsdIcon(
-  (props) => (
+function SearchIconSvg(props: React.SVGAttributes<SVGElement>) {
+  return (
     <svg
       width="14"
       height="14"
@@ -17,8 +19,9 @@ export const SearchIcon = LsdIcon(
         fill="black"
       />
     </svg>
-  ),
-  {
-    filled: true,
-  },
-)
+  )
+}
+
+const SearchIcon = LsdIcon(SearchIconSvg, { filled: true })
+
+export { SearchIcon }

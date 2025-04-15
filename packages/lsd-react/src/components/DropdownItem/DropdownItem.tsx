@@ -18,9 +18,9 @@ export type DropdownItemProps = CommonProps &
     size: 'small' | 'medium' | 'large'
   }
 
-export const DropdownItem: React.FC<DropdownItemProps> & {
-  classes: typeof dropdownItemClasses
-} = ({
+const classes = dropdownItemClasses
+
+function DropdownItem({
   label,
   size = 'large',
   withIcon,
@@ -28,7 +28,7 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
   disabled,
   className,
   ...props
-}) => {
+}: DropdownItemProps) {
   const commonProps = useCommonProps(props)
 
   const iconProps: LsdIconProps = {
@@ -67,4 +67,6 @@ export const DropdownItem: React.FC<DropdownItemProps> & {
   )
 }
 
-DropdownItem.classes = dropdownItemClasses
+DropdownItem.classes = classes
+
+export { DropdownItem }

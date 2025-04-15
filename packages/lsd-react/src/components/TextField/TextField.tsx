@@ -9,7 +9,7 @@ import {
 import { useInput } from '../../utils/useInput'
 import { IconButton } from '../IconButton'
 import { CloseIcon, ErrorIcon } from '../Icons'
-import { Typography, TypographyProps } from '../Typography'
+import { Typography, TypographyComponent, TypographyProps } from '../Typography'
 import { textFieldClasses } from './TextField.classes'
 
 export type TextFieldProps = CommonProps &
@@ -28,12 +28,12 @@ export type TextFieldProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
     variant?: 'outlined' | 'underlined'
     label?: React.ReactNode
-    labelProps?: Partial<Extract<TypographyProps, { component?: 'label' }>>
+    labelProps?: Partial<TypographyProps<'label'> & { className?: string }>
   }
 
-export const TextField: React.FC<TextFieldProps> & {
-  classes: typeof textFieldClasses
-} = ({
+const classes = textFieldClasses
+
+function TextField({
   size = 'large',
   label,
   icon,
@@ -51,10 +51,15 @@ export const TextField: React.FC<TextFieldProps> & {
   labelProps = {},
   variant = 'underlined',
   ...props
-}) => {
+}: TextFieldProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
-  const input = useInput({ defaultValue, value, onChange, ref })
+  const input = useInput({
+    defaultValue,
+    value,
+    onChange,
+    ref: ref as React.RefObject<HTMLInputElement>,
+  })
 
   const onCancel = () => input.setValue('')
 
@@ -126,4 +131,6 @@ export const TextField: React.FC<TextFieldProps> & {
   )
 }
 
-TextField.classes = textFieldClasses
+TextField.classes = classes
+
+export { TextField }

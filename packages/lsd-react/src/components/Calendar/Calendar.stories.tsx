@@ -22,7 +22,11 @@ export const Uncontrolled: StoryObj<CalendarProps> = {
 
     return (
       <div ref={ref} style={{ width: '300px' }}>
-        <Calendar {...arg} open={true} handleRef={ref}>
+        <Calendar
+          {...arg}
+          open={true}
+          handleRef={ref as React.RefObject<HTMLElement>}
+        >
           Calendar
         </Calendar>
       </div>
@@ -36,7 +40,11 @@ export const Controlled: StoryObj<CalendarProps> = {
 
     return (
       <div ref={ref} style={{ width: '300px' }}>
-        <Calendar {...arg} open={true} handleRef={ref}>
+        <Calendar
+          {...arg}
+          open={true}
+          handleRef={ref as React.RefObject<HTMLElement>}
+        >
           Calendar
         </Calendar>
       </div>

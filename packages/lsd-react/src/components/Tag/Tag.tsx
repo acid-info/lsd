@@ -17,9 +17,9 @@ export type TagProps = CommonProps &
     size?: 'large' | 'small'
   }
 
-export const Tag: React.FC<TagProps> & {
-  classes: typeof tagClasses
-} = ({
+const classes = tagClasses
+
+function Tag({
   variant = 'outlined',
   disabled,
   icon,
@@ -27,7 +27,7 @@ export const Tag: React.FC<TagProps> & {
   children,
   size = 'large',
   ...props
-}) => {
+}: TagProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -56,4 +56,6 @@ export const Tag: React.FC<TagProps> & {
   )
 }
 
-Tag.classes = tagClasses
+Tag.classes = classes
+
+export { Tag }

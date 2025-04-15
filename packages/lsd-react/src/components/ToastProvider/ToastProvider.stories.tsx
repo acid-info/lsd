@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import {
   ToastContantAndOptions,
   ToastProvider,
@@ -32,7 +32,9 @@ export default {
       },
     },
   },
-} as Meta
+} as Meta<typeof ToastProvider>
+
+type Story = StoryObj<object>
 
 const ToastButton: FC<ToastContantAndOptions> = ({
   information,
@@ -51,18 +53,19 @@ const ToastButton: FC<ToastContantAndOptions> = ({
   )
 }
 
-export const Root: Story<ToastContantAndOptions> = (args) => {
-  return (
-    <ToastProvider>
-      <ToastButton {...args} />
-    </ToastProvider>
-  )
-}
-
-Root.args = {
+const toastArgs: ToastContantAndOptions = {
   title: 'Toast Title',
   information: '',
   size: 'large',
   position: 'top-center',
   duration: 4000,
+}
+
+export const Root: Story = {
+  args: toastArgs,
+  render: (args) => (
+    <ToastProvider>
+      <ToastButton {...(args as ToastContantAndOptions)} />
+    </ToastProvider>
+  ),
 }

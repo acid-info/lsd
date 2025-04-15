@@ -16,16 +16,16 @@ export type TableBodyProps = CommonProps &
     toolbar?: React.ReactNode
   }
 
-export const TableBody: React.FC<TableBodyProps> & {
-  classes: typeof tableBodyClasses
-} = ({
+const classes = tableBodyClasses
+
+function TableBody({
   options = [],
   size: _size = 'large',
   buttonLabel = 'Button',
   toolbar,
   children,
   ...props
-}) => {
+}: TableBodyProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -45,4 +45,6 @@ export const TableBody: React.FC<TableBodyProps> & {
   )
 }
 
-TableBody.classes = tableBodyClasses
+TableBody.classes = classes
+
+export { TableBody }

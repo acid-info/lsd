@@ -18,16 +18,16 @@ export type CollapseProps = CommonProps &
     onChange?: (open: boolean) => void
   }
 
-export const Collapse: React.FC<CollapseProps> & {
-  classes: typeof collapseClasses
-} = ({
+const classes = collapseClasses
+
+function Collapse({
   label,
   disabled = false,
   size = 'large',
   open: openProp,
   children,
   ...props
-}) => {
+}: CollapseProps) {
   const globalProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(openProp ?? false)
@@ -73,4 +73,6 @@ export const Collapse: React.FC<CollapseProps> & {
   )
 }
 
-Collapse.classes = collapseClasses
+Collapse.classes = classes
+
+export { Collapse }

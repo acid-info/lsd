@@ -27,9 +27,9 @@ export type RadioButtonProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
-export const RadioButton: React.FC<RadioButtonProps> & {
-  classes: typeof radioButtonClasses
-} = ({
+const classes = radioButtonClasses
+
+function RadioButton({
   size: _size = 'large',
   onChange,
   checked: _checked,
@@ -40,7 +40,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
   inputProps = {},
   children,
   ...props
-}) => {
+}: RadioButtonProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLInputElement>(null)
 
@@ -55,7 +55,7 @@ export const RadioButton: React.FC<RadioButtonProps> & {
     value: selected,
     defaultValue: defaultChecked ?? false,
     onChange,
-    ref,
+    ref: ref as React.RefObject<HTMLInputElement>,
   })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,4 +100,6 @@ export const RadioButton: React.FC<RadioButtonProps> & {
   )
 }
 
-RadioButton.classes = radioButtonClasses
+RadioButton.classes = classes
+
+export { RadioButton }

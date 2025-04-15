@@ -17,14 +17,14 @@ export type TableRowProps = CommonProps &
     type?: 'default' | 'checkbox' | 'radio'
   }
 
-export const TableRow: React.FC<TableRowProps> & {
-  classes: typeof tableRowClasses
-} = ({
+const classes = tableRowClasses
+
+function TableRow({
   size: _size = 'large',
   type: _type = 'default',
   children,
   ...props
-}) => {
+}: TableRowProps) {
   const commonProps = useCommonProps(props)
   const table = useTableContext()
   const type = table?.type ?? _type
@@ -53,4 +53,6 @@ export const TableRow: React.FC<TableRowProps> & {
   )
 }
 
-TableRow.classes = tableRowClasses
+TableRow.classes = classes
+
+export { TableRow }

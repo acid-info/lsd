@@ -13,9 +13,13 @@ export type TableItemProps = CommonProps &
     size?: 'large' | 'medium' | 'small'
   }
 
-export const TableItem: React.FC<TableItemProps> & {
-  classes: typeof tableItemClasses
-} = ({ size: _size = 'large', children, ...props }) => {
+const classes = tableItemClasses
+
+function TableItem({
+  size: _size = 'large',
+  children,
+  ...props
+}: TableItemProps) {
   const commonProps = useCommonProps(props)
   const table = useTableContext()
   const size = table?.size ?? _size
@@ -35,4 +39,6 @@ export const TableItem: React.FC<TableItemProps> & {
   )
 }
 
-TableItem.classes = tableItemClasses
+TableItem.classes = classes
+
+export { TableItem }

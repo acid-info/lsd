@@ -92,9 +92,7 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     TooltipBaseStyles,
   ]
 
-export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
-  theme = defaultThemes.light,
-}) => {
+function CSSBaseline({ theme = defaultThemes.light }: { theme?: Theme }) {
   const styles = useMemo(
     () =>
       componentStyles
@@ -105,3 +103,5 @@ export const CSSBaseline: React.FC<{ theme?: Theme }> = ({
 
   return <>{styles}</>
 }
+
+export { CSSBaseline }

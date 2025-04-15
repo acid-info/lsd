@@ -1,7 +1,9 @@
 import { LsdIcon } from '../LsdIcon'
+import type { LsdIconProps } from '../LsdIcon'
+import React from 'react'
 
-export const FolderIcon = LsdIcon(
-  (props) => (
+function FolderIconSvg(props: React.SVGAttributes<SVGElement>) {
+  return (
     <svg
       width="14"
       height="14"
@@ -15,8 +17,9 @@ export const FolderIcon = LsdIcon(
         fill="black"
       />
     </svg>
-  ),
-  {
-    filled: true,
-  },
-)
+  )
+}
+
+const FolderIcon = LsdIcon(FolderIconSvg, { filled: true })
+
+export { FolderIcon }

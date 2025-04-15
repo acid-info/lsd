@@ -12,9 +12,13 @@ export type TableHeaderProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
   }
 
-export const TableHeader: React.FC<TableHeaderProps> & {
-  classes: typeof tableHeaderClasses
-} = ({ size: _size = 'large', children, ...props }) => {
+const classes = tableHeaderClasses
+
+function TableHeader({
+  size: _size = 'large',
+  children,
+  ...props
+}: TableHeaderProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -31,4 +35,6 @@ export const TableHeader: React.FC<TableHeaderProps> & {
   )
 }
 
-TableHeader.classes = tableHeaderClasses
+TableHeader.classes = classes
+
+export { TableHeader }

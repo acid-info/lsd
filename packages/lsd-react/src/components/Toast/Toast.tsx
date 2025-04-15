@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import React from 'react'
 import {
   CommonProps,
   omitCommonProps,
@@ -20,9 +21,9 @@ export type ToastProps = CommonProps &
     actions?: React.ReactNode
   }
 
-export const Toast: React.FC<ToastProps> & {
-  classes: typeof toastClasses
-} = ({
+const classes = toastClasses
+
+function Toast({
   title,
   information,
   onClose,
@@ -32,7 +33,7 @@ export const Toast: React.FC<ToastProps> & {
   icon,
   actions,
   ...props
-}) => {
+}: ToastProps) {
   const commonProps = useCommonProps(props)
   const isInline = !information
 
@@ -111,4 +112,6 @@ export const Toast: React.FC<ToastProps> & {
   )
 }
 
-Toast.classes = toastClasses
+Toast.classes = classes
+
+export { Toast }

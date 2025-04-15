@@ -17,9 +17,9 @@ export type BadgeProps = CommonProps &
     disabled?: boolean
   }
 
-export const Badge: React.FC<BadgeProps> & {
-  classes: typeof badgeClasses
-} = ({
+const classes = badgeClasses
+
+function Badge({
   variant = 'outlined',
   disabled,
   size = 'large',
@@ -27,7 +27,7 @@ export const Badge: React.FC<BadgeProps> & {
   iconDirection = 'left',
   children,
   ...props
-}) => {
+}: BadgeProps) {
   const commonProps = useCommonProps(props)
 
   return (
@@ -56,4 +56,6 @@ export const Badge: React.FC<BadgeProps> & {
   )
 }
 
-Badge.classes = badgeClasses
+Badge.classes = classes
+
+export { Badge }

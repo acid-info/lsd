@@ -42,9 +42,9 @@ export type CalendarProps = CommonProps &
     tooltipArrowOffset?: number
   }
 
-export const Calendar: React.FC<CalendarProps> & {
-  classes: typeof calendarClasses
-} = ({
+const classes = calendarClasses
+
+function Calendar({
   open,
   handleRef,
   size = 'large',
@@ -62,7 +62,7 @@ export const Calendar: React.FC<CalendarProps> & {
   maxDate = new Date(CALENDAR_MAX_YEAR, 0, 1),
   tooltipArrowOffset,
   ...props
-}) => {
+}: CalendarProps) {
   const commonProps = useCommonProps(props)
   const ref = useRef<HTMLDivElement>(null)
   const [startDate, setStartDate] = useState<Date | null>(
@@ -196,4 +196,6 @@ export const Calendar: React.FC<CalendarProps> & {
   )
 }
 
-Calendar.classes = calendarClasses
+Calendar.classes = classes
+
+export { Calendar }

@@ -1,7 +1,9 @@
 import { LsdIcon } from '../LsdIcon'
+import type { LsdIconProps } from '../LsdIcon'
+import React from 'react'
 
-export const ChevronUpIcon = LsdIcon(
-  (props) => (
+function ChevronUpIconSvg(props: React.SVGAttributes<SVGElement>) {
+  return (
     <svg
       width="14"
       height="14"
@@ -15,8 +17,9 @@ export const ChevronUpIcon = LsdIcon(
         fill="black"
       />
     </svg>
-  ),
-  {
-    filled: true,
-  },
-)
+  )
+}
+
+const ChevronUpIcon = LsdIcon(ChevronUpIconSvg, { filled: true })
+
+export { ChevronUpIcon }

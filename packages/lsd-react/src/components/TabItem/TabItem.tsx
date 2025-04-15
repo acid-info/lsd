@@ -18,9 +18,9 @@ export type TabItemProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
   }
 
-export const TabItem: React.FC<TabItemProps> & {
-  classes: typeof tabItemClasses
-} = ({
+const classes = tabItemClasses
+
+function TabItem({
   name,
   size: _size = 'large',
   selected: _selected = false,
@@ -28,7 +28,7 @@ export const TabItem: React.FC<TabItemProps> & {
   icon,
   children,
   ...props
-}) => {
+}: TabItemProps) {
   const commonProps = useCommonProps(props)
   const tabs = useTabsContext()
   const size = tabs?.size ?? _size
@@ -67,4 +67,6 @@ export const TabItem: React.FC<TabItemProps> & {
   )
 }
 
-TabItem.classes = tabItemClasses
+TabItem.classes = classes
+
+export { TabItem }
