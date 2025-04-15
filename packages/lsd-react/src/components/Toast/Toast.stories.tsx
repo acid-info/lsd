@@ -1,5 +1,5 @@
-import { Meta, Story } from '@storybook/react'
-import { Toast, ToastProps } from './Toast'
+import type { Meta, StoryObj } from '@storybook/react'
+import { Toast } from './Toast'
 import { Button } from '../Button'
 
 export default {
@@ -13,14 +13,15 @@ export default {
       },
     },
   },
-} as Meta
+} as Meta<typeof Toast>
 
-export const Root: Story<ToastProps> = (args) => {
-  return <Toast {...args} actions={<Button>Button</Button>} />
-}
+type Story = StoryObj<typeof Toast>
 
-Root.args = {
-  title: 'Toast Title',
-  information: '',
-  size: 'large',
+export const Root: Story = {
+  args: {
+    title: 'Toast Title',
+    information: '',
+    size: 'large',
+  },
+  render: (args) => <Toast {...args} actions={<Button>Button</Button>} />,
 }
