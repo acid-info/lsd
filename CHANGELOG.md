@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/acid-info/lsd/compare/v0.1.0-beta.4...v0.1.0) (2025-04-16)
+
+**Note:** Version bump only for package @acid-info/logos-design-system
+
 # [0.1.0-beta.4](https://github.com/acid-info/lsd/compare/v0.1.0-beta.3...v0.1.0-beta.4) (2025-04-16)
 
 ### Bug Fixes
