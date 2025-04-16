@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-beta.4](https://github.com/acid-info/lsd/compare/v0.1.0-beta.3...v0.1.0-beta.4) (2025-04-16)
+
+### Bug Fixes
+
+- **Button:** React 19 compatibility ([007bf0e](https://github.com/acid-info/lsd/commit/007bf0e0714ac5e5ebcdb5b6e316df62987e7bb2))
+- fix bug with static build ([f2132e6](https://github.com/acid-info/lsd/commit/f2132e66e421398fabfaffae82b8040bffc538c2))
+- fix build errors ([9a9dea5](https://github.com/acid-info/lsd/commit/9a9dea553480d41f27e4d010dcb2ffc84109d289))
+- Icons related components compatibility with React 19 ([6786bae](https://github.com/acid-info/lsd/commit/6786baea3aec7e92709c4c9f22ed83dba9172ae9))
+- **RadioButtonGroup:** React 19 compatibility ([763ab0c](https://github.com/acid-info/lsd/commit/763ab0cdca96ce9f35728d2ddee89d11f4d36ee3))
+- React 19 compatibility fix for all components ([3a0acd7](https://github.com/acid-info/lsd/commit/3a0acd758348e64c21f3cde52364667c8884f06d))
+- storybook start error ([bfdb056](https://github.com/acid-info/lsd/commit/bfdb0561bb82b2c875124a8f8e85012efbc26f63))
+
 # [0.1.0-beta.3](https://github.com/acid-info/lsd/compare/v0.1.0-beta.2...v0.1.0-beta.3) (2024-01-10)
 
 ### Features
