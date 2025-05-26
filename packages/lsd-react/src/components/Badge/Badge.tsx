@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
-import { badgeClasses } from './Badge.classes'
+import styles from './Badge.module.css'
 
 export type BadgeProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
@@ -16,8 +16,6 @@ export type BadgeProps = CommonProps &
     size?: 'large' | 'small'
     disabled?: boolean
   }
-
-const classes = badgeClasses
 
 function Badge({
   variant = 'outlined',
@@ -37,17 +35,17 @@ function Badge({
       className={clsx(
         props.className,
         commonProps.className,
-        badgeClasses.root,
-        badgeClasses[variant],
-        disabled && badgeClasses.disabled,
-        badgeClasses[size],
+        styles.root,
+        styles[variant],
+        disabled && styles.disabled,
+        styles[size],
       )}
     >
       {iconDirection === 'left' && icon}
       <Typography
         component="span"
         variant={size === 'small' ? 'label2' : 'label1'}
-        className={badgeClasses.label}
+        className={styles.label}
       >
         {children}
       </Typography>
@@ -55,7 +53,5 @@ function Badge({
     </div>
   )
 }
-
-Badge.classes = classes
 
 export { Badge }
