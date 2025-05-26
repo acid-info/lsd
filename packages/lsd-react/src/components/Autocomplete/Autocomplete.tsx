@@ -6,7 +6,7 @@ import { CloseIcon, SearchIcon } from '../Icons'
 import { DropdownMenu } from '../DropdownMenu'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
-import { autocompleteClasses } from './Autocomplete.classes'
+import styles from './Autocomplete.module.css'
 import {
   CommonProps,
   omitCommonProps,
@@ -29,8 +29,6 @@ export type AutocompleteProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
     variant?: 'outlined' | 'underlined'
   }
-
-const classes = autocompleteClasses
 
 function Autocomplete({
   label,
@@ -101,26 +99,25 @@ function Autocomplete({
       className={clsx(
         props.className,
         commonProps.className,
-        autocompleteClasses.root,
-        autocompleteClasses[size],
-        disabled && autocompleteClasses.disabled,
-        withIcon && autocompleteClasses.withIcon,
-        variant === 'outlined'
-          ? autocompleteClasses.outlined
-          : autocompleteClasses.underlined,
+        styles.root,
+        styles[size],
+        disabled && styles.disabled,
+        // Do we need to remove below line? No withIcon class defined
+        //withIcon && autocompleteClasses.withIcon,
+        variant === 'outlined' ? styles.outlined : styles.underlined,
       )}
     >
       {label && (
         <Typography
           htmlFor={inputId}
-          className={autocompleteClasses.label}
+          className={styles.label}
           variant="label2"
           component="label"
         >
           {label}
         </Typography>
       )}
-      <div className={autocompleteClasses.inputContainer}>
+      <div className={styles.inputContainer}>
         <input
           id={inputId}
           ref={ref}
@@ -132,16 +129,16 @@ function Autocomplete({
           {...inputProps}
           className={clsx(
             inputProps.className,
-            autocompleteClasses.input,
-            error && autocompleteClasses.error,
+            styles.input,
+            error && styles.error,
           )}
         />
         {withIcon && input.value ? (
-          <span className={autocompleteClasses.icon} onClick={onCancel}>
+          <span className={styles.icon} onClick={onCancel}>
             <CloseIcon color="primary" />
           </span>
         ) : withIcon && !input.value ? (
-          <span className={autocompleteClasses.icon}>
+          <span className={styles.icon}>
             <SearchIcon color="primary" />
           </span>
         ) : null}
@@ -162,7 +159,7 @@ function Autocomplete({
               label={
                 <>
                   {opt[1]}
-                  <span className={autocompleteClasses.dropdownItemPlaceholder}>
+                  <span className={styles.dropdownItemPlaceholder}>
                     {opt[2]}
                   </span>
                 </>
@@ -178,7 +175,5 @@ function Autocomplete({
     </div>
   )
 }
-
-Autocomplete.classes = classes
 
 export { Autocomplete }
