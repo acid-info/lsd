@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { modalBodyClasses } from './ModalBody.classes'
 
-export const ModalBodyStyles = css`
+export const ModalBodyStyles = `
   .${modalBodyClasses.root} {
     margin: 18px 0;
   }

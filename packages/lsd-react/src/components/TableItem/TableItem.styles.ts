@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { tableItemClasses } from './TableItem.classes'
 
-export const TableItemStyles = css`
+export const TableItemStyles = `
   .${tableItemClasses.root} {
     border: 1px solid rgb(var(--lsd-border-primary));
   }

@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import { PortalContext } from './PortalContext'
 import { settleSync } from '../../utils/promise.utils'

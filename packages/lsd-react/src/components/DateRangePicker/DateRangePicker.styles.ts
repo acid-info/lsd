@@ -1,9 +1,8 @@
-import { css } from '@emotion/react'
 import { dateRangePickerClasses } from './DateRangePicker.classes'
 import { dateFieldClasses } from '../DateField/DateField.classes'
 import { tooltipBaseClasses } from '../TooltipBase/TooltipBase.classes'
 
-export const DateRangePickerStyles = css`
+export const DateRangePickerStyles = `
   .${dateRangePickerClasses.root} {
     box-sizing: border-box;
 

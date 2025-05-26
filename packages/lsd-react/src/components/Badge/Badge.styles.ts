@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { badgeClasses } from './Badge.classes'
 
-export const BadgeStyles = css`
+export const BadgeStyles = `
   .${badgeClasses.root} {
     width: fit-content;
     box-sizing: border-box;

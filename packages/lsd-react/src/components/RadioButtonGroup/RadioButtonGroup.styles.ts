@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { radioButtonGroupClasses } from './RadioButtonGroup.classes'
 
-export const RadioButtonGroupStyles = css`
+export const RadioButtonGroupStyles = `
   .${radioButtonGroupClasses.root} {
     display: flex;
     flex-direction: column;

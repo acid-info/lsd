@@ -1,5 +1,5 @@
-import { Global, SerializedStyles } from '@emotion/react'
-import React, { useMemo } from 'react'
+import { defaultThemes, Theme } from '../Theme'
+
 import { AutocompleteStyles } from '../Autocomplete/Autocomplete.styles'
 import { BadgeStyles } from '../Badge/Badge.styles'
 import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
@@ -33,7 +33,6 @@ import { TableRowStyles } from '../TableRow/TableRow.styles'
 import { TabsStyles } from '../Tabs/Tabs.styles'
 import { TagStyles } from '../Tag/Tag.styles'
 import { TextFieldStyles } from '../TextField/TextField.styles'
-import { defaultThemes, Theme, withTheme } from '../Theme'
 import { TypographyStyles } from '../Typography/Typography.styles'
 import { NumberInputStyles } from '../NumberInput/NumberInput.styles'
 import { ModalStyles } from '../Modal/Modal.styles'
@@ -44,64 +43,62 @@ import { ToastProviderStyles } from '../ToastProvider/ToastProvider.styles'
 import { ButtonGroupStyles } from '../ButtonGroup/ButtonGroup.styles'
 import { DateRangePickerStyles } from '../DateRangePicker/DateRangePicker.styles'
 import { TooltipBaseStyles } from '../TooltipBase/TooltipBase.styles'
+import React from 'react'
 
-const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
-  [
-    ButtonStyles,
-    IconButtonStyles,
-    IconButtonGroupStyles,
-    TypographyStyles,
-    LsdIconStyles,
-    TabItemStyles,
-    TabsStyles,
-    DropdownMenuStyles,
-    DropdownStyles,
-    DropdownItemStyles,
-    BreadcrumbStyles,
-    BreadcrumbItemStyles,
-    CardStyles,
-    CardHeaderStyles,
-    CardBodyStyles,
-    TagStyles,
-    TextFieldStyles,
-    CheckboxStyles,
-    AutocompleteStyles,
-    QuoteStyles,
-    CollapseStyles,
-    CollapseHeaderStyles,
-    CheckboxGroupStyles,
-    BadgeStyles,
-    RadioButtonStyles,
-    RadioButtonGroupStyles,
-    TableStyles,
-    TableHeaderStyles,
-    TableBodyStyles,
-    TableItemStyles,
-    TableRowStyles,
-    NumberInputStyles,
-    ModalStyles,
-    ModalFooterStyles,
-    ModalBodyStyles,
-    DatePickerStyles,
-    DateFieldStyles,
-    CalendarStyles,
-    ToastStyles,
-    ToastProviderStyles,
-    ButtonGroupStyles,
-    DateRangePickerStyles,
-    TooltipBaseStyles,
-  ]
+const componentStyles: Array<string | ((theme: Theme) => string)> = [
+  ButtonStyles,
+  IconButtonStyles,
+  IconButtonGroupStyles,
+  TypographyStyles,
+  LsdIconStyles,
+  TabItemStyles,
+  TabsStyles,
+  DropdownMenuStyles,
+  DropdownStyles,
+  DropdownItemStyles,
+  BreadcrumbStyles,
+  BreadcrumbItemStyles,
+  CardStyles,
+  CardHeaderStyles,
+  CardBodyStyles,
+  TagStyles,
+  TextFieldStyles,
+  CheckboxStyles,
+  AutocompleteStyles,
+  QuoteStyles,
+  CollapseStyles,
+  CollapseHeaderStyles,
+  CheckboxGroupStyles,
+  BadgeStyles,
+  RadioButtonStyles,
+  RadioButtonGroupStyles,
+  TableStyles,
+  TableHeaderStyles,
+  TableBodyStyles,
+  TableItemStyles,
+  TableRowStyles,
+  NumberInputStyles,
+  ModalStyles,
+  ModalFooterStyles,
+  ModalBodyStyles,
+  DatePickerStyles,
+  DateFieldStyles,
+  CalendarStyles,
+  ToastStyles,
+  ToastProviderStyles,
+  ButtonGroupStyles,
+  DateRangePickerStyles,
+  TooltipBaseStyles,
+]
 
 function CSSBaseline({ theme = defaultThemes.light }: { theme?: Theme }) {
-  const styles = useMemo(
-    () =>
-      componentStyles
-        .map((style) => (typeof style === 'function' ? style(theme) : style))
-        .map((style) => <Global key={style.name} styles={style} />),
-    [theme],
+  return React.createElement(
+    'style',
+    null,
+    componentStyles
+      .map((style) => (typeof style === 'function' ? style(theme) : style))
+      .join('\n'),
   )
-
-  return <>{styles}</>
 }
 
 export { CSSBaseline }

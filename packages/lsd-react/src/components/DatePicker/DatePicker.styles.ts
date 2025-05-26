@@ -1,8 +1,7 @@
-import { css } from '@emotion/react'
 import { datePickerClasses } from './DatePicker.classes'
 import { dateFieldClasses } from '../DateField/DateField.classes'
 
-export const DatePickerStyles = css`
+export const DatePickerStyles = `
   .${datePickerClasses.root} {
     width: fit-content;
   }

@@ -9,7 +9,6 @@ import { SelectOption, useSelect } from '../../utils/useSelect'
 import { DropdownItem } from '../DropdownItem'
 import { DropdownMenu, DropdownMenuProps } from '../DropdownMenu'
 import { ChevronDownIcon, ChevronUpIcon, ErrorIcon } from '../Icons'
-import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
 import { dropdownClasses } from './Dropdown.classes'
 
@@ -164,29 +163,27 @@ function Dropdown({
         </Typography>
       )}
 
-      <Portal id="dropdown">
-        <DropdownMenu
-          handleRef={containerRef as React.RefObject<HTMLElement>}
-          open={openState}
-          onClose={() => handleToggle(false)}
-          size={size}
-          genericFontFamily={props.genericFontFamily}
-          {...menuProps}
-        >
-          {options.map((opt) => (
-            <DropdownItem
-              key={opt.value}
-              size={size}
-              tabIndex={0}
-              onClick={select.bind(null, opt)}
-              withIcon={multi}
-              label={opt.name}
-              selected={isSelected(opt)}
-              onKeyDown={(e) => e.key === 'Enter' && select(opt)}
-            />
-          ))}
-        </DropdownMenu>
-      </Portal>
+      <DropdownMenu
+        handleRef={containerRef as React.RefObject<HTMLElement>}
+        open={openState}
+        onClose={() => handleToggle(false)}
+        size={size}
+        genericFontFamily={props.genericFontFamily}
+        {...menuProps}
+      >
+        {options.map((opt) => (
+          <DropdownItem
+            key={opt.value}
+            size={size}
+            tabIndex={0}
+            onClick={select.bind(null, opt)}
+            withIcon={multi}
+            label={opt.name}
+            selected={isSelected(opt)}
+            onKeyDown={(e) => e.key === 'Enter' && select(opt)}
+          />
+        ))}
+      </DropdownMenu>
     </div>
   )
 }

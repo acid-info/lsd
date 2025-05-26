@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { modalClasses } from './Modal.classes'
 
-export const ModalStyles = css`
+export const ModalStyles = `
   .${modalClasses.root} {
     box-sizing: border-box;
     display: flex;

@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { tableRowClasses } from './TableRow.classes'
 
-export const TableRowStyles = css`
+export const TableRowStyles = `
   .${tableRowClasses.root} {
     align-items: center;
   }

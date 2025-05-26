@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { checkboxGroupClasses } from './CheckboxGroup.classes'
 
-export const CheckboxGroupStyles = css`
+export const CheckboxGroupStyles = `
   .${checkboxGroupClasses.root} {
     display: flex;
     flex-direction: column;

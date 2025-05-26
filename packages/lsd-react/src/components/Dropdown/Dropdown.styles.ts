@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { dropdownClasses } from './Dropdown.classes'
 
-export const DropdownStyles = css`
+export const DropdownStyles = `
   .${dropdownClasses.root} {
   }
 

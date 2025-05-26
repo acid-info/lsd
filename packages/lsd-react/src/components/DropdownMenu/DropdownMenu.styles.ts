@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { dropdownMenuClasses } from './DropdownMenu.classes'
 
-export const DropdownMenuStyles = css`
+export const DropdownMenuStyles = `
   .${dropdownMenuClasses.root} {
     position: absolute;
     top: 0;

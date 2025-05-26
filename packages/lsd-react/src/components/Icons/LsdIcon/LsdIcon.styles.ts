@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { lsdIconClasses } from './LsdIcon.classes'
 
-export const LsdIconStyles = css`
+export const LsdIconStyles = `
   .${lsdIconClasses.root} {
   }
 

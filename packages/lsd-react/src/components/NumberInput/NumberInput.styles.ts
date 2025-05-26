@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { numberInputClasses } from './NumberInput.classes'
 
-export const NumberInputStyles = css`
+export const NumberInputStyles = `
   .${numberInputClasses.root} {
     width: auto;
     box-sizing: border-box;

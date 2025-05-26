@@ -1,8 +1,7 @@
-import { css } from '@emotion/react'
 import { cardHeaderClasses } from '../CardHeader/CardHeader.classes'
 import { cardClasses } from './Card.classes'
 
-export const CardStyles = css`
+export const CardStyles = `
   .${cardClasses.root} {
     box-sizing: border-box;
     display: flex;

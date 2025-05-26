@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { calendarClasses } from './Calendar.classes'
 
-export const CalendarStyles = css`
+export const CalendarStyles = `
   .${calendarClasses.root} {
     border: 1px solid rgb(var(--lsd-border-primary));
     visibility: hidden;

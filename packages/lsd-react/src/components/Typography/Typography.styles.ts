@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import { THEME_TYPOGRAPHY_VARIANTS, TypographyVariants } from '../Theme'
 import { THEME_TYPOGRAPHY_ELEMENTS } from '../Theme/constants'
 import { typographyClasses } from './Typography.classes'
@@ -9,7 +8,7 @@ const selectors = (variant: TypographyVariants) =>
     `.${typographyClasses[variant]}`,
   ].join(', ')
 
-export const TypographyStyles = css`
+export const TypographyStyles = `
   body * {
     font-family: var(--lsd-typography-generic-font-family);
   }
@@ -40,7 +39,7 @@ export const TypographyStyles = css`
   }
 
   ${THEME_TYPOGRAPHY_VARIANTS.map(
-    (variant) => css`
+    (variant) => `
       ${selectors(variant)} {
         color: rgb(var(--lsd-text-primary));
         font-weight: var(--lsd-${variant}-fontWeight);

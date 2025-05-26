@@ -1,0 +1,80 @@
+.button-root {
+  width: auto;
+  cursor: pointer;
+  padding: 6px 24px;
+}
+
+.button-disabled {
+  cursor: default;
+  opacity: 0.34;
+}
+
+.button-large {
+  padding: 10px 40px;
+}
+
+.button-medium {
+  padding: 6px 24px;
+}
+
+.button-small {
+  padding: 6px 12px;
+}
+
+.button-root:hover:not(.button-disabled) .button-text {
+  text-decoration: underline;
+}
+
+.button-withIcon {
+  display: flex;
+  align-items: center;
+}
+
+.button-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.button-large.button-withIcon {
+  padding: 10px 0px 10px 18px;
+}
+
+.button-large.button-withIcon .button-icon {
+  width: 42px;
+}
+
+.button-medium.button-withIcon {
+  padding: 6px 0px 6px 14px;
+}
+
+.button-medium.button-withIcon .button-icon {
+  width: 38px;
+}
+
+.button-small.button-withIcon {
+  padding: 6px 0px 6px 12px;
+}
+
+.button-small.button-withIcon .button-icon {
+  width: 34px;
+}
+
+.button-outlined {
+  background: none;
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.button-outlined .button-text {
+  color: rgb(var(--lsd-text-primary));
+}
+
+.button-filled {
+  background: rgb(var(--lsd-surface-secondary));
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.button-filled .button-text {
+  color: rgb(var(--lsd-text-secondary));
+}

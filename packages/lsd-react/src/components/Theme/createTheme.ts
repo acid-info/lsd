@@ -1,5 +1,3 @@
-import { css } from '@emotion/react'
-import { createCounter } from '../../utils/counter.util'
 import { pairs } from '../../utils/object.utils'
 import { baseTheme } from './baseTheme'
 import { THEME_BREAKPOINTS, THEME_TYPOGRAPHY_VARIANTS } from './constants'
@@ -13,6 +11,16 @@ import type {
   TypographyVariants,
   VariantThemeProperties,
 } from './types'
+
+const createCounter = (start = 0) => {
+  let i = start - 1
+
+  return () => {
+    i++
+
+    return i
+  }
+}
 
 const counter = createCounter()
 const generateName = (prefix: string) => `${prefix}-${counter()}`
@@ -139,7 +147,7 @@ export const createTheme = (
     typographyGlobal: createTypographyGlobalStyles(props, from),
     breakpoints: createBreakpointStyles(props, from),
     palette: createPaletteStyles(props, from),
-    globalStyles: css``,
+    globalStyles: ``,
     cssVars: '',
     spacing: props.spacing.length ? props.spacing : from.spacing,
   }

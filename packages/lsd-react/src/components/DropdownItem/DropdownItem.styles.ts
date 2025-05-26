@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { dropdownItemClasses } from './DropdownItem.classes'
 
-export const DropdownItemStyles = css`
+export const DropdownItemStyles = `
   .${dropdownItemClasses.root} {
     width: 100%;
     box-sizing: border-box;

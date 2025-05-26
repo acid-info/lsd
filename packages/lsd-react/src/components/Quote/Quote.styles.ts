@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { quoteClasses } from './Quote.classes'
 
-export const QuoteStyles = css`
+export const QuoteStyles = `
   .${quoteClasses.root} {
     color: rgb(var(--lsd-text-primary));
     white-space: pre-wrap;

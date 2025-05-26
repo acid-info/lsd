@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { radioButtonClasses } from './RadioButton.classes'
 
-export const RadioButtonStyles = css`
+export const RadioButtonStyles = `
   .${radioButtonClasses.root} {
     position: relative;
     display: flex;

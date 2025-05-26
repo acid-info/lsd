@@ -1,8 +1,7 @@
-import { css } from '@emotion/react'
 import { breadcrumbClasses } from '../Breadcrumb/Breadcrumb.classes'
 import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
 
-export const BreadcrumbItemStyles = css`
+export const BreadcrumbItemStyles = `
   .${breadcrumbItemClasses.root} {
     list-style-type: none;
     display: flex;

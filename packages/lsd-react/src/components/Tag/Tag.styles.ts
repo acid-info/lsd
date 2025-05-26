@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { tagClasses } from './Tag.classes'
 
-export const TagStyles = css`
+export const TagStyles = `
   .${tagClasses.root} {
     width: fit-content;
 

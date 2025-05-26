@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { breadcrumbClasses } from './Breadcrumb.classes'
 
-export const BreadcrumbStyles = css`
+export const BreadcrumbStyles = `
   .${breadcrumbClasses.root} {
   }
 

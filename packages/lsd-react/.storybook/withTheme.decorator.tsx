@@ -1,4 +1,3 @@
-import { Global, css } from '@emotion/react'
 import { useGlobals } from '@storybook/preview-api'
 import { Decorator } from '@storybook/react'
 import React, { useEffect } from 'react'
@@ -6,7 +5,7 @@ import { ThemeProvider } from '../src'
 import { storybookThemes } from './themes'
 
 export const withTheme: Decorator = (Story, context) => {
-  const StoryComponent = Story as any as React.ComponentType
+  const StoryComponent = Story as unknown as React.ComponentType
   const isDoc = context.viewMode === 'docs'
 
   const theme = storybookThemes.getTheme(context)
@@ -17,7 +16,7 @@ export const withTheme: Decorator = (Story, context) => {
       (value) => theme.name.startsWith(value.name),
     )?.value
 
-    globals.backgrounds?.value !== background &&
+    if (globals.backgrounds?.value !== background) {
       setGlobals({
         ...globals,
         backgrounds: {
@@ -25,6 +24,7 @@ export const withTheme: Decorator = (Story, context) => {
           value: background,
         },
       })
+    }
   }, [theme])
 
   return (
@@ -33,19 +33,17 @@ export const withTheme: Decorator = (Story, context) => {
         <div className="story-wrapper">
           <StoryComponent />
         </div>
-        {
-          <Global
-            styles={css`
-              .story-wrapper,
-              #lsd-presentation {
-                ${theme.cssVars}
-              }
-              .docs-story {
-                background: rgb(${theme.palette.surface.primary});
-              }
-            `}
-          />
-        }
+        <style>
+          {`
+            .story-wrapper,
+            #lsd-presentation {
+              ${theme.cssVars}
+            }
+            .docs-story {
+              background: rgb(${theme.palette.surface.primary});
+            }
+          `}
+        </style>
       </ThemeProvider>
     </div>
   )

@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { collapseClasses } from './Collapse.classes'
 
-export const CollapseStyles = css`
+export const CollapseStyles = `
   .${collapseClasses.root} {
     box-sizing: border-box;
     display: flex;

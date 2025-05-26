@@ -1,8 +1,7 @@
-import { css } from '@emotion/react'
 import { iconButtonClasses } from '../IconButton/IconButton.classes'
 import { iconButtonGroupClasses } from './IconButtonGroup.classes'
 
-export const IconButtonGroupStyles = css`
+export const IconButtonGroupStyles = `
   .${iconButtonGroupClasses.root} {
     display: flex;
     flex-direction: row;

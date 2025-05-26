@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { toastProviderClasses } from './ToastProvider.classes'
 
-export const ToastProviderStyles = css`
+export const ToastProviderStyles = `
   .${toastProviderClasses.toastContainer} {
     position: fixed;
 

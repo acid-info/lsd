@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { tableBodyClasses } from './TableBody.classes'
 
-export const TableBodyStyles = css`
+export const TableBodyStyles = `
   .${tableBodyClasses.root} {
     table {
       border-collapse: collapse;

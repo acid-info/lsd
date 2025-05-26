@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { textFieldClasses } from './TextField.classes'
 
-export const TextFieldStyles = css`
+export const TextFieldStyles = `
   .${textFieldClasses.root} {
     box-sizing: border-box;
     display: flex;

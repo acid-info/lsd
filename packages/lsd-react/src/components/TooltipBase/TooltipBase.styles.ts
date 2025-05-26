@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { tooltipBaseClasses } from './TooltipBase.classes'
 
-export const TooltipBaseStyles = css`
+export const TooltipBaseStyles = `
   .${tooltipBaseClasses.root} {
     border: 1px solid rgb(var(--lsd-border-primary));
     position: relative;

@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { tabItemClasses } from './TabItem.classes'
 
-export const TabItemStyles = css`
+export const TabItemStyles = `
   .${tabItemClasses.root} {
     background: rgb(var(--lsd-surface-primary));
     border: 1px solid transparent;

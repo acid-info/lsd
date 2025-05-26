@@ -1,8 +1,7 @@
-import { css } from '@emotion/react'
 import { tableHeaderClasses } from '../TableHeader/TableHeader.classes'
 import { tableClasses } from './Table.classes'
 
-export const TableStyles = css`
+export const TableStyles = `
   .${tableClasses.root} {
     box-sizing: border-box;
     display: flex;

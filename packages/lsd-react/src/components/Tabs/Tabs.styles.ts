@@ -1,8 +1,7 @@
-import { css } from '@emotion/react'
 import { tabsClasses } from './Tabs.classes'
 import { tabItemClasses } from '../TabItem/TabItem.classes'
 
-export const TabsStyles = css`
+export const TabsStyles = `
   .${tabsClasses.root} {
     display: flex;
     flex-direction: row;

@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import { createThemeGlobalStyles } from './globalStyles'
 import { Theme } from './types'
 
@@ -248,7 +247,7 @@ export const baseTheme: Theme = {
     },
   },
   spacing: [4, 8, 16, 24, 32, 40, 64, 80, 96, 120],
-  globalStyles: css``,
+  globalStyles: ``,
   cssVars: '',
 }
 

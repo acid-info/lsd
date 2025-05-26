@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { buttonClasses } from './Button.classes'
 
-export const ButtonStyles = css`
+export const ButtonStyles = `
   .${buttonClasses.root} {
     width: auto;
 

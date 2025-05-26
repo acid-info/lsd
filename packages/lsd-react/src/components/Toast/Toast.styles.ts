@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { toastClasses } from './Toast.classes'
 
-export const ToastStyles = css`
+export const ToastStyles = `
   .${toastClasses.root} {
     box-sizing: border-box;
     display: inline-flex;

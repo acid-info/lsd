@@ -1,4 +1,3 @@
-import { Global, css } from '@emotion/react'
 import {
   Canvas,
   Controls,
@@ -10,10 +9,12 @@ import {
 import type { Preview } from '@storybook/react'
 import clsx from 'clsx'
 import React, { useEffect, useState } from 'react'
-import { Dropdown, ThemeProvider, defaultThemes } from '../src'
+
 import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/components/Theme/constants'
 import { docTheme, storybookThemes } from './themes'
 import { withTheme } from './withTheme.decorator'
+import { Dropdown } from '../src/components/Dropdown/Dropdown'
+import { defaultThemes } from '../src/components/Theme/defaultThemes'
 
 const useGlobals = () => {
   const GLOBAL_PROPS = {
@@ -24,14 +25,8 @@ const useGlobals = () => {
       toolbar: {
         icon: '',
         items: [
-          {
-            title: 'Dark',
-            value: 'Dark',
-          },
-          {
-            title: 'Light',
-            value: 'Light',
-          },
+          { title: 'Dark', value: 'Dark' },
+          { title: 'Light', value: 'Light' },
         ],
       },
     },
@@ -42,18 +37,9 @@ const useGlobals = () => {
       toolbar: {
         icon: '',
         items: [
-          {
-            title: 'monospace',
-            value: 'monospace',
-          },
-          {
-            title: 'sans-serif',
-            value: 'sans-serif',
-          },
-          {
-            title: 'serif',
-            value: 'serif',
-          },
+          { title: 'monospace', value: 'monospace' },
+          { title: 'sans-serif', value: 'sans-serif' },
+          { title: 'serif', value: 'serif' },
         ],
       },
     },
@@ -73,7 +59,6 @@ const useGlobals = () => {
   const updateGlobals = async (func: (globals: any) => void) => {
     const { __STORYBOOK_ADDONS_PREVIEW } = window as any
     const { channel } = __STORYBOOK_ADDONS_PREVIEW
-
     const allGlobals = channel.data.updateGlobals
 
     allGlobals.map((g) => func(g.globals))
@@ -85,12 +70,13 @@ const useGlobals = () => {
   }
 
   useEffect(() => {
-    updated > 0 &&
+    if (updated > 0) {
       updateGlobals((globals) => {
         Object.entries(state).forEach(([name, value]) => {
           globals[name] = value
         })
       })
+    }
   }, [updated, state])
 
   return {
@@ -106,6 +92,76 @@ const useGlobals = () => {
     })),
   }
 }
+
+const StyleInjection = ({ embedded }: { embedded: boolean }) => (
+  <style>
+    {`
+    .docs-story,
+    #lsd-presentation .docs-dropdown-menu {
+      ${defaultThemes.dark.cssVars}
+      background: rgb(var(--lsd-surface-primary));
+    }
+
+    .docs-global-controls {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .sbdocs-wrapper .sbdocs-preview .docs-story + div {
+      border-top: 1px solid;
+    }
+
+    .sbdocs-wrapper .sbdocs-preview > div:nth-child(1) button:hover svg {
+      color: #fff !important;
+    }
+
+    .sbdocs-wrapper .docblock-argstable-body .rejt-tree .rejt-name {
+      color: #fff !important;
+    }
+
+    .sbdocs-wrapper .docblock-argstable-body .rejt-tree .rejt-value-node:hover > .rejt-value {
+      color: #000 !important;
+      background: #fff !important;
+    }
+
+    .sbdocs-wrapper .docblock-argstable-body input[type='checkbox'] {
+      box-shadow: none !important;
+    }
+
+    .sbdocs-wrapper .docblock-argstable-body input[type='radio'] + span {
+      color: #fff !important;
+    }
+
+    .docs-wrapper--hide-code .docblock-code-toggle {
+      display: none !important;
+    }
+
+    .docs-wrapper--hide-canvas-border .sbdocs-preview {
+      border: none;
+    }
+
+    .docs-wrapper--hide-canvas-border .sbdocs-preview .docs-story > div:nth-child(1) {
+      padding: 0px !important;
+    }
+
+    ${
+      embedded
+        ? `
+      .sbdocs-wrapper {
+        padding: 1px;
+      }
+
+      .sbdocs-preview .story-wrapper {
+        padding: var(--canvas-padding) !important;
+      }
+    `
+        : ''
+    }
+  `}
+  </style>
+)
 
 const preview: Preview = {
   parameters: {
@@ -140,23 +196,20 @@ const preview: Preview = {
       theme: docTheme,
       page: () => {
         const globals = useGlobals()
-
         const resolvedOf = useOf('meta', ['meta'])
-        const { stories, meta, moduleExports } = resolvedOf.csfFile
+        const { stories, meta } = resolvedOf.csfFile
 
         const controls =
           typeof meta?.parameters?.docs?.controls === 'undefined' ||
           meta?.parameters?.docs?.controls === true
 
         const searchParams = new URLSearchParams(window.location.search)
-
         const storyId = searchParams.get('storyId') as string
         const embedded = searchParams.get('embedded') === 'true'
         const globalControls = (searchParams.get('globalControls') || '').split(
           ',',
         )
         const hideElements = (searchParams.get('hide') || '').split(',')
-
         const canvasPadding = searchParams.get('canvasPadding') || '0,0'
 
         const hideTitle = hideElements.includes('title')
@@ -166,7 +219,7 @@ const preview: Preview = {
         const hideControls = hideElements.includes('controls')
 
         return (
-          <ThemeProvider theme={defaultThemes.dark}>
+          <>
             <div
               className={clsx(
                 'docs-wrapper',
@@ -174,9 +227,7 @@ const preview: Preview = {
                 hideElements.map((element) => `docs-wrapper--hide-${element}`),
               )}
               style={
-                {
-                  '--canvas-padding': canvasPadding.replace(',', ' '),
-                } as any
+                { '--canvas-padding': canvasPadding.replace(',', ' ') } as any
               }
             >
               {!hideTitle && <Title />}
@@ -212,95 +263,8 @@ const preview: Preview = {
               />
               {controls && !hideControls && <Controls />}
             </div>
-            <Global
-              styles={css`
-                .docs-story,
-                #lsd-presentation .docs-dropdown-menu {
-                  ${defaultThemes.dark.cssVars}
-
-                  background: rgb(var(--lsd-surface-primary));
-                }
-
-                .docs-global-controls {
-                  display: flex;
-                  flex-direction: row;
-                  gap: 16px;
-                  margin-top: 32px;
-                }
-
-                .sbdocs-wrapper {
-                  .sbdocs-preview {
-                    // source code
-                    .docs-story + div {
-                      border-top: 1px solid;
-                    }
-
-                    // toolbar
-                    > div:nth-child(1) {
-                      button:hover svg {
-                        color: #fff !important;
-                      }
-                    }
-                  }
-
-                  .docblock-argstable-body {
-                    .rejt-tree {
-                      .rejt-name {
-                        color: #fff !important;
-                      }
-
-                      .rejt-value-node:hover > .rejt-value {
-                        color: #000 !important;
-                        background: #fff !important;
-                      }
-                    }
-
-                    input[type='checkbox'] {
-                      box-shadow: none !important;
-                    }
-
-                    input[type='radio'] + span {
-                      color: #fff !important;
-                    }
-                  }
-
-                  .docs-wrapper--embedded {
-                  }
-
-                  .docs-wrapper {
-                    &--hide-code {
-                      .docblock-code-toggle {
-                        display: none !important;
-                      }
-                    }
-
-                    &--hide-canvas-border {
-                      .sbdocs-preview {
-                        border: none;
-                        .docs-story > div:nth-child(1) {
-                          padding: 0px !important;
-                        }
-                      }
-                    }
-                  }
-                }
-              `}
-            />
-
-            {embedded && (
-              <Global
-                styles={css`
-                  .sbdocs-wrapper {
-                    padding: 1px;
-                  }
-
-                  .sbdocs-preview .story-wrapper {
-                    padding: var(--canvas-padding) !important;
-                  }
-                `}
-              />
-            )}
-          </ThemeProvider>
+            <StyleInjection embedded={embedded} />
+          </>
         )
       },
     },

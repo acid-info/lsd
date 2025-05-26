@@ -1,7 +1,6 @@
-import { css } from '@emotion/react'
 import { dateFieldClasses } from './DateField.classes'
 
-export const DateFieldStyles = css`
+export const DateFieldStyles = `
   .${dateFieldClasses.root} {
     width: auto;
     box-sizing: border-box;
