@@ -1,0 +1,102 @@
+:root {
+  --lsd-typography-generic-font-family: monospace;
+
+  --lsd-display1-fontSize: 5.5rem;
+  --lsd-display1-fontWeight: normal;
+  --lsd-display1-lineHeight: 6rem;
+  --lsd-display2-fontSize: 4rem;
+  --lsd-display2-fontWeight: normal;
+  --lsd-display2-lineHeight: 4.5rem;
+  --lsd-display3-fontSize: 3.5rem;
+  --lsd-display3-fontWeight: normal;
+  --lsd-display3-lineHeight: 4rem;
+  --lsd-display4-fontSize: 3rem;
+  --lsd-display4-fontWeight: normal;
+  --lsd-display4-lineHeight: 3.5rem;
+
+  --lsd-h1-fontSize: 2.5rem;
+  --lsd-h1-fontWeight: normal;
+  --lsd-h1-lineHeight: 3rem;
+  --lsd-h2-fontSize: 2rem;
+  --lsd-h2-fontWeight: normal;
+  --lsd-h2-lineHeight: 2.5rem;
+  --lsd-h3-fontSize: 1.75rem;
+  --lsd-h3-fontWeight: normal;
+  --lsd-h3-lineHeight: 2.25rem;
+  --lsd-h4-fontSize: 1.5rem;
+  --lsd-h4-fontWeight: normal;
+  --lsd-h4-lineHeight: 2rem;
+  --lsd-h5-fontSize: 1.25rem;
+  --lsd-h5-fontWeight: normal;
+  --lsd-h5-lineHeight: 1.75rem;
+  --lsd-h6-fontSize: 1rem;
+  --lsd-h6-fontWeight: normal;
+  --lsd-h6-lineHeight: 1.5rem;
+
+  --lsd-subtitle1-fontSize: 1.125rem;
+  --lsd-subtitle1-fontWeight: normal;
+  --lsd-subtitle1-lineHeight: 1.5rem;
+  --lsd-subtitle2-fontSize: 1rem;
+  --lsd-subtitle2-fontWeight: normal;
+  --lsd-subtitle2-lineHeight: 1.5rem;
+  --lsd-subtitle3-fontSize: 0.875rem;
+  --lsd-subtitle3-fontWeight: normal;
+  --lsd-subtitle3-lineHeight: 1.25rem;
+  --lsd-subtitle4-fontSize: 0.75rem;
+  --lsd-subtitle4-fontWeight: normal;
+  --lsd-subtitle4-lineHeight: 1rem;
+
+  --lsd-body1-fontSize: 1rem;
+  --lsd-body1-fontWeight: normal;
+  --lsd-body1-lineHeight: 1.5rem;
+  --lsd-body2-fontSize: 0.875rem;
+  --lsd-body2-fontWeight: normal;
+  --lsd-body2-lineHeight: 1.25rem;
+  --lsd-body3-fontSize: 0.75rem;
+  --lsd-body3-fontWeight: normal;
+  --lsd-body3-lineHeight: 1rem;
+
+  --lsd-label1-fontSize: 0.875rem;
+  --lsd-label1-fontWeight: normal;
+  --lsd-label1-lineHeight: 1.25rem;
+  --lsd-label2-fontSize: 0.75rem;
+  --lsd-label2-fontWeight: normal;
+  --lsd-label2-lineHeight: 1rem;
+
+  --lsd-theme-primary: #000000;
+  --lsd-theme-secondary: #ffffff;
+  --lsd-surface-primary: #ffffff;
+  --lsd-surface-secondary: #000000;
+  --lsd-border-primary: #000000;
+  --lsd-border-secondary: #ffffff;
+  --lsd-icon-primary: #000000;
+  --lsd-icon-secondary: #ffffff;
+  --lsd-text-primary: #000000;
+  --lsd-text-secondary: #ffffff;
+  --lsd-text-tertiary: rgba(0, 0, 0, 0.34);
+
+  --lsd-spacing-4: 4px;
+  --lsd-spacing-8: 8px;
+  --lsd-spacing-16: 16px;
+  --lsd-spacing-24: 24px;
+  --lsd-spacing-32: 32px;
+  --lsd-spacing-40: 40px;
+  --lsd-spacing-64: 64px;
+  --lsd-spacing-80: 80px;
+  --lsd-spacing-96: 96px;
+  --lsd-spacing-120: 120px;
+}
+
+[data-theme='dark'] {
+  --lsd-theme-primary: #ffffff;
+  --lsd-theme-secondary: #000000;
+  --lsd-surface-primary: #000000;
+  --lsd-surface-secondary: #ffffff;
+  --lsd-border-primary: #ffffff;
+  --lsd-border-secondary: #000000;
+  --lsd-icon-primary: #ffffff;
+  --lsd-icon-secondary: #000000;
+  --lsd-text-primary: #ffffff;
+  --lsd-text-secondary: #000000;
+  --lsd-text-tertiary: rgba(255, 255, 255, 0.34);
+}
