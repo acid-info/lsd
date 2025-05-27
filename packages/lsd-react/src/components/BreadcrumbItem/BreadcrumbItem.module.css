@@ -1,0 +1,15 @@
+.root {
+  text-decoration: none;
+  cursor: pointer;
+
+  &.outlined {
+    padding: 3px 11px;
+    border: 1px solid rgb(var(--lsd-border-primary));
+  }
+
+  &:not(.disabled):hover,
+  &:not(.disabled):focus {
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--lsd-border-primary));
+  }
+}

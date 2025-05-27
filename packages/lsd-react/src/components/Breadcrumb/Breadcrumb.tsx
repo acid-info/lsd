@@ -7,10 +7,9 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { BreadcrumbItem } from '../BreadcrumbItem'
-import { breadcrumbItemClasses } from '../BreadcrumbItem/BreadcrumbItem.classes'
 import { DropdownMenu } from '../DropdownMenu'
 import { Portal } from '../PortalProvider/Portal'
-import { breadcrumbClasses } from './Breadcrumb.classes'
+import styles from './Breadcrumb.module.css'
 
 export type BreadcrumbOption = {
   name: string
@@ -34,8 +33,6 @@ export type BreadcrumbProps = CommonProps &
     onChange?: (value: string | string[]) => void
     size?: 'small' | 'large'
   }
-
-const classes = breadcrumbClasses
 
 function Breadcrumb({
   size = 'large',
@@ -64,14 +61,15 @@ function Breadcrumb({
 
   const renderItems = (items: BreadcrumbOption[]) =>
     items.map((item, idx) => (
-      <BreadcrumbItem
-        key={idx}
-        outlined={idx === visible.length - 1 && item !== root}
-        label={item.value}
-        link={item.link}
-        linkComponent={item?.linkComponent}
-        size={size}
-      />
+      <li className={styles.itemLink} key={idx}>
+        <BreadcrumbItem
+          outlined={idx === visible.length - 1 && item !== root}
+          label={item.value}
+          link={item.link}
+          linkComponent={item?.linkComponent}
+          size={size}
+        />
+      </li>
     ))
 
   const onTrigger = () => {
@@ -88,21 +86,23 @@ function Breadcrumb({
       className={clsx(
         props.className,
         commonProps.className,
-        breadcrumbClasses.root,
-        disabled && breadcrumbClasses.disabled,
-        open && breadcrumbClasses.open,
+        styles.root,
+        disabled && styles.disabled,
+        // Do we need to remove below line? No open class defined
+        // open && breadcrumbClasses.open,
       )}
     >
-      <ul className={breadcrumbClasses.list}>
+      <ul className={styles.list}>
         {root && renderItems([root])}
         {collapsed.length > 0 && (
-          <BreadcrumbItem
-            ellipsisRef={ellipsisRef as React.RefObject<HTMLLIElement>}
-            label={'...'}
-            onClick={onTrigger}
-            size={size}
-            {...pickCommonProps(props)}
-          />
+          <li className={styles.itemLink} onClick={onTrigger} ref={ellipsisRef}>
+            <BreadcrumbItem
+              className=""
+              label={'...'}
+              size={size}
+              {...pickCommonProps(props)}
+            />
+          </li>
         )}
         {renderItems(visible)}
       </ul>
@@ -112,19 +112,19 @@ function Breadcrumb({
             handleRef={ellipsisRef as React.RefObject<HTMLElement>}
             open={open}
             onClose={() => setOpen(false)}
-            className={clsx(breadcrumbClasses.listBox)}
+            className={styles.listBox}
             size={size}
             genericFontFamily={props.genericFontFamily}
             {...pickCommonProps(props)}
           >
             {collapsed.map((opt, idx) => (
-              <BreadcrumbItem
-                key={idx}
-                label={opt.value}
-                link={opt.link}
-                className={breadcrumbItemClasses.itemLink}
-                linkComponent={opt?.linkComponent}
-              />
+              <li className={styles.itemLink} key={idx}>
+                <BreadcrumbItem
+                  label={opt.value}
+                  link={opt.link}
+                  linkComponent={opt?.linkComponent}
+                />
+              </li>
             ))}
           </DropdownMenu>
         </Portal>
@@ -132,7 +132,5 @@ function Breadcrumb({
     </div>
   )
 }
-
-Breadcrumb.classes = classes
 
 export { Breadcrumb }

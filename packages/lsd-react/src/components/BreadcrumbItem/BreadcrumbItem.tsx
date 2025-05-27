@@ -6,10 +6,10 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
-import { breadcrumbItemClasses } from './BreadcrumbItem.classes'
+import styles from './BreadcrumbItem.module.css'
 
 export type BreadcrumbItemProps = CommonProps &
-  React.LiHTMLAttributes<HTMLLIElement> & {
+  React.AnchorHTMLAttributes<HTMLAnchorElement> & {
     label: string
     link?: string
     linkComponent?: React.ComponentType<
@@ -23,14 +23,13 @@ export type BreadcrumbItemProps = CommonProps &
     size?: 'small' | 'large'
   }
 
-const classes = breadcrumbItemClasses
-
 function BreadcrumbItem({
   size = 'large',
   label,
   link,
   linkComponent: LinkComponent = (props) => <a {...props}>{props.children}</a>,
   outlined,
+  disabled,
   selected,
   ellipsisRef,
   onClick,
@@ -40,37 +39,26 @@ function BreadcrumbItem({
   const commonProps = useCommonProps(props)
 
   return (
-    <li
+    <LinkComponent
       {...omitCommonProps(props)}
+      href={link}
       className={clsx(
         commonProps.className,
-        breadcrumbItemClasses.root,
-        breadcrumbItemClasses[size],
+        styles.root,
+        outlined && styles.outlined,
+        disabled && styles.disabled,
         className,
       )}
-      aria-selected={selected ? 'true' : 'false'}
-      onClick={onClick}
-      ref={ellipsisRef}
     >
-      <LinkComponent
-        href={link}
-        className={clsx(
-          breadcrumbItemClasses.itemLink,
-          outlined && breadcrumbItemClasses.outlined,
-        )}
+      <Typography
+        color="primary"
+        component="span"
+        variant={size === 'large' ? 'label1' : 'label2'}
       >
-        <Typography
-          color="primary"
-          component="span"
-          variant={size === 'large' ? 'label1' : 'label2'}
-        >
-          {label}
-        </Typography>
-      </LinkComponent>
-    </li>
+        {label}
+      </Typography>
+    </LinkComponent>
   )
 }
-
-BreadcrumbItem.classes = classes
 
 export { BreadcrumbItem }

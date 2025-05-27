@@ -1,7 +1,5 @@
 import { Global, SerializedStyles } from '@emotion/react'
 import React, { useMemo } from 'react'
-import { BreadcrumbStyles } from '../Breadcrumb/Breadcrumb.styles'
-import { BreadcrumbItemStyles } from '../BreadcrumbItem/BreadcrumbItem.styles'
 import { ButtonStyles } from '../Button/Button.styles'
 import { CalendarStyles } from '../Calendar/Calendar.styles'
 import { CardStyles } from '../Card/Card.styles'
@@ -55,8 +53,6 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     DropdownMenuStyles,
     DropdownStyles,
     DropdownItemStyles,
-    BreadcrumbStyles,
-    BreadcrumbItemStyles,
     CardStyles,
     CardHeaderStyles,
     CardBodyStyles,
