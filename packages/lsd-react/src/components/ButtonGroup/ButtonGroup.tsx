@@ -5,8 +5,8 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { buttonGroupClasses } from './ButtonGroup.classes'
 import { ButtonGroupContext } from './ButtonGroup.context'
+import styles from './ButtonGroup.module.css'
 
 export type ButtonGroupProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
@@ -14,8 +14,6 @@ export type ButtonGroupProps = CommonProps &
     size?: 'large' | 'medium' | 'small'
     disabled?: boolean
   }
-
-const classes = buttonGroupClasses
 
 function ButtonGroup({
   size = 'large',
@@ -32,10 +30,10 @@ function ButtonGroup({
       className={clsx(
         commonProps.className,
         props.className,
-        buttonGroupClasses.root,
-        buttonGroupClasses[size],
-        buttonGroupClasses[variant],
-        disabled && buttonGroupClasses.disabled,
+        styles.root,
+        styles[size],
+        styles[variant],
+        disabled && styles.disabled,
       )}
     >
       <ButtonGroupContext.Provider
@@ -43,6 +41,7 @@ function ButtonGroup({
           size,
           variant,
           disabled,
+          styles: styles.button,
         }}
       >
         {children}
@@ -50,7 +49,5 @@ function ButtonGroup({
     </div>
   )
 }
-
-ButtonGroup.classes = classes
 
 export { ButtonGroup }

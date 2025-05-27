@@ -1,6 +1,5 @@
 import { Global, SerializedStyles } from '@emotion/react'
 import React, { useMemo } from 'react'
-import { ButtonStyles } from '../Button/Button.styles'
 import { CalendarStyles } from '../Calendar/Calendar.styles'
 import { CardStyles } from '../Card/Card.styles'
 import { CardBodyStyles } from '../CardBody/CardBody.styles'
@@ -37,13 +36,11 @@ import { ModalFooterStyles } from '../ModalFooter/ModalFooter.styles'
 import { ModalBodyStyles } from '../ModalBody/ModalBody.styles'
 import { ToastStyles } from '../Toast/Toast.styles'
 import { ToastProviderStyles } from '../ToastProvider/ToastProvider.styles'
-import { ButtonGroupStyles } from '../ButtonGroup/ButtonGroup.styles'
 import { DateRangePickerStyles } from '../DateRangePicker/DateRangePicker.styles'
 import { TooltipBaseStyles } from '../TooltipBase/TooltipBase.styles'
 
 const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
   [
-    ButtonStyles,
     IconButtonStyles,
     IconButtonGroupStyles,
     TypographyStyles,
@@ -79,7 +76,6 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     CalendarStyles,
     ToastStyles,
     ToastProviderStyles,
-    ButtonGroupStyles,
     DateRangePickerStyles,
     TooltipBaseStyles,
   ]
