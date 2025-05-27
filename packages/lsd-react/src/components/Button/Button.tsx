@@ -7,7 +7,7 @@ import {
 } from '../../utils/useCommonProps'
 import { useButtonGroupContext } from '../ButtonGroup/ButtonGroup.context'
 import { Typography } from '../Typography'
-import { buttonClasses } from './Button.classes'
+import styles from './Button.module.css'
 
 export type ButtonProps = CommonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -15,8 +15,6 @@ export type ButtonProps = CommonProps &
     variant?: 'outlined' | 'filled'
     icon?: React.ReactNode
   }
-
-const classes = buttonClasses
 
 function Button({
   size: sizeProp,
@@ -43,27 +41,26 @@ function Button({
         className={clsx(
           commonPropsClassName,
           props.className,
-          buttonClasses.root,
-          buttonClasses[size],
-          buttonClasses[variant],
-          Boolean(disabled) && buttonClasses.disabled,
-          Boolean(icon) && buttonClasses.withIcon,
+          styles.root,
+          styles[size],
+          styles[variant],
+          Boolean(disabled) && styles.disabled,
+          Boolean(icon) && styles.withIcon,
+          context?.styles,
         )}
         disabled={disabled}
       >
         <Typography
           component="span"
-          className={buttonClasses.text}
+          className={styles.text}
           variant={size === 'small' ? 'label2' : 'label1'}
         >
           {children}
         </Typography>
-        {icon && <span className={buttonClasses.icon}>{icon}</span>}
+        {icon && <span className={styles.icon}>{icon}</span>}
       </button>
     </>
   )
 }
-
-Button.classes = classes
 
 export { Button }

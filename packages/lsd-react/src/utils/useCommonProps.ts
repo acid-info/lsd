@@ -6,6 +6,7 @@ import { typographyClasses } from '../components/Typography/Typography.classes'
 
 export type CommonProps = {
   genericFontFamily?: 'inherit' | GlobalTypographyStyles['genericFontFamily']
+  styles?: string
 }
 
 export const commonPropKeys: [keyof CommonProps] = ['genericFontFamily']
