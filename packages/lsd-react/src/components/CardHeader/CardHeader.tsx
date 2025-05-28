@@ -7,14 +7,12 @@ import {
 } from '../../utils/useCommonProps'
 import { useCardContext } from '../Card/Card.context'
 import { Typography } from '../Typography'
-import { cardHeaderClasses } from './CardHeader.classes'
+import styles from '../Card/Card.module.css'
 
 export type CardHeaderProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
     size?: 'small' | 'medium' | 'large'
   }
-
-const classes = cardHeaderClasses
 
 function CardHeader({
   size: _size = 'large',
@@ -31,12 +29,12 @@ function CardHeader({
       className={clsx(
         commonProps.className,
         props.className,
-        cardHeaderClasses.root,
-        cardHeaderClasses[size],
+        styles.cardHeader,
+        styles[size],
       )}
     >
       <Typography
-        className={cardHeaderClasses.title}
+        className={styles.title}
         component="div"
         variant={size === 'large' ? 'label1' : 'label2'}
       >
@@ -45,7 +43,5 @@ function CardHeader({
     </div>
   )
 }
-
-CardHeader.classes = classes
 
 export { CardHeader }
