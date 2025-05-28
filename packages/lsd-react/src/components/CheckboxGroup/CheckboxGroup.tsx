@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import React from 'react'
 import { CheckboxGroupContext } from './CheckboxGroup.context'
-import { checkboxGroupClasses } from './CheckboxGroup.classes'
 import { Typography } from '../Typography'
 import {
   CommonProps,
@@ -9,6 +8,7 @@ import {
   pickCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
+import styles from './CheckboxGroup.module.css'
 
 export type ActiveCheckboxType = string | number | readonly string[]
 
@@ -17,8 +17,6 @@ export type CheckboxGroupProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
     label?: string
   }
-
-const classes = checkboxGroupClasses
 
 function CheckboxGroup({
   size = 'large',
@@ -35,13 +33,13 @@ function CheckboxGroup({
         className={clsx(
           commonProps.className,
           props.className,
-          checkboxGroupClasses.root,
+          styles.checkboxGroup,
         )}
       >
         <Typography
           component="span"
           variant={size === 'small' ? 'label2' : 'label1'}
-          className={checkboxGroupClasses.label}
+          className={styles.label}
           {...pickCommonProps(props)}
         >
           {label}
@@ -51,7 +49,5 @@ function CheckboxGroup({
     </CheckboxGroupContext.Provider>
   )
 }
-
-CheckboxGroup.classes = classes
 
 export { CheckboxGroup }
