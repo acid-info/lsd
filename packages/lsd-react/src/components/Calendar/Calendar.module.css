@@ -1,0 +1,235 @@
+.root {
+  border: 1px solid rgb(var(--lsd-border-primary));
+  visibility: hidden;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: rgb(var(--lsd-surface-primary));
+  user-select: none;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  margin-bottom: 8px;
+}
+
+.weekDay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  margin-bottom: 4px;
+}
+
+.changeYear {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
+}
+
+.changeYearActive .yearAndIcon {
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.changeYearIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+}
+
+.month {
+  margin-right: 8px;
+}
+
+.monthAndYear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dayContainer {
+  cursor: pointer;
+  background: transparent;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+}
+
+.day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: rgb(var(--lsd-border-primary));
+  }
+
+  label:hover {
+    cursor: pointer;
+  }
+}
+
+.daySelected {
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.dayDisabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.todayIndicator {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2px;
+}
+
+.disabled {
+  pointer-events: none;
+  border: 1px solid rgba(var(--lsd-border-primary), 0.3);
+
+  label,
+  .button,
+  .daySelected {
+    opacity: 0.3;
+  }
+}
+
+.button {
+  border: 1px solid rgb(var(--lsd-border-primary));
+  cursor: pointer;
+  background: transparent;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.nextMonthButton {
+  top: 8px;
+  right: 8px;
+}
+
+.previousMonthButton {
+  top: 8px;
+  left: 8px;
+}
+
+.dayBorderLeft {
+  border-left: 1px double rgb(var(--lsd-border-primary));
+}
+
+.dayBorderRight {
+  border-right: 1px double rgb(var(--lsd-border-primary));
+}
+
+.dayBorderLeftAndRight {
+  border-left: 1px double rgb(var(--lsd-border-primary));
+  border-right: 1px double rgb(var(--lsd-border-primary));
+}
+
+.dayBorderTopAndBottom {
+  border-top: 1px double rgb(var(--lsd-border-primary));
+  border-bottom: 1px double rgb(var(--lsd-border-primary));
+}
+
+.monthTable {
+  border-collapse: collapse;
+}
+
+.yearDropdown {
+  box-sizing: border-box;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  border: 1px solid rgb(var(--lsd-border-primary));
+  border-top: none;
+  z-index: 1;
+}
+
+.yearDropdownHidden {
+  visibility: hidden;
+}
+
+.yearDropdown .year {
+  border-bottom: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.year {
+  display: flex;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-items: center;
+  background: rgb(var(--lsd-surface-primary));
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.yearAndIcon {
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.large {
+  .year {
+    padding: 6px 0px 6px 14px;
+  }
+
+  .changeYearIconContainer {
+    width: 32px;
+  }
+}
+
+.medium {
+  .year {
+    padding: 6px 0px 6px 12px;
+  }
+
+  .changeYearIconContainer {
+    width: 28px;
+  }
+}
+
+.small {
+  .year {
+    padding: 6px 0px 6px 12px;
+  }
+
+  .changeYearIconContainer {
+    width: 28px;
+  }
+}

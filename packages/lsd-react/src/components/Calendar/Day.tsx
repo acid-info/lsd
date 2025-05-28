@@ -8,7 +8,7 @@ import {
   isSameDay,
   resetHours,
 } from '../../utils/date.utils'
-import { calendarClasses } from './Calendar.classes'
+import styles from './Calendar.module.css'
 
 export type DayProps = {
   day?: string
@@ -53,22 +53,19 @@ export const Day = ({
       onClick={onClick}
       ref={dayRef}
       className={clsx(
-        calendarClasses.dayContainer,
+        styles.dayContainer,
         // The top and bottom borders are always shown for every selected day.
         // That's not the case for left and right borders (e.g. 2 adjacent days will not have the middle border).
-        isSelected && calendarClasses.dayBorderTopAndBottom,
-        disabled && calendarClasses.dayDisabled,
-        isToday && calendarClasses.dayIsToday,
+        isSelected && styles.dayBorderTopAndBottom,
+        disabled && styles.dayDisabled,
+        isToday && styles.dayIsToday,
         borderClasses,
       )}
     >
-      <div className={calendarClasses.day}>
+      <div className={styles.day}>
         <Typography variant="label2">{parseInt(day, 10)}</Typography>
         {isToday && (
-          <Typography
-            variant="label2"
-            className={calendarClasses.todayIndicator}
-          >
+          <Typography variant="label2" className={styles.todayIndicator}>
             ▬
           </Typography>
         )}
