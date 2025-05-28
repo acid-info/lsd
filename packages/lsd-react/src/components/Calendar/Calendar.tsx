@@ -6,7 +6,6 @@ import {
 import clsx from 'clsx'
 import React, { useEffect, useRef, useState } from 'react'
 import { useClickAway } from 'react-use'
-import { calendarClasses } from './Calendar.classes'
 import { CalendarContext } from './Calendar.context'
 import { Month } from './Month'
 import { getNewDates, isSameDay, safeConvertDate } from '../../utils/date.utils'
@@ -17,6 +16,7 @@ import {
 } from '../../utils/useCommonProps'
 import { TooltipBase } from '../TooltipBase'
 import { useUpdatePositionStyle } from '../../utils/useUpdatePositionStyle'
+import styles from './Calendar.module.css'
 
 export const CALENDAR_MIN_YEAR = 1850
 export const CALENDAR_MAX_YEAR = 2100
@@ -41,8 +41,6 @@ export type CalendarProps = CommonProps &
     maxDate?: Date
     tooltipArrowOffset?: number
   }
-
-const classes = calendarClasses
 
 function Calendar({
   open,
@@ -171,16 +169,16 @@ function Calendar({
           { ...omitCommonProps(props) },
           commonProps.className,
           props.className,
-          calendarClasses.root,
-          calendarClasses[size],
-          open && calendarClasses.open,
-          disabled && calendarClasses.disabled,
+          styles.root,
+          styles[size],
+          open && styles.open,
+          disabled && styles.disabled,
         )}
         rootRef={ref}
         style={{ ...positionStyle, ...(props.style ?? {}) }}
         arrowOffset={tooltipArrowOffset}
       >
-        <div className={clsx(calendarClasses.container)}>
+        <div className={clsx(styles.container)}>
           {activeMonths.map((month, idx) => (
             <Month
               key={`${month.year}-${month.month}-${idx}`}
@@ -195,7 +193,5 @@ function Calendar({
     </CalendarContext.Provider>
   )
 }
-
-Calendar.classes = classes
 
 export { Calendar }

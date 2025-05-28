@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { Day } from './Day'
 import { FC } from 'react'
-import { calendarClasses } from './Calendar.classes'
 import { Typography } from '../Typography'
 import { UseMonthResult } from '@datepicker-react/hooks'
 import { generateFullMonthDays } from '../../utils/date.utils'
 import { useCalendarContext } from './Calendar.context'
 import { YearControl } from './YearControl'
 import { ChevronLeftIcon, ChevronRightIcon } from '../Icons'
+import styles from './Calendar.module.css'
 
 type CalendarNavigationButtonProps = {
   direction: 'previous' | 'next'
@@ -23,7 +23,7 @@ export const CalendarNavigationButton: FC<CalendarNavigationButtonProps> = ({
   const Icon = direction === 'previous' ? ChevronLeftIcon : ChevronRightIcon
   return (
     <button
-      className={clsx(calendarClasses.button, className)}
+      className={clsx(styles.button, className)}
       type="button"
       onClick={onClick}
     >
@@ -47,15 +47,15 @@ export const MonthHeader: FC<MonthHeaderProps> = ({
   const [month, year] = monthLabel.split(' ')
 
   return (
-    <div className={calendarClasses.header}>
+    <div className={styles.header}>
       <CalendarNavigationButton
         direction="previous"
         onClick={goToPreviousMonths}
-        className={calendarClasses.previousMonthButton}
+        className={styles.previousMonthButton}
       />
-      <div className={calendarClasses.monthAndYear}>
+      <div className={styles.monthAndYear}>
         <Typography
-          className={calendarClasses.month}
+          className={styles.month}
           component="span"
           variant={size === 'large' ? 'label1' : 'label2'}
         >
@@ -67,7 +67,7 @@ export const MonthHeader: FC<MonthHeaderProps> = ({
       <CalendarNavigationButton
         direction="next"
         onClick={goToNextMonths}
-        className={calendarClasses.nextMonthButton}
+        className={styles.nextMonthButton}
       />
     </div>
   )
@@ -82,7 +82,7 @@ export const WeekdayHeader: FC<WeekdayHeaderProps> = ({ weekdayLabels }) => {
     <tr>
       {weekdayLabels.map((dayLabel, idx) => (
         <th key={idx}>
-          <div className={calendarClasses.weekDay}>
+          <div className={styles.weekDay}>
             <Typography variant="label2">{dayLabel[0]}</Typography>
           </div>
         </th>

@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { FC, useEffect, useRef, useState } from 'react'
-import { calendarClasses } from './Calendar.classes'
 import { Typography } from '../Typography'
 import { useClickAway, useScroll } from 'react-use'
 import { useCalendarContext } from './Calendar.context'
 import { CALENDAR_MAX_YEAR, CALENDAR_MIN_YEAR } from '.'
 import { ChevronDownIcon, ChevronUpIcon } from '../Icons'
+import styles from './Calendar.module.css'
 
 type YearControlProps = {
   year: string
@@ -85,14 +85,14 @@ export const YearControl: FC<YearControlProps> = ({
     <div
       ref={ref}
       className={clsx(
-        calendarClasses.changeYear,
-        changeYearMode && calendarClasses.changeYearActive,
+        styles.changeYear,
+        changeYearMode && styles.changeYearActive,
       )}
       onClick={() => {
         setChangeYearMode(!changeYearMode)
       }}
     >
-      <div className={clsx(calendarClasses.year, calendarClasses.yearAndIcon)}>
+      <div className={clsx(styles.year, styles.yearAndIcon)}>
         <Typography
           component="span"
           variant={size === 'large' ? 'label1' : 'label2'}
@@ -100,7 +100,7 @@ export const YearControl: FC<YearControlProps> = ({
           {year}
         </Typography>
 
-        <div className={calendarClasses.changeYearIconContainer}>
+        <div className={styles.changeYearIconContainer}>
           {changeYearMode ? (
             <ChevronUpIcon color="primary" />
           ) : (
@@ -111,15 +111,15 @@ export const YearControl: FC<YearControlProps> = ({
 
       <div
         className={clsx(
-          calendarClasses.yearDropdown,
-          !changeYearMode && calendarClasses.yearDropdownHidden,
+          styles.yearDropdown,
+          !changeYearMode && styles.yearDropdownHidden,
         )}
         ref={scrollRef}
       >
         {yearsList.map((yearValue) => (
           <div
             key={yearValue}
-            className={calendarClasses.year}
+            className={styles.year}
             onClick={() => handleYearClick(yearValue)}
             ref={yearValue === parseInt(year) ? currentYearRef : null}
           >
