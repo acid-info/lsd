@@ -1,7 +1,5 @@
 import { Global, SerializedStyles } from '@emotion/react'
 import { useMemo } from 'react'
-import { CollapseStyles } from '../Collapse/Collapse.styles'
-import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
 import { DateFieldStyles } from '../DateField/DateField.styles'
 import { DatePickerStyles } from '../DatePicker/DatePicker.styles'
 import { DropdownStyles } from '../Dropdown/Dropdown.styles'
@@ -47,8 +45,6 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     TagStyles,
     TextFieldStyles,
     QuoteStyles,
-    CollapseStyles,
-    CollapseHeaderStyles,
     RadioButtonStyles,
     RadioButtonGroupStyles,
     TableStyles,
