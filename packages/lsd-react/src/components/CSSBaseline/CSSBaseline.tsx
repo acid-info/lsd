@@ -1,7 +1,5 @@
 import { Global, SerializedStyles } from '@emotion/react'
 import { useMemo } from 'react'
-import { CheckboxStyles } from '../Checkbox/Checkbox.styles'
-import { CheckboxGroupStyles } from '../CheckboxGroup/CheckboxGroup.styles'
 import { CollapseStyles } from '../Collapse/Collapse.styles'
 import { CollapseHeaderStyles } from '../CollapseHeader/CollapseHeader.styles'
 import { DateFieldStyles } from '../DateField/DateField.styles'
@@ -48,11 +46,9 @@ const componentStyles: Array<ReturnType<typeof withTheme> | SerializedStyles> =
     DropdownItemStyles,
     TagStyles,
     TextFieldStyles,
-    CheckboxStyles,
     QuoteStyles,
     CollapseStyles,
     CollapseHeaderStyles,
-    CheckboxGroupStyles,
     RadioButtonStyles,
     RadioButtonGroupStyles,
     TableStyles,
