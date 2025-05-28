@@ -6,14 +6,12 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { useTableContext } from '../Table/Table.context'
-import { tableItemClasses } from './TableItem.classes'
+import styles from './TableItem.module.css'
 
 export type TableItemProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
     size?: 'large' | 'medium' | 'small'
   }
-
-const classes = tableItemClasses
 
 function TableItem({
   size: _size = 'large',
@@ -30,15 +28,13 @@ function TableItem({
       className={clsx(
         commonProps.className,
         props.className,
-        tableItemClasses.root,
-        tableItemClasses[size],
+        styles.root,
+        styles[size],
       )}
     >
       {children}
     </td>
   )
 }
-
-TableItem.classes = classes
 
 export { TableItem }

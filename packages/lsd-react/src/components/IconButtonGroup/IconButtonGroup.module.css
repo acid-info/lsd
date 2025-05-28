@@ -1,0 +1,8 @@
+.root {
+  display: flex;
+  flex-direction: row;
+}
+
+.outlined :global(.lsd-icon-button):not(:last-child) {
+  border-right: none;
+}

@@ -10,7 +10,7 @@ import { useCheckboxGroupContext } from '../CheckboxGroup/CheckboxGroup.context'
 import { CheckboxIcon, CheckboxOutlineBlankIcon } from '../Icons'
 import { IndeterminateCheckboxFilledIcon } from '../Icons/IndeterminateCheckboxFilledIcon'
 import { Typography } from '../Typography'
-import { checkboxClasses } from './Checkbox.classes'
+import styles from './Checkbox.module.css'
 
 export type CheckboxProps = CommonProps &
   Omit<
@@ -26,8 +26,6 @@ export type CheckboxProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
-
-const classes = checkboxClasses
 
 function Checkbox({
   name,
@@ -79,11 +77,11 @@ function Checkbox({
       className={clsx(
         commonProps.className,
         props.className,
-        checkboxClasses.root,
-        checkboxClasses[size],
-        focused && checkboxClasses.focused,
-        disabled && checkboxClasses.disabled,
-        indeterminate && checkboxClasses.indeterminate,
+        styles.checkbox,
+        styles[size],
+        focused && styles.focused,
+        disabled && styles.disabled,
+        indeterminate && styles.indeterminate,
       )}
     >
       <input
@@ -94,7 +92,7 @@ function Checkbox({
         checked={input.value}
         onChange={input.onChange}
         defaultChecked={defaultChecked}
-        className={clsx(inputProps.className, checkboxClasses.input)}
+        className={clsx(inputProps.className, styles.input)}
         {...inputProps}
       />
       {indeterminate ? (
@@ -104,11 +102,9 @@ function Checkbox({
       ) : (
         <CheckboxOutlineBlankIcon color="primary" focusable={false} />
       )}
-      <span className={checkboxClasses.label}>{children}</span>
+      <span className={styles.label}>{children}</span>
     </Typography>
   )
 }
-
-Checkbox.classes = classes
 
 export { Checkbox }

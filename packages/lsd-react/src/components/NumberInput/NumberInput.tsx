@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { useInput } from '../../utils/useInput'
 import { AddIcon, ErrorIcon, RemoveIcon } from '../Icons'
 import { Typography } from '../Typography'
-import { numberInputClasses } from './NumberInput.classes'
+import styles from './NumberInput.module.css'
 import { IconButton } from '../IconButton'
 import {
   CommonProps,
@@ -29,8 +29,6 @@ export type NumberInputProps = CommonProps &
     step?: number
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
-
-const classes = numberInputClasses
 
 function NumberInput({
   label,
@@ -79,16 +77,16 @@ function NumberInput({
       className={clsx(
         props.className,
         commonProps.className,
-        numberInputClasses.root,
-        numberInputClasses[size],
-        disabled && numberInputClasses.disabled,
-        error && numberInputClasses.error,
+        styles.root,
+        styles[size],
+        disabled && styles.disabled,
+        error && styles.error,
       )}
     >
       {label && (
         <Typography
           htmlFor={id}
-          className={numberInputClasses.label}
+          className={styles.label}
           variant="label2"
           component="label"
         >
@@ -96,21 +94,18 @@ function NumberInput({
         </Typography>
       )}
 
-      <div className={numberInputClasses.mainContainer}>
-        <IconButton
-          onClick={handleDecrement}
-          className={numberInputClasses.plusMinusIcons}
-        >
+      <div className={styles.mainContainer}>
+        <IconButton onClick={handleDecrement} className={styles.plusMinusIcons}>
           <RemoveIcon color="primary" />
         </IconButton>
 
-        <div className={numberInputClasses.inputContainer}>
+        <div className={styles.inputContainer}>
           <input
             id={id}
             type="number"
             placeholder={placeholder}
             ref={ref}
-            className={clsx(inputProps.className, numberInputClasses.input)}
+            className={clsx(inputProps.className, styles.input)}
             value={input.value || ''}
             onChange={input.onChange}
             min={min}
@@ -120,21 +115,18 @@ function NumberInput({
             {...inputProps}
           />
           {error && !!errorIcon && (
-            <span className={numberInputClasses.errorIcon}>
+            <span className={styles.errorIcon}>
               <ErrorIcon color="primary" />
             </span>
           )}
         </div>
 
-        <IconButton
-          onClick={handleIncrement}
-          className={numberInputClasses.plusMinusIcons}
-        >
+        <IconButton onClick={handleIncrement} className={styles.plusMinusIcons}>
           <AddIcon color="primary" />
         </IconButton>
       </div>
       {supportingText && (
-        <div className={clsx(numberInputClasses.supportingText)}>
+        <div className={clsx(styles.supportingText)}>
           <Typography variant={'label2'} component="p">
             {supportingText}
           </Typography>
@@ -143,7 +135,5 @@ function NumberInput({
     </div>
   )
 }
-
-NumberInput.classes = classes
 
 export { NumberInput }

@@ -7,7 +7,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { CollapseHeader } from '../CollapseHeader'
-import { collapseClasses } from './Collapse.classes'
+import styles from './Collapse.module.css'
 
 export type CollapseProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
@@ -17,8 +17,6 @@ export type CollapseProps = CommonProps &
     open?: boolean
     onChange?: (open: boolean) => void
   }
-
-const classes = collapseClasses
 
 function Collapse({
   label,
@@ -54,9 +52,9 @@ function Collapse({
       className={clsx(
         globalProps.className,
         props.className,
-        collapseClasses.root,
-        disabled && collapseClasses.disabled,
-        open && collapseClasses.open,
+        styles.collapse,
+        disabled && styles.disabled,
+        open && styles.open,
       )}
     >
       <CollapseHeader
@@ -68,11 +66,9 @@ function Collapse({
         disabled={disabled}
         {...pickCommonProps(props)}
       />
-      {open && <div className={collapseClasses.content}>{children}</div>}
+      {open && <div className={styles.content}>{children}</div>}
     </div>
   )
 }
-
-Collapse.classes = classes
 
 export { Collapse }

@@ -1,0 +1,133 @@
+.root {
+  width: auto;
+  box-sizing: border-box;
+}
+
+.mainContainer:hover {
+  text-decoration: underline;
+}
+
+.error .mainContainer {
+  text-decoration: line-through;
+}
+
+.label {
+  display: block;
+}
+
+.plusMinusIcons {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.inputContainer {
+  box-sizing: border-box;
+  border: 1px solid rgb(var(--lsd-border-primary));
+  border-left: 0px;
+  border-right: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.errorIcon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 10px 8px;
+}
+
+.disabled {
+  opacity: 0.34;
+}
+
+.mainContainer {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: rgb(var(--lsd-text-primary));
+  background: none;
+  text-align: center;
+  padding: 0 4px;
+}
+
+.input::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.input:hover {
+  outline: none;
+}
+
+.supportingText {
+  position: absolute;
+}
+
+.large .label {
+  margin: 0 0 6px 18px;
+}
+
+.large .inputContainer {
+  height: 40px;
+}
+
+.large .input {
+  width: 62px;
+}
+
+.large .plusMinusIcons {
+  height: 40px;
+  width: 40px;
+}
+
+.large .supportingText {
+  margin: 6px 18px 0 18px;
+}
+
+.medium .label {
+  margin: 0 0 6px 14px;
+}
+
+.medium .inputContainer {
+  height: 32px;
+}
+
+.medium .input {
+  width: 58px;
+}
+
+.medium .plusMinusIcons {
+  height: 32px;
+  width: 32px;
+}
+
+.medium .supportingText {
+  margin: 6px 14px 0 14px;
+}
+
+.small .label {
+  margin: 0 0 6px 12px;
+}
+
+.small .inputContainer {
+  height: 28px;
+}
+
+.small .input {
+  width: 50px;
+}
+
+.small .plusMinusIcons {
+  height: 28px;
+  width: 28px;
+}
+
+.small .supportingText {
+  margin: 6px 12px 0 12px;
+}

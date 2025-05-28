@@ -9,7 +9,7 @@ import { useInput } from '../../utils/useInput'
 import { RadioButtonCheckedIcon, RadioButtonIcon } from '../Icons'
 import { useRadioButtonGroupContext } from '../RadioButtonGroup/RadioButtonGroup.context'
 import { Typography } from '../Typography'
-import { radioButtonClasses } from './RadioButton.classes'
+import styles from './RadioButton.module.css'
 
 export type RadioButtonProps = CommonProps &
   Omit<
@@ -26,8 +26,6 @@ export type RadioButtonProps = CommonProps &
     value: string
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
-
-const classes = radioButtonClasses
 
 function RadioButton({
   size: _size = 'large',
@@ -74,9 +72,9 @@ function RadioButton({
       className={clsx(
         commonProps.className,
         props.className,
-        radioButtonClasses.root,
-        radioButtonClasses[size],
-        disabled && radioButtonClasses.disabled,
+        styles.root,
+        styles[size],
+        disabled && styles.disabled,
       )}
     >
       <input
@@ -87,7 +85,7 @@ function RadioButton({
         checked={input.value}
         onChange={handleChange}
         defaultChecked={defaultChecked}
-        className={clsx(inputProps.className, radioButtonClasses.input)}
+        className={clsx(inputProps.className, styles.input)}
         {...inputProps}
       />
       {input.value ? (
@@ -95,11 +93,9 @@ function RadioButton({
       ) : (
         <RadioButtonIcon color="primary" focusable={false} />
       )}
-      <span className={radioButtonClasses.label}>{children}</span>
+      <span className={styles.label}>{children}</span>
     </Typography>
   )
 }
-
-RadioButton.classes = classes
 
 export { RadioButton }

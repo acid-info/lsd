@@ -10,7 +10,7 @@ import { useInput } from '../../utils/useInput'
 import { IconButton } from '../IconButton'
 import { CloseIcon, ErrorIcon } from '../Icons'
 import { Typography, TypographyComponent, TypographyProps } from '../Typography'
-import { textFieldClasses } from './TextField.classes'
+import styles from './TextField.module.css'
 
 export type TextFieldProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'value'> &
@@ -30,8 +30,6 @@ export type TextFieldProps = CommonProps &
     label?: React.ReactNode
     labelProps?: Partial<TypographyProps<'label'> & { className?: string }>
   }
-
-const classes = textFieldClasses
 
 function TextField({
   size = 'large',
@@ -72,13 +70,11 @@ function TextField({
       className={clsx(
         commonProps.className,
         props.className,
-        textFieldClasses.root,
-        textFieldClasses[size],
-        disabled && textFieldClasses.disabled,
-        error && textFieldClasses.error,
-        variant === 'outlined'
-          ? textFieldClasses.outlined
-          : textFieldClasses.underlined,
+        styles.root,
+        styles[size],
+        disabled && styles.disabled,
+        error && styles.error,
+        variant === 'outlined' ? styles.outlined : styles.underlined,
       )}
     >
       {label && (
@@ -87,12 +83,12 @@ function TextField({
           component="label"
           htmlFor={inputId}
           {...labelProps}
-          className={clsx(textFieldClasses.label, labelProps.className)}
+          className={clsx(styles.label, labelProps.className)}
         >
           {label}
         </Typography>
       )}
-      <div className={textFieldClasses.inputContainer}>
+      <div className={styles.inputContainer}>
         <input
           id={inputId}
           placeholder={placeholder}
@@ -100,25 +96,25 @@ function TextField({
           value={input.value}
           onChange={input.onChange}
           {...inputProps}
-          className={clsx(inputProps.className, textFieldClasses.input)}
+          className={clsx(inputProps.className, styles.input)}
         />
         {error && errorIcon ? (
-          <ErrorIcon color="primary" className={textFieldClasses.icon} />
+          <ErrorIcon color="primary" className={styles.icon} />
         ) : clearButton && input.filled ? (
           <IconButton
             disabled={disabled}
             onClick={() => !disabled && onCancel()}
             aria-label="clear"
-            className={textFieldClasses.clearButton}
+            className={styles.clearButton}
           >
-            <CloseIcon color="primary" className={textFieldClasses.icon} />
+            <CloseIcon color="primary" className={styles.icon} />
           </IconButton>
         ) : (
           icon
         )}
       </div>
       {supportingText && (
-        <div className={clsx(textFieldClasses.supportingText)}>
+        <div className={clsx(styles.supportingText)}>
           <Typography
             variant={size === 'large' ? 'label1' : 'label2'}
             component="p"
@@ -130,7 +126,5 @@ function TextField({
     </div>
   )
 }
-
-TextField.classes = classes
 
 export { TextField }

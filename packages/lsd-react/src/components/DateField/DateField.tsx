@@ -3,7 +3,7 @@ import React, { useRef } from 'react'
 import { useInput } from '../../utils/useInput'
 import { CloseIcon, ErrorIcon } from '../Icons'
 import { Typography } from '../Typography'
-import { dateFieldClasses } from './DateField.classes'
+import styles from './DateField.module.css'
 import {
   CommonProps,
   useCommonProps,
@@ -29,8 +29,6 @@ export type DateFieldProps = CommonProps &
     variant?: 'outlined' | 'underlined'
     calendarIconRef?: React.RefObject<HTMLSpanElement>
   }
-
-const classes = dateFieldClasses
 
 function DateField({
   label,
@@ -73,16 +71,16 @@ function DateField({
         { ...omitCommonProps(props) },
         props.className,
         commonProps.className,
-        dateFieldClasses.root,
-        dateFieldClasses[size],
-        disabled && dateFieldClasses.disabled,
-        error && dateFieldClasses.error,
+        styles.root,
+        styles[size],
+        disabled && styles.disabled,
+        error && styles.error,
       )}
     >
       {label && (
         <Typography
           htmlFor={inputId}
-          className={dateFieldClasses.label}
+          className={styles.label}
           variant="label2"
           component="label"
         >
@@ -91,10 +89,8 @@ function DateField({
       )}
       <div
         className={clsx(
-          dateFieldClasses.inputContainer,
-          variant === 'outlined'
-            ? dateFieldClasses.outlined
-            : dateFieldClasses.underlined,
+          styles.inputContainer,
+          variant === 'outlined' ? styles.outlined : styles.underlined,
         )}
       >
         <input
@@ -107,37 +103,33 @@ function DateField({
           onChange={input.onChange}
           className={clsx(
             inputProps.className,
-            dateFieldClasses.input,
-            input.filled && dateFieldClasses.inputFilled,
+            styles.input,
+            input.filled && styles.inputFilled,
           )}
           max={inputProps.max || '9999-12-31'}
         />
         {icon ? (
           <span
-            className={dateFieldClasses.icon}
+            className={styles.icon}
             onClick={() => !disabled && onIconClick && onIconClick()}
             ref={calendarIconRef}
           >
             {icon}
           </span>
         ) : error && errorIcon ? (
-          <span className={dateFieldClasses.icon}>
+          <span className={styles.icon}>
             <ErrorIcon color="primary" />
           </span>
         ) : clearButton && input.filled ? (
-          <span
-            onClick={() => !disabled && onCancel()}
-            className={dateFieldClasses.icon}
-          >
+          <span onClick={() => !disabled && onCancel()} className={styles.icon}>
             <CloseIcon color="primary" />
           </span>
         ) : (
-          // Default case: just show and empty span on top of the browser's default icon.
-          <span className={dateFieldClasses.noIcon} />
+          <span className={styles.noIcon} />
         )}
       </div>
       {supportingText && (
-        <div className={clsx(dateFieldClasses.supportingText)}>
+        <div className={clsx(styles.supportingText)}>
           <Typography variant={'label2'} component="p">
             {supportingText}
           </Typography>
@@ -147,7 +139,5 @@ function DateField({
     </div>
   )
 }
-
-DateField.classes = classes
 
 export { DateField }

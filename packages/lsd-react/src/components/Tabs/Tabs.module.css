@@ -1,0 +1,50 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  width: fit-content;
+  max-width: 100%;
+  border-bottom: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.root > * {
+  flex-shrink: 0;
+}
+
+.root :global(.lsd-tab-item) {
+  border-bottom: none;
+}
+
+.fullWidth {
+  width: 100%;
+  justify-content: stretch;
+}
+
+.fullWidth > * {
+  width: 100%;
+  flex: 1 0;
+}
+
+.root::-webkit-scrollbar {
+  display: none;
+}
+
+.root {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.leftScrollControl {
+  left: 0;
+}
+
+.rightScrollControl {
+  right: 0;
+}
+
+.rightScrollControl,
+.leftScrollControl {
+  top: 0;
+  flex: 0 1;
+  position: sticky;
+}

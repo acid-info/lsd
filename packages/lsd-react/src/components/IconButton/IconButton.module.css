@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.filled {
+  background-color: rgb(var(--lsd-icon-primary));
+}
+
+.filled svg {
+  --lsd-icon-primary: var(--lsd-icon-secondary);
+}
+
+.disabled {
+  opacity: 0.34;
+  cursor: default;
+}
+
+.large {
+  width: 40px;
+  height: 40px;
+}
+
+.medium {
+  width: 32px;
+  height: 32px;
+}
+
+.small {
+  width: 28px;
+  height: 28px;
+}

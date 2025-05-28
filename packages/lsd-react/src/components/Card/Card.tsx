@@ -5,15 +5,13 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { cardClasses } from './Card.classes'
 import { CardContext } from './Card.context'
+import styles from './Card.module.css'
 
 export type CardProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
     size?: 'small' | 'medium' | 'large'
   }
-
-const classes = cardClasses
 
 function Card({ size = 'large', children, ...props }: CardProps) {
   const commonProps = useCommonProps(props)
@@ -22,18 +20,12 @@ function Card({ size = 'large', children, ...props }: CardProps) {
     <CardContext.Provider value={{ size }}>
       <div
         {...omitCommonProps(props)}
-        className={clsx(
-          commonProps.className,
-          cardClasses.root,
-          cardClasses[size],
-        )}
+        className={clsx(commonProps.className, styles.card, styles[size])}
       >
         {children}
       </div>
     </CardContext.Provider>
   )
 }
-
-Card.classes = classes
 
 export { Card }

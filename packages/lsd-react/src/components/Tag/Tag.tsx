@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
-import { tagClasses } from './Tag.classes'
+import styles from './Tag.module.css'
 
 export type TagProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
@@ -16,8 +16,6 @@ export type TagProps = CommonProps &
     disabled?: boolean
     size?: 'large' | 'small'
   }
-
-const classes = tagClasses
 
 function Tag({
   variant = 'outlined',
@@ -37,16 +35,16 @@ function Tag({
       className={clsx(
         commonProps.className,
         props.className,
-        tagClasses.root,
-        tagClasses[variant],
-        disabled && tagClasses.disabled,
-        tagClasses[size],
+        styles.root,
+        styles[variant],
+        disabled && styles.disabled,
+        styles[size],
       )}
     >
       {iconDirection === 'left' && icon}
       <Typography
         variant={size === 'small' ? 'label2' : 'label1'}
-        className={tagClasses.label}
+        className={styles.label}
         component="span"
       >
         {children}
@@ -55,7 +53,5 @@ function Tag({
     </div>
   )
 }
-
-Tag.classes = classes
 
 export { Tag }

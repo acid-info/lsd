@@ -6,7 +6,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { dropdownMenuClasses } from './DropdownMenu.classes'
+import styles from './DropdownMenu.module.css'
 import { useUpdatePositionStyle } from '../../utils/useUpdatePositionStyle'
 
 export type DropdownMenuProps = CommonProps &
@@ -17,8 +17,6 @@ export type DropdownMenuProps = CommonProps &
     onClose?: () => void
     handleRef: React.RefObject<HTMLElement>
   }
-
-const classes = dropdownMenuClasses
 
 function DropdownMenu({
   size = 'large',
@@ -50,16 +48,14 @@ function DropdownMenu({
       className={clsx(
         commonProps.className,
         props.className,
-        dropdownMenuClasses.root,
-        dropdownMenuClasses[size],
-        open && dropdownMenuClasses.open,
+        styles.root,
+        styles[size],
+        open && styles.open,
       )}
     >
       {children}
     </ul>
   )
 }
-
-DropdownMenu.classes = classes
 
 export { DropdownMenu }

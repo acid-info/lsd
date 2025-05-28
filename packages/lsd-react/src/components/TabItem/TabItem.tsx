@@ -7,7 +7,7 @@ import {
 } from '../../utils/useCommonProps'
 import { useTabsContext } from '../Tabs/Tab.context'
 import { Typography } from '../Typography'
-import { tabItemClasses } from './TabItem.classes'
+import styles from './TabItem.module.css'
 
 export type TabItemProps = CommonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -17,8 +17,6 @@ export type TabItemProps = CommonProps &
     icon?: React.ReactNode
     size?: 'small' | 'medium' | 'large'
   }
-
-const classes = tabItemClasses
 
 function TabItem({
   name,
@@ -47,26 +45,24 @@ function TabItem({
       className={clsx(
         commonProps.className,
         props.className,
-        tabItemClasses.root,
-        tabItemClasses[size],
-        selected && tabItemClasses.selected,
-        props.disabled && tabItemClasses.disabled,
-        !!icon && tabItemClasses.withIcon,
+        styles.root,
+        styles[size],
+        selected && styles.selected,
+        props.disabled && styles.disabled,
+        !!icon && styles.withIcon,
       )}
       onClick={onClick}
     >
       <Typography
         component="span"
-        className={tabItemClasses.text}
+        className={styles.text}
         variant={size === 'small' ? 'label2' : 'label1'}
       >
         {children}
       </Typography>
-      {icon && <span className={tabItemClasses.icon}>{icon}</span>}
+      {icon && <span className={styles.icon}>{icon}</span>}
     </button>
   )
 }
-
-TabItem.classes = classes
 
 export { TabItem }

@@ -7,7 +7,7 @@ import {
 } from '../../utils/useCommonProps'
 import { CheckboxIcon, CheckboxOutlineBlankIcon, LsdIconProps } from '../Icons'
 import { Typography } from '../Typography'
-import { dropdownItemClasses } from './DropdownItem.classes'
+import styles from './DropdownItem.module.css'
 
 export type DropdownItemProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
@@ -17,8 +17,6 @@ export type DropdownItemProps = CommonProps &
     disabled?: boolean
     size: 'small' | 'medium' | 'large'
   }
-
-const classes = dropdownItemClasses
 
 function DropdownItem({
   label,
@@ -33,7 +31,7 @@ function DropdownItem({
 
   const iconProps: LsdIconProps = {
     color: 'primary',
-    className: dropdownItemClasses.icon,
+    className: styles.icon,
   }
 
   return (
@@ -44,10 +42,10 @@ function DropdownItem({
       className={clsx(
         commonProps.className,
         className,
-        dropdownItemClasses.root,
-        dropdownItemClasses[size],
-        withIcon && dropdownItemClasses.withIcon,
-        disabled && dropdownItemClasses.disabled,
+        styles.root,
+        styles[size],
+        withIcon && styles.withIcon,
+        disabled && styles.disabled,
       )}
     >
       {withIcon &&
@@ -59,14 +57,12 @@ function DropdownItem({
       <Typography
         variant={size === 'large' ? 'label1' : 'label2'}
         component="span"
-        className={dropdownItemClasses.label}
+        className={styles.label}
       >
         {label}
       </Typography>
     </div>
   )
 }
-
-DropdownItem.classes = classes
 
 export { DropdownItem }

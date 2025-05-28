@@ -5,12 +5,10 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { modalBodyClasses } from './ModalBody.classes'
+import styles from './ModalBody.module.css'
 
 export type ModalBodyProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'>
-
-const classes = modalBodyClasses
 
 function ModalBody({ children, ...props }: ModalBodyProps) {
   const commonProps = useCommonProps(props)
@@ -18,13 +16,11 @@ function ModalBody({ children, ...props }: ModalBodyProps) {
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, modalBodyClasses.root)}
+      className={clsx(commonProps.className, styles.root)}
     >
       {children}
     </div>
   )
 }
-
-ModalBody.classes = classes
 
 export { ModalBody }

@@ -1,0 +1,64 @@
+.collapseHeader {
+  box-sizing: border-box;
+
+  &.disabled .trigger {
+    opacity: 0.34;
+    cursor: initial;
+  }
+
+  &:not(.disabled) .trigger:hover .label {
+    text-decoration: underline;
+  }
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background: none;
+  border: 1px solid rgb(var(--lsd-border-primary));
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.label {
+  cursor: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: auto;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.large .trigger {
+  width: 299px;
+  height: 40px;
+  padding: 9px 17px;
+}
+
+.medium .trigger {
+  width: 270px;
+  height: 32px;
+  padding: 5px 13px;
+}
+
+.small .trigger {
+  width: 235px;
+  height: 28px;
+  padding: 5px 11px;
+}
