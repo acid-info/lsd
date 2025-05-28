@@ -35,7 +35,7 @@ function Badge({
       className={clsx(
         props.className,
         commonProps.className,
-        styles.root,
+        styles.badge,
         styles[variant],
         disabled && styles.disabled,
         styles[size],

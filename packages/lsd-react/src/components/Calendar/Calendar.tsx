@@ -169,7 +169,7 @@ function Calendar({
           { ...omitCommonProps(props) },
           commonProps.className,
           props.className,
-          styles.root,
+          styles.calendar,
           styles[size],
           open && styles.open,
           disabled && styles.disabled,

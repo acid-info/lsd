@@ -41,7 +41,7 @@ function Button({
         className={clsx(
           commonPropsClassName,
           props.className,
-          styles.root,
+          styles.button,
           styles[size],
           styles[variant],
           Boolean(disabled) && styles.disabled,
