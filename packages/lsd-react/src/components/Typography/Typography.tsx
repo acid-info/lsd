@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { TypographyVariants } from '../Theme'
-import { typographyClasses } from './Typography.classes'
+import styles from './Typography.module.css'
 
 type ElementTypeProps = {
   p: React.HTMLAttributes<HTMLParagraphElement>
@@ -47,8 +47,6 @@ const COMPONENT_MAPPING: Partial<
   label2: 'label',
 }
 
-const classes = typographyClasses
-
 function Typography<T extends TypographyComponent = 'span'>({
   color,
   variant = 'body1',
@@ -66,9 +64,9 @@ function Typography<T extends TypographyComponent = 'span'>({
     {
       className: clsx(
         commonProps.className,
-        typographyClasses.root,
-        typographyClasses[variant],
-        color && typographyClasses[color],
+        styles.root,
+        styles[variant],
+        color && styles[color],
         className,
       ),
       ...omitCommonProps(props),
@@ -76,7 +74,5 @@ function Typography<T extends TypographyComponent = 'span'>({
     children,
   )
 }
-
-Typography.classes = classes
 
 export { Typography }

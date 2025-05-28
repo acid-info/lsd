@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../../utils/useCommonProps'
-import { lsdIconClasses } from './LsdIcon.classes'
+import styles from './LsdIcon.module.css'
 
 export type LsdIconProps = CommonProps &
   React.SVGAttributes<SVGElement> & {
@@ -14,8 +14,6 @@ export type LsdIconProps = CommonProps &
   }
 
 type LsdIconComponent = React.ComponentType<React.SVGAttributes<SVGElement>>
-
-const classes = lsdIconClasses
 
 function LsdIcon(
   Component: LsdIconComponent,
@@ -37,11 +35,11 @@ function LsdIcon(
         className={clsx(
           commonProps.className,
           className,
-          classes.root,
-          classes[size],
-          color && classes[color],
-          metadata?.filled && classes.filled,
-          metadata?.stroked && classes.stroked,
+          styles.root,
+          styles[size],
+          color && styles[color],
+          metadata?.filled && styles.filled,
+          metadata?.stroked && styles.stroked,
         )}
         {...omitCommonProps(props)}
       />
@@ -49,11 +47,8 @@ function LsdIcon(
   }
 
   IconComponent.displayName = Component.displayName
-  IconComponent.classes = classes
 
   return IconComponent
 }
-
-LsdIcon.classes = classes
 
 export { LsdIcon }

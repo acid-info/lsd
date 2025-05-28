@@ -6,8 +6,8 @@ import { Calendar } from '../Calendar'
 import { DateField } from '../DateField'
 import { CalendarIcon } from '../Icons'
 import { Portal } from '../PortalProvider/Portal'
-import { datePickerClasses } from './DatePicker.classes'
 import { wasElementClicked } from '../../utils/dom.util'
+import styles from './DatePicker.module.css'
 
 import {
   CommonProps,
@@ -34,8 +34,6 @@ export type DatePickerProps = CommonProps &
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>
   }
 
-const classes = datePickerClasses
-
 function DatePicker({
   label,
   size = 'large',
@@ -57,7 +55,7 @@ function DatePicker({
     onChange,
     getInput: () =>
       ref.current?.querySelector(
-        `input.${DateField.classes.input}`,
+        'input.lsd-date-field__input',
       ) as HTMLInputElement,
   })
 
@@ -74,8 +72,8 @@ function DatePicker({
         { ...omitCommonProps(props) },
         props.className,
         commonProps.className,
-        datePickerClasses.root,
-        datePickerClasses[size],
+        styles.root,
+        styles[size],
       )}
     >
       <DateField
@@ -84,7 +82,6 @@ function DatePicker({
         variant={variant}
         icon={withCalendar && <CalendarIcon color="primary" />}
         onIconClick={() => setOpenCalendar((prev) => !prev)}
-        // The DateField component is only controlled when the value prop is provided OR the calendar is open.
         value={isControlled || openCalendar ? input.value : undefined}
         onChange={input.onChange}
         calendarIconRef={calendarIconRef as React.RefObject<HTMLSpanElement>}
@@ -97,8 +94,6 @@ function DatePicker({
               onStartDateChange={(date) => handleDateChange(date)}
               open={openCalendar}
               onCalendarClickaway={(event) => {
-                // If the calendar icon was clicked, return and don't close the calendar here.
-                // Let the onIconClick above handle the closing.
                 if (wasElementClicked(event, calendarIconRef.current)) {
                   return
                 }
@@ -108,7 +103,7 @@ function DatePicker({
               handleRef={ref as React.RefObject<HTMLElement>}
               startDate={input.value}
               disabled={props.disabled}
-              className={datePickerClasses.calendar}
+              className={styles.calendar}
             />
           )}
         </Portal>
@@ -116,7 +111,5 @@ function DatePicker({
     </div>
   )
 }
-
-DatePicker.classes = classes
 
 export { DatePicker }

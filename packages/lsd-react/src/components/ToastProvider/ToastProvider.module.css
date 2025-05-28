@@ -1,0 +1,27 @@
+.toastContainer {
+  position: fixed;
+  transition: all 230ms cubic-bezier(0.21, 1.02, 0.73, 1);
+  z-index: 9999;
+}
+
+.topLeft,
+.topCenter,
+.topRight {
+  top: 0;
+}
+
+.bottomLeft,
+.bottomCenter,
+.bottomRight {
+  bottom: 0;
+}
+
+.topCenter,
+.bottomCenter {
+  left: 50%;
+}
+
+.topRight,
+.bottomRight {
+  right: 0;
+}

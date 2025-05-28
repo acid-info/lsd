@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { tooltipBaseClasses } from './TooltipBase.classes'
+import styles from './TooltipBase.module.css'
 
 export type TooltipBaseProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
@@ -14,8 +14,6 @@ export type TooltipBaseProps = CommonProps &
     arrowSize?: number
     rootRef?: React.Ref<HTMLDivElement>
   }
-
-const classes = tooltipBaseClasses
 
 function TooltipBase({
   children,
@@ -47,24 +45,18 @@ function TooltipBase({
     <div
       ref={rootRef}
       {...omitCommonProps(props)}
-      className={clsx(
-        commonProps.className,
-        props.className,
-        tooltipBaseClasses.root,
-      )}
+      className={clsx(commonProps.className, props.className, styles.root)}
     >
       {!arrowOffset ? (
         children
       ) : (
         <>
-          <div className={tooltipBaseClasses.arrowTip} style={arrowTipStyle} />
-          <div className={tooltipBaseClasses.content}>{children}</div>
+          <div className={styles.arrowTip} style={arrowTipStyle} />
+          <div className={styles.content}>{children}</div>
         </>
       )}
     </div>
   )
 }
-
-TooltipBase.classes = classes
 
 export { TooltipBase }

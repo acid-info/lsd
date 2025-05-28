@@ -5,12 +5,10 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { modalFooterClasses } from './ModalFooter.classes'
+import styles from './ModalFooter.module.css'
 
 export type ModalFooterProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'>
-
-const classes = modalFooterClasses
 
 function ModalFooter({ children, ...props }: ModalFooterProps) {
   const commonProps = useCommonProps(props)
@@ -18,13 +16,11 @@ function ModalFooter({ children, ...props }: ModalFooterProps) {
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, modalFooterClasses.root)}
+      className={clsx(commonProps.className, styles.root)}
     >
       {children}
     </div>
   )
 }
-
-ModalFooter.classes = classes
 
 export { ModalFooter }

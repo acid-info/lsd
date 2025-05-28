@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { modalClasses } from './Modal.classes'
+import styles from './Modal.module.css'
 import { CloseIcon } from '../Icons'
 import { Typography } from '../Typography'
 import { IconButton } from '../IconButton'
@@ -18,8 +18,6 @@ export type ModalProps = CommonProps &
     subtitle?: ReactNode
     onClose?: () => void
   }
-
-const classes = modalClasses
 
 function Modal({
   isOpen,
@@ -45,19 +43,15 @@ function Modal({
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(
-        commonProps.className,
-        modalClasses.root,
-        modalClasses[size],
-      )}
+      className={clsx(commonProps.className, styles.root, styles[size])}
       onClick={handleOverlayClick}
     >
-      <div className={clsx(modalClasses.modalContainer)}>
-        <div className={modalClasses.header}>
-          <div className={modalClasses.titleAndSubtitleContainer}>
+      <div className={clsx(styles.modalContainer)}>
+        <div className={styles.header}>
+          <div className={styles.titleAndSubtitleContainer}>
             {!!title && (
               <Typography
-                className={modalClasses.title}
+                className={styles.title}
                 component="div"
                 variant={size === 'small' ? 'h6' : 'h5'}
               >
@@ -67,7 +61,7 @@ function Modal({
 
             {!!subtitle && (
               <Typography
-                className={modalClasses.subtitle}
+                className={styles.subtitle}
                 variant={size === 'small' ? 'label2' : 'label1'}
                 component="div"
               >
@@ -78,7 +72,7 @@ function Modal({
 
           <IconButton
             onClick={onClose}
-            className={modalClasses.closeIcon}
+            className={styles.closeIcon}
             size="medium"
           >
             <CloseIcon color="primary" />
@@ -89,7 +83,5 @@ function Modal({
     </div>
   )
 }
-
-Modal.classes = classes
 
 export { Modal }

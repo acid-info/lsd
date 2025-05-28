@@ -6,15 +6,13 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { useIconButtonGroupContext } from '../IconButtonGroup/IconButtonGroup.context'
-import { iconButtonClasses } from './IconButton.classes'
+import styles from './IconButton.module.css'
 
 export type IconButtonProps = CommonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
     variant?: 'outlined' | 'filled'
     size?: 'small' | 'medium' | 'large'
   }
-
-const classes = iconButtonClasses
 
 function IconButton({
   size: sizeProp,
@@ -36,10 +34,10 @@ function IconButton({
       className={clsx(
         commonProps.className,
         props.className,
-        iconButtonClasses.root,
-        iconButtonClasses[size],
-        iconButtonClasses[variant],
-        disabled && iconButtonClasses.disabled,
+        styles.root,
+        styles[size],
+        styles[variant],
+        disabled && styles.disabled,
       )}
       disabled={disabled}
     >
@@ -47,7 +45,5 @@ function IconButton({
     </button>
   )
 }
-
-IconButton.classes = classes
 
 export { IconButton }

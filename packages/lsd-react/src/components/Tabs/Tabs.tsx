@@ -9,7 +9,7 @@ import { useHorizontalScroll } from '../../utils/useHorizontalScroll'
 import { ChevronLeftIcon, ChevronRightIcon } from '../Icons'
 import { TabItem } from '../TabItem'
 import { TabsContext } from './Tab.context'
-import { tabsClasses } from './Tabs.classes'
+import styles from './Tabs.module.css'
 
 export type TabsProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> & {
@@ -19,8 +19,6 @@ export type TabsProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
     scrollControls?: boolean
   }
-
-const classes = tabsClasses
 
 function Tabs({
   size = 'large',
@@ -56,9 +54,9 @@ function Tabs({
         className={clsx(
           commonProps.className,
           props.className,
-          tabsClasses.root,
-          fullWidth && tabsClasses.fullWidth,
-          scrollControls && canScroll && tabsClasses.withScrollControls,
+          styles.root,
+          fullWidth && styles.fullWidth,
+          scrollControls && canScroll && styles.withScrollControls,
         )}
       >
         {scrollControls && canScroll && (
@@ -67,7 +65,7 @@ function Tabs({
             name="Prev"
             disabled={scroll.left === 0}
             onClick={() => scroll.toLeft()}
-            className={tabsClasses.leftScrollControl}
+            className={styles.leftScrollControl}
           >
             <ChevronLeftIcon color="primary" />
           </TabItem>
@@ -79,7 +77,7 @@ function Tabs({
             name="Next"
             disabled={scroll.right === 0}
             onClick={() => scroll.toRight()}
-            className={tabsClasses.rightScrollControl}
+            className={styles.rightScrollControl}
           >
             <ChevronRightIcon color="primary" />
           </TabItem>
@@ -88,7 +86,5 @@ function Tabs({
     </TabsContext.Provider>
   )
 }
-
-Tabs.classes = classes
 
 export { Tabs }

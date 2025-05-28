@@ -1,0 +1,142 @@
+.root:not(.disabled):not(.error) .trigger:hover .optionLabel,
+.root:not(.disabled):not(.error) .trigger:focus .optionLabel {
+  text-decoration: underline;
+}
+
+.label {
+  display: block;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+.trigger:focus {
+  outline: none;
+}
+
+.optionLabel {
+  cursor: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.supportingText {
+  margin: 6px 14px;
+}
+
+.error .optionLabel {
+  text-decoration: line-through;
+}
+
+.disabled {
+  opacity: 0.34;
+  cursor: initial;
+}
+
+.large {
+  width: 208px;
+}
+
+.large.error {
+  width: 230px;
+}
+
+.large .label {
+  margin: 0 0 6px 18px;
+}
+
+.large .buttonContainer {
+  height: 40px;
+}
+
+.large .trigger {
+  padding: 10px 0px 10px 18px;
+}
+
+.large .icons {
+  padding: 0px 14px;
+}
+
+.medium {
+  width: 188px;
+}
+
+.medium.error {
+  width: 210px;
+}
+
+.medium .label {
+  margin: 0 0 6px 14px;
+}
+
+.medium .buttonContainer {
+  height: 32px;
+}
+
+.medium .trigger {
+  padding: 6px 0px 6px 14px;
+}
+
+.medium .icons {
+  padding: 0px 12px;
+}
+
+.small {
+  width: 164px;
+}
+
+.small.error {
+  width: 186px;
+}
+
+.small .label {
+  margin: 0 0 6px 12px;
+}
+
+.small .buttonContainer {
+  height: 28px;
+}
+
+.small .trigger {
+  padding: 6px 0px 6px 12px;
+}
+
+.small .icons {
+  padding: 0px 10px;
+}
+
+.outlined .buttonContainer {
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.underlined .buttonContainer {
+  border: 1px solid transparent;
+  border-bottom: 1px solid rgb(var(--lsd-border-primary));
+}

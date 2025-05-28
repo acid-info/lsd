@@ -1,6 +1,5 @@
 import { Global, ThemeProvider as EmotionThemeProvider } from '@emotion/react'
 import React, { useEffect } from 'react'
-import { CSSBaseline } from '../CSSBaseline'
 import { PortalProvider } from '../PortalProvider'
 import { ResizeObserverProvider } from '../ResizeObserver'
 import { Theme } from './types'
@@ -25,7 +24,6 @@ function ThemeProvider({
     <ResizeObserverProvider>
       <PortalProvider>
         <ThemeContext.Provider value={{ theme }}>
-          <CSSBaseline theme={theme} />
           {injectCssVars && <Global styles={theme.globalStyles} />}
           <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
         </ThemeContext.Provider>

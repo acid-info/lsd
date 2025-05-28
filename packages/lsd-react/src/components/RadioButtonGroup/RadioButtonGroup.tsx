@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
-import { radioButtonGroupClasses } from './RadioButtonGroup.classes'
+import styles from './RadioButtonGroup.module.css'
 import { RadioButtonGroupContext } from './RadioButtonGroup.context'
 
 export type ActiveRadioButtonType = string | readonly string[]
@@ -47,16 +47,12 @@ function RadioButtonGroup({
       <div
         ref={ref}
         {...omitCommonProps(props)}
-        className={clsx(
-          commonProps.className,
-          props.className,
-          radioButtonGroupClasses.root,
-        )}
+        className={clsx(commonProps.className, props.className, styles.root)}
       >
         <Typography
           component="span"
           variant={size === 'small' ? 'label2' : 'label1'}
-          className={radioButtonGroupClasses.label}
+          className={styles.label}
         >
           {label && label}
         </Typography>
@@ -65,7 +61,5 @@ function RadioButtonGroup({
     </RadioButtonGroupContext.Provider>
   )
 }
-
-RadioButtonGroup.classes = radioButtonGroupClasses
 
 export { RadioButtonGroup }
