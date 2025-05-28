@@ -7,7 +7,7 @@ import {
 } from '../../utils/useCommonProps'
 import { ChevronDownIcon, ChevronUpIcon } from '../Icons'
 import { Typography } from '../Typography'
-import { collapseHeaderClasses } from './CollapseHeader.classes'
+import styles from './CollapseHeader.module.css'
 
 export type CollapseHeaderProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label' | 'disabled'> & {
@@ -18,8 +18,6 @@ export type CollapseHeaderProps = CommonProps &
     onTrigger: () => void
     size?: 'small' | 'medium' | 'large'
   }
-
-const classes = collapseHeaderClasses
 
 function CollapseHeader({
   label,
@@ -38,42 +36,31 @@ function CollapseHeader({
       className={clsx(
         commonProps.className,
         props.className,
-        collapseHeaderClasses.root,
-        collapseHeaderClasses[size],
-        disabled && collapseHeaderClasses.disabled,
-        open && collapseHeaderClasses.open,
+        styles.collapseHeader,
+        styles[size],
+        disabled && styles.disabled,
+        open && styles.open,
       )}
     >
-      <button
-        className={clsx(collapseHeaderClasses.trigger)}
-        onClick={onTrigger}
-      >
+      <button className={clsx(styles.trigger)} onClick={onTrigger}>
         <Typography
           color="primary"
           component="label"
           variant={size === 'small' ? 'label2' : 'label1'}
-          className={collapseHeaderClasses.label}
+          className={styles.label}
         >
           {label}
         </Typography>
-        <div className={collapseHeaderClasses.icons}>
+        <div className={styles.icons}>
           {open ? (
-            <ChevronUpIcon
-              color="primary"
-              className={collapseHeaderClasses.menuIcon}
-            />
+            <ChevronUpIcon color="primary" className={styles.menuIcon} />
           ) : (
-            <ChevronDownIcon
-              color="primary"
-              className={collapseHeaderClasses.menuIcon}
-            />
+            <ChevronDownIcon color="primary" className={styles.menuIcon} />
           )}
         </div>
       </button>
     </div>
   )
 }
-
-CollapseHeader.classes = classes
 
 export { CollapseHeader }
