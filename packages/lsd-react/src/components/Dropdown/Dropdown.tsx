@@ -11,7 +11,7 @@ import { DropdownMenu, DropdownMenuProps } from '../DropdownMenu'
 import { ChevronDownIcon, ChevronUpIcon, ErrorIcon } from '../Icons'
 import { Portal } from '../PortalProvider/Portal'
 import { Typography } from '../Typography'
-import { dropdownClasses } from './Dropdown.classes'
+import styles from './Dropdown.module.css'
 
 export type DropdownOption = SelectOption
 
@@ -37,8 +37,6 @@ export type DropdownProps = CommonProps &
 
     menuProps?: Partial<DropdownMenuProps>
   }
-
-const classes = dropdownClasses
 
 function Dropdown({
   label,
@@ -99,57 +97,47 @@ function Dropdown({
       className={clsx(
         commonProps.className,
         props.className,
-        dropdownClasses.root,
-        dropdownClasses[size],
-        error && dropdownClasses.error,
-        disabled && dropdownClasses.disabled,
-        openState && dropdownClasses.open,
-        variant === 'outlined'
-          ? dropdownClasses.outlined
-          : dropdownClasses.underlined,
+        styles.root,
+        styles[size],
+        error && styles.error,
+        disabled && styles.disabled,
+        openState && styles.open,
+        variant === 'outlined' ? styles.outlined : styles.underlined,
       )}
     >
       {label && (
         <Typography
           htmlFor={buttonId}
-          className={dropdownClasses.label}
+          className={styles.label}
           variant="label2"
           component="label"
         >
           {label}
         </Typography>
       )}
-      <div className={dropdownClasses.buttonContainer}>
+      <div className={styles.buttonContainer}>
         <button
           id={buttonId}
-          className={clsx(dropdownClasses.trigger)}
+          className={clsx(styles.trigger)}
           onClick={onTrigger}
         >
           <Typography
             color="primary"
             component="label"
             variant={size === 'large' ? 'label1' : 'label2'}
-            className={dropdownClasses.optionLabel}
+            className={styles.optionLabel}
           >
             {selected.length > 0
               ? selected.map((opt) => opt.name).join(', ')
               : triggerLabel}
           </Typography>
-          <div className={dropdownClasses.icons}>
-            {error && (
-              <ErrorIcon color="primary" className={dropdownClasses.icon} />
-            )}
+          <div className={styles.icons}>
+            {error && <ErrorIcon color="primary" className={styles.icon} />}
 
             {openState ? (
-              <ChevronUpIcon
-                color="primary"
-                className={dropdownClasses.menuIcon}
-              />
+              <ChevronUpIcon color="primary" className={styles.menuIcon} />
             ) : (
-              <ChevronDownIcon
-                color="primary"
-                className={dropdownClasses.menuIcon}
-              />
+              <ChevronDownIcon color="primary" className={styles.menuIcon} />
             )}
           </div>
         </button>
@@ -158,7 +146,7 @@ function Dropdown({
         <Typography
           variant={size === 'large' ? 'label1' : 'label2'}
           component="p"
-          className={dropdownClasses.supportingText}
+          className={styles.supportingText}
         >
           {supportingText}
         </Typography>
@@ -190,7 +178,5 @@ function Dropdown({
     </div>
   )
 }
-
-Dropdown.classes = classes
 
 export { Dropdown }

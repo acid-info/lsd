@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { iconButtonGroupClasses } from './IconButtonGroup.classes'
+import styles from './IconButtonGroup.module.css'
 import { IconButtonGroupContext } from './IconButtonGroup.context'
 
 export type IconButtonGroupProps = CommonProps &
@@ -14,8 +14,6 @@ export type IconButtonGroupProps = CommonProps &
     size?: 'small' | 'medium' | 'large'
     disabled?: boolean
   }
-
-const classes = iconButtonGroupClasses
 
 function IconButtonGroup({
   size = 'large',
@@ -32,10 +30,10 @@ function IconButtonGroup({
       className={clsx(
         commonProps.className,
         props.className,
-        iconButtonGroupClasses.root,
-        iconButtonGroupClasses[size],
-        iconButtonGroupClasses[variant],
-        disabled && iconButtonGroupClasses.disabled,
+        styles.root,
+        styles[size],
+        styles[variant],
+        disabled && styles.disabled,
       )}
     >
       <IconButtonGroupContext.Provider
@@ -50,7 +48,5 @@ function IconButtonGroup({
     </div>
   )
 }
-
-IconButtonGroup.classes = classes
 
 export { IconButtonGroup }

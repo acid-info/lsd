@@ -1,0 +1,19 @@
+.root {
+  width: fit-content;
+}
+
+.calendar {
+  border-top: none !important;
+}
+
+.large :global(.lsd-date-field.large) {
+  width: 318px;
+}
+
+.medium :global(.lsd-date-field.medium) {
+  width: 290px;
+}
+
+.small :global(.lsd-date-field.small) {
+  width: 262px;
+}

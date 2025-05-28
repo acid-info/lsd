@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import omit from 'lodash/omit'
 import pick from 'lodash/pick'
 import { GlobalTypographyStyles } from '../components/Theme'
-import { typographyClasses } from '../components/Typography/Typography.classes'
+import styles from '../components/Typography/Typography.module.css'
 
 export type CommonProps = {
   genericFontFamily?: 'inherit' | GlobalTypographyStyles['genericFontFamily']
@@ -14,9 +14,9 @@ export const commonPropKeys: [keyof CommonProps] = ['genericFontFamily']
 export const useCommonProps = ({ genericFontFamily }: CommonProps) => {
   return {
     className: clsx(
-      genericFontFamily === 'serif' && typographyClasses.serif,
-      genericFontFamily === 'monospace' && typographyClasses.monospace,
-      genericFontFamily === 'sans-serif' && typographyClasses.sansSerif,
+      genericFontFamily === 'serif' && styles.serif,
+      genericFontFamily === 'monospace' && styles.monospace,
+      genericFontFamily === 'sans-serif' && styles.sansSerif,
     ),
   }
 }

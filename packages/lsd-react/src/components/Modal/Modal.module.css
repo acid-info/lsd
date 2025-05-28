@@ -1,0 +1,58 @@
+.root {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modalContainer {
+  position: relative;
+  background: rgb(var(--lsd-surface-primary));
+  padding: 20px;
+  max-width: 90%;
+  box-sizing: border-box;
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.closeIcon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.titleAndSubtitleContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.large .modalContainer {
+  min-width: 960px;
+}
+
+.medium .modalContainer {
+  min-width: 768px;
+}
+
+.small .modalContainer {
+  min-width: 614px;
+}
+
+.xsmall .modalContainer {
+  min-width: 490px;
+}

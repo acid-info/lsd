@@ -1,0 +1,150 @@
+.root {
+  box-sizing: border-box;
+}
+
+.root :global(.lsd-date-field.outlined) {
+  border: none;
+}
+
+.root :global(.lsd-date-field .lsd-date-field__icon) {
+  padding: 8px;
+}
+
+.label {
+  display: block;
+}
+
+.inputContainer {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+}
+
+.calendar {
+  border-top: none !important;
+}
+
+.calendar :global(.lsd-tooltip-base__arrow-tip) {
+  transition: left 0.2s ease-in-out;
+}
+
+.openCalendar .inputContainer {
+  border-bottom: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.icon {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.disabled {
+  opacity: 0.3;
+}
+
+.supportingText {
+  position: absolute;
+}
+
+.separator {
+  margin-left: 3px;
+  width: 1px;
+  height: 100%;
+  border-left: 1px solid transparent;
+}
+
+.outlined {
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.outlined .separator {
+  border-left: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.large {
+  width: 318px;
+}
+
+.large :global(.lsd-date-field.large) {
+  width: 156px;
+}
+
+.large :global(.lsd-date-field .lsd-date-field__input) {
+  padding-right: 0;
+}
+
+.large :global(.lsd-date-field .lsd-date-field__icon) {
+  padding: 11px 12px;
+}
+
+.large .label {
+  margin: 0 0 6px 18px;
+}
+
+.large .inputContainer {
+  height: 40px;
+}
+
+.large .supportingText {
+  margin: 6px 18px 0 18px;
+}
+
+.medium {
+  width: 290px;
+}
+
+.medium :global(.lsd-date-field.medium) {
+  width: 142px;
+}
+
+.medium :global(.lsd-date-field .lsd-date-field__input) {
+  padding-right: 0;
+}
+
+.medium :global(.lsd-date-field .lsd-date-field__icon) {
+  padding: 7px 8px;
+}
+
+.medium .label {
+  margin: 0 0 6px 14px;
+}
+
+.medium .inputContainer {
+  height: 32px;
+}
+
+.medium .supportingText {
+  margin: 6px 14px 0 14px;
+}
+
+.small {
+  width: 262px;
+}
+
+.small :global(.lsd-date-field.small) {
+  width: 128px;
+}
+
+.small :global(.lsd-date-field .lsd-date-field__input) {
+  padding-right: 0;
+}
+
+.small :global(.lsd-date-field .lsd-date-field__icon) {
+  padding: 5px 7px;
+}
+
+.small .label {
+  margin: 0 0 6px 12px;
+}
+
+.small .inputContainer {
+  height: 28px;
+}
+
+.small .supportingText {
+  margin: 6px 12px 0 12px;
+}

@@ -8,7 +8,7 @@ import {
 import { DropdownOption } from '../Dropdown'
 import { TableBody } from '../TableBody'
 import { TableHeader } from '../TableHeader'
-import { tableClasses } from './Table.classes'
+import styles from './Table.module.css'
 import { TableContext } from './Table.context'
 
 export type TableProps = CommonProps &
@@ -19,8 +19,6 @@ export type TableProps = CommonProps &
     header?: React.ReactNode
     toolbar?: React.ReactNode
   }
-
-const classes = tableClasses
 
 function Table({
   size = 'large',
@@ -37,11 +35,7 @@ function Table({
     <TableContext.Provider value={{ size, type, headerOptions }}>
       <div
         {...omitCommonProps(props)}
-        className={clsx(
-          commonProps.className,
-          tableClasses.root,
-          tableClasses[size],
-        )}
+        className={clsx(commonProps.className, styles.root, styles[size])}
       >
         <TableHeader>{header}</TableHeader>
         <TableBody toolbar={toolbar} options={headerOptions}>
@@ -51,7 +45,5 @@ function Table({
     </TableContext.Provider>
   )
 }
-
-Table.classes = classes
 
 export { Table }

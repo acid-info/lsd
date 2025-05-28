@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { toastClasses } from './Toast.classes'
+import styles from './Toast.module.css'
 import { CloseIcon, ErrorIcon, LsdIconProps } from '../Icons'
 import { IconButton } from '../IconButton'
 import { Typography } from '../Typography'
@@ -20,8 +20,6 @@ export type ToastProps = CommonProps &
     icon?: React.ComponentType<LsdIconProps> | null | false
     actions?: React.ReactNode
   }
-
-const classes = toastClasses
 
 function Toast({
   title,
@@ -46,29 +44,25 @@ function Toast({
       className={clsx(
         props.className,
         commonProps.className,
-        toastClasses.root,
-        toastClasses[size],
+        styles.root,
+        styles[size],
       )}
     >
       <div
         className={clsx(
-          isInline
-            ? toastClasses.inlineIconContainer
-            : toastClasses.columnIconContainer,
+          isInline ? styles.inlineIconContainer : styles.columnIconContainer,
         )}
       >
-        {Icon && <Icon color="primary" className={toastClasses.icon} />}
+        {Icon && <Icon color="primary" className={styles.icon} />}
       </div>
 
       <div
-        className={
-          isInline ? toastClasses.inlineContainer : toastClasses.columnContainer
-        }
+        className={isInline ? styles.inlineContainer : styles.columnContainer}
       >
-        <div className={clsx(toastClasses.textContainer)}>
+        <div className={clsx(styles.textContainer)}>
           {!!title && (
             <Typography
-              className={toastClasses.title}
+              className={styles.title}
               component="div"
               variant={size === 'small' ? 'label2' : 'label1'}
             >
@@ -78,7 +72,7 @@ function Toast({
 
           {!!information && (
             <Typography
-              className={toastClasses.information}
+              className={styles.information}
               component="div"
               variant={size === 'small' ? 'label2' : 'label1'}
             >
@@ -90,10 +84,10 @@ function Toast({
         {!!actions && (
           <div
             className={clsx(
-              toastClasses.buttonContainer,
+              styles.buttonContainer,
               isInline
-                ? toastClasses.inlineButtonContainer
-                : toastClasses.columnButtonContainer,
+                ? styles.inlineButtonContainer
+                : styles.columnButtonContainer,
             )}
           >
             {actions}
@@ -103,7 +97,7 @@ function Toast({
 
       <IconButton
         onClick={onClose}
-        className={toastClasses.closeButton}
+        className={styles.closeButton}
         size="medium"
       >
         <CloseIcon color="primary" />
@@ -111,7 +105,5 @@ function Toast({
     </div>
   )
 }
-
-Toast.classes = classes
 
 export { Toast }

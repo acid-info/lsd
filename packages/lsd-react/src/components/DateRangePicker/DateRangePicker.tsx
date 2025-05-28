@@ -11,7 +11,6 @@ import { Calendar, CalendarType } from '../Calendar'
 import { DateField, DateFieldProps } from '../DateField'
 import { CalendarIcon } from '../Icons'
 import { Portal } from '../PortalProvider/Portal'
-import { dateRangePickerClasses } from './DateRangePicker.classes'
 import { wasElementClicked } from '../../utils/dom.util'
 import { DatePickerProps } from '../DatePicker'
 import { Typography } from '../Typography'
@@ -21,6 +20,7 @@ import {
   omitCommonProps,
   pickCommonProps,
 } from '../../utils/useCommonProps'
+import styles from './DateRangePicker.module.css'
 
 export type DateRangePickerProps = CommonProps &
   Omit<DatePickerProps, 'value' | 'clearButton' | 'onChange'> & {
@@ -29,8 +29,6 @@ export type DateRangePickerProps = CommonProps &
     onStartDateChange: DatePickerProps['onChange']
     onEndDateChange: DatePickerProps['onChange']
   }
-
-const classes = dateRangePickerClasses
 
 function DateRangePicker({
   startValue: startValueProp,
@@ -59,7 +57,7 @@ function DateRangePicker({
     onChange: onStartDateChange,
     getInput: () =>
       ref.current?.querySelectorAll(
-        `input.${DateField.classes.input}`,
+        'input.lsd-date-field__input',
       )[0] as HTMLInputElement,
   })
 
@@ -69,7 +67,7 @@ function DateRangePicker({
     onChange: onEndDateChange,
     getInput: () =>
       ref.current?.querySelectorAll(
-        `input.${DateField.classes.input}`,
+        'input.lsd-date-field__input',
       )[1] as HTMLInputElement,
   })
 
@@ -113,19 +111,15 @@ function DateRangePicker({
         { ...omitCommonProps(props) },
         commonProps.className,
         props.className,
-        dateRangePickerClasses.root,
-        dateRangePickerClasses[size],
-        withCalendar && dateRangePickerClasses.withCalendar,
-        isCalendarOpen && dateRangePickerClasses.openCalendar,
-        disabled && dateRangePickerClasses.disabled,
+        styles.root,
+        styles[size],
+        withCalendar && styles.withCalendar,
+        isCalendarOpen && styles.openCalendar,
+        disabled && styles.disabled,
       )}
     >
       {label && (
-        <Typography
-          className={dateRangePickerClasses.label}
-          variant="label2"
-          component="label"
-        >
+        <Typography className={styles.label} variant="label2" component="label">
           {label}
         </Typography>
       )}
@@ -133,8 +127,8 @@ function DateRangePicker({
       <div
         className={clsx(
           props.className,
-          dateRangePickerClasses.inputContainer,
-          variant === 'outlined' && dateRangePickerClasses.outlined,
+          styles.inputContainer,
+          variant === 'outlined' && styles.outlined,
         )}
       >
         <DateField
@@ -143,7 +137,6 @@ function DateRangePicker({
             startCalendarIconRef as React.RefObject<HTMLSpanElement>
           }
           icon={withCalendar && <CalendarIcon color="primary" />}
-          // The DateField component is only controlled when the value prop is provided OR the calendar is open.
           value={
             isStartValueControlled || isCalendarOpen
               ? startInput.value
@@ -158,7 +151,7 @@ function DateRangePicker({
           {...dateFieldProps}
         />
 
-        <div className={dateRangePickerClasses.separator} />
+        <div className={styles.separator} />
 
         <DateField
           variant={variant}
@@ -166,7 +159,6 @@ function DateRangePicker({
             endCalendarIconRef as React.RefObject<HTMLSpanElement>
           }
           icon={withCalendar && <CalendarIcon color="primary" />}
-          // The DateField component is only controlled when the value prop is provided OR the calendar is open.
           value={
             isEndValueControlled || isCalendarOpen ? endInput.value : undefined
           }
@@ -181,7 +173,7 @@ function DateRangePicker({
       </div>
 
       {supportingText && (
-        <div className={clsx(dateRangePickerClasses.supportingText)}>
+        <div className={clsx(styles.supportingText)}>
           <Typography variant={'label2'} component="p">
             {supportingText}
           </Typography>
@@ -195,8 +187,6 @@ function DateRangePicker({
             onStartDateChange={calendarStartDateChange}
             onEndDateChange={calendarEndDateChange}
             onCalendarClickaway={(event) => {
-              // If a calendar icon was clicked, return and don't close the calendar here.
-              // Let the calendar icon's onClick handle the closing / opening.
               if (
                 wasElementClicked(event, endCalendarIconRef.current) ||
                 wasElementClicked(event, startCalendarIconRef.current)
@@ -214,7 +204,7 @@ function DateRangePicker({
             disabled={disabled}
             startDate={startInput.value}
             endDate={endInput.value}
-            className={dateRangePickerClasses.calendar}
+            className={styles.calendar}
             tooltipArrowOffset={getCalendarTooltipArrowOffset(
               calendarType,
               size,
@@ -226,7 +216,5 @@ function DateRangePicker({
     </div>
   )
 }
-
-DateRangePicker.classes = classes
 
 export { DateRangePicker }

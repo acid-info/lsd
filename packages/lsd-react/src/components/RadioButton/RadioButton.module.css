@@ -1,0 +1,45 @@
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.root:not(.disabled):hover {
+  text-decoration: underline;
+}
+
+.root:not(.disabled) .input {
+  cursor: pointer;
+}
+
+.disabled {
+  opacity: 0.34;
+}
+
+.label {
+  margin-left: 18px;
+}
+
+.large .label {
+  margin-left: 18px;
+}
+
+.medium .label {
+  margin-left: 14px;
+}
+
+.small .label {
+  margin-left: 12px;
+}

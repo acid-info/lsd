@@ -5,7 +5,7 @@ import {
   toast as hotToast,
 } from 'react-hot-toast/headless'
 import { Toast, ToastProps } from '../Toast'
-import { toastProviderClasses } from './ToastProvider.classes'
+import styles from './ToastProvider.module.css'
 import { ToastPosition } from 'react-hot-toast'
 import { Portal } from '../PortalProvider/Portal'
 import clsx from 'clsx'
@@ -32,23 +32,22 @@ const getPositionStyle = (
   let positionClassName = ''
   const isCenter = position.includes('center')
   const isBottom = position.includes('bottom')
-  // Dynamic style part, not included in CSS classes.
   const transform = `translateY(${isBottom ? -offset : offset}px) translateX(${
     isCenter ? '-50%' : '0'
   })`
 
   if (position === 'top-left') {
-    positionClassName = toastProviderClasses.topLeft
+    positionClassName = styles.topLeft
   } else if (position === 'top-center') {
-    positionClassName = toastProviderClasses.topCenter
+    positionClassName = styles.topCenter
   } else if (position === 'top-right') {
-    positionClassName = toastProviderClasses.topRight
+    positionClassName = styles.topRight
   } else if (position === 'bottom-left') {
-    positionClassName = toastProviderClasses.bottomLeft
+    positionClassName = styles.bottomLeft
   } else if (position === 'bottom-center') {
-    positionClassName = toastProviderClasses.bottomCenter
+    positionClassName = styles.bottomCenter
   } else if (position === 'bottom-right') {
-    positionClassName = toastProviderClasses.bottomRight
+    positionClassName = styles.bottomRight
   }
 
   return {
@@ -108,7 +107,7 @@ function ToastContainer({
             onMouseLeave={endPause}
             {...containerProps}
             className={clsx(
-              toastProviderClasses.toastContainer,
+              styles.toastContainer,
               positionClassName,
               className,
             )}
@@ -161,18 +160,11 @@ function ToastProvider({
   >(new Map())
 
   const showToast: ShowToastType = (content, showToastOptions) => {
-    // There are 2 ways to define the toast options:
-    // 1. Globally, in the ToastProvider component's props.
-    // 2. Per-toast, in the showToast function's second argument.
-    // The per-toast options override the global options.
     const options = {
       ...providerToastOptions,
       ...showToastOptions,
     }
 
-    // The toast function displays the toast, and returns its ID.
-    // The message is '' because we're not using it - currently
-    // we use the Toast component's 'title' and 'information' props to display info.
     const toastId = hotToast('', { duration: options?.duration })
 
     if (content) {

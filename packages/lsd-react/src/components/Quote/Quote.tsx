@@ -6,14 +6,12 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { Typography } from '../Typography'
-import { quoteClasses } from './Quote.classes'
+import styles from './Quote.module.css'
 
 export type QuoteProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
     mode?: 'indented-line' | 'parentheses'
   }
-
-const classes = quoteClasses
 
 function Quote({ mode = 'indented-line', children, ...props }: QuoteProps) {
   const commonProps = useCommonProps(props)
@@ -25,10 +23,10 @@ function Quote({ mode = 'indented-line', children, ...props }: QuoteProps) {
         className={clsx(
           commonProps.className,
           props.className,
-          quoteClasses.root,
+          styles.root,
           mode && mode === 'parentheses'
-            ? quoteClasses.parentheses
-            : quoteClasses.indentedInline,
+            ? styles.parentheses
+            : styles.indentedInline,
         )}
       >
         <Typography color="primary" component="label" variant={'label1'}>
@@ -38,7 +36,5 @@ function Quote({ mode = 'indented-line', children, ...props }: QuoteProps) {
     </>
   )
 }
-
-Quote.classes = classes
 
 export { Quote }
