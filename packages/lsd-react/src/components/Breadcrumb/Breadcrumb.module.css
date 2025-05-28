@@ -1,4 +1,4 @@
-.root {
+.breadcrumb {
   &.disabled .list {
     opacity: 0.34;
     cursor: initial;

@@ -1,4 +1,4 @@
-.root {
+.calendar {
   border: 1px solid rgb(var(--lsd-border-primary));
   visibility: hidden;
   position: absolute !important;
