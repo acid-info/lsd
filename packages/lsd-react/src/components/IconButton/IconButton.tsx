@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { useIconButtonGroupContext } from '../IconButtonGroup/IconButtonGroup.context'
-import styles from './IconButton.module.css'
+import styles from '../IconButtonGroup/IconButtonGroup.module.css'
 
 export type IconButtonProps = CommonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -34,7 +34,7 @@ function IconButton({
       className={clsx(
         commonProps.className,
         props.className,
-        styles['root-iconButton'],
+        styles.iconButton,
         styles[size],
         styles[variant],
         disabled && styles.disabled,
