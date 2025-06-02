@@ -7,7 +7,7 @@ import {
 } from '../../utils/useCommonProps'
 import { useCardContext } from '../Card/Card.context'
 import { Typography } from '../Typography'
-import styles from './CardHeader.module.css'
+import styles from '../Card/Card.module.css'
 
 export type CardHeaderProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
@@ -29,7 +29,7 @@ function CardHeader({
       className={clsx(
         commonProps.className,
         props.className,
-        styles['root-cardheader'],
+        styles.cardHeader,
         styles[size],
       )}
     >
