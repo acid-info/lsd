@@ -8,7 +8,7 @@ import {
 import { Checkbox } from '../Checkbox'
 import { RadioButton } from '../RadioButton'
 import { useTableContext } from '../Table/Table.context'
-import styles from './TableRow.module.css'
+import styles from '../Table/Table.module.css'
 
 export type TableRowProps = CommonProps &
   React.HTMLAttributes<HTMLDivElement> & {
@@ -29,11 +29,7 @@ function TableRow({
   return (
     <tr
       {...omitCommonProps(props)}
-      className={clsx(
-        commonProps.className,
-        props.className,
-        styles['root-tableRow'],
-      )}
+      className={clsx(commonProps.className, props.className, styles.tableRow)}
     >
       {type === 'checkbox' && (
         <td className="lsd-table-item">

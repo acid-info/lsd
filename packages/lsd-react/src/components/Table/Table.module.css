@@ -4,6 +4,67 @@
   flex-direction: column;
 }
 
-.root-table > :global(.lsd-table-header) {
+.root-table > .tableHeader {
   margin-bottom: -1px;
+}
+
+.tableHeader {
+  box-sizing: border-box;
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.tableItem {
+  border: 1px solid rgb(var(--lsd-border-primary));
+
+  &:has(> label) {
+    width: 40px;
+  }
+
+  &:has(> label) input {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    margin: auto;
+  }
+
+  &:has(> label) span {
+    margin-left: 14px !important;
+  }
+
+  &.large {
+    padding: 10px;
+  }
+
+  &.medium {
+    padding: 6px 8px;
+  }
+
+  &.small {
+    padding: 6px;
+  }
+}
+
+.tableBody table {
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: fixed;
+  width: 100%;
+  height: auto;
+
+  tr:first-of-type td label:has(input[type='radio']) {
+    display: none;
+  }
+}
+
+.toolbar {
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid rgb(var(--lsd-border-primary));
+  border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tableRow {
+  align-items: center;
 }

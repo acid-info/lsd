@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import styles from './TableHeader.module.css'
+import styles from '../Table/Table.module.css'
 
 export type TableHeaderProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {
@@ -25,7 +25,7 @@ function TableHeader({
       className={clsx(
         commonProps.className,
         props.className,
-        styles['root-tableheader'],
+        styles.tableHeader,
       )}
     >
       {children}
