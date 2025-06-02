@@ -6,7 +6,7 @@ import {
   useCommonProps,
 } from '../../utils/useCommonProps'
 import { DropdownOption } from '../Dropdown'
-import styles from './TableBody.module.css'
+import styles from '../Table/Table.module.css'
 
 export type TableBodyProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'buttonLabel'> & {
@@ -29,11 +29,7 @@ function TableBody({
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(
-        commonProps.className,
-        props.className,
-        styles['root-tablebody'],
-      )}
+      className={clsx(commonProps.className, props.className, styles.tableBody)}
     >
       {toolbar && <div className={clsx(styles.toolbar)}>{toolbar}</div>}
       <table>{children}</table>
