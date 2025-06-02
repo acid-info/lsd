@@ -50,7 +50,7 @@ function RadioButtonGroup({
         className={clsx(
           commonProps.className,
           props.className,
-          styles['root-radiobuttongroup'],
+          styles['root-radioButtonGroup'],
         )}
       >
         <Typography

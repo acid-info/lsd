@@ -77,7 +77,7 @@ function NumberInput({
       className={clsx(
         props.className,
         commonProps.className,
-        styles['root-numberinput'],
+        styles['root-numberInput'],
         styles[size],
         disabled && styles.disabled,
         error && styles.error,

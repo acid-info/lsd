@@ -48,7 +48,7 @@ function DropdownMenu({
       className={clsx(
         commonProps.className,
         props.className,
-        styles['root-dropdownmenu'],
+        styles['root-dropdownMenu'],
         styles[size],
         open && styles.open,
       )}

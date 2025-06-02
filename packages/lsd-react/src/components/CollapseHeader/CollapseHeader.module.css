@@ -1,4 +1,4 @@
-.root-collapseheader {
+.root-collapseHeader {
   box-sizing: border-box;
 
   &.disabled .trigger {

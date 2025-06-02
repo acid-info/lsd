@@ -33,7 +33,7 @@ function CheckboxGroup({
         className={clsx(
           commonProps.className,
           props.className,
-          styles['root-checkboxgroup'],
+          styles['root-checkboxGroup'],
         )}
       >
         <Typography

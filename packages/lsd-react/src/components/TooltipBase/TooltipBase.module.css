@@ -1,4 +1,4 @@
-.root-tooltipbase {
+.root-tooltipBase {
   border: 1px solid rgb(var(--lsd-border-primary));
   position: relative;
 }

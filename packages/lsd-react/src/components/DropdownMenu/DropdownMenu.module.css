@@ -1,4 +1,4 @@
-.root-dropdownmenu {
+.root-dropdownMenu {
   position: absolute;
   top: 0;
   left: 0;
@@ -13,11 +13,11 @@
   border-top: 0;
 }
 
-.root-dropdownmenu > div {
+.root-dropdownMenu > div {
   border: 0;
 }
 
-.root-dropdownmenu > div:not(:last-child) {
+.root-dropdownMenu > div:not(:last-child) {
   border-bottom: 1px solid rgb(var(--lsd-border-primary));
 }
 
