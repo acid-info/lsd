@@ -99,7 +99,7 @@ function Autocomplete({
       className={clsx(
         props.className,
         commonProps.className,
-        styles.autocomplete,
+        styles['root-autocomplete'],
         styles[size],
         disabled && styles.disabled,
         // Do we need to remove below line? No withIcon class defined

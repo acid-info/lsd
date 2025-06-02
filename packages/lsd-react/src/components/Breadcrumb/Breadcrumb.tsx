@@ -86,7 +86,7 @@ function Breadcrumb({
       className={clsx(
         props.className,
         commonProps.className,
-        styles.breadcrumb,
+        styles['root-breadcrumb'],
         disabled && styles.disabled,
         // Do we need to remove below line? No open class defined
         // open && breadcrumbClasses.open,

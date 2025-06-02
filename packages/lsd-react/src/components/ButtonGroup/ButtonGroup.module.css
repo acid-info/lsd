@@ -1,4 +1,4 @@
-.buttonGroup {
+.root-buttonGroup {
   display: flex;
   flex-direction: row;
 }

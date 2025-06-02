@@ -71,7 +71,7 @@ function DateField({
         { ...omitCommonProps(props) },
         props.className,
         commonProps.className,
-        styles.root,
+        styles['root-datefield'],
         styles[size],
         disabled && styles.disabled,
         error && styles.error,

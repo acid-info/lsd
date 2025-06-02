@@ -1,5 +1,5 @@
-.root:not(.disabled):not(.error) .trigger:hover .optionLabel,
-.root:not(.disabled):not(.error) .trigger:focus .optionLabel {
+.root-dropdown:not(.disabled):not(.error) .trigger:hover .optionLabel,
+.root-dropdown:not(.disabled):not(.error) .trigger:focus .optionLabel {
   text-decoration: underline;
 }
 

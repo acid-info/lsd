@@ -77,7 +77,7 @@ function Checkbox({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.checkbox,
+        styles['root-checkbox'],
         styles[size],
         focused && styles.focused,
         disabled && styles.disabled,

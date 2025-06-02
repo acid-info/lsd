@@ -30,7 +30,7 @@ function ButtonGroup({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.buttonGroup,
+        styles['root-buttonGroup'],
         styles[size],
         styles[variant],
         disabled && styles.disabled,

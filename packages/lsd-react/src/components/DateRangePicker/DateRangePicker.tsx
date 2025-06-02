@@ -111,7 +111,7 @@ function DateRangePicker({
         { ...omitCommonProps(props) },
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-dateRangePicker'],
         styles[size],
         withCalendar && styles.withCalendar,
         isCalendarOpen && styles.openCalendar,

@@ -20,7 +20,11 @@ function Card({ size = 'large', children, ...props }: CardProps) {
     <CardContext.Provider value={{ size }}>
       <div
         {...omitCommonProps(props)}
-        className={clsx(commonProps.className, styles.card, styles[size])}
+        className={clsx(
+          commonProps.className,
+          styles['root-card'],
+          styles[size],
+        )}
       >
         {children}
       </div>

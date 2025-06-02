@@ -29,7 +29,11 @@ function TableRow({
   return (
     <tr
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, props.className, styles.root)}
+      className={clsx(
+        commonProps.className,
+        props.className,
+        styles['root-tableRow'],
+      )}
     >
       {type === 'checkbox' && (
         <td className="lsd-table-item">

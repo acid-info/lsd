@@ -29,7 +29,11 @@ function TableBody({
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, props.className, styles.root)}
+      className={clsx(
+        commonProps.className,
+        props.className,
+        styles['root-tablebody'],
+      )}
     >
       {toolbar && <div className={clsx(styles.toolbar)}>{toolbar}</div>}
       <table>{children}</table>

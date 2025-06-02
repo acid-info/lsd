@@ -16,7 +16,7 @@ function ModalBody({ children, ...props }: ModalBodyProps) {
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, styles.root)}
+      className={clsx(commonProps.className, styles['root-modalbody'])}
     >
       {children}
     </div>

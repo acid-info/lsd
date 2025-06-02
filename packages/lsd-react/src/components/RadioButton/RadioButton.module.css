@@ -1,4 +1,4 @@
-.root {
+.root-radiobutton {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -16,11 +16,11 @@
   height: 100%;
 }
 
-.root:not(.disabled):hover {
+.root-radiobutton:not(.disabled):hover {
   text-decoration: underline;
 }
 
-.root:not(.disabled) .input {
+.root-radiobutton:not(.disabled) .input {
   cursor: pointer;
 }
 

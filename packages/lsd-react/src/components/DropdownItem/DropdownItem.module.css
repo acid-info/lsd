@@ -1,4 +1,4 @@
-.root {
+.root-dropdownitem {
   width: 100%;
   box-sizing: border-box;
   display: flex;
@@ -7,17 +7,17 @@
   border: 1px solid rgb(var(--lsd-border-primary));
 }
 
-.root:not(.disabled) {
+.root-dropdownitem:not(.disabled) {
   cursor: pointer;
 }
 
-.root:not(.disabled):hover .label,
-.root:not(.disabled):focus .label {
+.root-dropdownitem:not(.disabled):hover .label,
+.root-dropdownitem:not(.disabled):focus .label {
   text-decoration: underline;
 }
 
-.root:not(.disabled):hover,
-.root:not(.disabled):focus {
+.root-dropdownitem:not(.disabled):hover,
+.root-dropdownitem:not(.disabled):focus {
   outline: none;
 }
 

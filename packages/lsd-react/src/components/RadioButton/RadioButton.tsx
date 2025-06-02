@@ -72,7 +72,7 @@ function RadioButton({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-radiobutton'],
         styles[size],
         disabled && styles.disabled,
       )}

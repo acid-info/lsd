@@ -43,7 +43,11 @@ function Modal({
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, styles.root, styles[size])}
+      className={clsx(
+        commonProps.className,
+        styles['root-modal'],
+        styles[size],
+      )}
       onClick={handleOverlayClick}
     >
       <div className={clsx(styles.modalContainer)}>

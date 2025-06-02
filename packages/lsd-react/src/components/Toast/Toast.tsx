@@ -44,7 +44,7 @@ function Toast({
       className={clsx(
         props.className,
         commonProps.className,
-        styles.root,
+        styles['root-toast'],
         styles[size],
       )}
     >

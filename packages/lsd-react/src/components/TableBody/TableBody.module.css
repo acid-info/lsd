@@ -1,4 +1,4 @@
-.root table {
+.root-tablebody table {
   border-collapse: collapse;
   text-align: center;
   table-layout: fixed;
@@ -6,7 +6,7 @@
   height: auto;
 }
 
-.root table tr:first-of-type td label:has(input[type='radio']) {
+.root-tablebody table tr:first-of-type td label:has(input[type='radio']) {
   display: none;
 }
 

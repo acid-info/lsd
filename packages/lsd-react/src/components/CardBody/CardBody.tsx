@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import styles from '../Card/Card.module.css'
+import styles from './CardBody.module.css'
 
 export type CardBodyProps = CommonProps &
   Omit<React.HTMLAttributes<HTMLDivElement>, 'label'> & {}
@@ -16,7 +16,11 @@ function CardBody({ children, ...props }: CardBodyProps) {
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, props.className, styles.cardBody)}
+      className={clsx(
+        commonProps.className,
+        props.className,
+        styles['root-cardbody'],
+      )}
     >
       {children}
     </div>
