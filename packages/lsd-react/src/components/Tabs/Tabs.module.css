@@ -1,4 +1,4 @@
-.root {
+.root-tabs {
   display: flex;
   flex-direction: row;
   overflow: auto;
@@ -7,11 +7,11 @@
   border-bottom: 1px solid rgb(var(--lsd-border-primary));
 }
 
-.root > * {
+.root-tabs > * {
   flex-shrink: 0;
 }
 
-.root :global(.lsd-tab-item) {
+.root-tabs :global(.lsd-tab-item) {
   border-bottom: none;
 }
 
@@ -25,11 +25,11 @@
   flex: 1 0;
 }
 
-.root::-webkit-scrollbar {
+.root-tabs::-webkit-scrollbar {
   display: none;
 }
 
-.root {
+.root-tabs {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

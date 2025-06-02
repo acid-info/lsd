@@ -35,7 +35,7 @@ function LsdIcon(
         className={clsx(
           commonProps.className,
           className,
-          styles.root,
+          styles['root-lsdicon'],
           styles[size],
           color && styles[color],
           metadata?.filled && styles.filled,

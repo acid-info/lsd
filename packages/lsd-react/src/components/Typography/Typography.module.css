@@ -2,7 +2,7 @@
   font-family: var(--lsd-typography-generic-font-family);
 }
 
-.root {
+.root-typography {
   color: rgb(var(--lsd-text-primary));
 }
 

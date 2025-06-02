@@ -1,9 +1,9 @@
-.root {
+.root-table {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-.root > :global(.lsd-table-header) {
+.root-table > :global(.lsd-table-header) {
   margin-bottom: -1px;
 }

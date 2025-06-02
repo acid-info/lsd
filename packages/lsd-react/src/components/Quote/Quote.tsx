@@ -23,7 +23,7 @@ function Quote({ mode = 'indented-line', children, ...props }: QuoteProps) {
         className={clsx(
           commonProps.className,
           props.className,
-          styles.root,
+          styles['root-quote'],
           mode && mode === 'parentheses'
             ? styles.parentheses
             : styles.indentedInline,

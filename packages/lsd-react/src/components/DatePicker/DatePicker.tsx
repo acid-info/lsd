@@ -72,7 +72,7 @@ function DatePicker({
         { ...omitCommonProps(props) },
         props.className,
         commonProps.className,
-        styles.root,
+        styles['root-datePicker'],
         styles[size],
       )}
     >

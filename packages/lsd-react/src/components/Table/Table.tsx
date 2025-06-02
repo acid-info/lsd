@@ -35,7 +35,11 @@ function Table({
     <TableContext.Provider value={{ size, type, headerOptions }}>
       <div
         {...omitCommonProps(props)}
-        className={clsx(commonProps.className, styles.root, styles[size])}
+        className={clsx(
+          commonProps.className,
+          styles['root-table'],
+          styles[size],
+        )}
       >
         <TableHeader>{header}</TableHeader>
         <TableBody toolbar={toolbar} options={headerOptions}>

@@ -22,7 +22,11 @@ function TableHeader({
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, props.className, styles.root)}
+      className={clsx(
+        commonProps.className,
+        props.className,
+        styles['root-tableheader'],
+      )}
     >
       {children}
     </div>

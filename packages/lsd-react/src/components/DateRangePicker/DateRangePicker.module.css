@@ -1,12 +1,12 @@
-.root {
+.root-dateRangePicker {
   box-sizing: border-box;
 }
 
-.root :global(.lsd-date-field.outlined) {
+.root-dateRangePicker :global(.lsd-date-field.outlined) {
   border: none;
 }
 
-.root :global(.lsd-date-field .lsd-date-field__icon) {
+.root-dateRangePicker :global(.lsd-date-field .lsd-date-field__icon) {
   padding: 8px;
 }
 

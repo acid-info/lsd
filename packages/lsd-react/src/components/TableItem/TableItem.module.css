@@ -1,19 +1,19 @@
-.root {
+.root-tableitem {
   border: 1px solid rgb(var(--lsd-border-primary));
 }
 
-.root:has(> label) {
+.root-tableitem:has(> label) {
   width: 40px;
 }
 
-.root:has(> label) input {
+.root-tableitem:has(> label) input {
   position: relative;
   width: 14px;
   height: 14px;
   margin: auto;
 }
 
-.root:has(> label) span {
+.root-tableitem:has(> label) span {
   margin-left: 14px !important;
 }
 

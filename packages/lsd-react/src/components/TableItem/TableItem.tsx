@@ -28,7 +28,7 @@ function TableItem({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-tableitem'],
         styles[size],
       )}
     >

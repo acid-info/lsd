@@ -1,4 +1,4 @@
-.root {
+.root-tabitem {
   background: rgb(var(--lsd-surface-primary));
   border: 1px solid transparent;
   cursor: pointer;
@@ -9,11 +9,11 @@
   box-sizing: border-box;
 }
 
-.root:hover {
+.root-tabitem:hover {
   text-decoration: underline;
 }
 
-.root:not(.selected) {
+.root-tabitem:not(.selected) {
   border-bottom: 1px solid rgb(var(--lsd-border-primary));
 }
 

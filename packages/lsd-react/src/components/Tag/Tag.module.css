@@ -1,4 +1,4 @@
-.root {
+.root-tag {
   width: fit-content;
   display: flex;
   flex-direction: row;
@@ -8,8 +8,8 @@
   border: 1px solid rgb(var(--lsd-icon-primary));
 }
 
-.root:hover,
-.root:focus {
+.root-tag:hover,
+.root-tag:focus {
   text-decoration: underline;
   cursor: pointer;
 }

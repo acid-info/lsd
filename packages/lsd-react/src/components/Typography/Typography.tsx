@@ -64,7 +64,7 @@ function Typography<T extends TypographyComponent = 'span'>({
     {
       className: clsx(
         commonProps.className,
-        styles.root,
+        styles['root-typography'],
         styles[variant],
         color && styles[color],
         className,

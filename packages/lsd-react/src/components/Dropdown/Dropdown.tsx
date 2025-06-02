@@ -97,7 +97,7 @@ function Dropdown({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-dropdown'],
         styles[size],
         error && styles.error,
         disabled && styles.disabled,

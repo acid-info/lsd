@@ -52,7 +52,7 @@ function Collapse({
       className={clsx(
         globalProps.className,
         props.className,
-        styles.collapse,
+        styles['root-collapse'],
         disabled && styles.disabled,
         open && styles.open,
       )}

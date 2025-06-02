@@ -47,7 +47,11 @@ function RadioButtonGroup({
       <div
         ref={ref}
         {...omitCommonProps(props)}
-        className={clsx(commonProps.className, props.className, styles.root)}
+        className={clsx(
+          commonProps.className,
+          props.className,
+          styles['root-radiobuttongroup'],
+        )}
       >
         <Typography
           component="span"

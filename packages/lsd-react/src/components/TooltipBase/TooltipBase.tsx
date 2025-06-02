@@ -45,7 +45,11 @@ function TooltipBase({
     <div
       ref={rootRef}
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, props.className, styles.root)}
+      className={clsx(
+        commonProps.className,
+        props.className,
+        styles['root-tooltipbase'],
+      )}
     >
       {!arrowOffset ? (
         children

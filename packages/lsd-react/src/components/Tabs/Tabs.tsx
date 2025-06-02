@@ -54,7 +54,7 @@ function Tabs({
         className={clsx(
           commonProps.className,
           props.className,
-          styles.root,
+          styles['root-tabs'],
           fullWidth && styles.fullWidth,
           scrollControls && canScroll && styles.withScrollControls,
         )}

@@ -1,4 +1,4 @@
-.autocomplete {
+.root-autocomplete {
   box-sizing: border-box;
 
   &.disabled {

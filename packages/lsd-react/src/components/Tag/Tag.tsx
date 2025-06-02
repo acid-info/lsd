@@ -35,7 +35,7 @@ function Tag({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-tag'],
         styles[variant],
         disabled && styles.disabled,
         styles[size],

@@ -45,7 +45,7 @@ function TabItem({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-tabitem'],
         styles[size],
         selected && styles.selected,
         props.disabled && styles.disabled,

@@ -30,7 +30,7 @@ function IconButtonGroup({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-iconbuttongroup'],
         styles[size],
         styles[variant],
         disabled && styles.disabled,

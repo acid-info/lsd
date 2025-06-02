@@ -36,7 +36,7 @@ function CollapseHeader({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.collapseHeader,
+        styles['root-collapseheader'],
         styles[size],
         disabled && styles.disabled,
         open && styles.open,

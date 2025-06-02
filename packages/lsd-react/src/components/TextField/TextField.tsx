@@ -70,7 +70,7 @@ function TextField({
       className={clsx(
         commonProps.className,
         props.className,
-        styles.root,
+        styles['root-textField'],
         styles[size],
         disabled && styles.disabled,
         error && styles.error,
