@@ -34,7 +34,7 @@ function IconButton({
       className={clsx(
         commonProps.className,
         props.className,
-        styles['root-iconbutton'],
+        styles['root-iconButton'],
         styles[size],
         styles[variant],
         disabled && styles.disabled,
