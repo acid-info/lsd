@@ -42,7 +42,7 @@ function DropdownItem({
       className={clsx(
         commonProps.className,
         className,
-        styles['root-dropdownitem'],
+        styles['root-dropdownItem'],
         styles[size],
         withIcon && styles.withIcon,
         disabled && styles.disabled,

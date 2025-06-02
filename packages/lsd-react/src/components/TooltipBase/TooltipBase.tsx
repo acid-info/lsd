@@ -48,7 +48,7 @@ function TooltipBase({
       className={clsx(
         commonProps.className,
         props.className,
-        styles['root-tooltipbase'],
+        styles['root-tooltipBase'],
       )}
     >
       {!arrowOffset ? (

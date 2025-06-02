@@ -44,7 +44,7 @@ function BreadcrumbItem({
       href={link}
       className={clsx(
         commonProps.className,
-        styles['root-breadcrumbitem'],
+        styles['root-breadcrumbItem'],
         outlined && styles.outlined,
         disabled && styles.disabled,
         className,

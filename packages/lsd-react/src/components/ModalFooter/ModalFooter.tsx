@@ -16,7 +16,7 @@ function ModalFooter({ children, ...props }: ModalFooterProps) {
   return (
     <div
       {...omitCommonProps(props)}
-      className={clsx(commonProps.className, styles['root-modalfooter'])}
+      className={clsx(commonProps.className, styles['root-modalFooter'])}
     >
       {children}
     </div>
