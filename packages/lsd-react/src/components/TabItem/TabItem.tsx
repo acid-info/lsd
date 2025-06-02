@@ -7,7 +7,7 @@ import {
 } from '../../utils/useCommonProps'
 import { useTabsContext } from '../Tabs/Tab.context'
 import { Typography } from '../Typography'
-import styles from './TabItem.module.css'
+import styles from '../Tabs/Tabs.module.css'
 
 export type TabItemProps = CommonProps &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -45,7 +45,7 @@ function TabItem({
       className={clsx(
         commonProps.className,
         props.className,
-        styles['root-tabitem'],
+        styles.tabItem,
         styles[size],
         selected && styles.selected,
         props.disabled && styles.disabled,
