@@ -1,7 +1,7 @@
 import { FirstDayOfWeek, useMonth } from '@datepicker-react/hooks'
 import { useCalendarContext } from './Calendar.context'
 import { Days, MonthHeader, WeekdayHeader } from './MonthHelpers'
-import { calendarClasses } from './Calendar.classes'
+import styles from './Calendar.module.css'
 
 export type MonthProps = {
   year: number
@@ -28,7 +28,7 @@ export const Month = ({
   return (
     <>
       <MonthHeader monthLabel={monthLabel} monthNumber={month} size={size} />
-      <table className={calendarClasses.monthTable}>
+      <table className={styles.monthTable}>
         <thead>
           <WeekdayHeader weekdayLabels={weekdayLabels} />
         </thead>
