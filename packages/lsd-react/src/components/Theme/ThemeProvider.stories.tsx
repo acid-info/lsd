@@ -1,11 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import {
-  ColorDesignTokens,
-  SpacingDesignTokens,
-  TypographyDesignTokens,
-} from '../../docs/components/DesignTokens'
 import { Typography as TypographyComponent } from '../Typography'
-import { ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 
 const subtitle = ``
 const description = ``
@@ -21,26 +15,27 @@ export default {
       },
     },
   },
-  component: ThemeProvider,
+  // component: ThemeProvider,
 } as Meta
 
-export const Root: StoryObj<ThemeProviderProps> = {
+// export const Root: StoryObj<ThemeProviderProps> = {
+export const Root: StoryObj<any> = {
   render: (args) => {
     return (
       <div>
         <TypographyComponent variant="h6" component="h2">
           Colour
         </TypographyComponent>
-        <ColorDesignTokens />
+        {/* <ColorDesignTokens /> */}
         <TypographyComponent variant="h6" component="h2">
           Spacing
         </TypographyComponent>
-        <SpacingDesignTokens />
+        {/* <SpacingDesignTokens /> */}
 
         <TypographyComponent variant="h6" component="h2">
           TypographyComponent
         </TypographyComponent>
-        <TypographyDesignTokens />
+        {/* <TypographyDesignTokens /> */}
       </div>
     )
   },
@@ -55,9 +50,10 @@ export const Root: StoryObj<ThemeProviderProps> = {
   args: {},
 }
 
-export const Colors: StoryObj<ThemeProviderProps> = {
+export const Colors: StoryObj<any> = {
   render: (args) => {
-    return <ColorDesignTokens />
+    // return <ColorDesignTokens />
+    return <div />
   },
   parameters: {
     docs: {
@@ -70,9 +66,11 @@ export const Colors: StoryObj<ThemeProviderProps> = {
   args: {},
 }
 
-export const Spacing: StoryObj<ThemeProviderProps> = {
+// export const Spacing: StoryObj<ThemeProviderProps> = {
+export const Spacing: StoryObj<any> = {
   render: (args) => {
-    return <SpacingDesignTokens />
+    // return <SpacingDesignTokens />
+    return <div />
   },
   parameters: {
     docs: {
@@ -85,9 +83,11 @@ export const Spacing: StoryObj<ThemeProviderProps> = {
   args: {},
 }
 
-export const Typography: StoryObj<ThemeProviderProps> = {
+// export const Typography: StoryObj<ThemeProviderProps> = {
+export const Typography: StoryObj<any> = {
   render: (args) => {
-    return <TypographyDesignTokens />
+    // return <TypographyDesignTokens />
+    return <div />
   },
   parameters: {
     docs: {

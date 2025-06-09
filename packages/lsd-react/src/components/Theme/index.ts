@@ -8,8 +8,5 @@ export {
 export { createTheme } from './createTheme'
 export { defaultThemes } from './defaultThemes'
 export { createThemeGlobalStyles } from './globalStyles'
-export { ThemeProvider, type ThemeProviderProps } from './ThemeProvider'
 export * from './types'
-export { useTheme } from './useTheme'
-export { withTheme } from './withTheme'
 export { prepareLsdTheme } from './pureProvider'

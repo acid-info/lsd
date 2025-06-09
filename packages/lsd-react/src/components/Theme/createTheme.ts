@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import { createCounter } from '../../utils/counter.util'
 import { pairs } from '../../utils/object.utils'
 import { baseTheme } from './baseTheme'
@@ -139,15 +138,13 @@ export const createTheme = (
     typographyGlobal: createTypographyGlobalStyles(props, from),
     breakpoints: createBreakpointStyles(props, from),
     palette: createPaletteStyles(props, from),
-    globalStyles: css``,
     cssVars: '',
     spacing: props.spacing.length ? props.spacing : from.spacing,
   }
 
-  const { cssVars, globalStyles } = createThemeGlobalStyles(theme)
+  const { cssVars } = createThemeGlobalStyles(theme)
 
   theme.cssVars = cssVars
-  theme.globalStyles = globalStyles
 
   return theme
 }
