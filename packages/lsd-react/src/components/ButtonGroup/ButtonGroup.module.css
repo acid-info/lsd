@@ -1,0 +1,8 @@
+.root-buttonGroup {
+  display: flex;
+  flex-direction: row;
+}
+
+.button:not(:last-child) {
+  border-right: none;
+}

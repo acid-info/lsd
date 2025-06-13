@@ -16,8 +16,6 @@
   },
   "dependencies": {
     "@datepicker-react/hooks": "^2.8.4",
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
     "clsx": "^1.2.1",
     "lodash": "^4.17.21",
     "react": "^19.1.0",
@@ -31,7 +29,6 @@
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "@chromatic-com/storybook": "^3",
-    "@emotion/babel-plugin": "^11.0.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@storybook/addon-actions": "^8.6.12",
     "@storybook/addon-essentials": "^8.6.12",
@@ -60,8 +57,6 @@
     "vite-plugin-dts": "^1.7.2"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
     "react": "17.x || 18.x || 19.x",
     "react-dom": "17.x || 18.x || 19.x"
   }

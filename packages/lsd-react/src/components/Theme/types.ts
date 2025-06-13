@@ -1,4 +1,3 @@
-import { SerializedStyles } from '@emotion/react'
 import { CSSProperties } from 'react'
 import { DeepPartial } from 'utility-types'
 
@@ -76,7 +75,6 @@ export type Theme = {
   typography: ThemeTypography
   typographyGlobal: GlobalTypographyStyles
   palette: ThemePalette
-  globalStyles: SerializedStyles
   cssVars: string
   spacing: number[]
 }

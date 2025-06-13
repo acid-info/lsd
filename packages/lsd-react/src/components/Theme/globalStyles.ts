@@ -1,4 +1,3 @@
-import { css } from '@emotion/react'
 import {
   THEME_BREAKPOINTS,
   THEME_TYPOGRAPHY_PROPERTIES,
@@ -113,11 +112,6 @@ const generateThemeGlobalStyles = (theme: Theme) => {
 
   return {
     cssVars,
-    globalStyles: css`
-      :root {
-        ${cssVars}
-      }
-    `,
   }
 }
 
