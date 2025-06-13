@@ -88,8 +88,6 @@ function Breadcrumb({
         commonProps.className,
         styles['root-breadcrumb'],
         disabled && styles.disabled,
-        // Do we need to remove below line? No open class defined
-        // open && breadcrumbClasses.open,
       )}
     >
       <ul className={styles.list}>
