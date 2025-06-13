@@ -13,8 +13,10 @@ export const withTheme: Decorator = (Story, context) => {
 
   useEffect(() => {
     const background = (context.parameters.backgrounds?.values ?? []).find(
-      (value) => theme.name.startsWith(value.name),
+      (value: Record<string, string>) => theme.name === value.name,
     )?.value
+
+    document.documentElement.setAttribute('data-theme', theme.name)
 
     globals.backgrounds?.value !== background &&
       setGlobals({
