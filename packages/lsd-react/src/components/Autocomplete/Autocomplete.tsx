@@ -102,8 +102,6 @@ function Autocomplete({
         styles['root-autocomplete'],
         styles[size],
         disabled && styles.disabled,
-        // Do we need to remove below line? No withIcon class defined
-        //withIcon && autocompleteClasses.withIcon,
         variant === 'outlined' ? styles.outlined : styles.underlined,
       )}
     >
