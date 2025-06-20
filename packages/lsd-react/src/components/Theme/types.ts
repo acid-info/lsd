@@ -77,6 +77,7 @@ export type Theme = {
   palette: ThemePalette
   cssVars: string
   spacing: number[]
+  globalStyles?: string
 }
 
 export type ThemeOptionBreakpointStyles = Partial<
