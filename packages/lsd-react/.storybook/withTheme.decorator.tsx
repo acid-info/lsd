@@ -6,9 +6,11 @@ import { storybookThemes } from './themes'
 
 export const withTheme: Decorator = (Story, context) => {
   const StoryComponent = Story as any as React.ComponentType
-  const { ThemeStyles } = prepareLsdTheme()
 
   const theme = storybookThemes.getTheme(context)
+  const { ThemeStyles } = prepareLsdTheme({
+    customThemes: { [theme.name]: theme },
+  })
   const [globals, setGlobals] = useGlobals()
 
   useEffect(() => {

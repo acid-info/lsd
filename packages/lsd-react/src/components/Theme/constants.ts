@@ -56,7 +56,6 @@ export const THEME_VARIANT_PROPERTIES = [
 ] as VariantThemeProperties[]
 
 export const THEME_TYPOGRAPHY_FONT_CATEGORIES = [
-  'inherit',
   'monospace',
   'sans-serif',
   'serif',
