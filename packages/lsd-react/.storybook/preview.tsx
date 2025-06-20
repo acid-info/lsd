@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react'
 import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/components/Theme/constants'
 import { docTheme, storybookThemes } from './themes'
 import { withTheme } from './withTheme.decorator'
+import { baseTheme } from '../src/components/Theme/baseTheme'
 
 const preview: Preview = {
   parameters: {
@@ -43,7 +44,7 @@ const preview: Preview = {
         name: 'enum',
         value: THEME_TYPOGRAPHY_FONT_CATEGORIES,
       },
-      defaultValue: 'inherit',
+      defaultValue: baseTheme.typographyGlobal.genericFontFamily,
     },
   },
   globalTypes: {

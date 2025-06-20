@@ -13,7 +13,7 @@ const themeProps: CreateThemeProps = {
 }
 
 const createThemes = () => {
-  const fonts = THEME_TYPOGRAPHY_FONT_CATEGORIES.slice(1)
+  const fonts = THEME_TYPOGRAPHY_FONT_CATEGORIES
 
   const themes = fonts.map((font) => [
     createTheme(
