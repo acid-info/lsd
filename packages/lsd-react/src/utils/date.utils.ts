@@ -1,7 +1,7 @@
 import { OnDatesChangeProps, UseMonthResult } from '@datepicker-react/hooks'
-import { calendarClasses } from '../components/Calendar/Calendar.classes'
 import { CalendarType } from '../components/Calendar'
 import { DateRangePickerProps } from '../components/DateRangePicker'
+import styles from '../components/Calendar/Calendar.module.css'
 
 type SafeConvertDateResult = {
   isValid: boolean
@@ -149,7 +149,7 @@ export const getDayBorders = (
 ): string => {
   if (!isSelected) return ''
 
-  if (!startDate || !endDate) return calendarClasses.dayBorderLeftAndRight
+  if (!startDate || !endDate) return styles.dayBorderLeftAndRight
 
   const { prevIndex, nextIndex } = getAdjacentDaysIndexes(index, fullMonthDays)
 
@@ -173,23 +173,23 @@ export const getDayBorders = (
     if (index % 7 === 0) {
       // Leftmost day of the week
       borderClasses = nextIsSelected
-        ? calendarClasses.dayBorderLeft
-        : calendarClasses.dayBorderLeftAndRight
+        ? styles.dayBorderLeft
+        : styles.dayBorderLeftAndRight
     } else if (index % 7 === 6) {
       // Rightmost day of the week
       borderClasses = prevIsSelected
-        ? calendarClasses.dayBorderRight
-        : calendarClasses.dayBorderLeftAndRight
+        ? styles.dayBorderRight
+        : styles.dayBorderLeftAndRight
     } else {
       // Middle days
       if (prevIsSelected && nextIsSelected) {
         borderClasses = '' // No left/right border if surrounded by selected days
       } else if (prevIsSelected) {
-        borderClasses = calendarClasses.dayBorderRight
+        borderClasses = styles.dayBorderRight
       } else if (nextIsSelected) {
-        borderClasses = calendarClasses.dayBorderLeft
+        borderClasses = styles.dayBorderLeft
       } else {
-        borderClasses = calendarClasses.dayBorderLeftAndRight
+        borderClasses = styles.dayBorderLeftAndRight
       }
     }
   }

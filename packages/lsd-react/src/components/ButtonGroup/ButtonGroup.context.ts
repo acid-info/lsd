@@ -7,6 +7,7 @@ export type ButtonGroupContextType =
       size?: ButtonProps['size']
       variant?: ButtonProps['variant']
       disabled?: boolean
+      styles?: string
     })
   | null
 

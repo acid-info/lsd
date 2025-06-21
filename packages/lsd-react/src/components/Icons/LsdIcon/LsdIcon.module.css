@@ -1,0 +1,19 @@
+.primary.filled,
+.primary.filled * {
+  fill: rgb(var(--lsd-icon-primary));
+}
+
+.primary.stroked,
+.primary.stroked * {
+  fill: rgb(var(--lsd-icon-primary));
+}
+
+.secondary.filled,
+.secondary.filled * {
+  fill: rgb(var(--lsd-icon-secondary));
+}
+
+.secondary.stroked,
+.secondary.stroked * {
+  fill: rgb(var(--lsd-icon-secondary));
+}

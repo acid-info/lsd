@@ -5,12 +5,7 @@ import dts from 'vite-plugin-dts'
 
 export default defineConfig({
   plugins: [
-    react({
-      jsxImportSource: '@emotion/react',
-      babel: {
-        plugins: ['@emotion/babel-plugin'],
-      },
-    }),
+    react(),
     dts({
       include: ['src'],
     }),
@@ -27,7 +22,7 @@ export default defineConfig({
       formats: ['cjs', 'umd'],
     },
     rollupOptions: {
-      external: ['react', 'react-dom', '@emotion/styled', '@emotion/react'],
+      external: ['react', 'react-dom'],
       output: {
         globals: {
           react: 'React',

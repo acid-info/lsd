@@ -13,12 +13,12 @@ const themeProps: CreateThemeProps = {
 }
 
 const createThemes = () => {
-  const fonts = THEME_TYPOGRAPHY_FONT_CATEGORIES.slice(1)
+  const fonts = THEME_TYPOGRAPHY_FONT_CATEGORIES
 
   const themes = fonts.map((font) => [
     createTheme(
       {
-        // name: `${defaultThemes.light.name} (${font})`,
+        name: defaultThemes.light.name,
         ...themeProps,
         typographyGlobal: {
           genericFontFamily: font,
@@ -28,7 +28,7 @@ const createThemes = () => {
     ),
     createTheme(
       {
-        name: `${defaultThemes.dark.name} (${font})`,
+        name: defaultThemes.dark.name,
         ...themeProps,
         typographyGlobal: {
           genericFontFamily: font,
@@ -39,11 +39,11 @@ const createThemes = () => {
   ])
 
   const getTheme = (context: StoryContext) => {
-    const themeColor = context.globals?.themeColor ?? 'Light'
+    const themeColor = context.globals?.themeColor ?? defaultThemes.light.name
     const themeFont = context.globals?.themeFont ?? fonts[0]
 
     return themes[fonts.findIndex((font) => font === themeFont)][
-      themeColor === 'Light' ? 0 : 1
+      themeColor === defaultThemes.light.name ? 0 : 1
     ]
   }
 
@@ -52,15 +52,15 @@ const createThemes = () => {
     defaultTheme: themes[0][0],
     parameters: {
       backgrounds: {
-        default: 'Light',
+        default: defaultThemes.light.name,
         values: [
           {
-            name: 'Light',
+            name: defaultThemes.light.name,
             value: `rgb(${defaultThemes.light.palette.secondary})`,
           },
 
           {
-            name: 'Dark',
+            name: defaultThemes.dark.name,
             value: `rgb(${defaultThemes.dark.palette.secondary})`,
           },
         ],
@@ -70,19 +70,19 @@ const createThemes = () => {
       themeColor: {
         name: 'Theme Color',
         description: 'Theme Color',
-        defaultValue: 'Light',
+        defaultValue: 'light',
         toolbar: {
           title: ' Theme Color',
           icon: 'circlehollow',
           items: [
             {
               title: 'Light',
-              value: 'Light',
+              value: defaultThemes.light.name,
               icon: 'circlehollow',
             },
             {
               title: 'Dark',
-              value: 'Dark',
+              value: defaultThemes.dark.name,
               icon: 'circle',
             },
           ],
@@ -91,7 +91,7 @@ const createThemes = () => {
       themeFont: {
         name: 'Theme Font',
         description: 'Theme Font',
-        defaultValue: THEME_TYPOGRAPHY_FONT_CATEGORIES[1],
+        defaultValue: THEME_TYPOGRAPHY_FONT_CATEGORIES[0],
         toolbar: {
           title: ' Theme Font',
           items: fonts.map((font) => ({

@@ -3,7 +3,7 @@ import { createTheme } from './createTheme'
 
 const lightTheme = createTheme(
   {
-    name: 'Light',
+    name: 'light',
     breakpoints: {},
     typography: {},
     typographyGlobal: {},
@@ -15,7 +15,7 @@ const lightTheme = createTheme(
 
 const darkTheme = createTheme(
   {
-    name: 'Dark',
+    name: 'dark',
     breakpoints: {},
     typography: {},
     typographyGlobal: {},
