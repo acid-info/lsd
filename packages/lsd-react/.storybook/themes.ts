@@ -70,7 +70,7 @@ const createThemes = () => {
       themeColor: {
         name: 'Theme Color',
         description: 'Theme Color',
-        defaultValue: 'Light',
+        defaultValue: 'light',
         toolbar: {
           title: ' Theme Color',
           icon: 'circlehollow',
