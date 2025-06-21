@@ -91,7 +91,7 @@ const createThemes = () => {
       themeFont: {
         name: 'Theme Font',
         description: 'Theme Font',
-        defaultValue: THEME_TYPOGRAPHY_FONT_CATEGORIES[1],
+        defaultValue: THEME_TYPOGRAPHY_FONT_CATEGORIES[0],
         toolbar: {
           title: ' Theme Font',
           items: fonts.map((font) => ({
