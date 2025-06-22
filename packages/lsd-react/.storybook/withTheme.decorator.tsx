@@ -1,7 +1,7 @@
 import { useGlobals } from '@storybook/preview-api'
 import { Decorator } from '@storybook/react'
 import React, { useEffect } from 'react'
-import { prepareLsdTheme } from '../src'
+import { PortalProvider, prepareLsdTheme } from '../src'
 import { storybookThemes } from './themes'
 
 export const withTheme: Decorator = (Story, context) => {
@@ -34,7 +34,9 @@ export const withTheme: Decorator = (Story, context) => {
     <div>
       {ThemeStyles}
       <div className="story-wrapper">
-        <StoryComponent />
+        <PortalProvider>
+          <StoryComponent />
+        </PortalProvider>
       </div>
     </div>
   )
