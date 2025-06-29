@@ -1,5 +1,10 @@
 import { get } from 'lodash'
 import { Theme } from '../../../components/Theme'
+import { extractLsdVars } from '../../../utils/dom.util'
+import { Typography } from '../../../components/Typography'
+import styles from './DesignTokens.module.css'
+import { useEffect, useState } from 'react'
+import { useTheme } from '../../../components/Theme/useTheme'
 
 type Token = (
   | {
@@ -30,16 +35,16 @@ type Spacing = TokenGroup<Extract<Token, { type: 'spacing' }>>[]
 type TypographyTokens = TokenGroup<Extract<Token, { type: 'typography' }>>[]
 
 const getDesignTokens = (
-  theme: Theme,
+  cssVars: Record<string, string>,
 ): {
   colors: Colors
-  spacing: Spacing
-  typography: TypographyTokens
+  // spacing: Spacing
+  // typography: TypographyTokens
 } => {
   const rgbToHex = (r: number, g: number, b: number) =>
     '#' +
     [r, g, b]
-      .map((val) => val.toString(16))
+      .map((val) => (val || 0).toString(16))
       .map((hex) => (hex.length === 1 ? `0${hex}` : hex))
       .join('')
 
@@ -55,9 +60,9 @@ const getDesignTokens = (
           type: 'color',
           name: 'primary',
           varName: `--lsd-theme-primary`,
-          rgb: theme.palette.primary,
+          rgb: cssVars['--lsd-theme-primary'],
           hex: rgbToHex(
-            ...(theme.palette.primary
+            ...((cssVars['--lsd-theme-primary'] ?? '')
               .split(',')
               .map((x) => parseInt(x, 10)) as [number, number, number]),
           ),
@@ -66,78 +71,74 @@ const getDesignTokens = (
           type: 'color',
           name: 'secondary',
           varName: '--lsd-theme-secondary',
-          rgb: theme.palette.secondary,
+          rgb: cssVars['--lsd-theme-secondary'],
           hex: rgbToHex(
-            ...(theme.palette.secondary
+            ...((cssVars['--lsd-theme-secondary'] ?? '')
               .split(',')
               .map((x) => parseInt(x, 10)) as [number, number, number]),
           ),
         },
       ],
     },
-    ...keys.map(
-      (key) =>
-        ({
-          name: key,
-          tokens: ['primary', 'secondary'].map((ck) => ({
-            name: ck,
-            type: 'color',
-            varName: `--lsd-${key}-${ck}`,
-            rgb: get(theme.palette, key + '.' + ck),
-            hex: rgbToHex(
-              ...(get(theme.palette, key + '.' + ck)
-                .split(',')
-                .map((x: string) => parseInt(x, 10)) as [
-                number,
-                number,
-                number,
-              ]),
-            ),
-          })),
-        } as Colors[number]),
-    ),
+    ...keys.map((key) => {
+      const rgbVal = (ck: string) => get(cssVars, `--lsd-${key}-${ck}`) ?? ''
+      return {
+        name: key,
+        tokens: ['primary', 'secondary'].map((ck) => ({
+          name: ck,
+          type: 'color',
+          varName: `--lsd-${key}-${ck}`,
+          rgb: rgbVal(ck),
+          hex: rgbToHex(
+            ...(rgbVal(ck)
+              .split(',')
+              .map((x: string) => parseInt(x, 10)) as [number, number, number]),
+          ),
+        })),
+      } as Colors[number]
+    }),
   ]
 
-  const spacing: Spacing = theme.spacing.map((spacing) => ({
-    name: spacing.toString(),
-    tokens: [
-      {
-        name: spacing.toString(),
-        type: 'spacing',
-        varName: `--lsd-spacing-${spacing}`,
-        value: `${spacing}px`,
-      },
-    ],
-  }))
+  // const spacing: Spacing = theme.spacing.map((spacing) => ({
+  //   name: spacing.toString(),
+  //   tokens: [
+  //     {
+  //       name: spacing.toString(),
+  //       type: 'spacing',
+  //       varName: `--lsd-spacing-${spacing}`,
+  //       value: `${spacing}px`,
+  //     },
+  //   ],
+  // }))
 
-  const typography: TypographyTokens = Object.entries(theme.typography).map(
-    ([name, settings]) => ({
-      name: name,
-      tokens: [
-        {
-          name: 'fontSize',
-          type: 'typography',
-          value: `${settings.fontSize} (${remToPx(
-            (settings.fontSize as string) || '',
-          )}px)`,
-          varName: `--lsd-typography-${name}-fontSize`,
-        },
-        {
-          name: 'lineHeight',
-          type: 'typography',
-          value: `${settings.lineHeight} (${remToPx(
-            (settings.lineHeight as string) || '',
-          )}px)`,
-          varName: `--lsd-${name}-lineHeight`,
-        },
-      ],
-    }),
-  )
+  // const typography: TypographyTokens = Object.entries(theme.typography).map(
+  //   ([name, settings]) => ({
+  //     name: name,
+  //     tokens: [
+  //       {
+  //         name: 'fontSize',
+  //         type: 'typography',
+  //         value: `${settings.fontSize} (${remToPx(
+  //           (settings.fontSize as string) || '',
+  //         )}px)`,
+  //         varName: `--lsd-typography-${name}-fontSize`,
+  //       },
+  //       {
+  //         name: 'lineHeight',
+  //         type: 'typography',
+  //         value: `${settings.lineHeight} (${remToPx(
+  //           (settings.lineHeight as string) || '',
+  //         )}px)`,
+  //         varName: `--lsd-${name}-lineHeight`,
+  //       },
+  //     ],
+  //   }),
+  // )
 
   return {
     colors,
-    spacing,
-    typography,
+    // spacing,
+    // typography,
   }
 }
 
@@ -155,113 +156,82 @@ const getDesignTokens = (
 //   return <TypographyTable typography={typography}></TypographyTable>
 // }
 
-// export const ColorDesignTokens = () => {
-//   const theme = useTheme()
-//   const { colors } = getDesignTokens(theme)
+export const ColorDesignTokens = () => {
+  const { cssVars } = useTheme()
+  const [colors, setColors] = useState<Colors | null>(null)
 
-//   return (
-//     <>
-//       {colors.map((group) => (
-//         <ColorGroup name={group.name} tokens={group.tokens} />
-//       ))}
-//     </>
-//   )
-// }
+  useEffect(() => {
+    setColors(getDesignTokens(cssVars).colors)
+  }, [cssVars])
 
-// const ColorGroup: React.FC<Colors[number]> = ({ name, tokens }) => {
-//   return (
-//     <ColorGroupRoot>
-//       <Typography className="color-group__name" component="div" variant="body1">
-//         {name}
-//       </Typography>
-//       <div className="color-group__tokens">
-//         {tokens.map((token) => (
-//           <ColorCard key={token.name} groupName={name} {...token} />
-//         ))}
-//       </div>
-//     </ColorGroupRoot>
-//   )
-// }
+  if (!colors) return <div></div>
 
-// const ColorGroupRoot = styled.div`
-//   margin-bottom: var(--lsd-spacing-32);
+  return (
+    <>
+      {colors.map((group) => (
+        <ColorGroup key={group.name} name={group.name} tokens={group.tokens} />
+      ))}
+    </>
+  )
+}
 
-//   .color-group__name {
-//     width: calc(50% - var(--lsd-spacing-16));
-//     padding: var(--lsd-spacing-16) 0;
-//     border-bottom: 1px solid rgba(var(--lsd-border-primary), 0.2);
-//   }
+const ColorGroup: React.FC<Colors[number]> = ({ name, tokens }) => {
+  return (
+    <div className={styles.colorGroupRoot}>
+      <Typography
+        className={styles.colorGroupName}
+        component="div"
+        variant="body1"
+      >
+        {name}
+      </Typography>
+      <div className={styles.colorGroupTokens}>
+        {tokens.map((token) => (
+          <ColorCard key={token.name} groupName={name} {...token} />
+        ))}
+      </div>
+    </div>
+  )
+}
 
-//   .color-group__tokens {
-//     display: flex;
-//     flex-direction: row;
-//     gap: var(--lsd-spacing-16);
-//     margin-top: var(--lsd-spacing-16);
-//   }
-// `
-
-// const ColorCard: React.FC<
-//   Colors[number]['tokens'][number] & { groupName: string }
-// > = ({ groupName, name, varName, rgb, hex }) => {
-//   return (
-//     <ColorCardRoot>
-//       <div
-//         className="color-card__color"
-//         style={{
-//           background: `rgb(var(${varName}))`,
-//         }}
-//       ></div>
-//       <div className="color-card__details">
-//         <Typography
-//           genericFontFamily="monospace"
-//           variant="label2"
-//           className="color-card__var"
-//           component="div"
-//         >
-//           <p>
-//             {varName}: {rgb}
-//           </p>
-//           <p style={{ marginTop: 4 }}>
-//             theme.palette
-//             {groupName === 'primitives' ? `.${name}` : `.${groupName}.${name}`}
-//           </p>
-//         </Typography>
-//         <div className="color-card__value">
-//           <Typography variant="label2" className="color-card__rgb">
-//             {name}
-//           </Typography>
-//           <Typography variant="label2" className="color-card__hex">
-//             {hex}
-//           </Typography>
-//         </div>
-//       </div>
-//     </ColorCardRoot>
-//   )
-// }
-
-// const ColorCardRoot = styled.div`
-//   width: 50%;
-//   border: 1px solid rgba(var(--lsd-border-primary), 0.2);
-
-//   .color-card__color {
-//     width: 100%;
-//     height: 100px;
-//     border-bottom: 1px solid rgba(var(--lsd-border-primary), 0.2);
-//   }
-
-//   .color-card__details {
-//     margin-top: var(--lsd-spacing-8);
-//     padding: var(--lsd-spacing-8);
-//   }
-
-//   .color-card__value {
-//     display: flex;
-//     flex-direction: row;
-//     align-items: center;
-//     justify-content: space-between;
-//     margin-top: var(--lsd-spacing-8);
-//   }
-// `
+const ColorCard: React.FC<
+  Colors[number]['tokens'][number] & { groupName: string }
+> = ({ groupName, name, varName, rgb, hex }) => {
+  return (
+    <div className={styles.colorCardRoot}>
+      <div
+        className={styles.colorCardColor}
+        style={{
+          background: `rgb(var(${varName}))`,
+        }}
+      ></div>
+      <div className={styles.colorCardDetails}>
+        <Typography
+          genericFontFamily="monospace"
+          variant="label2"
+          className="color-card__var"
+          component="div"
+        >
+          <p>
+            {varName}: {rgb}
+          </p>
+          <p style={{ marginTop: 4 }}>
+            theme.palette
+            {groupName === 'primitives' ? `.${name}` : `.${groupName}.${name}`}
+          </p>
+        </Typography>
+        <div className={styles.colorCardValue}>
+          <Typography variant="label2" className="color-card__rgb">
+            {name}
+          </Typography>
+          <Typography variant="label2" className="color-card__hex">
+            {hex}
+          </Typography>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 // export const Spacing: React.FC<{ spacing: Spacing }> = ({ spacing }) => {
 //   return (

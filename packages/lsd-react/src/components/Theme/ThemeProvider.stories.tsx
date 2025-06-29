@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Typography as TypographyComponent } from '../Typography'
+import { ColorDesignTokens } from '../../docs/components/DesignTokens'
 
 const subtitle = ``
 const description = ``
@@ -20,13 +21,13 @@ export default {
 
 // export const Root: StoryObj<ThemeProviderProps> = {
 export const Root: StoryObj<any> = {
-  render: (args) => {
+  render: () => {
     return (
       <div>
         <TypographyComponent variant="h6" component="h2">
           Colour
         </TypographyComponent>
-        {/* <ColorDesignTokens /> */}
+        <ColorDesignTokens />
         <TypographyComponent variant="h6" component="h2">
           Spacing
         </TypographyComponent>
