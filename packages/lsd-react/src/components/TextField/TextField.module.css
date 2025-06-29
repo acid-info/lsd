@@ -8,6 +8,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .clearButton {
+    padding: 0;
+    width: auto;
+    height: auto;
+    margin: 0;
+    border: 0;
+  }
 }
 
 .disabled {
@@ -81,12 +89,4 @@
 .underlined .inputContainer {
   border: 1px solid transparent;
   border-bottom: 1px solid rgb(var(--lsd-border-primary));
-}
-
-.clearButton {
-  padding: 0;
-  width: auto;
-  height: auto;
-  margin: 0;
-  border: 0;
 }
