@@ -15,6 +15,7 @@
 }
 
 .tableItem {
+  font-size: var(--lsd-body3-fontSize);
   border: 1px solid rgb(var(--lsd-border-primary));
 
   &:has(> label) {
