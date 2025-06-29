@@ -14,6 +14,9 @@ export interface PreparedLsdTheme {
   availableThemes: string[]
 }
 
+export const ThemeAttribute = 'data-theme'
+export const LsdStyleTag = 'lsd-theme-styles'
+
 export function prepareLsdTheme({
   customThemes = {},
   initialTheme,
@@ -35,23 +38,20 @@ export function prepareLsdTheme({
   for (const [themeName, theme] of Object.entries(allThemes)) {
     const selector =
       themeName === activeThemeName
-        ? `:root, [data-theme="${themeName}"]`
-        : `[data-theme="${themeName}"]`
+        ? `:root, [${ThemeAttribute}="${themeName}"]`
+        : `[${ThemeAttribute}="${themeName}"]`
 
     if (theme.cssVars) {
       combinedCSS += `${selector} {\n${theme.cssVars}\n}\n\n`
     }
 
     if (theme.globalStyles) {
-      combinedCSS += `[data-theme="${themeName}"] {\n${theme.globalStyles}\n}\n\n`
+      combinedCSS += `[${ThemeAttribute}="${themeName}"] {\n${theme.globalStyles}\n}\n\n`
     }
   }
 
   const ThemeStyles = (
-    <style
-      id="lsd-theme-styles"
-      dangerouslySetInnerHTML={{ __html: combinedCSS }}
-    />
+    <style id={LsdStyleTag} dangerouslySetInnerHTML={{ __html: combinedCSS }} />
   )
 
   return {
