@@ -32,12 +32,12 @@ function TableRow({
       className={clsx(commonProps.className, props.className, styles.tableRow)}
     >
       {type === 'checkbox' && (
-        <td className="lsd-table-item">
+        <td className={styles.tableItem}>
           <Checkbox />
         </td>
       )}
       {type === 'radio' && (
-        <td className="lsd-table-item">
+        <td className={styles.tableItem}>
           <RadioButton value="1" />
         </td>
       )}
