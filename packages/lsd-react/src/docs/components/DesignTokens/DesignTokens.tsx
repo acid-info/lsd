@@ -1,6 +1,4 @@
 import { get } from 'lodash'
-import { Theme } from '../../../components/Theme'
-import { extractLsdVars } from '../../../utils/dom.util'
 import { Typography } from '../../../components/Typography'
 import styles from './DesignTokens.module.css'
 import { useEffect, useState } from 'react'
@@ -38,7 +36,7 @@ const getDesignTokens = (
   cssVars: Record<string, string>,
 ): {
   colors: Colors
-  // spacing: Spacing
+  spacing: Spacing
   // typography: TypographyTokens
 } => {
   const rgbToHex = (r: number, g: number, b: number) =>
@@ -99,17 +97,19 @@ const getDesignTokens = (
     }),
   ]
 
-  // const spacing: Spacing = theme.spacing.map((spacing) => ({
-  //   name: spacing.toString(),
-  //   tokens: [
-  //     {
-  //       name: spacing.toString(),
-  //       type: 'spacing',
-  //       varName: `--lsd-spacing-${spacing}`,
-  //       value: `${spacing}px`,
-  //     },
-  //   ],
-  // }))
+  const spacing: Spacing = Object.entries(cssVars)
+    .filter(([key]) => key.includes('--lsd-spacing-'))
+    .map(([key, val]) => ({
+      name: key,
+      tokens: [
+        {
+          name: val.toString(),
+          type: 'spacing',
+          varName: key,
+          value: `${val}`,
+        },
+      ],
+    }))
 
   // const typography: TypographyTokens = Object.entries(theme.typography).map(
   //   ([name, settings]) => ({
@@ -137,24 +137,30 @@ const getDesignTokens = (
 
   return {
     colors,
-    // spacing,
+    spacing,
     // typography,
   }
 }
 
-// export const SpacingDesignTokens = () => {
-//   const theme = useTheme()
-//   const { spacing } = getDesignTokens(theme)
+export const SpacingDesignTokens = () => {
+  const { cssVars } = useTheme()
+  const [spacing, setSpacing] = useState<Spacing | null>(null)
 
-//   return <Spacing spacing={spacing}></Spacing>
-// }
+  useEffect(() => {
+    setSpacing(getDesignTokens(cssVars).spacing)
+  }, [cssVars])
 
-// export const TypographyDesignTokens = () => {
-//   const theme = useTheme()
-//   const { typography } = getDesignTokens(theme)
+  if (!spacing) return <div></div>
 
-//   return <TypographyTable typography={typography}></TypographyTable>
-// }
+  return <Spacing spacing={spacing}></Spacing>
+}
+
+/* export const TypographyDesignTokens = () => {
+  const theme = useTheme()
+  const { typography } = getDesignTokens(theme)
+
+  return <TypographyTable typography={typography}></TypographyTable>
+} */
 
 export const ColorDesignTokens = () => {
   const { cssVars } = useTheme()
@@ -233,45 +239,47 @@ const ColorCard: React.FC<
   )
 }
 
-// export const Spacing: React.FC<{ spacing: Spacing }> = ({ spacing }) => {
-//   return (
-//     <Table>
-//       <thead>
-//         <th>Example</th>
-//         <th>CSS variable</th>
-//         <th>Value</th>
-//       </thead>
-//       <tbody>
-//         {spacing
-//           .flatMap((s) => s.tokens)
-//           .map((s, index) => (
-//             <tr key={s.name}>
-//               <td>
-//                 <div
-//                   style={{
-//                     width: s.value,
-//                     height: s.value,
-//                     boxSizing: 'border-box',
-//                     border: '1px solid rgb(var(--lsd-border-primary))',
-//                   }}
-//                 ></div>
-//               </td>
-//               <td>
-//                 <Typography variant="label1" genericFontFamily="monospace">
-//                   {s.varName}
-//                 </Typography>
-//               </td>
-//               <td>
-//                 <Typography variant="label1" genericFontFamily="monospace">
-//                   {s.value}
-//                 </Typography>
-//               </td>
-//             </tr>
-//           ))}
-//       </tbody>
-//     </Table>
-//   )
-// }
+export const Spacing: React.FC<{ spacing: Spacing }> = ({ spacing }) => {
+  return (
+    <table className={styles.table}>
+      <thead>
+        <tr>
+          <th>Example</th>
+          <th>CSS variable</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {spacing
+          .flatMap((s) => s.tokens)
+          .map((s) => (
+            <tr key={s.name}>
+              <td>
+                <div
+                  style={{
+                    width: s.value,
+                    height: s.value,
+                    boxSizing: 'border-box',
+                    border: '1px solid rgb(var(--lsd-border-primary))',
+                  }}
+                ></div>
+              </td>
+              <td>
+                <Typography variant="label1" genericFontFamily="monospace">
+                  {s.varName}
+                </Typography>
+              </td>
+              <td>
+                <Typography variant="label1" genericFontFamily="monospace">
+                  {s.value}
+                </Typography>
+              </td>
+            </tr>
+          ))}
+      </tbody>
+    </table>
+  )
+}
 
 // export const TypographyTable: React.FC<{ typography: TypographyTokens }> = ({
 //   typography,

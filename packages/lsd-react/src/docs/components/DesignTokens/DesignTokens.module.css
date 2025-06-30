@@ -38,3 +38,26 @@
   justify-content: space-between;
   margin-top: var(--lsd-spacing-8);
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: var(--lsd-spacing-32);
+  margin-bottom: var(--lsd-spacing-32);
+
+  th {
+    font-weight: normal;
+  }
+
+  th,
+  td {
+    border: 1px solid rgba(var(--lsd-border-primary), 0.2);
+    padding: var(--lsd-spacing-8);
+    text-align: left;
+    color: rgb(var(--lsd-text-primary));
+  }
+
+  thead th {
+    font-size: var(--lsd-body3-fontSize);
+  }
+}
