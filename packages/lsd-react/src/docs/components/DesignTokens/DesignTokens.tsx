@@ -3,6 +3,10 @@ import { Typography } from '../../../components/Typography'
 import styles from './DesignTokens.module.css'
 import { useEffect, useState } from 'react'
 import { useTheme } from '../../../components/Theme/useTheme'
+import {
+  THEME_TYPOGRAPHY_VARIANTS,
+  TypographyVariants,
+} from '../../../components/Theme'
 
 type Token = (
   | {
@@ -37,7 +41,7 @@ const getDesignTokens = (
 ): {
   colors: Colors
   spacing: Spacing
-  // typography: TypographyTokens
+  typography: TypographyTokens
 } => {
   const rgbToHex = (r: number, g: number, b: number) =>
     '#' +
@@ -98,7 +102,7 @@ const getDesignTokens = (
   ]
 
   const spacing: Spacing = Object.entries(cssVars)
-    .filter(([key]) => key.includes('--lsd-spacing-'))
+    .filter(([key]) => key.startsWith('--lsd-spacing-'))
     .map(([key, val]) => ({
       name: key,
       tokens: [
@@ -111,34 +115,46 @@ const getDesignTokens = (
       ],
     }))
 
-  // const typography: TypographyTokens = Object.entries(theme.typography).map(
-  //   ([name, settings]) => ({
-  //     name: name,
-  //     tokens: [
-  //       {
-  //         name: 'fontSize',
-  //         type: 'typography',
-  //         value: `${settings.fontSize} (${remToPx(
-  //           (settings.fontSize as string) || '',
-  //         )}px)`,
-  //         varName: `--lsd-typography-${name}-fontSize`,
-  //       },
-  //       {
-  //         name: 'lineHeight',
-  //         type: 'typography',
-  //         value: `${settings.lineHeight} (${remToPx(
-  //           (settings.lineHeight as string) || '',
-  //         )}px)`,
-  //         varName: `--lsd-${name}-lineHeight`,
-  //       },
-  //     ],
-  //   }),
-  // )
+  const getVariantVarKeys = (variant: TypographyVariants) => {
+    const keys = Object.keys(cssVars).filter((key) =>
+      key.includes(`-${variant}-`),
+    )
+    const fontSizeKey = keys.find((key) => key.endsWith(`-fontSize`))
+    const lineHeightKey = keys.find((key) => key.endsWith(`-lineHeight`))
+    return { fontSizeKey, lineHeightKey }
+  }
+
+  const typography: TypographyTokens = THEME_TYPOGRAPHY_VARIANTS.map(
+    (variant) => {
+      const { fontSizeKey, lineHeightKey } = getVariantVarKeys(variant)
+      if (!fontSizeKey || !lineHeightKey) return undefined
+      const fontSizeVal = cssVars[fontSizeKey]
+      const lineHeightVal = cssVars[lineHeightKey]
+
+      return {
+        name: variant,
+        tokens: [
+          {
+            name: 'fontSize',
+            type: 'typography',
+            value: `${fontSizeVal} (${remToPx(fontSizeVal || '')}px)`,
+            varName: fontSizeKey,
+          },
+          {
+            name: 'lineHeight',
+            type: 'typography',
+            value: `${lineHeightVal} (${remToPx(lineHeightVal || '')}px)`,
+            varName: lineHeightKey,
+          },
+        ],
+      }
+    },
+  ).filter(Boolean) as TypographyTokens
 
   return {
     colors,
     spacing,
-    // typography,
+    typography,
   }
 }
 
@@ -155,12 +171,18 @@ export const SpacingDesignTokens = () => {
   return <Spacing spacing={spacing}></Spacing>
 }
 
-/* export const TypographyDesignTokens = () => {
-  const theme = useTheme()
-  const { typography } = getDesignTokens(theme)
+export const TypographyDesignTokens = () => {
+  const { cssVars } = useTheme()
+  const [typography, setTypography] = useState<TypographyTokens | null>(null)
+
+  useEffect(() => {
+    setTypography(getDesignTokens(cssVars).typography)
+  }, [cssVars])
+
+  if (!typography) return <div></div>
 
   return <TypographyTable typography={typography}></TypographyTable>
-} */
+}
 
 export const ColorDesignTokens = () => {
   const { cssVars } = useTheme()
@@ -281,76 +303,57 @@ export const Spacing: React.FC<{ spacing: Spacing }> = ({ spacing }) => {
   )
 }
 
-// export const TypographyTable: React.FC<{ typography: TypographyTokens }> = ({
-//   typography,
-// }) => {
-//   return (
-//     <Table>
-//       <thead>
-//         <th>variant</th>
-//         <th>tokens</th>
-//         <th>Value</th>
-//       </thead>
-//       <tbody>
-//         {typography.map((t) => (
-//           <>
-//             <tr>
-//               <td rowSpan={t.tokens.length}>
-//                 <Typography variant={t.name as TypographyVariants}>
-//                   {t.name}
-//                 </Typography>
-//               </td>
-//               {t.tokens.slice(0, 1).map((token) => (
-//                 <>
-//                   <td>
-//                     <Typography variant="body2" genericFontFamily="monospace">
-//                       {token.varName}
-//                     </Typography>
-//                   </td>
-//                   <td>
-//                     <Typography variant="body2" genericFontFamily="monospace">
-//                       {token.value}
-//                     </Typography>
-//                   </td>
-//                 </>
-//               ))}
-//             </tr>
-//             {t.tokens.slice(1).map((token) => (
-//               <tr>
-//                 <td>
-//                   <Typography variant="body2" genericFontFamily="monospace">
-//                     {token.varName}
-//                   </Typography>
-//                 </td>
-//                 <td>
-//                   <Typography variant="body2" genericFontFamily="monospace">
-//                     {token.value}
-//                   </Typography>
-//                 </td>
-//               </tr>
-//             ))}
-//           </>
-//         ))}
-//       </tbody>
-//     </Table>
-//   )
-// }
-
-// const Table = styled.table`
-//   border-collapse: collapse;
-//   width: 100%;
-//   margin-top: var(--lsd-spacing-32);
-//   margin-bottom: var(--lsd-spacing-32);
-
-//   th {
-//     font-weight: normal;
-//   }
-
-//   th,
-//   td {
-//     border: 1px solid rgba(var(--lsd-border-primary), 0.2);
-//     padding: var(--lsd-spacing-8);
-//     text-align: left;
-//     color: rgb(var(--lsd-text-primary));
-//   }
-// `
+export const TypographyTable: React.FC<{ typography: TypographyTokens }> = ({
+  typography,
+}) => {
+  return (
+    <table className={styles.table}>
+      <thead>
+        <th>variant</th>
+        <th>tokens</th>
+        <th>Value</th>
+      </thead>
+      <tbody>
+        {typography.map((t) => (
+          <>
+            <tr>
+              <td rowSpan={t.tokens.length}>
+                <Typography variant={t.name as TypographyVariants}>
+                  {t.name}
+                </Typography>
+              </td>
+              {t.tokens.slice(0, 1).map((token) => (
+                <>
+                  <td>
+                    <Typography variant="body2" genericFontFamily="monospace">
+                      {token.varName}
+                    </Typography>
+                  </td>
+                  <td>
+                    <Typography variant="body2" genericFontFamily="monospace">
+                      {token.value}
+                    </Typography>
+                  </td>
+                </>
+              ))}
+            </tr>
+            {t.tokens.slice(1).map((token) => (
+              <tr>
+                <td>
+                  <Typography variant="body2" genericFontFamily="monospace">
+                    {token.varName}
+                  </Typography>
+                </td>
+                <td>
+                  <Typography variant="body2" genericFontFamily="monospace">
+                    {token.value}
+                  </Typography>
+                </td>
+              </tr>
+            ))}
+          </>
+        ))}
+      </tbody>
+    </table>
+  )
+}
