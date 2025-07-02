@@ -4,6 +4,22 @@ LSD is an open-source design system challenging conventional norms in the world 
 
 ## Getting Started
 
+### Development
+
+Install dependencies and build the project:
+
+```bash
+yarn install
+yarn build
+```
+
+Start the development server and storybook:
+
+```bash
+yarn dev
+yarn storybook
+```
+
 ### Installation
 
 Install the latest version of LSD React into your project using Yarn or NPM.
