@@ -32,11 +32,14 @@ jobs:
           yarn install --frozen-lockfile
           yarn lerna link
 
+      - name: Build packages
+        run: yarn build
+
       - name: Publish
         id: publish
         run: |
+          echo ".npmrc" >> .git/info/exclude
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-          echo "access=public" >> .npmrc
           mkdir ${{ runner.temp }}/${{ steps.branch_name.outputs.name }}
           yarn lerna publish prerelease --canary --no-private --no-verify-access --yes --exact --dist-tag=${{ steps.branch_name.outputs.name }} --preid=${{ steps.branch_name.outputs.name }} --summary-file=${{ runner.temp }}/${{ steps.branch_name.outputs.name }}
         env:
