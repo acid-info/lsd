@@ -18,26 +18,54 @@ npm i -S @acid-info/lsd-react
 
 ### Setup Theme
 
-To use LSD theme and design tokens in your React app, wrap your app with the `ThemeProvider` component. This component:
+LSD provides theme support through the `prepareLsdTheme()` function which:
 
-- Creates a CSS baseline for the LSD components using CSS-in-JS and inserts it into the DOM.
-- Injects the LSD CSS variables into the DOM for the theme prop.
+- Generates a `<style>` element containing all theme CSS variables
+- Supports both built-in (light/dark) and custom themes
+- Uses the `data-theme` attribute for theme switching
+- Returns the computed styles and available theme names
 
-The `ThemeProvider` component should be at the root of your app, as shown below:
+Basic usage with default themes:
 
 ```tsx
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { ThemeProvider, defaultThemes } from '@acid-info/lsd-react'
+import { prepareLsdTheme } from '@acid-info/lsd-react'
 
 import App from './App'
 
-ReactDOM.render(
-  <ThemeProvider theme={defaultThemes.dark}>
+const { ThemeStyles } = prepareLsdTheme()
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    {ThemeStyles}
     <App />
-  </ThemeProvider>,
-  document.getElementById('root'),
+  </React.StrictMode>,
 )
+```
+
+Using a custom theme:
+
+```tsx
+import { prepareLsdTheme, createTheme } from '@acid-info/lsd-react'
+
+const customTheme = createTheme({
+  // Custom theme configuration
+})
+
+const { ThemeStyles } = prepareLsdTheme({
+  customThemes: {
+    custom: customTheme,
+  },
+})
+```
+
+Theme switching is done via the `data-theme` attribute:
+
+```html
+<html data-theme="dark">
+  <!-- ... -->
+</html>
 ```
 
 ### Using LSD Components
