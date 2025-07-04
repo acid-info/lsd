@@ -44,7 +44,6 @@ export default defineConfig({
     }),
   ],
 
-  css: { modules: { localsConvention: 'camelCaseOnly' } },
   build: {
     minify: true,
     outDir: 'dist',
