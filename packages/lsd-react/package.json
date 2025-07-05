@@ -7,6 +7,19 @@
     "dist"
   ],
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/lsd-react.js"
+    },
+    "./components": {
+      "types": "./dist/components/index.d.ts",
+      "import": "./dist/components.js"
+    },
+    "./css": {
+      "import": "./dist/lsd-react.css"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

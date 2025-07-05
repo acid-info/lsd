@@ -1,4 +1,4 @@
-import { LsdStyleTag } from '../components/Theme/pureProvider'
+import { LsdStyleTag } from '../theme/LsdThemeStyles'
 
 export const wasElementClicked = (
   event: Event,
