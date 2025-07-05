@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import omit from 'lodash/omit'
 import pick from 'lodash/pick'
-import { TypographyGenericFontFamily } from '../components/Theme'
 import styles from '../components/Typography/Typography.module.css'
+import { TypographyGenericFontFamily } from '../theme'
 
 export type CommonProps = {
   genericFontFamily?: TypographyGenericFontFamily

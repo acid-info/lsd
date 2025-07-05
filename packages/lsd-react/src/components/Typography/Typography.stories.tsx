@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import { THEME_TYPOGRAPHY_VARIANTS } from '../Theme'
+import { THEME_TYPOGRAPHY_VARIANTS } from '../../theme'
 import { Typography, TypographyProps } from './Typography'
 
 const subtitle = `Data Display`

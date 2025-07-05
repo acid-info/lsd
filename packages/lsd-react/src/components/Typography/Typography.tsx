@@ -5,7 +5,7 @@ import {
   omitCommonProps,
   useCommonProps,
 } from '../../utils/useCommonProps'
-import { TypographyVariants } from '../Theme'
+import { TypographyVariants } from '../../theme'
 import styles from './Typography.module.css'
 
 type ElementTypeProps = {

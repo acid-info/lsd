@@ -1,5 +1,4 @@
 import react from '@vitejs/plugin-react'
-import path from 'path'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import type { OutputAsset, OutputChunk, OutputBundle } from 'rollup'
@@ -48,14 +47,21 @@ export default defineConfig({
     minify: true,
     outDir: 'dist',
     lib: {
-      entry: path.resolve(__dirname, './src/index.ts'),
-      name: 'lsd-react',
-      fileName: 'lsd-react',
+      entry: {
+        'lsd-react': './src/index.ts',
+        components: './src/components/index.ts',
+      },
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
-      output: { globals: { react: 'React', 'react-dom': 'ReactDOM' } },
+      external: ['react', 'react-dom', 'react/jsx-runtime'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'react/jsx-runtime': 'jsx',
+        },
+      },
       plugins: [injectCssPlugin()],
     },
   },

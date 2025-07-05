@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/react'
-import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/components/Theme/constants'
 import { docTheme, storybookThemes } from './themes'
 import { withTheme } from './withTheme.decorator'
-import { baseTheme } from '../src/components/Theme/baseTheme'
+import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/theme/constants'
+import { baseTheme } from '../src/theme/baseTheme'
 
 const preview: Preview = {
   parameters: {

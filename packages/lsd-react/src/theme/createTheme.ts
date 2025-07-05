@@ -1,5 +1,5 @@
-import { createCounter } from '../../utils/counter.util'
-import { pairs } from '../../utils/object.utils'
+import { createCounter } from '../utils/counter.util'
+import { pairs } from '../utils/object.utils'
 import { baseTheme } from './baseTheme'
 import { THEME_BREAKPOINTS, THEME_TYPOGRAPHY_VARIANTS } from './constants'
 import { createThemeGlobalStyles } from './globalStyles'

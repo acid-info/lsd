@@ -2,11 +2,8 @@ import { get } from 'lodash'
 import { Typography } from '../../../components/Typography'
 import styles from './DesignTokens.module.css'
 import { useEffect, useState } from 'react'
-import { useTheme } from '../../../components/Theme/useTheme'
-import {
-  THEME_TYPOGRAPHY_VARIANTS,
-  TypographyVariants,
-} from '../../../components/Theme'
+import { useTheme } from '../../../theme/useTheme'
+import { THEME_TYPOGRAPHY_VARIANTS, TypographyVariants } from '../../../theme'
 
 type Token = (
   | {

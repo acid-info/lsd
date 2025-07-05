@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { ThemeAttribute } from './pureProvider'
-import { extractLsdVars } from '../../utils/dom.util'
+import { extractLsdVars } from '../utils/dom.util'
 
 export const useTheme = () => {
   const readThemeName = () => {
