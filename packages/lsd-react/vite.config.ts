@@ -3,14 +3,9 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import type { OutputAsset, OutputChunk } from 'rollup'
 
-const CLIENT_DIRECTIVE_REGEX = /^['"]use client['"];\n?/
-
-function handleClientDirective(code: string, hasDirective: boolean) {
-  if (!hasDirective) return code
-  return `'use client';\n${code.replace(CLIENT_DIRECTIVE_REGEX, '')}`
-}
-
 function preserveDirectivesPlugin() {
+  const CLIENT_DIRECTIVE_REGEX = /^['"]use client['"];\n?/
+
   return {
     name: 'preserve-directives',
     transform(code: string, id: string) {
@@ -36,7 +31,7 @@ function preserveDirectivesPlugin() {
 
       return needsDirective
         ? {
-            code: handleClientDirective(code, true),
+            code: `'use client';\n${code.replace(CLIENT_DIRECTIVE_REGEX, '')}`,
             map: null,
           }
         : null
@@ -56,26 +51,14 @@ function injectCssPlugin() {
       if (cssFiles) {
         this.emitFile({
           type: 'asset',
-          fileName: 'index.css',
+          fileName: 'lsd-react.css',
           source: cssFiles,
         })
 
-        Object.entries(bundle).forEach(([name, file]) => {
-          if (name.endsWith('.js') && (file as OutputChunk).isEntry) {
-            const jsFile = file as OutputChunk
-            const hasDirective =
-              jsFile.code.match(CLIENT_DIRECTIVE_REGEX) ||
-              this.getModuleInfo(name)?.meta?.directives?.client
-
-            jsFile.code = handleClientDirective(
-              `import './index.css';\n${jsFile.code.replace(
-                CLIENT_DIRECTIVE_REGEX,
-                '',
-              )}`,
-              hasDirective,
-            )
-          }
-        })
+        const lsdReactFile = bundle['lsd-react.js'] as OutputChunk | undefined
+        if (lsdReactFile?.isEntry) {
+          lsdReactFile.code = `import './lsd-react.css';\n${lsdReactFile.code}`
+        }
       }
     },
   }
