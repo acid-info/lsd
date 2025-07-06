@@ -16,56 +16,68 @@ yarn add @acid-info/lsd-react
 npm i -S @acid-info/lsd-react
 ```
 
-### Setup Theme
+## Theme Setup
 
-LSD provides theme support through the `prepareLsdTheme()` function which:
+LSD provides comprehensive theme support with options for both built-in and custom themes.
 
-- Generates a `<style>` element containing all theme CSS variables
-- Supports both built-in (light/dark) and custom themes
-- Uses the `data-theme` attribute for theme switching
-- Returns the computed styles and available theme names
+### Getting Started with Next.js
 
-Basic usage with default themes:
+Add LSD theme support to your Next.js app by including `LsdThemeStyles` in your root layout:
 
 ```tsx
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { prepareLsdTheme } from '@acid-info/lsd-react'
+// app/layout.tsx
+import { LsdThemeStyles } from '@acid-info/lsd-react'
 
-import App from './App'
-
-const { ThemeStyles } = prepareLsdTheme()
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {ThemeStyles}
-    <App />
-  </React.StrictMode>,
-)
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" data-theme="light">
+      <head>
+        <LsdThemeStyles />
+      </head>
+      <body>{children}</body>
+    </html>
+  )
+}
 ```
 
-Using a custom theme:
+### Theme Switching
+
+Switch between themes by modifying the `data-theme` attribute:
+
+```html
+<html data-theme="dark">
+  <!-- Content will use dark theme -->
+</html>
+```
+
+### Advanced Theme Configuration
+
+Create and apply custom themes:
 
 ```tsx
 import { prepareLsdTheme, createTheme } from '@acid-info/lsd-react'
 
 const customTheme = createTheme({
-  // Custom theme configuration
+  name: 'custom',
+  colors: {
+    primary: '#007bff',
+    secondary: '#6c757d',
+  },
+  typography: {
+    fontFamily: 'Inter, sans-serif',
+  },
 })
 
 const { ThemeStyles } = prepareLsdTheme({
   customThemes: {
     custom: customTheme,
   },
+  defaultTheme: 'custom', // Optional default theme
 })
-```
-
-Theme switching is done via the `data-theme` attribute:
-
-```html
-<html data-theme="dark">
-  <!-- ... -->
-</html>
 ```
 
 ### Using LSD Components
@@ -73,7 +85,7 @@ Theme switching is done via the `data-theme` attribute:
 Import LSD components from `@acid-info/lsd-react` and use them in your React app!
 
 ```tsx
-import { Button } from '@acid-info/lsd-react'
+import { Button } from '@acid-info/lsd-react/components'
 
 function App() {
   return (
