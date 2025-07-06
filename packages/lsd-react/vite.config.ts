@@ -3,31 +3,43 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import type { OutputAsset, OutputChunk } from 'rollup'
 
+const CLIENT_DIRECTIVE_REGEX = /^['"]use client['"];\n?/
+
+function handleClientDirective(code: string, hasDirective: boolean) {
+  if (!hasDirective) return code
+  return `'use client';\n${code.replace(CLIENT_DIRECTIVE_REGEX, '')}`
+}
+
 function preserveDirectivesPlugin() {
   return {
     name: 'preserve-directives',
     transform(code: string, id: string) {
-      if (
+      const isSourceFile =
         !id.includes('node_modules') &&
         (id.endsWith('.ts') || id.endsWith('.tsx'))
-      ) {
-        const directive = code.match(/^['"]use client['"];\n?/)?.[0]
-        if (directive) {
-          return {
-            code,
-            map: null,
-            meta: { directives: { client: true } },
-          }
-        }
+
+      if (!isSourceFile) return null
+
+      const hasDirective = CLIENT_DIRECTIVE_REGEX.test(code)
+      if (!hasDirective) return null
+
+      return {
+        code: code.replace(CLIENT_DIRECTIVE_REGEX, ''),
+        map: null,
+        meta: { hasClientDirective: true },
       }
     },
     renderChunk(code: string, chunk: { moduleIds: string[] }) {
-      const hasDirective = chunk.moduleIds.some(
-        (id) =>
-          id.includes('components/index') &&
-          this.getModuleInfo(id)?.meta?.directives?.client,
+      const needsDirective = chunk.moduleIds.some(
+        (id) => this.getModuleInfo(id)?.meta?.hasClientDirective,
       )
-      return hasDirective ? { code: `'use client';\n${code}`, map: null } : null
+
+      return needsDirective
+        ? {
+            code: handleClientDirective(code, true),
+            map: null,
+          }
+        : null
     },
   }
 }
@@ -52,12 +64,16 @@ function injectCssPlugin() {
           if (name.endsWith('.js') && (file as OutputChunk).isEntry) {
             const jsFile = file as OutputChunk
             const hasDirective =
-              jsFile.code.match(/^['"]use client['"];\n?/) ||
+              jsFile.code.match(CLIENT_DIRECTIVE_REGEX) ||
               this.getModuleInfo(name)?.meta?.directives?.client
 
-            jsFile.code = `${
-              hasDirective ? "'use client';\n" : ''
-            }import './index.css';\n${jsFile.code}`
+            jsFile.code = handleClientDirective(
+              `import './index.css';\n${jsFile.code.replace(
+                CLIENT_DIRECTIVE_REGEX,
+                '',
+              )}`,
+              hasDirective,
+            )
           }
         })
       }
