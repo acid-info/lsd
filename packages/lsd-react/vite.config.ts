@@ -1,7 +1,7 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import type { OutputAsset, OutputChunk, OutputBundle } from 'rollup'
+import type { OutputAsset, OutputChunk } from 'rollup'
 
 function preserveDirectivesPlugin() {
   return {
@@ -11,41 +11,23 @@ function preserveDirectivesPlugin() {
         !id.includes('node_modules') &&
         (id.endsWith('.ts') || id.endsWith('.tsx'))
       ) {
-        const lines = code.split('\n')
-        const directiveIndex = lines.findIndex(
-          (line) =>
-            line.trim().startsWith("'use client'") ||
-            line.trim().startsWith('"use client"'),
-        )
-
-        if (directiveIndex >= 0) {
+        const directive = code.match(/^['"]use client['"];\n?/)?.[0]
+        if (directive) {
           return {
             code,
             map: null,
-            meta: {
-              directives: {
-                client: true,
-              },
-            },
+            meta: { directives: { client: true } },
           }
         }
       }
-      return null
     },
-    renderChunk(code: string, chunk: any) {
-      if (
-        chunk.moduleIds.some(
-          (id: string) =>
-            id.includes('components/index') &&
-            this.getModuleInfo(id)?.meta?.directives?.client,
-        )
-      ) {
-        return {
-          code: `'use client';\n${code}`,
-          map: null,
-        }
-      }
-      return null
+    renderChunk(code: string, chunk: { moduleIds: string[] }) {
+      const hasDirective = chunk.moduleIds.some(
+        (id) =>
+          id.includes('components/index') &&
+          this.getModuleInfo(id)?.meta?.directives?.client,
+      )
+      return hasDirective ? { code: `'use client';\n${code}`, map: null } : null
     },
   }
 }
@@ -53,49 +35,31 @@ function preserveDirectivesPlugin() {
 function injectCssPlugin() {
   return {
     name: 'inject-css',
-    generateBundle(_: unknown, bundle: OutputBundle) {
-      let cssSource = ''
-      for (const fileName in bundle) {
-        if (fileName.endsWith('.css')) {
-          const cssFile = bundle[fileName] as OutputAsset
-          cssSource += cssFile.source
-          delete bundle[fileName]
-        }
-      }
+    generateBundle(_: unknown, bundle: Record<string, unknown>) {
+      const cssFiles = Object.entries(bundle)
+        .filter(([name]) => name.endsWith('.css'))
+        .map(([_, file]) => (file as OutputAsset).source)
+        .join('')
 
-      if (cssSource) {
+      if (cssFiles) {
         this.emitFile({
           type: 'asset',
           fileName: 'index.css',
-          source: cssSource,
+          source: cssFiles,
         })
 
-        for (const fileName in bundle) {
-          const file = bundle[fileName]
-          if (fileName.endsWith('.js') && 'isEntry' in file && file.isEntry) {
+        Object.entries(bundle).forEach(([name, file]) => {
+          if (name.endsWith('.js') && (file as OutputChunk).isEntry) {
             const jsFile = file as OutputChunk
-            // Check if directive already exists
-            const existingDirective = jsFile.code.match(
-              /^['"]use client['"];\n?/,
-            )
-            const metaDirective =
-              this.getModuleInfo(fileName)?.meta?.directives?.client
+            const hasDirective =
+              jsFile.code.match(/^['"]use client['"];\n?/) ||
+              this.getModuleInfo(name)?.meta?.directives?.client
 
-            // Add directive if needed
-            if (!existingDirective && metaDirective) {
-              jsFile.code = `'use client';\n${jsFile.code}`
-            }
-
-            // Add CSS import after any directive
-            jsFile.code = jsFile.code.replace(
-              /^(['"]use client['"];\n?)?/,
-              (match) =>
-                match
-                  ? `${match}import './index.css';\n`
-                  : `import './index.css';\n`,
-            )
+            jsFile.code = `${
+              hasDirective ? "'use client';\n" : ''
+            }import './index.css';\n${jsFile.code}`
           }
-        }
+        })
       }
     },
   }
