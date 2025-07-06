@@ -7,17 +7,17 @@
 }
 
 .sansSerif,
-.sansSerif * {
+:global(.sansSerif *) {
   font-family: sans-serif;
 }
 
 .serif,
-.serif * {
+:global(.serif *) {
   font-family: serif;
 }
 
 .monospace,
-.monospace * {
+:global(.monospace *) {
   font-family: monospace;
 }
 
