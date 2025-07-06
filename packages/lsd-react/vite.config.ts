@@ -3,6 +3,53 @@ import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
 import type { OutputAsset, OutputChunk, OutputBundle } from 'rollup'
 
+function preserveDirectivesPlugin() {
+  return {
+    name: 'preserve-directives',
+    transform(code: string, id: string) {
+      if (
+        !id.includes('node_modules') &&
+        (id.endsWith('.ts') || id.endsWith('.tsx'))
+      ) {
+        const lines = code.split('\n')
+        const directiveIndex = lines.findIndex(
+          (line) =>
+            line.trim().startsWith("'use client'") ||
+            line.trim().startsWith('"use client"'),
+        )
+
+        if (directiveIndex >= 0) {
+          return {
+            code,
+            map: null,
+            meta: {
+              directives: {
+                client: true,
+              },
+            },
+          }
+        }
+      }
+      return null
+    },
+    renderChunk(code: string, chunk: any) {
+      if (
+        chunk.moduleIds.some(
+          (id: string) =>
+            id.includes('components/index') &&
+            this.getModuleInfo(id)?.meta?.directives?.client,
+        )
+      ) {
+        return {
+          code: `'use client';\n${code}`,
+          map: null,
+        }
+      }
+      return null
+    },
+  }
+}
+
 function injectCssPlugin() {
   return {
     name: 'inject-css',
@@ -27,7 +74,26 @@ function injectCssPlugin() {
           const file = bundle[fileName]
           if (fileName.endsWith('.js') && 'isEntry' in file && file.isEntry) {
             const jsFile = file as OutputChunk
-            jsFile.code = `import './index.css';\n${jsFile.code}`
+            // Check if directive already exists
+            const existingDirective = jsFile.code.match(
+              /^['"]use client['"];\n?/,
+            )
+            const metaDirective =
+              this.getModuleInfo(fileName)?.meta?.directives?.client
+
+            // Add directive if needed
+            if (!existingDirective && metaDirective) {
+              jsFile.code = `'use client';\n${jsFile.code}`
+            }
+
+            // Add CSS import after any directive
+            jsFile.code = jsFile.code.replace(
+              /^(['"]use client['"];\n?)?/,
+              (match) =>
+                match
+                  ? `${match}import './index.css';\n`
+                  : `import './index.css';\n`,
+            )
           }
         }
       }
@@ -38,8 +104,12 @@ function injectCssPlugin() {
 export default defineConfig({
   plugins: [
     react(),
+    preserveDirectivesPlugin(),
     dts({
       include: ['src'],
+      compilerOptions: {
+        preserveSymlinks: true,
+      },
     }),
   ],
 
@@ -62,7 +132,7 @@ export default defineConfig({
           'react/jsx-runtime': 'jsx',
         },
       },
-      plugins: [injectCssPlugin()],
+      plugins: [injectCssPlugin(), preserveDirectivesPlugin()],
     },
   },
 })
