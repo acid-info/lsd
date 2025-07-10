@@ -2,22 +2,17 @@
   "name": "@acid-info/lsd-react",
   "version": "0.2.0-beta.2",
   "type": "module",
-  "module": "./dist/lsd-react.js",
   "files": [
     "dist"
   ],
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/lsd-react.js"
     },
-    "./components": {
-      "types": "./dist/components/index.d.ts",
-      "import": "./dist/components.js"
-    },
-    "./css": {
-      "import": "./dist/lsd-react.css"
+    "./components/*": {
+      "types": "./dist/components/*/index.d.ts",
+      "import": "./dist/components/*/index.js"
     }
   },
   "scripts": {
