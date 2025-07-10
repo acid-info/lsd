@@ -5,7 +5,7 @@ export function preserveDirectivesPlugin() {
     name: 'preserve-directives',
     renderChunk(code: string, chunk: any) {
       // Add 'use client' to all component chunks (individual components)
-      const isComponentChunk = chunk.fileName?.startsWith('components/')
+      const isComponentChunk = chunk.fileName?.startsWith('components/client/')
 
       if (isComponentChunk) {
         return {

@@ -10,9 +10,9 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/lsd-react.js"
     },
-    "./components/*": {
-      "types": "./dist/components/*/index.d.ts",
-      "import": "./dist/components/*/index.js"
+    "./client/*": {
+      "types": "./dist/components/client/*/index.d.ts",
+      "import": "./dist/components/client/*/index.js"
     }
   },
   "scripts": {

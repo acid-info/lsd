@@ -1,7 +1,7 @@
 import { OnDatesChangeProps, UseMonthResult } from '@datepicker-react/hooks'
-import { CalendarType } from '../components/Calendar'
-import { DateRangePickerProps } from '../components/DateRangePicker'
-import styles from '../components/Calendar/Calendar.module.css'
+import { CalendarType } from '../components/client/Calendar'
+import { DateRangePickerProps } from '../components/client/DateRangePicker'
+import styles from '../components/client/Calendar/Calendar.module.css'
 
 type SafeConvertDateResult = {
   isValid: boolean

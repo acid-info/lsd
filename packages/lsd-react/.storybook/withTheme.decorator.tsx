@@ -1,7 +1,7 @@
 import { useGlobals } from '@storybook/preview-api'
 import { Decorator } from '@storybook/react'
 import React, { useEffect } from 'react'
-import { PortalProvider } from '../src/components'
+import { PortalProvider } from '../src/components/client/PortalProvider'
 import { storybookThemes } from './themes'
 import { LsdThemeStyles } from '../src'
 

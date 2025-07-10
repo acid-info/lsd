@@ -12,34 +12,36 @@ yarn add @acid-info/lsd-react
 
 ## 2. Setup
 
-To use LSD theme and design tokens in your React app, wrap your app with the ThemeProvider component. This component:
-
-- Creates a CSS baseline for the components using CSS-in-JS and inserts it into the DOM.
-- Injects the LSD CSS variables into the DOM for the theme prop.
-
-The ThemeProvider component should be at the root of your app, as shown below:
+To use LSD themes in your React app, include the theme styles in your app. For Next.js:
 
 ```tsx
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { ThemeProvider, defaultThemes } from '@acid-info/lsd-react'
+// app/layout.tsx
+import { LsdThemeStyles } from '@acid-info/lsd-react'
 
-import App from './App'
-
-ReactDOM.render(
-  <ThemeProvider theme={defaultThemes.dark}>
-    <App />
-  </ThemeProvider>,
-  document.getElementById('root'),
-)
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" data-theme="light">
+      <head>
+        <LsdThemeStyles />
+      </head>
+      <body>{children}</body>
+    </html>
+  )
+}
 ```
+
+For other React apps, you can use the theme styles in your main component.
 
 ## 3. Usage
 
-Import LSD components from `@acid-info/lsd-react` and use them in your React app!
+Import LSD components individually from `@acid-info/lsd-react` and use them in your React app!
 
 ```tsx
-import { Button } from '@acid-info/lsd-react'
+import { Button } from '@acid-info/lsd-react/client/Button'
 
 function App() {
   return (

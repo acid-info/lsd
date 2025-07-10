@@ -1,5 +1,5 @@
 import { get } from 'lodash'
-import { Typography } from '../../../components/Typography'
+import { Typography } from '../../../components/client/Typography'
 import styles from './DesignTokens.module.css'
 import { useEffect, useState } from 'react'
 import { useTheme } from '../../../theme/useTheme'

@@ -82,19 +82,23 @@ const { ThemeStyles } = prepareLsdTheme({
 
 ### Using LSD Components
 
-Import LSD components from `@acid-info/lsd-react` and use them in your React app!
+Import LSD components individually from `@acid-info/lsd-react` and use them in your React app!
 
 ```tsx
-import { Button } from '@acid-info/lsd-react/components'
+import { Button } from '@acid-info/lsd-react/client/Button'
+import { TextField } from '@acid-info/lsd-react/client/TextField'
 
 function App() {
   return (
     <div>
-      <Button>Button</Button>
+      <Button>Click me</Button>
+      <TextField placeholder="Enter text..." />
     </div>
   )
 }
 ```
+
+Each component must be imported individually for optimal tree-shaking and bundle size.
 
 ## Resources
 
