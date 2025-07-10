@@ -11,8 +11,8 @@ export function componentExportsPlugin(
   options: ComponentExportsOptions = {},
 ): Plugin {
   const {
-    componentsDir = './src/components',
-    componentIndexFile = './src/components/index.ts',
+    componentsDir = './src/components/client',
+    componentIndexFile = './src/components/client/index.ts',
   } = options
 
   function getComponentsFromIndex(): string[] {
@@ -39,7 +39,7 @@ export function componentExportsPlugin(
       const componentEntries = components.reduce((acc, component) => {
         const componentPath = path.join(componentsDir, component, 'index.ts')
         if (fs.existsSync(componentPath)) {
-          acc[`components/${component}/index`] = componentPath
+          acc[`components/client/${component}/index`] = componentPath
         }
         return acc
       }, {} as Record<string, string>)

@@ -2,7 +2,7 @@ import { MutableRefObject, useEffect, useMemo } from 'react'
 import {
   useDOMRect,
   useResizeObserverAPI,
-} from '../components/ResizeObserver/ResizeObserverContext'
+} from '../components/client/ResizeObserver/ResizeObserverContext'
 import { createCounter } from './counter.util'
 
 const defaultValue =

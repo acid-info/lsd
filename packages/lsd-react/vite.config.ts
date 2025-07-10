@@ -12,6 +12,7 @@ export default defineConfig({
     preserveDirectivesPlugin(),
     dts({
       include: ['src'],
+      entryRoot: 'src',
       compilerOptions: {
         preserveSymlinks: true,
       },
@@ -37,7 +38,7 @@ export default defineConfig({
         },
         chunkFileNames: (chunkInfo) => {
           // Keep component chunks in their directories
-          if (chunkInfo.name?.startsWith('components/')) {
+          if (chunkInfo.name?.startsWith('components/client/')) {
             return '[name].js'
           }
           // Put shared chunks in a chunks directory

@@ -1,6 +1,6 @@
 import React from 'react'
-import * as Icons from '../components/Icons'
-import { LsdIconProps } from '../components/Icons'
+import * as Icons from '../components/client/Icons'
+import { LsdIconProps } from '../components/client/Icons'
 
 export const useStorybookIconComponent = (name: string) => {
   const Component = (Icons as any)[name]
