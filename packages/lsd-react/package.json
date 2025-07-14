@@ -10,6 +10,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/lsd-react.js"
     },
+    "./theme": {
+      "types": "./dist/theme/index.d.ts",
+      "import": "./dist/theme.js"
+    },
+    "./css": "./dist/lsd-react.css",
     "./client/*": {
       "types": "./dist/components/client/*/index.d.ts",
       "import": "./dist/components/client/*/index.js"
