@@ -25,6 +25,7 @@ export default defineConfig({
     lib: {
       entry: {
         'lsd-react': './src/index.ts',
+        theme: './src/theme/index.ts',
       },
       formats: ['es'],
     },
@@ -45,7 +46,6 @@ export default defineConfig({
           return 'chunks/[name]-[hash].js'
         },
       },
-      plugins: [injectCssPlugin()],
     },
   },
 })

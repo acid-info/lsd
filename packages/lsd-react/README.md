@@ -26,7 +26,7 @@ Add LSD theme support to your Next.js app by including `LsdThemeStyles` in your 
 
 ```tsx
 // app/layout.tsx
-import { LsdThemeStyles } from '@acid-info/lsd-react'
+import { LsdThemeStyles } from '@acid-info/lsd-react/theme'
 
 export default function RootLayout({
   children,
@@ -59,34 +59,55 @@ Switch between themes by modifying the `data-theme` attribute:
 Create and apply custom themes:
 
 ```tsx
-import { prepareLsdTheme, createTheme } from '@acid-info/lsd-react'
+import { LsdThemeStyles, createTheme, defaultThemes } from '@acid-info/lsd-react/theme'
 
 const customTheme = createTheme({
-  name: 'custom',
-  colors: {
-    primary: '#007bff',
-    secondary: '#6c757d',
+  breakpoints: {
+    sm: { width: 768 },
+    md: { width: 1024 },
+    lg: { width: 1280 },
+    xl: { width: 1440 },
   },
-  typography: {
-    fontFamily: 'Inter, sans-serif',
+  palette: {
+    primary: '20, 0, 255',    // RGB values as strings
+    secondary: '255, 255, 255',
   },
-})
+  spacing: [],
+  typography: {},
+  typographyGlobal: {
+    genericFontFamily: 'sans-serif',
+  },
+}, defaultThemes.light) // extend the default light theme
 
-const { ThemeStyles } = prepareLsdTheme({
-  customThemes: {
-    custom: customTheme,
-  },
-  defaultTheme: 'custom', // Optional default theme
-})
+// Use in your app
+function App() {
+  return (
+    <>
+      <LsdThemeStyles
+        customThemes={{
+          light: customTheme,
+          dark: createTheme(/* dark theme options */, defaultThemes.dark)
+        }}
+        initialTheme="light"
+      />
+      {/* rest of your app */}
+    </>
+  )
+}
 ```
 
 ### Using LSD Components
 
-Import LSD components individually from `@acid-info/lsd-react` and use them in your React app!
+#### Recommended Usage (Individual Imports)
+
+Import LSD components individually for optimal tree-shaking and bundle size:
 
 ```tsx
 import { Button } from '@acid-info/lsd-react/client/Button'
 import { TextField } from '@acid-info/lsd-react/client/TextField'
+
+// CSS must be imported manually
+import '@acid-info/lsd-react/css'
 
 function App() {
   return (
@@ -98,7 +119,28 @@ function App() {
 }
 ```
 
-Each component must be imported individually for optimal tree-shaking and bundle size.
+#### Legacy/Bulk Import Support
+
+For compatibility with older projects, LSD also supports bulk imports:
+
+```tsx
+// Import all components at once (larger bundle size)
+import { Button, TextField } from '@acid-info/lsd-react'
+
+// Manual CSS import (required)
+import '@acid-info/lsd-react/css'
+
+function App() {
+  return (
+    <div>
+      <Button>Click me</Button>
+      <TextField placeholder="Enter text..." />
+    </div>
+  )
+}
+```
+
+**Note**: CSS must be manually imported regardless of which import pattern you use.
 
 ## Resources
 
