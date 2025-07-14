@@ -1,7 +1,7 @@
 import { Parameters, StoryContext } from '@storybook/react'
 import { create } from '@storybook/theming/create'
 import { GlobalTypes } from '@storybook/types'
-import { CreateThemeProps, createTheme, defaultThemes } from '../src'
+import { CreateThemeProps, createTheme, defaultThemes } from '../src/theme'
 import { THEME_TYPOGRAPHY_FONT_CATEGORIES } from '../src/theme/constants'
 
 const themeProps: CreateThemeProps = {
