@@ -3,7 +3,7 @@ import { Decorator } from '@storybook/react'
 import React, { useEffect } from 'react'
 import { PortalProvider } from '../src/components/client/PortalProvider'
 import { storybookThemes } from './themes'
-import { LsdThemeStyles } from '../src'
+import { LsdThemeStyles } from '../src/theme'
 
 export const withTheme: Decorator = (Story, context) => {
   const StoryComponent = Story as any as React.ComponentType
