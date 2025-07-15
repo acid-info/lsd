@@ -38,7 +38,7 @@ jobs:
           echo ".npmrc" >> .git/info/exclude
           echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
           mkdir ${{ runner.temp }}/${{ steps.branch_name.outputs.name }}
-          yarn lerna publish prerelease --canary --no-private --no-verify-access --yes --exact --dist-tag=${{ steps.branch_name.outputs.name }} --since origin/main --preid=${{ steps.branch_name.outputs.name }} --summary-file=${{ runner.temp }}/${{ steps.branch_name.outputs.name }}
+          yarn lerna publish prerelease --canary --no-private --no-verify-access --yes --exact --dist-tag=${{ steps.branch_name.outputs.name }} --preid=${{ steps.branch_name.outputs.name }} --summary-file=${{ runner.temp }}/${{ steps.branch_name.outputs.name }}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
