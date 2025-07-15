@@ -22,7 +22,9 @@ LSD provides comprehensive theme support with options for both built-in and cust
 
 ### Getting Started with Next.js
 
-Add LSD theme support to your Next.js app by including `LsdThemeStyles` in your root layout:
+Add LSD theme support to your Next.js app. **Important**: `LsdThemeStyles` doesn't work inside Next.js's `<Head>` component due to SSR serialization issues.
+
+**Option 1: Place outside of `<Head>`**
 
 ```tsx
 // app/layout.tsx
@@ -36,8 +38,36 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="light">
-      <head>
+      <body>
         <LsdThemeStyles />
+        <PortalProvider>{children}</PortalProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+**Option 2: Manual injection in `<Head>`**
+
+```tsx
+// app/layout.tsx
+import { generateLsdVars } from '@acid-info/lsd-react/theme'
+import { PortalProvider } from '@acid-info/lsd-react/client/PortalProvider'
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  const themeStyles = generateLsdVars({ theme: 'light' })
+
+  return (
+    <html lang="en" data-theme="light">
+      <head>
+        <style
+          id="lsd-theme-styles"
+          dangerouslySetInnerHTML={{ __html: themeStyles }}
+        />
       </head>
       <body>
         <PortalProvider>{children}</PortalProvider>
