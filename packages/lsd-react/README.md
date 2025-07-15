@@ -27,6 +27,7 @@ Add LSD theme support to your Next.js app by including `LsdThemeStyles` in your 
 ```tsx
 // app/layout.tsx
 import { LsdThemeStyles } from '@acid-info/lsd-react/theme'
+import { PortalProvider } from '@acid-info/lsd-react/client/PortalProvider'
 
 export default function RootLayout({
   children,
@@ -38,7 +39,9 @@ export default function RootLayout({
       <head>
         <LsdThemeStyles />
       </head>
-      <body>{children}</body>
+      <body>
+        <PortalProvider>{children}</PortalProvider>
+      </body>
     </html>
   )
 }
@@ -141,6 +144,21 @@ function App() {
 ```
 
 **Note**: CSS must be manually imported regardless of which import pattern you use.
+
+## Portal System
+
+Some LSD components (like `Autocomplete`, `Dropdown`, `DatePicker`, etc.) render overlays that need to be positioned outside the normal component tree. These components require the `PortalProvider` to be rendered somewhere up the component tree.
+
+### Components Requiring PortalProvider
+
+These components won't work properly without `PortalProvider`:
+
+- `Autocomplete` - dropdown positioning
+- `Breadcrumb` - overflow menu
+- `DatePicker` - calendar overlay
+- `DateRangePicker` - calendar overlay
+- `Dropdown` - menu positioning
+- `ToastProvider` - toast notifications
 
 ## Resources
 
