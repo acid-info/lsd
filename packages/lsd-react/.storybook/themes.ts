@@ -18,7 +18,7 @@ const createThemes = () => {
   const themes = fonts.map((font) => [
     createTheme(
       {
-        name: defaultThemes.light.name,
+        name: `${defaultThemes.light.name}-${font}`,
         ...themeProps,
         typographyGlobal: {
           genericFontFamily: font,
@@ -28,7 +28,7 @@ const createThemes = () => {
     ),
     createTheme(
       {
-        name: defaultThemes.dark.name,
+        name: `${defaultThemes.dark.name}-${font}`,
         ...themeProps,
         typographyGlobal: {
           genericFontFamily: font,
