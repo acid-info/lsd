@@ -7,18 +7,27 @@
 }
 
 .sansSerif,
-:global(.sansSerif *) {
-  font-family: sans-serif;
+:global(.sansSerif) {
+  &,
+  * {
+    font-family: sans-serif;
+  }
 }
 
 .serif,
-:global(.serif *) {
-  font-family: serif;
+:global(.serif) {
+  &,
+  * {
+    font-family: serif;
+  }
 }
 
 .monospace,
-:global(.monospace *) {
-  font-family: monospace;
+:global(.monospace) {
+  &,
+  * {
+    font-family: monospace;
+  }
 }
 
 .display1 {
