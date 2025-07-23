@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.3](https://github.com/acid-info/lsd/compare/v0.2.0-beta.2...v0.2.0-beta.3) (2025-07-23)
+
+### Bug Fixes
+
+- **breadcrumb:** fix link class name ([505f5b1](https://github.com/acid-info/lsd/commit/505f5b185d384b1009799167602b5773a53c9f6f))
+- **build:** export as es module, include css into js entrypoint ([be6d144](https://github.com/acid-info/lsd/commit/be6d14499b947e674a028f1b34a4b62636913e88))
+- **card:** fix card body text size ([db5f99b](https://github.com/acid-info/lsd/commit/db5f99b12ee8f79e3b2712e2fe0c8485eb6adee5))
+- **card:** use only one css module for card components ([d94af0e](https://github.com/acid-info/lsd/commit/d94af0e4eb96833153e75141f74d720786ea171d))
+- **design-token:** remove invalid import ([19cd069](https://github.com/acid-info/lsd/commit/19cd069d9ea56102909985adb4c4c2dfbf69e6d3))
+- **icon-button:** fix iconButton border issue ([eb9c464](https://github.com/acid-info/lsd/commit/eb9c464e7bf31c1693502144c45b183427e75755))
+- **icon-button:** fix root class name ([5c80f21](https://github.com/acid-info/lsd/commit/5c80f21b9dbbbf6d7bab1e132ad37a629089dcdd))
+- **storybook:** fix default theme color value ([84d3316](https://github.com/acid-info/lsd/commit/84d3316332861c5382749d42eedd25e504432c8b))
+- **storybook:** fix storybook theme switching ([527d330](https://github.com/acid-info/lsd/commit/527d330ba8298f33879f5012f7c7e143627bdea2))
+- **storybook:** restore font switching ability ([baa6e02](https://github.com/acid-info/lsd/commit/baa6e02e923d10467109f8e692aef80d7aa1594a))
+- **storybook:** use light theme for docs ([eccccde](https://github.com/acid-info/lsd/commit/eccccde79fb5a4dcdd5bd04b9d7cc6fc3206754f))
+- **storybook:** use monospace as default font ([ec93967](https://github.com/acid-info/lsd/commit/ec93967920a25b55b904c9d0529696a9014a98e9))
+- **storybook:** use unique theme names to prevent CSS variable caching issues ([96bd895](https://github.com/acid-info/lsd/commit/96bd895b5295a18ac2504012d2046932db6e3775))
+- **storybook:** wrap component in PortalProvider ([5431b52](https://github.com/acid-info/lsd/commit/5431b52e5c108ceb5ef3ef48d749e4a4bde26e75))
+- **table:** fix line-height ([c31bded](https://github.com/acid-info/lsd/commit/c31bdedb8175a932d064771c6592e8a6b43e40c3))
+- **table:** fix table border issue ([3e952c9](https://github.com/acid-info/lsd/commit/3e952c97b6a079bfe1346754099932b81f3b178d))
+- **tableItem:** fix font-size ([efeecbd](https://github.com/acid-info/lsd/commit/efeecbd73af829767ecd09b1f238749b9a1d03e1))
+- **tableRow:** fix checkbox & radio item class ([c2e99ea](https://github.com/acid-info/lsd/commit/c2e99eaa6df1c73673751a178aaf9ef1fb248462))
+- **tabs:** remove bottom-border on TabItem inside Tabs ([a77b4f2](https://github.com/acid-info/lsd/commit/a77b4f21c9957a8a8f7e0d332e3e8e009bfeb1ce))
+- **textField:** fix button icon size ([e694ca8](https://github.com/acid-info/lsd/commit/e694ca803db0f97f8e9cc1a29bc89ec964d80e7c))
+- **toast:** fix icon size ([9dcdda6](https://github.com/acid-info/lsd/commit/9dcdda6eb612fa23668d04e8d1d8356092e5d899))
+- **types:** add globalStyles as optional field to Theme type ([ae1097f](https://github.com/acid-info/lsd/commit/ae1097f3fdc1480c5ac2c7ba1619c5c3bb898c7b))
+- **typography:** enable global use of the sansSerif, serif and monospace classes ([ccae703](https://github.com/acid-info/lsd/commit/ccae7037b28512579311297fb72ab2ee0bcf7e66))
+- **typography:** fix genericFontFamily css & add inherit to storybook font values ([bf47f0b](https://github.com/acid-info/lsd/commit/bf47f0b4cf141d175e323ae9d9d7a41720d906d4))
+- update theme imports to use the correct path for theme module ([74a5094](https://github.com/acid-info/lsd/commit/74a50941edf118e4f4f8acef2a04aaf3d5266520))
+- **vite:** remove camelCaseOnly setting ([6e0ca29](https://github.com/acid-info/lsd/commit/6e0ca29a96b4e8f25d3f4b4deaf9167a066cea6b))
+
+### Features
+
+- add legacy compatibility support with bulk imports and manual CSS ([7144653](https://github.com/acid-info/lsd/commit/714465394c758cb0ac4c7d5bd969daa66020f6cc))
+
 # [0.2.0-beta.2](https://github.com/acid-info/lsd/compare/v0.1.0-beta.4...v0.2.0-beta.2) (2025-04-16)
 
 **Note:** Version bump only for package @acid-info/logos-design-system
