@@ -8,15 +8,6 @@
   }
 }
 
-.cardBody {
-  box-sizing: border-box;
-  padding: 14px 22px;
-  border: 1px solid rgb(var(--lsd-border-primary));
-  font-size: var(--lsd-body2-fontSize);
-  font-weight: var(--lsd-body2-fontWeight);
-  line-height: var(--lsd-body2-lineHeight);
-}
-
 .cardHeader {
   box-sizing: border-box;
   padding: 10px 18px;
@@ -39,4 +30,28 @@
     overflow: hidden;
     word-break: break-all;
   }
+}
+
+.cardBody {
+  box-sizing: border-box;
+  padding: 14px 22px;
+  border: 1px solid rgb(var(--lsd-border-primary));
+}
+
+.large .cardBody {
+  font-size: var(--lsd-body1-fontSize);
+  font-weight: var(--lsd-body1-fontWeight);
+  line-height: var(--lsd-body1-lineHeight);
+}
+
+.medium .cardBody {
+  font-size: var(--lsd-body2-fontSize);
+  font-weight: var(--lsd-body2-fontWeight);
+  line-height: var(--lsd-body2-lineHeight);
+}
+
+.small .cardBody {
+  font-size: var(--lsd-body3-fontSize);
+  font-weight: var(--lsd-body3-fontWeight);
+  line-height: var(--lsd-body3-lineHeight);
 }
