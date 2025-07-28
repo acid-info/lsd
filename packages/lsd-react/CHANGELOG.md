@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.4](https://github.com/acid-info/lsd/compare/v0.2.0-beta.3...v0.2.0-beta.4) (2025-07-28)
+
+### Bug Fixes
+
+- **card:** adjust cardBody styles for size variations ([488b469](https://github.com/acid-info/lsd/commit/488b46984b1ca00bb4f2ec8846a5e32d5c942a31))
+- **card:** reorganize cardBody styles for better structure ([b6c7c63](https://github.com/acid-info/lsd/commit/b6c7c63431792440ae817ff8cab9a7db7cf2d055))
+- **datePicker:** fix date field width ([8c9bf38](https://github.com/acid-info/lsd/commit/8c9bf38415e8d8706dab89e8e4f275be4da9dda5))
+- **datePicker:** remove direct child selector ([1c9f506](https://github.com/acid-info/lsd/commit/1c9f506c2621b09ee94cd9bc1ed88089392eb3a0))
+- **designTokens:** isolate table style ([df2b05c](https://github.com/acid-info/lsd/commit/df2b05c0cc23c9f2b4bf12bf858af2ee0ba56ba1))
+- **withTheme:** remove font name from theme name when looking for proper background value ([40856fd](https://github.com/acid-info/lsd/commit/40856fd53433686561c7856aaa3ce6c4abf704f3))
+
 # [0.2.0-beta.3](https://github.com/acid-info/lsd/compare/v0.2.0-beta.2...v0.2.0-beta.3) (2025-07-23)
 
 ### Bug Fixes
