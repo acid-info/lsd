@@ -85,6 +85,7 @@ function DatePicker({
         value={isControlled || openCalendar ? input.value : undefined}
         onChange={input.onChange}
         calendarIconRef={calendarIconRef as React.RefObject<HTMLSpanElement>}
+        className="lsd-date-field"
         {...props}
       >
         <Portal id="calendar">

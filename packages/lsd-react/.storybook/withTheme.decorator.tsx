@@ -12,8 +12,9 @@ export const withTheme: Decorator = (Story, context) => {
   const [globals, setGlobals] = useGlobals()
 
   useEffect(() => {
+    const baseThemeName = theme.name.split('-')[0]
     const background = (context.parameters.backgrounds?.values ?? []).find(
-      (value: Record<string, string>) => theme.name === value.name,
+      (value: Record<string, string>) => baseThemeName === value.name,
     )?.value
 
     document.documentElement.setAttribute('data-theme', theme.name)
