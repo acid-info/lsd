@@ -45,6 +45,7 @@ function Modal({
       {...omitCommonProps(props)}
       className={clsx(
         commonProps.className,
+        props.className,
         styles['root-modal'],
         styles[size],
       )}
