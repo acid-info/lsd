@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-beta.5](https://github.com/acid-info/lsd/compare/v0.2.0-beta.4...v0.2.0-beta.5) (2025-09-23)
+
+### Features
+
+- **modal:** pass props className to modal root div ([e0f6524](https://github.com/acid-info/lsd/commit/e0f65244abf366e56dddb2c67810c07a1764716a))
+
 # [0.2.0-beta.4](https://github.com/acid-info/lsd/compare/v0.2.0-beta.3...v0.2.0-beta.4) (2025-07-28)
 
 ### Bug Fixes
