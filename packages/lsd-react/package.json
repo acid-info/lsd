@@ -63,7 +63,7 @@
     "@types/react-dom": "^19.1.1",
     "@vitejs/plugin-react": "^4.3.4",
     "chromatic": "^11.28.0",
-    "glob": "^10.3.10",
+    "glob": "^11.1.0",
     "sass": "^1.58.0",
     "storybook": "^8.6.12",
     "ts-node": "^10.9.1",
